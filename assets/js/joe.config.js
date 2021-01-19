@@ -9,10 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
                 _item.classList.remove("active");
             });
             item.classList.add("active");
-
             let current = item.getAttribute("data-current");
             sessionStorage.setItem("joe_config_current", current);
-
             if (current === "joe_notice") {
                 Notice.style.display = "block";
                 Form.style.display = "none";
@@ -20,7 +18,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 Notice.style.display = "none";
                 Form.style.display = "block";
             }
-
             Content.forEach(function (_item) {
                 _item.style.display = "none";
                 let flag = _item.classList.contains(current);

@@ -6,3 +6,22 @@
  * @author Joe
  * @link https://ae.js.cn
  */
+
+?>
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <?php $this->need('public/include.php'); ?>
+</head>
+
+<body>
+    <div id="Joe">
+        <?php $this->need('public/header.php'); ?>
+
+        <?php $this->need('public/footer.php'); ?>
+    </div>
+</body>
+
+</html>

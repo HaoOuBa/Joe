@@ -38,7 +38,7 @@ function themeConfig($form)
     $JFavicon = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFavicon',
         NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/favicon.ico",
+        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/favicon.ico',
         '网站 Favicon 设置（非必填）',
         '介绍：用于设置网站 Favicon，一个好的 Favicon 可以给用户一种很专业的观感 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -46,4 +46,16 @@ function themeConfig($form)
     );
     $JFavicon->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JFavicon);
+
+    $JLogo = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JLogo',
+        NULL,
+        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/logo.png',
+        '网站 Logo 设置（非必填）',
+        '介绍：用于设置网站 Logo，一个好的 Logo 能为网站带来有效的流量 <br />
+         格式：图片 URL地址 或 Base64 地址 <br />
+         其他：免费制作 logo 网站 <a target="_blank" href="//www.uugai.com">www.uugai.com</a>'
+    );
+    $JLogo->setAttribute('class', 'joe_content joe_image');
+    $form->addInput($JLogo);
 } ?>
