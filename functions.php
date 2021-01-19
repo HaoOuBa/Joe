@@ -38,7 +38,7 @@ function themeConfig($form)
     $JFavicon = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFavicon',
         NULL,
-        "",
+        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/favicon.ico",
         '网站 Favicon 设置（非必填）',
         '介绍：用于设置网站 Favicon，一个好的 Favicon 可以给用户一种很专业的观感 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
