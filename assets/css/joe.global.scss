@@ -28,5 +28,90 @@
                 transform: translateY(-50%);
             }
         }
+        &-nav {
+            display: flex;
+            align-items: center;
+            .item {
+                position: relative;
+                height: 60px;
+                line-height: 60px;
+                font-size: 15px;
+                padding: 0 8px;
+                margin-right: 15px;
+                transition: color 0.35s;
+                white-space: nowrap;
+                cursor: pointer;
+                color: var(--main);
+                &:last-child {
+                    margin-right: 0;
+                }
+                &::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    height: 3px;
+                    transition: opacity 0.5s, transform 0.5s;
+                    border-radius: 6px 6px 0 0;
+                    opacity: 0;
+                    transform: scaleX(0.25);
+                    background: var(--theme);
+                }
+                &.active,
+                &:hover {
+                    color: var(--theme);
+                    &::after {
+                        opacity: 1;
+                        transform: scaleX(1);
+                    }
+                }
+            }
+        }
+        &-search {
+            position: relative;
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            .input {
+                background: var(--classC);
+                width: 170px;
+                height: 34px;
+                border: 1px solid transparent;
+                padding: 0 18px;
+                color: var(--routine);
+                transition: background 0.35s, border-color 0.35s, padding-right 0.35s;
+                border-radius: 17px 0 0 17px;
+                &:focus {
+                    background: var(--background);
+                    border-color: var(--theme);
+                    padding-right: 28px;
+                    ~ .icon {
+                        transform: translate3d(0, -50%, 0) rotateY(180deg);
+                    }
+                }
+            }
+            .submit {
+                position: relative;
+                z-index: 1;
+                height: 34px;
+                border: none;
+                background: var(--theme);
+                color: #fff;
+                border-radius: 0 17px 17px 0;
+                padding: 0 10px;
+            }
+            .icon {
+                position: absolute;
+                top: 50%;
+                left: 142px;
+                width: 28px;
+                height: 38px;
+                background: url(../img/search.png);
+                background-size: 100% 100%;
+                transition: transform 0.35s;
+                transform: translate3d(100%, -50%, 0) rotateY(180deg);
+            }
+        }
     }
 }

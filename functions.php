@@ -58,4 +58,20 @@ function themeConfig($form)
     );
     $JLogo->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JLogo);
+
+    $JNavMaxNum = new Typecho_Widget_Helper_Form_Element_Select(
+        'JNavMaxNum',
+        array(
+            '3' => '3个（默认）',
+            '4' => '4个',
+            '5' => '5个',
+            '6' => '6个',
+            '7' => '7个',
+        ),
+        '3',
+        '选择导航栏最大显示的个数',
+        '介绍：用于设置最大多少个后，以更多下拉框显示'
+    );
+    $JNavMaxNum->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JNavMaxNum->multiMode());
 } ?>
