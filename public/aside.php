@@ -58,7 +58,7 @@
                             <li class="item">
                                 <a class="link" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
                                     <i class="sort"><?php  ?></i>
-                                    <img class="image lazyload" data-original="<?php _getThumbnail($item); ?>" alt="<?php $item->title() ?>" />
+                                    <img class="image lazyload" src="<?php _getLazyload() ?>" data-original="<?php _getThumbnail($item); ?>" alt="<?php $item->title() ?>" />
                                     <div class="describe">
                                         <h6><?php $item->title() ?></h6>
                                         <span> 阅读 - <?php $item->date('m/d'); ?></span>

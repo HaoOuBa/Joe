@@ -67,6 +67,11 @@ function _getThumbnail($item)
     echo $randomThumb;
 }
 
+function _getLazyload()
+{
+    echo Helper::options()->JLazyload;
+}
+
 function _getAsideAuthorNav()
 {
     if (Helper::options()->JAside_Author_Nav !== "off") {
