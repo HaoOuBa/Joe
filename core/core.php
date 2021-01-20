@@ -1,5 +1,32 @@
 <?php
 
+function themeInit($self)
+{
+    $path_info = $self->request->getPathinfo();
+    switch ($path_info) {
+        case '/action/ranking':
+            _getRanking($self);
+            break;
+    };
+}
+
+function _getRanking($self)
+{
+    header("HTTP/1.1 200 OK");
+    $ranking_txt = Helper::options()->JAside_Ranking;
+    $ranking_arr = explode("$", $ranking_txt);
+    $arrContextOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false,]];
+    $json = file_get_contents("https://the.top/v1/{$ranking_arr[1]}/1/9", false, stream_context_create($arrContextOptions));
+    $res = json_decode($json, TRUE);
+    if ($res['code'] === 0) {
+        $self->response->throwJson([
+            "title" => $ranking_arr[0],
+            "data" => $res["data"]
+        ]);
+    } else {
+        $self->response->throwJson(null);
+    }
+}
 
 function _getVersion()
 {
@@ -65,6 +92,13 @@ function _getThumbnail($item)
         $randomThumb = $thumbUrl[1][0];
     }
     echo $randomThumb;
+}
+
+function _getViews($item)
+{
+    $db = Typecho_Db::get();
+    $result = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $item->cid))['views'];
+    echo number_format($result);
 }
 
 function _getLazyload()
