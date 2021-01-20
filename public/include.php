@@ -9,6 +9,8 @@
 
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css'); ?>">
+<link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="<?php $this->options->themeUrl('assets/js/joe.global.js'); ?>"></script>
+<script async src="https://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0"></script>

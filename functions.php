@@ -80,6 +80,8 @@ function themeConfig($form)
         array(
             'author' => '作者栏',
             'timelife' => '计时栏',
+            'weather' => '天气栏（需先在下方填写KEY值）',
+            'hot' => '热门文章栏'
         ),
         null,
         '选择首页需要显示的侧边栏栏目',
@@ -141,4 +143,76 @@ function themeConfig($form)
     );
     $JAside_Author_Nav->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Nav->multiMode());
+
+    $JAside_Weather_Key = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JAside_Weather_Key',
+        NULL,
+        NULL,
+        '天气栏 —— 天气KEY值',
+        '介绍：用于初始化天气栏 <br/>
+         注意：填写时请填写正确的KEY值！<br />
+         其他：免费申请地址：<a href="//cj.weather.com.cn">cj.weather.com.cn</a>'
+    );
+    $JAside_Weather_Key->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Weather_Key);
+
+    $JAside_Weather_Style = new Typecho_Widget_Helper_Form_Element_Select(
+        'JAside_Weather_Style',
+        array(
+            '1' => '自动（默认）',
+            '2' => '浅色',
+            '3' => '深色'
+        ),
+        '1',
+        '天气栏 —— 天气风格样式',
+        '介绍：选择一款您所喜爱的天气风格 <br />
+         注意：需要先填写天气的KEY值'
+    );
+    $JAside_Weather_Style->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Weather_Style->multiMode());
+
+    $JAside_Hot_Num = new Typecho_Widget_Helper_Form_Element_Select(
+        'JAside_Hot_Num',
+        array(
+            '3' => '显示3条（默认）',
+            '4' => '显示4条',
+            '5' => '显示5条',
+            '6' => '显示6条',
+            '7' => '显示7条',
+            '8' => '显示8条',
+            '9' => '显示9条',
+            '10' => '显示10条',
+        ),
+        '3',
+        '热门文章栏 —— 文章数',
+        '介绍：用于控制热门文章栏目的数量'
+    );
+    $JAside_Hot_Num->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Hot_Num->multiMode());
+
+    $JThumbnail = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JThumbnail',
+        NULL,
+        NULL,
+        '自定义缩略图（非必填）',
+        '介绍：用于修改主题默认缩略图 <br/>
+         格式：图片地址，一行一个 <br />
+         注意：不填写时，则使用主题内置的默认缩略图
+         '
+    );
+    $JThumbnail->setAttribute('class', 'joe_content joe_image');
+    $form->addInput($JThumbnail);
+
+    $JLazyload = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JLazyload',
+        NULL,
+        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/lazyload.jpg",
+        '自定义缩略图（非必填）',
+        '介绍：用于修改主题默认缩略图 <br/>
+         格式：图片地址，一行一个 <br />
+         注意：不填写时，则使用主题内置的默认缩略图
+         '
+    );
+    $JLazyload->setAttribute('class', 'joe_content joe_image');
+    $form->addInput($JLazyload);
 } ?>

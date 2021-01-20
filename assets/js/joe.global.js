@@ -26,9 +26,8 @@ window.Joe = function () {
             }
         });
     }
-
     /* Timelife */
-    {
+    if ($('.joe_aside__item.timelife').length !== 0) {
         let timelife = [
             { title: '今日已经过去', endTitle: '小时', num: 0, percent: '0%' },
             { title: '这周已经过去', endTitle: '天', num: 0, percent: '0%' },
@@ -83,7 +82,15 @@ window.Joe = function () {
                 </div>
             `;
         });
-        $('.joe_aside__item-contain').html(htmlStr);
+        $('.joe_aside__item.timelife .joe_aside__item-contain').html(htmlStr);
+    }
+
+    /* Weather */
+    if ($('.joe_aside__item.weather').length !== 0) {
+        const key = $('.joe_aside__item.weather').attr('data-key');
+        const style = $('.joe_aside__item.weather').attr('data-style');
+        const aqiColor = { 1: 'FFFFFF', 2: '4A4A4A', 3: 'FFFFFF' };
+        window.WIDGET = { CONFIG: { layout: 2, width: '220', height: '270', background: style, dataColor: aqiColor[style], language: 'zh', key: key } };
     }
 };
 

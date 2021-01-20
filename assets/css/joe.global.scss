@@ -490,6 +490,19 @@
                 }
             }
         }
+        &.weather {
+            background: var(--background);
+            .joe_aside__item-contain {
+                min-height: 300px;
+            }
+        }
+        &.hot {
+            background: var(--background);
+            .empty {
+                text-align: center;
+                color: var(--routine);
+            }
+        }
     }
 }
 

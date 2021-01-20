@@ -7,6 +7,7 @@ function _getVersion()
 };
 
 timerStart();
+
 function timerStart()
 {
     global $timeStart;
@@ -14,6 +15,7 @@ function timerStart()
     $timeStart = $mTime[1] + $mTime[0];
     return true;
 }
+
 function timerStop($precision = 3)
 {
     global $timeStart, $timeEnd;
@@ -42,6 +44,29 @@ function _getAsideAuthorMotto()
     echo $JMottoRandom[array_rand($JMottoRandom, 1)];
 }
 
+function _getThumbnail($item)
+{
+    $randomThumb = 'https://cdn.jsdelivr.net/npm/typecho_joe_theme@4.3.5/assets/img/random/' . rand(1, 25) . '.webp';
+    $custom_thumbnail = Helper::options()->JThumbnail;
+    if ($custom_thumbnail) {
+        $custom_thumbnail_arr = explode("\r\n", $custom_thumbnail);
+        $randomThumb = $custom_thumbnail_arr[array_rand($custom_thumbnail_arr, 1)] . "?key=" . mt_rand(0, 1000000);
+    }
+    $pattern = '/\<img.*?src\=\"(.*?)\"[^>]*>/i';
+    $patternMD = '/\!\[.*?\]\((http(s)?:\/\/.*?(jpg|jpeg|gif|png|webp))/i';
+    $patternMDfoot = '/\[.*?\]:\s*(http(s)?:\/\/.*?(jpg|jpeg|gif|png|webp))/i';
+    if ($item->fields->thumb) {
+        $randomThumb = $item->fields->thumb;
+    } elseif (preg_match_all($pattern, $item->content, $thumbUrl)) {
+        $randomThumb = $thumbUrl[1][0];
+    } elseif (preg_match_all($patternMD, $item->content, $thumbUrl)) {
+        $randomThumb = $thumbUrl[1][0];
+    } elseif (preg_match_all($patternMDfoot, $item->content, $thumbUrl)) {
+        $randomThumb = $thumbUrl[1][0];
+    }
+    echo $randomThumb;
+}
+
 function _getAsideAuthorNav()
 {
     if (Helper::options()->JAside_Author_Nav !== "off") {
@@ -55,9 +80,9 @@ function _getAsideAuthorNav()
         $result = $db->fetchAll(
             $db->select()
                 ->from('table.contents')
-                ->where('status = ?', 'publish')
-                ->where('type = ?', 'post')
-                ->where('password IS NULL')
+                ->where('table.contents.status = ?', 'publish')
+                ->where('table.contents.type = ?', 'post')
+                ->where("table.contents.password IS NULL OR table.contents.password = ''")
                 ->limit(Helper::options()->JAside_Author_Nav)
                 ->order($order_by)
         );
@@ -92,4 +117,35 @@ function themeFields($layout)
          注意：只有在外观设置侧边栏开启状态下生效'
     );
     $layout->addItem($aside);
+
+    $thumb = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'thumb',
+        NULL,
+        NULL,
+        '自定义文章缩略图',
+        '填写时：将会显示填写的文章缩略图 <br>
+         不填写时：<br>
+            1、若文章有图片则取文章内图片 <br>
+            2、若文章无图片，并且外观设置里未填写·自定义缩略图·选项，则取模板自带图片 <br>
+            3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片'
+    );
+    $layout->addItem($thumb);
+}
+
+class Widget_Contents_Hot extends Widget_Abstract_Contents
+{
+    public function execute()
+    {
+        $this->parameter->setDefault(array('pageSize' => 10));
+        $this->db->fetchAll(
+            $this->select()->from('table.contents')
+                ->where("table.contents.password IS NULL OR table.contents.password = ''")
+                ->where('table.contents.status = ?', 'publish')
+                ->where('table.contents.created <= ?', time())
+                ->where('table.contents.type = ?', 'post')
+                ->limit($this->parameter->pageSize)
+                ->order('table.contents.views', Typecho_Db::SORT_DESC),
+            array($this, 'push')
+        );
+    }
 }
