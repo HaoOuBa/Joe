@@ -87,4 +87,16 @@ function themeConfig($form)
     );
     $JAside->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside->multiMode());
+
+    $JAside_Author_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JAside_Author_Image',
+        NULL,
+        NULL,
+        '作者栏 —— 背景（非必填）',
+        '介绍：用于修改作者栏的背景图片 <br/>
+         格式：图片地址 <br />
+         注意：不填写时，则显示默认背景'
+    );
+    $JAside_Author_Image->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Author_Image);
 } ?>

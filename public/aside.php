@@ -2,7 +2,7 @@
     <aside class="joe_aside">
         <?php if (in_array('author', $this->options->JAside)) : ?>
             <section class="joe_aside__item author">
-                <img class="wallpaper" />
+                <img class="image" src="" alt="<?php $this->author->screenName(); ?>" />
             </section>
         <?php endif; ?>
     </aside>
