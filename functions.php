@@ -39,7 +39,7 @@ function themeConfig($form)
         'JFavicon',
         NULL,
         'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/favicon.ico',
-        '网站 Favicon 设置（非必填）',
+        '网站 Favicon 设置',
         '介绍：用于设置网站 Favicon，一个好的 Favicon 可以给用户一种很专业的观感 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
          其他：免费转换 Favicon 网站 <a target="_blank" href="//tool.lu/favicon">tool.lu/favicon</a>'
@@ -51,7 +51,7 @@ function themeConfig($form)
         'JLogo',
         NULL,
         'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/logo.png',
-        '网站 Logo 设置（非必填）',
+        '网站 Logo 设置',
         '介绍：用于设置网站 Logo，一个好的 Logo 能为网站带来有效的流量 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
          其他：免费制作 logo 网站 <a target="_blank" href="//www.uugai.com">www.uugai.com</a>'
@@ -79,9 +79,10 @@ function themeConfig($form)
         'JAside',
         array(
             'author' => '作者栏',
+            'timelife' => '计时栏',
         ),
         null,
-        '选择首页需要显示的侧边栏栏目（非必选）',
+        '选择首页需要显示的侧边栏栏目',
         '介绍：用于控制首页侧边栏的栏目显示规则 <br>
          注意：如果全部未选，则表示不开启侧边栏'
     );
@@ -92,11 +93,52 @@ function themeConfig($form)
         'JAside_Author_Image',
         NULL,
         "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/aside_author_image.jpg",
-        '作者栏 —— 背景（非必填）',
+        '作者栏 —— 背景',
         '介绍：用于修改作者栏的背景图片 <br/>
          格式：图片地址 <br />
          注意：不填写时，则显示默认背景'
     );
     $JAside_Author_Image->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Image);
+
+    $JAside_Author_Link = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JAside_Author_Link',
+        NULL,
+        "https://ae.js.cn",
+        '作者栏 —— 跳转链接',
+        '介绍：用于修改作者栏的跳转链接'
+    );
+    $JAside_Author_Link->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Author_Link);
+
+    $JAside_Author_Motto = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JAside_Author_Motto',
+        NULL,
+        "有钱终成眷属，没钱亲眼目睹",
+        '作者栏 —— 座右铭',
+        '介绍：用于显示在侧边栏作者信息的座右铭。<br />
+         格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条'
+    );
+    $JAside_Author_Motto->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Author_Motto);
+
+    $JAside_Author_Nav = new Typecho_Widget_Helper_Form_Element_Select(
+        'JAside_Author_Nav',
+        array(
+            'off' => '关闭（默认）',
+            '3' => '开启，并显示3条最新文章',
+            '4' => '开启，并显示4条最新文章',
+            '5' => '开启，并显示5条最新文章',
+            '6' => '开启，并显示6条最新文章',
+            '7' => '开启，并显示7条最新文章',
+            '8' => '开启，并显示8条最新文章',
+            '9' => '开启，并显示9条最新文章',
+            '10' => '开启，并显示10条最新文章'
+        ),
+        'off',
+        '作者栏 —— 随机文章数目',
+        '介绍：用于控制作者栏的随机文章条数'
+    );
+    $JAside_Author_Nav->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Author_Nav->multiMode());
 } ?>

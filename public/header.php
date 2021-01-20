@@ -57,7 +57,7 @@
                                 <nav class="joe_dropdown__menu">
                                     <?php foreach ($children as $mid) : ?>
                                         <?php $child = $item->getCategory($mid); ?>
-                                        <a class="<?php echo $this->is('category', $$child['slug']) ? 'active' : '' ?>" href="<?php echo $child['permalink'] ?>" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
+                                        <a class="<?php echo $this->is('category', $child['slug']) ? 'active' : '' ?>" href="<?php echo $child['permalink'] ?>" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
                                     <?php endforeach; ?>
                                 </nav>
                             </div>
