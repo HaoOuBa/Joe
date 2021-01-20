@@ -74,4 +74,17 @@ function themeConfig($form)
     );
     $JNavMaxNum->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JNavMaxNum->multiMode());
+
+    $JAside = new Typecho_Widget_Helper_Form_Element_Checkbox(
+        'JAside',
+        array(
+            'author' => '作者栏',
+        ),
+        null,
+        '选择首页需要显示的侧边栏栏目（非必选）',
+        '介绍：用于控制首页侧边栏的栏目显示规则 <br>
+         注意：如果全部未选，则表示不开启侧边栏'
+    );
+    $JAside->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside->multiMode());
 } ?>

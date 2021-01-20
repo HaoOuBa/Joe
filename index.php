@@ -19,7 +19,12 @@
 <body>
     <div id="Joe">
         <?php $this->need('public/header.php'); ?>
-
+        <div class="joe_container">
+            <div class="joe_main">
+                1
+            </div>
+            <?php $this->need('public/aside.php'); ?>
+        </div>
         <?php $this->need('public/footer.php'); ?>
     </div>
 </body>

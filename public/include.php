@@ -6,6 +6,9 @@
 <link rel="shortcut icon" href="<?php $this->options->JFavicon() ?>" />
 <?php $this->header(); ?>
 <title><?php $this->options->title(); ?></title>
+
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css'); ?>">
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="<?php $this->options->themeUrl('assets/js/joe.global.js'); ?>"></script>
