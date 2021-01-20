@@ -20,11 +20,16 @@ function _getRanking($self)
     $res = json_decode($json, TRUE);
     if ($res['code'] === 0) {
         $self->response->throwJson([
+            "code" => 1,
             "title" => $ranking_arr[0],
             "data" => $res["data"]
         ]);
     } else {
-        $self->response->throwJson(null);
+        $self->response->throwJson([
+            "code" => 0,
+            "title" => $ranking_arr[0],
+            "data" => null
+        ]);
     }
 }
 
