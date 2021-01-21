@@ -83,6 +83,7 @@ function themeConfig($form)
             'weather' => '天气栏（需先在下方填写KEY值）',
             'hot' => '热门文章栏',
             'ranking' => '排行榜栏',
+            'newreply' => '最新回复栏'
         ),
         null,
         '选择首页需要显示的侧边栏栏目',
