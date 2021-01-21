@@ -51,7 +51,7 @@
                     <span class="text">热门文章</span>
                     <span class="line"></span>
                 </div>
-                <?php $this->widget('Widget_Contents_Hot', 'pageSize=' . $this->options->JAside_Hot_Num)->to($item); ?>
+                <?php $this->widget('Widget_Contents_Hot@Aside', 'pageSize=' . $this->options->JAside_Hot_Num)->to($item); ?>
                 <ol class="joe_aside__item-contain">
                     <?php if ($item->have()) : ?>
                         <?php $index = 1; ?>

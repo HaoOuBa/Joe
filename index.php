@@ -24,7 +24,6 @@
         <div class="joe_container">
             <div class="joe_main">
                 <div class="joe_index">
-
                     <?php
                     /* 轮播图 */
                     $carousel = [];
@@ -74,7 +73,7 @@
                                         <?php $this->widget('Widget_Archive', 'pageSize=1&type=post', 'cid=' . $cid)->to($item); ?>
                                         <figure class="item">
                                             <a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
-                                                <img class="lazyload" alt="<?php $item->title() ?>" width="100%" />
+                                                <img class="lazyload" src="<?php _getLazyload(); ?>" data-original="<?php _getThumbnail($item); ?>" alt="<?php $item->title() ?>" width="100%" />
                                             </a>
                                             <figcaption class="information">
                                                 <span class="information_type">推荐</span>
@@ -86,7 +85,34 @@
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>
-
+                    <?php if ($this->options->JIndex_Hot === "on") : ?>
+                        <?php $this->widget('Widget_Contents_Hot@Index', 'pageSize=4')->to($item); ?>
+                        <div class="joe_index__hot">
+                            <ul class="joe_index__hot-list">
+                                <?php while ($item->next()) : ?>
+                                    <li class="item">
+                                        <a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
+                                            <figure class="inner">
+                                                <span class="views"><?php _getViews($item); ?></span>
+                                                <img class="image lazyload" src="<?php _getLazyload(); ?>" data-original="<?php _getThumbnail($item); ?>" alt="<?php $item->title(); ?>" />
+                                                <figcaption class="title"><?php $item->title(); ?></figcaption>
+                                            </figure>
+                                        </a>
+                                    </li>
+                                <?php endwhile; ?>
+                            </ul>
+                        </div>
+                    <?php endif; ?>
+                    <div class="joe_index__title">
+                        <ul class="joe_index__title-title">
+                            <li class="item" data-type="created">最新文章</li>
+                            <li class="item" data-type="commentsNum">评论最多</li>
+                            <li class="item" data-type="agree">点赞最多</li>
+                            <li class="item" data-type="views">浏览最多</li>
+                            <li class="line"></li>
+                        </ul>
+                    </div>
+                    <ul class="joe_list joe_index__list"></ul>
                 </div>
             </div>
             <?php $this->need('public/aside.php'); ?>

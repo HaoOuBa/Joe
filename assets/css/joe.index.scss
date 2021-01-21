@@ -80,6 +80,99 @@
             }
         }
     }
+    &__hot {
+        padding-top: 15px;
+        &-list {
+            display: flex;
+            margin: 0 -5px;
+            .item {
+                width: 25%;
+                padding: 0 5px;
+                .link {
+                    display: block;
+                    .inner {
+                        position: relative;
+                        cursor: pointer;
+                        &:hover {
+                            .image {
+                                opacity: 0.85;
+                            }
+                            .title {
+                                background: var(--classC);
+                            }
+                        }
+                        .image {
+                            width: 100%;
+                            height: 125px;
+                            object-fit: cover;
+                            border-radius: 5px 5px 0 0;
+                            transition: opacity 0.35s;
+                        }
+                        .title {
+                            font-size: 13px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            text-align: center;
+                            padding: 0 8px;
+                            line-height: 32px;
+                            color: var(--minor);
+                            background: var(--classD);
+                            border-radius: 0 0 5px 5px;
+                            transition: background 0.35s;
+                        }
+                        .views {
+                            display: flex;
+                            align-items: center;
+                            position: absolute;
+                            z-index: 1;
+                            top: 5px;
+                            right: 5px;
+                            background-image: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3);
+                            color: #fff;
+                            font-size: 12px;
+                            height: 18px;
+                            padding: 0 8px;
+                            border-radius: 2px;
+                            white-space: nowrap;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    &__title {
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid var(--classC);
+        &-title {
+            position: relative;
+            display: flex;
+            align-items: center;
+            color: var(--routine);
+            font-weight: 500;
+            height: 40px;
+            line-height: 40px;
+            .item {
+                cursor: pointer;
+                margin-right: 20px;
+                user-select: none;
+                transition: color 0.35s;
+                &.active {
+                    color: var(--theme);
+                }
+            }
+            .line {
+                position: absolute;
+                bottom: -1px;
+                left: 0;
+                height: 2px;
+                border-radius: 1px;
+                background: var(--theme);
+                transition: left 0.35s, width 0.35s;
+            }
+        }
+    }
 }
 
 .swiper-container {

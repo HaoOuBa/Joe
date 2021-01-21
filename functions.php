@@ -6,8 +6,8 @@ function themeConfig($form)
     $_db = Typecho_Db::get();
     $_prefix = $_db->getPrefix();
     try {
-        if (!array_key_exists('view', $_db->fetchRow($_db->select()->from('table.contents')->page(1, 1)))) {
-            $_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `view` INT DEFAULT 0;');
+        if (!array_key_exists('views', $_db->fetchRow($_db->select()->from('table.contents')->page(1, 1)))) {
+            $_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `views` INT DEFAULT 0;');
         }
         if (!array_key_exists('agree', $_db->fetchRow($_db->select()->from('table.contents')->page(1, 1)))) {
             $_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `agree` INT DEFAULT 0;');
@@ -337,4 +337,14 @@ function themeConfig($form)
     );
     $JIndex_Recommend->setAttribute('class', 'joe_content joe_index');
     $form->addInput($JIndex_Recommend);
+
+    $JIndex_Hot = new Typecho_Widget_Helper_Form_Element_Radio(
+        'JIndex_Hot',
+        array('off' => '关闭（默认）', 'on' => '开启'),
+        'off',
+        '是否开启首页热门文章',
+        '介绍：开启后，网站首页将会显示浏览量最多的4篇热门文章'
+    );
+    $JIndex_Hot->setAttribute('class', 'joe_content joe_index');
+    $form->addInput($JIndex_Hot->multiMode());
 } ?>

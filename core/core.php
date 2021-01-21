@@ -1,35 +1,19 @@
 <?php
 
+require_once('route.php');
+
 function themeInit($self)
 {
     $path_info = $self->request->getPathinfo();
-    switch ($path_info) {
-        case '/action/ranking':
-            _getRanking($self);
-            break;
-    };
-}
-
-function _getRanking($self)
-{
-    header("HTTP/1.1 200 OK");
-    $ranking_txt = Helper::options()->JAside_Ranking;
-    $ranking_arr = explode("$", $ranking_txt);
-    $arrContextOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false,]];
-    $json = file_get_contents("https://the.top/v1/{$ranking_arr[1]}/1/9", false, stream_context_create($arrContextOptions));
-    $res = json_decode($json, TRUE);
-    if ($res['code'] === 0) {
-        $self->response->throwJson([
-            "code" => 1,
-            "title" => $ranking_arr[0],
-            "data" => $res["data"]
-        ]);
-    } else {
-        $self->response->throwJson([
-            "code" => 0,
-            "title" => $ranking_arr[0],
-            "data" => null
-        ]);
+    if ($path_info === "/joe/api") {
+        switch ($self->request->routeType) {
+            case 'ranking':
+                _getRanking($self);
+                break;
+            case 'list':
+                _getPost($self);
+                break;
+        };
     }
 }
 
@@ -76,7 +60,22 @@ function _getAsideAuthorMotto()
     echo $JMottoRandom[array_rand($JMottoRandom, 1)];
 }
 
-function _getThumbnail($item)
+function _getAbstract($item, $type = true)
+{
+    $abstract = "";
+    if ($item->fields->abstract) {
+        $abstract = $item->fields->abstract;
+    } else {
+        $abstract = $item->excerpt;
+    }
+    if ($type) {
+        echo $abstract;
+    } else {
+        return $abstract;
+    }
+}
+
+function _getThumbnail($item, $type = true)
 {
     $randomThumb = 'https://cdn.jsdelivr.net/npm/typecho_joe_theme@4.3.5/assets/img/random/' . rand(1, 25) . '.webp';
     $custom_thumbnail = Helper::options()->JThumbnail;
@@ -96,7 +95,11 @@ function _getThumbnail($item)
     } elseif (preg_match_all($patternMDfoot, $item->content, $thumbUrl)) {
         $randomThumb = $thumbUrl[1][0];
     }
-    echo $randomThumb;
+    if ($type) {
+        echo $randomThumb;
+    } else {
+        return $randomThumb;
+    }
 }
 
 function _getViews($item)
@@ -209,6 +212,16 @@ function themeFields($layout)
             3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片'
     );
     $layout->addItem($thumb);
+
+    $abstract = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'abstract',
+        NULL,
+        NULL,
+        '自定义文章摘要',
+        '填写时：将会显示填写的摘要 <br>
+         不填写时：默认取文章里的内容'
+    );
+    $layout->addItem($abstract);
 }
 
 class Widget_Contents_Hot extends Widget_Abstract_Contents
@@ -224,6 +237,25 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
                 ->where('table.contents.type = ?', 'post')
                 ->limit($this->parameter->pageSize)
                 ->order('table.contents.views', Typecho_Db::SORT_DESC),
+            array($this, 'push')
+        );
+    }
+}
+
+class Widget_Contents_Sort extends Widget_Abstract_Contents
+{
+    public function execute()
+    {
+        $this->parameter->setDefault(array('page' => 1, 'pageSize' => 10, 'type' => 'created'));
+        $offset = $this->parameter->pageSize * ($this->parameter->page - 1);
+        $this->db->fetchAll(
+            $this->select()
+                ->from('table.contents')
+                ->where('table.contents.type = ?', 'post')
+                ->where('table.contents.status = ?', 'publish')
+                ->limit($this->parameter->pageSize)
+                ->offset($offset)
+                ->order($this->parameter->type, Typecho_Db::SORT_DESC),
             array($this, 'push')
         );
     }
