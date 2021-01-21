@@ -682,11 +682,14 @@
                         bottom: 100%;
                     }
                     .link {
-                        display: block;
-                        max-width: 100%;
-                        white-space: nowrap;
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        /*! autoprefixer: off */
+                        -webkit-box-orient: vertical;
+                        /* autoprefixer: on */
                         overflow: hidden;
                         text-overflow: ellipsis;
+
                         color: var(--minor);
                         font-size: 13px;
                         font-weight: 500;

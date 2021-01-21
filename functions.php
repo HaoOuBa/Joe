@@ -308,4 +308,33 @@ function themeConfig($form)
     );
     $JLazyload->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JLazyload);
+
+    $JIndex_Carousel = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JIndex_Carousel',
+        NULL,
+        NULL,
+        '首页轮播图',
+        '介绍：用于显示首页轮播图，请务必填写正确的格式 <br />
+         格式：图片地址 || 跳转链接 || 标题 （中间使用两个竖杠分隔）<br />
+         其他：一行一个，一行代表一个轮播图 <br />
+         例如：<br />
+            https://puui.qpic.cn/media_img/lena/PICykqaoi_580_1680/0 || http://baidu.com || 百度一下 <br />
+            https://puui.qpic.cn/tv/0/1223447268_1680580/0 || http://v.qq.com || 腾讯视频
+         '
+    );
+    $JIndex_Carousel->setAttribute('class', 'joe_content joe_index');
+    $form->addInput($JIndex_Carousel);
+
+    $JIndex_Recommend = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JIndex_Recommend',
+        NULL,
+        NULL,
+        '首页推荐文章（非必填，填写时请填写2个，否则不显示！）',
+        '介绍：用于显示推荐文章，请务必填写正确的格式 <br/>
+         格式：文章的id || 文章的id （中间使用两个竖杠分隔）<br />
+         例如：1 || 2 <br />
+         注意：如果填写的不是2个，将不会显示'
+    );
+    $JIndex_Recommend->setAttribute('class', 'joe_content joe_index');
+    $form->addInput($JIndex_Recommend);
 } ?>

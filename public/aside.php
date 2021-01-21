@@ -98,7 +98,9 @@
                                     </div>
                                 </div>
                                 <div class="reply">
-                                    <a href="<?php $item->permalink(); ?>"><?php _parseAsideReply($item->content); ?></a>
+                                    <a class="link" title="<?php _parseAsideReply($item->content, false); ?>" href="<?php _parseAsideLink($item->permalink); ?>">
+                                        <?php _parseAsideReply($item->content); ?>
+                                    </a>
                                 </div>
                             </li>
                         <?php endwhile; ?>
