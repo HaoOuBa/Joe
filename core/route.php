@@ -42,6 +42,7 @@ function _getPost($self)
             "commentsNum" => number_format($item->commentsNum),
             "agree" => number_format($item->agree),
             "permalink" => $item->permalink,
+            "lazyload" => _getLazyload(false)
         );
     };
     $self->response->throwJson(array("data" => $result));

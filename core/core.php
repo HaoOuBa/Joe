@@ -144,9 +144,13 @@ function _parseReply($text)
 }
 
 
-function _getLazyload()
+function _getLazyload($type = true)
 {
-    echo Helper::options()->JLazyload;
+    if ($type) {
+        echo Helper::options()->JLazyload;
+    } else {
+        return Helper::options()->JLazyload;
+    }
 }
 
 function _getAsideAuthorNav()
