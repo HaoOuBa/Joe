@@ -112,8 +112,33 @@
                             <li class="line"></li>
                         </ul>
                     </div>
-                    <ul class="joe_list joe_index__list"></ul>
+                    <div class="joe_index__list">
+                        <ul class="joe_list"></ul>
+                        <ul class="joe_list__loading">
+                            <li class="item">
+                                <div class="thumbnail"></div>
+                                <div class="information">
+                                    <div class="title"></div>
+                                    <div class="abstract">
+                                        <p></p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="item">
+                                <div class="thumbnail"></div>
+                                <div class="information">
+                                    <div class="title"></div>
+                                    <div class="abstract">
+                                        <p></p>
+                                        <p></p>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
+                <div class="joe_load">查看更多</div>
             </div>
             <?php $this->need('public/aside.php'); ?>
         </div>

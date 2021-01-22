@@ -3,7 +3,6 @@
     padding: 0 15px;
     background: var(--background);
     box-shadow: var(--box-shadow);
-    margin-bottom: 15px;
     &__banner {
         padding-top: 15px;
         display: flex;
@@ -174,6 +173,8 @@
         }
     }
 }
+
+
 
 .swiper-container {
     min-width: 0;

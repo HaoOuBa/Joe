@@ -63,10 +63,14 @@ function _getAsideAuthorMotto()
 function _getAbstract($item, $type = true)
 {
     $abstract = "";
-    if ($item->fields->abstract) {
-        $abstract = $item->fields->abstract;
+    if ($item->password) {
+        $abstract = "本篇文章为加密文章，请前往内页查看详情";
     } else {
-        $abstract = $item->excerpt;
+        if ($item->fields->abstract) {
+            $abstract = $item->fields->abstract;
+        } else {
+            $abstract = strip_tags($item->excerpt);
+        }
     }
     if ($type) {
         echo $abstract;
