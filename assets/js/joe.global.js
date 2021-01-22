@@ -3,16 +3,13 @@ window.Joe = function () {
     const BASE_API = '/index.php/joe/api';
     /* 头部高度 */
     const Header_Height = $('.joe_header').height();
-
     /* 解决移动端Hover问题 */
     document.addEventListener('touchstart', () => {});
-
     /* 判断是否是手机 */
     const IsMobile = /windows phone|iphone|android/gi.test(window.navigator.userAgent);
-
     /* 设置侧边栏最后一个元素的高度 */
     $('.joe_aside .joe_aside__item:last-child').css('top', Header_Height + 15);
-
+    
     /* Dropdown */
     $('.joe_dropdown').each(function (index, item) {
         const menu = $(this).find('.joe_dropdown__menu');
