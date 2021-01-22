@@ -38,7 +38,7 @@ function themeConfig($form)
     $JFavicon = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFavicon',
         NULL,
-        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/favicon.ico',
+        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/favicon.ico',
         '网站 Favicon 设置',
         '介绍：用于设置网站 Favicon，一个好的 Favicon 可以给用户一种很专业的观感 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -50,7 +50,7 @@ function themeConfig($form)
     $JLogo = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JLogo',
         NULL,
-        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/logo.png',
+        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/assets/img/logo.png',
         '网站 Logo 设置',
         '介绍：用于设置网站 Logo，一个好的 Logo 能为网站带来有效的流量 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -75,6 +75,93 @@ function themeConfig($form)
     $JNavMaxNum->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JNavMaxNum->multiMode());
 
+    $JList_Animate = new Typecho_Widget_Helper_Form_Element_Select(
+        'JList_Animate',
+        array(
+            'off' => '关闭（默认）',
+            'bounce' => 'bounce',
+            'flash' => 'flash',
+            'pulse' => 'pulse',
+            'rubberBand' => 'rubberBand',
+            'headShake' => 'headShake',
+            'swing' => 'swing',
+            'tada' => 'tada',
+            'wobble' => 'wobble',
+            'jello' => 'jello',
+            'heartBeat' => 'heartBeat',
+            'bounceIn' => 'bounceIn',
+            'bounceInDown' => 'bounceInDown',
+            'bounceInLeft' => 'bounceInLeft',
+            'bounceInRight' => 'bounceInRight',
+            'bounceInUp' => 'bounceInUp',
+            'bounceOut' => 'bounceOut',
+            'bounceOutDown' => 'bounceOutDown',
+            'bounceOutLeft' => 'bounceOutLeft',
+            'bounceOutRight' => 'bounceOutRight',
+            'bounceOutUp' => 'bounceOutUp',
+            'fadeIn' => 'fadeIn',
+            'fadeInDown' => 'fadeInDown',
+            'fadeInDownBig' => 'fadeInDownBig',
+            'fadeInLeft' => 'fadeInLeft',
+            'fadeInLeftBig' => 'fadeInLeftBig',
+            'fadeInRight' => 'fadeInRight',
+            'fadeInRightBig' => 'fadeInRightBig',
+            'fadeInUp' => 'fadeInUp',
+            'fadeInUpBig' => 'fadeInUpBig',
+            'fadeOut' => 'fadeOut',
+            'fadeOutDown' => 'fadeOutDown',
+            'fadeOutDownBig' => 'fadeOutDownBig',
+            'fadeOutLeft' => 'fadeOutLeft',
+            'fadeOutLeftBig' => 'fadeOutLeftBig',
+            'fadeOutRight' => 'fadeOutRight',
+            'fadeOutRightBig' => 'fadeOutRightBig',
+            'fadeOutUp' => 'fadeOutUp',
+            'fadeOutUpBig' => 'fadeOutUpBig',
+            'flip' => 'flip',
+            'flipInX' => 'flipInX',
+            'flipInY' => 'flipInY',
+            'flipOutX' => 'flipOutX',
+            'flipOutY' => 'flipOutY',
+            'rotateIn' => 'rotateIn',
+            'rotateInDownLeft' => 'rotateInDownLeft',
+            'rotateInDownRight' => 'rotateInDownRight',
+            'rotateInUpLeft' => 'rotateInUpLeft',
+            'rotateInUpRight' => 'rotateInUpRight',
+            'rotateOut' => 'rotateOut',
+            'rotateOutDownLeft' => 'rotateOutDownLeft',
+            'rotateOutDownRight' => 'rotateOutDownRight',
+            'rotateOutUpLeft' => 'rotateOutUpLeft',
+            'rotateOutUpRight' => 'rotateOutUpRight',
+            'hinge' => 'hinge',
+            'jackInTheBox' => 'jackInTheBox',
+            'rollIn' => 'rollIn',
+            'rollOut' => 'rollOut',
+            'zoomIn' => 'zoomIn',
+            'zoomInDown' => 'zoomInDown',
+            'zoomInLeft' => 'zoomInLeft',
+            'zoomInRight' => 'zoomInRight',
+            'zoomInUp' => 'zoomInUp',
+            'zoomOut' => 'zoomOut',
+            'zoomOutDown' => 'zoomOutDown',
+            'zoomOutLeft' => 'zoomOutLeft',
+            'zoomOutRight' => 'zoomOutRight',
+            'zoomOutUp' => 'zoomOutUp',
+            'slideInDown' => 'slideInDown',
+            'slideInLeft' => 'slideInLeft',
+            'slideInRight' => 'slideInRight',
+            'slideInUp' => 'slideInUp',
+            'slideOutDown' => 'slideOutDown',
+            'slideOutLeft' => 'slideOutLeft',
+            'slideOutRight' => 'slideOutRight',
+            'slideOutUp' => 'slideOutUp',
+        ),
+        'off',
+        '选择一款炫酷的列表动画',
+        '介绍：开启后，列表将会显示所选择的炫酷动画'
+    );
+    $JList_Animate->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JList_Animate->multiMode());
+
     $JAside = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'JAside',
         array(
@@ -96,7 +183,7 @@ function themeConfig($form)
     $JAside_Author_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JAside_Author_Image',
         NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/aside_author_image.jpg",
+        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/assets/img/aside_author_image.jpg",
         '作者栏 —— 背景',
         '介绍：用于修改作者栏的背景图片 <br/>
          格式：图片地址 <br />
@@ -301,7 +388,7 @@ function themeConfig($form)
     $JLazyload = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JLazyload',
         NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/lazyload.jpg",
+        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/assets/img/lazyload.jpg",
         '自定义懒加载图',
         '介绍：用于修改主题默认懒加载图 <br/>
          格式：图片地址'
@@ -347,4 +434,28 @@ function themeConfig($form)
     );
     $JIndex_Hot->setAttribute('class', 'joe_content joe_index');
     $form->addInput($JIndex_Hot->multiMode());
+
+    $JIndex_Ad = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JIndex_Ad',
+        NULL,
+        NULL,
+        '首页大屏广告',
+        '介绍：请务必填写正确的格式 <br />
+         格式：广告图片 || 广告链接 （中间使用两个竖杠分隔，限制一个）<br />
+         例如：https://puui.qpic.cn/media_img/lena/PICykqaoi_580_1680/0 || http://baidu.com'
+    );
+    $JIndex_Ad->setAttribute('class', 'joe_content joe_index');
+    $form->addInput($JIndex_Ad);
+
+    $JIndex_Notice = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JIndex_Notice',
+        NULL,
+        NULL,
+        '首页通知文字（非必填）',
+        '介绍：请务必填写正确的格式 <br />
+         格式：通知文字 || 跳转链接（中间使用两个竖杠分隔，限制一个）<br />
+         例如：欢迎加入Joe官方QQ群 || http://baidu.com'
+    );
+    $JIndex_Notice->setAttribute('class', 'joe_content joe_index');
+    $form->addInput($JIndex_Notice);
 } ?>

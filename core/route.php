@@ -1,4 +1,6 @@
 <?php
+
+/* 排行榜 */
 function _getRanking($self)
 {
     header("HTTP/1.1 200 OK");
@@ -22,6 +24,7 @@ function _getRanking($self)
     }
 }
 
+/* 列表 */
 function _getPost($self)
 {
     header("HTTP/1.1 200 OK");
@@ -46,4 +49,36 @@ function _getPost($self)
         );
     };
     $self->response->throwJson(array("data" => $result));
+}
+
+/* 收录 */
+function _getRecord($self)
+{
+    header("HTTP/1.1 200 OK");
+    $site = $self->request->site;
+    $encryption = md5(mt_rand(1655, 100860065) . time());
+    $baiduSite = "https://www.baidu.com/s?ie=utf-8&newi=1&mod=1&isid={$encryption}&wd={$site}&rsv_spt=1&rsv_iqid={$encryption}&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=0&rsv_dl=ib&rsv_sug3=2&rsv_sug1=1&rsv_sug7=001&rsv_n=2&rsv_btype=i&inputT=3083&rsv_sug4=3220&rsv_sug=9&rsv_sid=32818_1460_33042_33060_31660_33099_33101_32961_26350_22159&_ss=1&clist=&hsug=&f4s=1&csor=38&_cr1=32951";
+    $ip = rand(0, 255) . '.' . rand(0, 255) . '.' . rand(0, 255) . '.' . rand(0, 255);
+    $header[] = "accept-encoding: gzip, deflate";
+    $header[] = "accept-language: en-US,en;q=0.8";
+    $header[] = "CLIENT-IP:" . $ip;
+    $header[] = "X-FORWARDED-FOR:" . $ip;
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $baiduSite);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
+    curl_setopt($ch, CURLOPT_REFERER, "https://www.baidu.com/s?ie=UTF-8&wd={$url}");
+    curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36");
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate');
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    $output = curl_exec($ch);
+    curl_close($ch);
+    $res = str_replace([' ', "\n", "\r"], '', $output);
+    if (strpos($res, "抱歉，没有找到与") || strpos($res, "找到相关结果约0个") || strpos($res, "没有找到该URL") || strpos($res, "抱歉没有找到")) {
+        $self->response->throwJson(array("data" => "未收录"));
+    } else {
+        $self->response->throwJson(array("data" => "已收录"));
+    }
 }

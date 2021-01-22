@@ -2,7 +2,7 @@
     <aside class="joe_aside">
         <?php if (in_array('author', $this->options->JAside)) : ?>
             <section class="joe_aside__item author">
-                <img class="image" src="<?php $this->options->JAside_Author_Image() ?>" alt="<?php $this->author->screenName(); ?>" />
+                <img class="image" onerror="<?php _getLazyload() ?>" src="<?php $this->options->JAside_Author_Image() ?>" alt="<?php $this->author->screenName(); ?>" />
                 <div class="user">
                     <img class="avatar" src="<?php _getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author->screenName(); ?>" />
                     <a class="link" href="<?php $this->options->JAside_Author_Link() ?>" target="_blank" rel="noopener noreferrer nofollow"><?php $this->author->screenName(); ?></a>
@@ -59,7 +59,7 @@
                             <li class="item">
                                 <a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
                                     <i class="sort"><?php echo $index; ?></i>
-                                    <img class="image lazyload" src="<?php _getLazyload(); ?>" data-original="<?php _getThumbnail($item); ?>" alt="<?php $item->title() ?>" />
+                                    <img class="image lazyload" onerror="<?php _getLazyload() ?>" src="<?php _getLazyload(); ?>" data-original="<?php _getThumbnail($item); ?>" alt="<?php $item->title() ?>" />
                                     <div class="describe">
                                         <h6><?php $item->title(); ?></h6>
                                         <span><?php _getViews($item); ?> 阅读 - <?php $item->date('m/d'); ?></span>

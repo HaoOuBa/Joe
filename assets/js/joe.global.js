@@ -9,7 +9,7 @@ window.Joe = function () {
     const IsMobile = /windows phone|iphone|android/gi.test(window.navigator.userAgent);
     /* 设置侧边栏最后一个元素的高度 */
     $('.joe_aside .joe_aside__item:last-child').css('top', Header_Height + 15);
-    
+
     /* Dropdown */
     $('.joe_dropdown').each(function (index, item) {
         const menu = $(this).find('.joe_dropdown__menu');
@@ -141,8 +141,8 @@ window.Joe = function () {
         let queryData = { page: 1, pageSize: 10, type: 'created' };
         const initDom = () => {
             $('.joe_index__list .joe_list').html('');
-            const activeItem = $(`.joe_index__title-title .item[data-type="${queryData.type}"]`);
-            const activeLine = $('.joe_index__title-title .line');
+            let activeItem = $('.joe_index__title-title .item[data-type="' + queryData.type + '"]');
+            let activeLine = $('.joe_index__title-title .line');
             activeItem.addClass('active').siblings().removeClass('active');
             activeLine.css({ left: activeItem.position().left, width: activeItem.width() });
         };
@@ -163,7 +163,7 @@ window.Joe = function () {
                         }
                         res.data.forEach(_ => {
                             $('.joe_index__list .joe_list').append(`
-                                <li class="joe_list__item">
+                                <li class="joe_list__item wow">
                                     <div class="line"></div>
                                     <a href="${_.permalink}" class="thumbnail" title="${_.title}">
                                         <img onerror="javascript: this.src='${_.lazyload}';" class="list_lazyload" src="${_.lazyload}" data-original="${_.image}" alt="${_.title}" />
@@ -222,9 +222,42 @@ window.Joe = function () {
             const offset = $(queryElement).offset().top - Header_Height;
             window.scrollTo({ top: offset - 15, behavior: 'smooth' });
         });
+        const wow = $('.joe_index__list').attr('data-wow');
+        if (wow !== 'off' && wow) {
+            new WOW({
+                boxClass: 'wow',
+                animateClass: `animated ${wow}`,
+                offset: 0,
+                mobile: true,
+                live: true,
+                scrollContainer: null
+            }).init();
+        }
+    }
+
+    /* baiduRecord */
+    if ($('#Joe_Baidu_Record').length > 0) {
+        $.ajax({
+            url: BASE_API,
+            type: 'POST',
+            data: {
+                routeType: 'record',
+                site: window.location.href
+            },
+            success(res) {
+                if (res.data && res.data === '已收录') {
+                    $('#Joe_Baidu_Record').css('color', '#67C23A');
+                    $('#Joe_Baidu_Record').html('已收录');
+                } else {
+                    const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
+                    $('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" ref="nofollow" style="color: #F56C6C">未收录，提交收录</a>`);
+                }
+            }
+        });
     }
 
     new LazyLoad('.lazyload');
 };
 
-document.addEventListener('DOMContentLoaded', () => Joe());
+/* 此处不可换成监听dom加载完成，否则会出现偶尔元素偏移量获取不到的问题 */
+window.onload = () => Joe();
