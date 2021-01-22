@@ -1,7 +1,6 @@
 window.Joe = function () {
     /* 请求基准URL */
     const BASE_API = '/index.php/joe/api';
-
     /* 头部高度 */
     const Header_Height = $('.joe_header').height();
 
@@ -224,7 +223,7 @@ window.Joe = function () {
             length = $('.joe_index__list .joe_list .joe_list__item').length - length;
             const queryElement = `.joe_index__list .joe_list .joe_list__item:nth-child(${length})`;
             const offset = $(queryElement).offset().top - Header_Height;
-            window.scroll({ top: offset - 15, behavior: 'smooth' });
+            window.scrollTo({ top: offset - 15, behavior: 'smooth' });
         });
     }
 

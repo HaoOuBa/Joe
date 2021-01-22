@@ -15,5 +15,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="<?php $this->options->themeUrl('assets/js/joe.lazyload.js'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/js/joe.scroll.js'); ?>"></script>
 <script src="<?php $this->options->themeUrl('assets/js/joe.global.js'); ?>"></script>
 <script async src="https://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0"></script>
+<script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/js/joe.smooth.js"></script>
