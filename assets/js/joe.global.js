@@ -1,16 +1,14 @@
 window.Joe = function () {
-    /* 请求基准URL */
-    const BASE_API = '/index.php/joe/api';
     /* 头部高度 */
     const Header_Height = $('.joe_header').height();
+
     /* 解决移动端Hover问题 */
     document.addEventListener('touchstart', () => {});
-    /* 判断是否是手机 */
-    const IsMobile = /windows phone|iphone|android/gi.test(window.navigator.userAgent);
+
     /* 设置侧边栏最后一个元素的高度 */
     $('.joe_aside .joe_aside__item:last-child').css('top', Header_Height + 15);
 
-    /* Dropdown */
+    /* Global Dropdown */
     $('.joe_dropdown').each(function (index, item) {
         const menu = $(this).find('.joe_dropdown__menu');
         /* 弹出方式 */
@@ -36,7 +34,7 @@ window.Joe = function () {
         }
     });
 
-    /* Timelife */
+    /* Aside Timelife */
     if ($('.joe_aside__item.timelife').length !== 0) {
         let timelife = [
             { title: '今日已经过去', endTitle: '小时', num: 0, percent: '0%' },
@@ -95,7 +93,7 @@ window.Joe = function () {
         $('.joe_aside__item.timelife .joe_aside__item-contain').html(htmlStr);
     }
 
-    /* Weather */
+    /* Aside Weather */
     if ($('.joe_aside__item.weather').length !== 0) {
         const key = $('.joe_aside__item.weather').attr('data-key');
         const style = $('.joe_aside__item.weather').attr('data-style');
@@ -103,10 +101,10 @@ window.Joe = function () {
         window.WIDGET = { CONFIG: { layout: 2, width: '220', height: '270', background: style, dataColor: aqiColor[style], language: 'zh', key: key } };
     }
 
-    /* Ranking */
+    /* Aside Ranking */
     if ($('.joe_aside__item.ranking').length !== 0) {
         $.ajax({
-            url: BASE_API,
+            url: Joe.prototype.BASE_API,
             type: 'POST',
             data: { routeType: 'ranking' },
             success(res) {
@@ -132,7 +130,7 @@ window.Joe = function () {
     /* Index Swiper */
     if ($('.joe_index__banner .swiper-container').length > 0) {
         let direction = 'horizontal';
-        if (!IsMobile && $('.joe_index__banner-recommend .item').length === 2) direction = 'vertical';
+        if (!Joe.prototype.IS_MOBILE && $('.joe_index__banner-recommend .item').length === 2) direction = 'vertical';
         new Swiper('.swiper-container', { direction, loop: true, autoplay: true, mousewheel: true, pagination: { el: '.swiper-pagination' } });
     }
 
@@ -152,7 +150,7 @@ window.Joe = function () {
                 $('.joe_load').html('加载中');
                 $('.joe_index__list .joe_list__loading').show();
                 $.ajax({
-                    url: BASE_API,
+                    url: Joe.prototype.BASE_API,
                     type: 'POST',
                     data: { routeType: 'list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
                     success(res) {
@@ -235,15 +233,13 @@ window.Joe = function () {
         }
     }
 
-    /* baiduRecord */
-    if ($('#Joe_Baidu_Record').length > 0) {
+    /* Post & Page */
+    if ($('.joe_detail').length > 0) {
+        /* Baidu Record */
         $.ajax({
-            url: BASE_API,
+            url: Joe.prototype.BASE_API,
             type: 'POST',
-            data: {
-                routeType: 'record',
-                site: window.location.href
-            },
+            data: { routeType: 'record', site: window.location.href },
             success(res) {
                 if (res.data && res.data === '已收录') {
                     $('#Joe_Baidu_Record').css('color', '#67C23A');
@@ -254,10 +250,94 @@ window.Joe = function () {
                 }
             }
         });
+        /* 初始化代码高亮 */
+        Prism.highlightAll();
+        /* 初始化图片预览 */
+        $('.joe_detail__article img:not(img.owo_image)').each(function () {
+            $(this).wrap($(`<div data-fancybox="Joe" href="${$(this).attr('src')}"></div>`));
+        });
+        /* 初始化超链接为新窗口打开 */
+        $('.joe_detail__article a').each(function () {
+            $(this).attr('target', '_blank');
+        });
+        /* 当前页的CID */
+        const cid = $('.joe_detail').attr('data-cid');
+        /* 浏览量功能 */
+        {
+            let viewsArr = localStorage.getItem(Joe.prototype.encryption('views')) ? JSON.parse(Joe.prototype.decrypt(localStorage.getItem(Joe.prototype.encryption('views')))) : [];
+            const flag = viewsArr.includes(cid);
+            if (!flag) {
+                $.ajax({
+                    url: Joe.prototype.BASE_API,
+                    type: 'POST',
+                    data: { routeType: 'views', cid },
+                    success(res) {
+                        if (res.code !== 1) return;
+                        $('#Joe_Article_Views').html(`${res.data.views} 阅读`);
+                        viewsArr.push(cid);
+                        const name = Joe.prototype.encryption('views');
+                        const val = Joe.prototype.encryption(JSON.stringify(viewsArr));
+                        localStorage.setItem(name, val);
+                    }
+                });
+            }
+        }
+        /* 点赞功能 */
+        {
+            /* 页面首次进入，设置当前文章点赞状态 */
+            let agreeArr = localStorage.getItem(Joe.prototype.encryption('agree')) ? JSON.parse(Joe.prototype.decrypt(localStorage.getItem(Joe.prototype.encryption('agree')))) : [];
+            if (agreeArr.includes(cid)) $('.joe_detail__agree .icon-1').addClass('active');
+            else $('.joe_detail__agree .icon-2').addClass('active');
+            /* 点击按钮，切换当前页面的点赞和取消点赞 */
+            let _loading = false; // 设置节流
+            $('.joe_detail__agree .icon').on('click', function () {
+                if (_loading) return;
+                _loading = true; // 开启节流
+                agreeArr = localStorage.getItem(Joe.prototype.encryption('agree')) ? JSON.parse(Joe.prototype.decrypt(localStorage.getItem(Joe.prototype.encryption('agree')))) : [];
+                let flag = agreeArr.includes(cid);
+                $.ajax({
+                    url: Joe.prototype.BASE_API,
+                    type: 'POST',
+                    data: { routeType: 'agree', cid, type: flag ? 'disagree' : 'agree' },
+                    success(res) {
+                        if (res.code !== 1) return;
+                        $('.joe_detail__agree .text').html(res.data.agree);
+                        if (flag) {
+                            const index = agreeArr.findIndex(_ => _ === cid);
+                            agreeArr.splice(index, 1);
+                            /* 操作网页取消点赞样式 */
+                            $('.joe_detail__agree .icon-1').removeClass('active');
+                            $('.joe_detail__agree .icon-2').addClass('active');
+                            $('.joe_detail__agree .icon').removeClass('active');
+                        } else {
+                            agreeArr.push(cid);
+                            /* 操作网页点赞样式 */
+                            $('.joe_detail__agree .icon-2').removeClass('active');
+                            $('.joe_detail__agree .icon-1').addClass('active');
+                            $('.joe_detail__agree .icon').addClass('active');
+                        }
+                        const name = Joe.prototype.encryption('agree');
+                        const val = Joe.prototype.encryption(JSON.stringify(agreeArr));
+                        localStorage.setItem(name, val);
+                    },
+                    complete() {
+                        _loading = false; // 关闭节流
+                    }
+                });
+            });
+        }
     }
 
     new LazyLoad('.lazyload');
 };
 
-/* 此处不可换成监听dom加载完成，否则会出现偶尔元素偏移量获取不到的问题 */
-window.onload = () => Joe();
+/* 加密 */
+Joe.prototype.encryption = str => window.btoa(unescape(encodeURIComponent(str)));
+/* 解密 */
+Joe.prototype.decrypt = str => decodeURIComponent(escape(window.atob(str)));
+/* 请求URL */
+Joe.prototype.BASE_API = '/index.php/joe/api';
+/* 是否是手机 */
+Joe.prototype.IS_MOBILE = /windows phone|iphone|android/gi.test(window.navigator.userAgent);
+
+$(document).ready(() => Joe());

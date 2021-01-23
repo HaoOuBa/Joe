@@ -41,14 +41,55 @@ function _getPost($self)
             "title" => $item->title,
             "abstract" => _getAbstract($item, false),
             "category" => $item->categories,
-            "views" => number_format($item->views),
+            "views" => _getViews($item, false),
             "commentsNum" => number_format($item->commentsNum),
-            "agree" => number_format($item->agree),
+            "agree" => _getAgree($item, false),
             "permalink" => $item->permalink,
             "lazyload" => _getLazyload(false)
         );
     };
     $self->response->throwJson(array("data" => $result));
+}
+
+/* 浏览量 */
+function _handleViews($self)
+{
+    header("HTTP/1.1 200 OK");
+    $cid     = $self->request->cid;
+    $db = Typecho_Db::get();
+    $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
+    if (sizeof($row) > 0) {
+        $db->query($db->update('table.contents')->rows(array('views' => (int)$row['views'] + 1))->where('cid = ?', $cid));
+        $self->response->throwJson(array(
+            "code" => 1,
+            "data" => $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid))
+        ));
+    } else {
+        $self->response->throwJson(array("code" => 0, "data" => null));
+    }
+}
+
+/* 点赞 */
+function _handleAgree($self)
+{
+    header("HTTP/1.1 200 OK");
+    $cid = $self->request->cid;
+    $type = $self->request->type;
+    $db = Typecho_Db::get();
+    $row = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid));
+    if (sizeof($row) > 0) {
+        if ($type === "agree") {
+            $db->query($db->update('table.contents')->rows(array('agree' => (int)$row['agree'] + 1))->where('cid = ?', $cid));
+        } else {
+            $db->query($db->update('table.contents')->rows(array('agree' => (int)$row['agree'] - 1))->where('cid = ?', $cid));
+        }
+        $self->response->throwJson(array(
+            "code" => 1,
+            "data" => $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid))
+        ));
+    } else {
+        $self->response->throwJson(array("code" => 0, "data" => null));
+    }
 }
 
 /* 收录 */

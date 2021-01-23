@@ -19,6 +19,12 @@ function themeInit($self)
             case 'record':
                 _getRecord($self);
                 break;
+            case 'views':
+                _handleViews($self);
+                break;
+            case 'agree':
+                _handleAgree($self);
+                break;
         };
     }
 }
@@ -36,9 +42,9 @@ function _parseContent($post)
     $db = Typecho_Db::get();
     $result = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
     if ($result) {
-        $content = preg_replace("/\[hide\](.*?)\[\/hide\]/sm", '<div class="joe_detail__article-hide-content">$1</div>', $post->content);
+        $content = preg_replace("/\[hide\](.*?)\[\/hide\]/sm", '<div style="margin-bottom: 15px">$1</div>', $post->content);
     } else {
-        $content = preg_replace("/\[hide\](.*?)\[\/hide\]/sm", '<p class="joe_detail__article-hide-form">此处内容 <i data-scroll="comment">回复</i> 可见</p>', $post->content);
+        $content = preg_replace("/\[hide\](.*?)\[\/hide\]/sm", '<p class="joe_detail__article-hide">此处内容 <i data-scroll="comment">回复</i> 可见</p>', $post->content);
     }
     echo $content;
 }
@@ -125,11 +131,20 @@ function _getThumbnail($item, $type = true)
     else return $randomThumb;
 }
 
-function _getViews($item)
+function _getViews($item, $type = true)
 {
     $db = Typecho_Db::get();
     $result = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $item->cid))['views'];
-    echo number_format($result);
+    if ($type) echo number_format($result);
+    else return number_format($result);
+}
+
+function _getAgree($item, $type = true)
+{
+    $db = Typecho_Db::get();
+    $result = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $item->cid))['agree'];
+    if ($type) echo number_format($result);
+    else return number_format($result);
 }
 
 function _parseAsideLink($link)
