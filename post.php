@@ -4,6 +4,7 @@
 <head>
     <?php $this->need('public/include.php'); ?>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.post.css'); ?>">
+    <script src="<?php $this->options->themeUrl('assets/js/joe.post.js'); ?>"></script>
 </head>
 
 <body>
@@ -32,10 +33,6 @@
         <div class="joe_container">
             <div class="joe_main joe_post">
                 <?php $this->need('public/article.php'); ?>
-                <ul class="joe_post__page">
-                    <?php $this->theNext('<li class="joe_post__page-item">%s</li>', '', ['title' => '上一篇']); ?>
-                    <?php $this->thePrev('<li class="joe_post__page-item">%s</li>', '', ['title' => '下一篇']); ?>
-                </ul>
             </div>
             <?php $this->need('public/aside.php'); ?>
         </div>

@@ -93,23 +93,4 @@
             </div>
         </div>
     </div>
-    <?php $this->related(4)->to($item); ?>
-    <?php if ($item->have()) : ?>
-        <div class="joe_detail__related">
-            <h5 class="joe_detail__related-title">相关推荐</h5>
-            <ul class="joe_detail__related-list">
-                <?php while ($item->next()) : ?>
-                    <li class="item">
-                        <a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
-                            <figure class="inner">
-                                <img class="image lazyload" onerror="<?php _getLazyload() ?>" src="<?php _getLazyload(); ?>" data-original="<?php _getThumbnail($item); ?>" alt="<?php $item->title(); ?>" />
-                                <figcaption class="title"><?php $item->title(); ?></figcaption>
-                            </figure>
-                        </a>
-                    </li>
-                <?php endwhile; ?>
-            </ul>
-        </div>
-    <?php endif; ?>
-
 </div>

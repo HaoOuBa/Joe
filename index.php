@@ -15,6 +15,7 @@
 <head>
     <?php $this->need('public/include.php'); ?>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.index.css'); ?>">
+    <script src="<?php $this->options->themeUrl('assets/js/joe.index.js'); ?>"></script>
 </head>
 
 <body>
@@ -128,7 +129,7 @@
                     <?php endif; ?>
 
                     <div class="joe_index__title">
-                    
+
                         <!-- Index Title -->
                         <ul class="joe_index__title-title">
                             <li class="item" data-type="created">最新文章</li>
