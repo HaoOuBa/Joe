@@ -983,6 +983,7 @@
         text-shadow: var(--text-shadow);
         text-align: center;
         margin-bottom: 15px;
+        word-break: break-all;
     }
     &__count {
         position: relative;
@@ -1365,6 +1366,88 @@
                     &.active {
                         transform: scale(1);
                         opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+    &__copyright {
+        padding-top: 15px;
+        border-top: 1px solid var(--classB);
+        .content {
+            background: var(--classD);
+            padding: 10px 15px;
+            border-radius: 4px;
+            .item {
+                display: flex;
+                align-items: center;
+                color: var(--minor);
+                line-height: 26px;
+                white-space: nowrap;
+                .icon {
+                    width: 18px;
+                    height: 18px;
+                    min-width: 18px;
+                    min-height: 18px;
+                    margin-right: 8px;
+                }
+                .link {
+                    color: var(--minor);
+                    &:hover {
+                        color: var(--theme);
+                    }
+                }
+                .text {
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+            }
+        }
+    }
+    &__related {
+        padding-top: 15px;
+        &-title {
+            border-left: 3px solid var(--theme);
+            padding-left: 15px;
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: var(--main);
+        }
+        &-list {
+            display: flex;
+            margin: 0 -7.5px;
+            .item {
+                width: 25%;
+                padding: 0 7.5px;
+                .link {
+                    display: block;
+                    transition: transform 0.25s;
+                    &:hover {
+                        transform: translate3d(0, -3px, 0);
+                    }
+                    .inner {
+                        position: relative;
+                        .image {
+                            width: 100%;
+                            height: 125px;
+                            object-fit: cover;
+                            border-radius: 4px 4px 0 0;
+                            transition: opacity 0.35s;
+                        }
+                        .title {
+                            font-size: 13px;
+                            white-space: nowrap;
+                            overflow: hidden;
+                            text-overflow: ellipsis;
+                            text-align: center;
+                            padding: 0 8px;
+                            line-height: 32px;
+                            color: var(--minor);
+                            background: var(--classD);
+                            border-radius: 0 0 5px 5px;
+                            transition: background 0.35s;
+                        }
                     }
                 }
             }

@@ -10,19 +10,19 @@ function themeInit($self)
     $path_info = $self->request->getPathinfo();
     if ($path_info === "/joe/api") {
         switch ($self->request->routeType) {
-            case 'ranking':
+            case 'aside_ranking':
                 _getRanking($self);
                 break;
-            case 'list':
+            case 'publish_list':
                 _getPost($self);
                 break;
-            case 'record':
+            case 'baidu_record':
                 _getRecord($self);
                 break;
-            case 'views':
+            case 'handle_views':
                 _handleViews($self);
                 break;
-            case 'agree':
+            case 'handle_agree':
                 _handleAgree($self);
                 break;
         };
@@ -35,6 +35,19 @@ function _getVersion()
     return "1.0.0";
 };
 
+/* 获取加密的文章标题 */
+function _getEncryptionTitle($item, $type = true)
+{
+    $title = "";
+    if ($item->hidden) {
+        $db = Typecho_Db::get();
+        $title = $db->fetchRow($db->select('title')->from('table.contents')->where('cid = ?', $item->cid))['title'];
+    } else {
+        $title = $item->title;
+    }
+    if ($type) echo $title;
+    else return $title;
+}
 
 /* 过滤文章内容 */
 function _parseContent($post)

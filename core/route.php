@@ -38,7 +38,7 @@ function _getPost($self)
             "image" => _getThumbnail($item, false),
             "time" => date('Y-m-d', $item->created),
             "created" => date('Y年m月d日', $item->created),
-            "title" => $item->title,
+            "title" => _getEncryptionTitle($item, false),
             "abstract" => _getAbstract($item, false),
             "category" => $item->categories,
             "views" => _getViews($item, false),

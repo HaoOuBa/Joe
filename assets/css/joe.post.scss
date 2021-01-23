@@ -32,3 +32,13 @@
         }
     }
 }
+
+.joe_post {
+    &__page {
+        display: flex;
+        align-items: center;
+        &-item{
+            
+        }
+    }
+}

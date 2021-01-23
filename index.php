@@ -73,14 +73,14 @@
                             <?php if (sizeof($recommend) === 2) : ?>
                                 <div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
                                     <?php foreach ($recommend as $cid) : ?>
-                                        <?php $this->widget('Widget_Archive', 'pageSize=1&type=post', 'cid=' . $cid)->to($item); ?>
+                                        <?php $this->widget('Widget_Archive@' . $cid, 'pageSize=1&type=post', 'cid=' . $cid)->to($item); ?>
                                         <figure class="item">
-                                            <a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
-                                                <img class="lazyload" onerror="<?php _getLazyload() ?>" src="<?php _getLazyload(); ?>" data-original="<?php _getThumbnail($item); ?>" alt="<?php $item->title() ?>" width="100%" />
+                                            <a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php _getEncryptionTitle($item) ?>">
+                                                <img class="lazyload" onerror="<?php _getLazyload() ?>" src="<?php _getLazyload(); ?>" data-original="<?php _getThumbnail($item); ?>" alt="<?php _getEncryptionTitle($item) ?>" width="100%" />
                                             </a>
                                             <figcaption class="information">
                                                 <span class="information_type">推荐</span>
-                                                <span class="information_title"><?php $item->title() ?></span>
+                                                <span class="information_title"><?php _getEncryptionTitle($item) ?></span>
                                             </figcaption>
                                         </figure>
                                     <?php endforeach; ?>
@@ -127,8 +127,9 @@
                         </div>
                     <?php endif; ?>
 
-                    <!-- Index Title -->
                     <div class="joe_index__title">
+                    
+                        <!-- Index Title -->
                         <ul class="joe_index__title-title">
                             <li class="item" data-type="created">最新文章</li>
                             <li class="item" data-type="commentsNum">评论最多</li>

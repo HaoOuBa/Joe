@@ -106,7 +106,7 @@ window.Joe = function () {
         $.ajax({
             url: Joe.prototype.BASE_API,
             type: 'POST',
-            data: { routeType: 'ranking' },
+            data: { routeType: 'aside_ranking' },
             success(res) {
                 $('.joe_aside__item.ranking .joe_aside__item-title .text').html(res.title);
                 let htmlStr = '';
@@ -152,7 +152,7 @@ window.Joe = function () {
                 $.ajax({
                     url: Joe.prototype.BASE_API,
                     type: 'POST',
-                    data: { routeType: 'list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
+                    data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
                     success(res) {
                         if (res.data.length === 0) {
                             $('.joe_load').remove();
@@ -239,7 +239,7 @@ window.Joe = function () {
         $.ajax({
             url: Joe.prototype.BASE_API,
             type: 'POST',
-            data: { routeType: 'record', site: window.location.href },
+            data: { routeType: 'baidu_record', site: window.location.href },
             success(res) {
                 if (res.data && res.data === '已收录') {
                     $('#Joe_Baidu_Record').css('color', '#67C23A');
@@ -270,7 +270,7 @@ window.Joe = function () {
                 $.ajax({
                     url: Joe.prototype.BASE_API,
                     type: 'POST',
-                    data: { routeType: 'views', cid },
+                    data: { routeType: 'handle_views', cid },
                     success(res) {
                         if (res.code !== 1) return;
                         $('#Joe_Article_Views').html(`${res.data.views} 阅读`);
@@ -298,7 +298,7 @@ window.Joe = function () {
                 $.ajax({
                     url: Joe.prototype.BASE_API,
                     type: 'POST',
-                    data: { routeType: 'agree', cid, type: flag ? 'disagree' : 'agree' },
+                    data: { routeType: 'handle_agree', cid, type: flag ? 'disagree' : 'agree' },
                     success(res) {
                         if (res.code !== 1) return;
                         $('.joe_detail__agree .text').html(res.data.agree);
@@ -327,7 +327,7 @@ window.Joe = function () {
             });
         }
     }
-
+    
     new LazyLoad('.lazyload');
 };
 
@@ -339,5 +339,11 @@ Joe.prototype.decrypt = str => decodeURIComponent(escape(window.atob(str)));
 Joe.prototype.BASE_API = '/index.php/joe/api';
 /* 是否是手机 */
 Joe.prototype.IS_MOBILE = /windows phone|iphone|android/gi.test(window.navigator.userAgent);
+/* 随机值 */
+Joe.prototype.getRandomIntInclusive = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+};
 
 $(document).ready(() => Joe());
