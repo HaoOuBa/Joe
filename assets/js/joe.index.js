@@ -1,4 +1,4 @@
-window.onload = () => {
+document.addEventListener('DOMContentLoaded', () => {
 	/* 激活轮播图功能 */
 	{
 		if ($('.joe_index__banner .swiper-container').length !== 0) {
@@ -110,4 +110,4 @@ window.onload = () => {
 			}).init()
 		}
 	}
-}
+})

@@ -2,7 +2,7 @@
     <div class="joe_header__above">
         <div class="joe_container">
             <a title="<?php $this->options->title(); ?>" class="joe_header__above-logo" href="<?php $this->options->siteUrl(); ?>">
-                <img src="<?php $this->options->JLogo() ?>" alt="<?php $this->options->title(); ?>" />
+                <img class="lazyload" src="" data-original="<?php $this->options->JLogo() ?>" alt="<?php $this->options->title(); ?>" />
             </a>
             <nav class="joe_header__above-nav">
                 <a class="item <?php echo $this->is('index') ? 'active' : '' ?>" href="<?php $this->options->siteUrl(); ?>" title="首页">首页</a>

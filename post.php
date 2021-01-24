@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 <head>
     <?php $this->need('public/include.php'); ?>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.post.css'); ?>">
-    <script src="<?php $this->options->themeUrl('assets/js/joe.post.js'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('assets/js/joe.post&page.js'); ?>"></script>
 </head>
 
 <body>
     <div id="Joe">
         <?php $this->need('public/header.php'); ?>
 
+        <!-- Post Bread -->
         <div class="joe_container joe_bread">
             <ul class="joe_bread__bread">
                 <li class="item">
@@ -32,7 +33,20 @@
 
         <div class="joe_container">
             <div class="joe_main joe_post">
-                <?php $this->need('public/article.php'); ?>
+                <div class="joe_detail" data-cid="<?php echo $this->cid ?>">
+
+                    <!-- Post Category -->
+                    <?php if (sizeof($this->categories) > 0) : ?>
+                        <div class="joe_detail__category">
+                            <?php foreach (array_slice($this->categories, 0, 5) as $key => $item) : ?>
+                                <a href="<?php echo $item['permalink']; ?>" class="item item-<?php echo $key ?>" title="<?php echo $item['name']; ?>"><?php echo $item['name']; ?></a>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- Post Article -->
+                    <?php $this->need('public/article.php'); ?>
+                </div>
             </div>
             <?php $this->need('public/aside.php'); ?>
         </div>

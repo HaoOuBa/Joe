@@ -38,7 +38,7 @@ function themeConfig($form)
     $JFavicon = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFavicon',
         NULL,
-        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/favicon.ico',
+        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/favicon.ico',
         '网站 Favicon 设置',
         '介绍：用于设置网站 Favicon，一个好的 Favicon 可以给用户一种很专业的观感 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -50,7 +50,7 @@ function themeConfig($form)
     $JLogo = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JLogo',
         NULL,
-        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/assets/img/logo.png',
+        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/logo.png',
         '网站 Logo 设置',
         '介绍：用于设置网站 Logo，一个好的 Logo 能为网站带来有效的流量 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -208,7 +208,7 @@ function themeConfig($form)
     $JAside_Author_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JAside_Author_Image',
         NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/assets/img/aside_author_image.jpg",
+        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/aside_author_image.jpg",
         '作者栏 —— 背景',
         '介绍：用于修改作者栏的背景图片 <br/>
          格式：图片地址 <br />
@@ -413,7 +413,7 @@ function themeConfig($form)
     $JLazyload = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JLazyload',
         NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe/assets/img/lazyload.jpg",
+        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/lazyload.jpg",
         '自定义懒加载图',
         '介绍：用于修改主题默认懒加载图 <br/>
          格式：图片地址'
