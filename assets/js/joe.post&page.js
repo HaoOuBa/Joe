@@ -1,8 +1,10 @@
+console.time('Post&Page.js执行时长')
+
 document.addEventListener('DOMContentLoaded', () => {
 	/* 获取本篇文章百度收录情况 */
 	{
 		$.ajax({
-			url: Joe.prototype.BASE_API,
+			url: Joe.BASE_API,
 			type: 'POST',
 			data: { routeType: 'baidu_record', site: window.location.href },
 			success(res) {
@@ -31,12 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 设置文章内的链接为新窗口打开 */
 	{
-		$('.joe_detail__article a').each(function () {
-			$(this).attr({
-				target: '_blank',
-				rel: 'noopener noreferrer nofollow'
-			})
-		})
+		$('.joe_detail__article a').each(() => $(this).attr({ target: '_blank', rel: 'noopener noreferrer nofollow' }))
 	}
 
 	/* 当前页的CID */
@@ -44,19 +41,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 激活浏览功能 */
 	{
-		let viewsArr = localStorage.getItem(Joe.prototype.encryption('views')) ? JSON.parse(Joe.prototype.decrypt(localStorage.getItem(Joe.prototype.encryption('views')))) : []
+		let viewsArr = localStorage.getItem(Joe.encryption('views')) ? JSON.parse(Joe.decrypt(localStorage.getItem(Joe.encryption('views')))) : []
 		const flag = viewsArr.includes(cid)
 		if (!flag) {
 			$.ajax({
-				url: Joe.prototype.BASE_API,
+				url: Joe.BASE_API,
 				type: 'POST',
 				data: { routeType: 'handle_views', cid },
 				success(res) {
 					if (res.code !== 1) return
 					$('#Joe_Article_Views').html(`${res.data.views} 阅读`)
 					viewsArr.push(cid)
-					const name = Joe.prototype.encryption('views')
-					const val = Joe.prototype.encryption(JSON.stringify(viewsArr))
+					const name = Joe.encryption('views')
+					const val = Joe.encryption(JSON.stringify(viewsArr))
 					localStorage.setItem(name, val)
 				}
 			})
@@ -65,17 +62,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 激活文章点赞功能 */
 	{
-		let agreeArr = localStorage.getItem(Joe.prototype.encryption('agree')) ? JSON.parse(Joe.prototype.decrypt(localStorage.getItem(Joe.prototype.encryption('agree')))) : []
+		let agreeArr = localStorage.getItem(Joe.encryption('agree')) ? JSON.parse(Joe.decrypt(localStorage.getItem(Joe.encryption('agree')))) : []
 		if (agreeArr.includes(cid)) $('.joe_detail__agree .icon-1').addClass('active')
 		else $('.joe_detail__agree .icon-2').addClass('active')
 		let _loading = false
 		$('.joe_detail__agree .icon').on('click', function () {
 			if (_loading) return
 			_loading = true
-			agreeArr = localStorage.getItem(Joe.prototype.encryption('agree')) ? JSON.parse(Joe.prototype.decrypt(localStorage.getItem(Joe.prototype.encryption('agree')))) : []
+			agreeArr = localStorage.getItem(Joe.encryption('agree')) ? JSON.parse(Joe.decrypt(localStorage.getItem(Joe.encryption('agree')))) : []
 			let flag = agreeArr.includes(cid)
 			$.ajax({
-				url: Joe.prototype.BASE_API,
+				url: Joe.BASE_API,
 				type: 'POST',
 				data: { routeType: 'handle_agree', cid, type: flag ? 'disagree' : 'agree' },
 				success(res) {
@@ -93,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
 						$('.joe_detail__agree .icon-1').addClass('active')
 						$('.joe_detail__agree .icon').addClass('active')
 					}
-					const name = Joe.prototype.encryption('agree')
-					const val = Joe.prototype.encryption(JSON.stringify(agreeArr))
+					const name = Joe.encryption('agree')
+					const val = Joe.encryption(JSON.stringify(agreeArr))
 					localStorage.setItem(name, val)
 				},
 				complete() {
@@ -103,4 +100,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			})
 		})
 	}
+
+	console.timeEnd('Post&Page.js执行时长')
 })

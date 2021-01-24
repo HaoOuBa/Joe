@@ -1,17 +1,11 @@
+console.time("Index.js执行时长")
 document.addEventListener('DOMContentLoaded', () => {
 	/* 激活轮播图功能 */
 	{
 		if ($('.joe_index__banner .swiper-container').length !== 0) {
 			let direction = 'horizontal'
-			if (!Joe.prototype.IS_MOBILE && $('.joe_index__banner-recommend .item').length === 2) direction = 'vertical'
-			new Swiper('.swiper-container', {
-				keyboard: true,
-				direction,
-				loop: true,
-				autoplay: true,
-				mousewheel: true,
-				pagination: { el: '.swiper-pagination' }
-			})
+			if (!Joe.IS_MOBILE && $('.joe_index__banner-recommend .item').length === 2) direction = 'vertical'
+			new Swiper('.swiper-container', { keyboard: true, direction, loop: true, autoplay: true, mousewheel: true, pagination: { el: '.swiper-pagination' } })
 		}
 	}
 
@@ -31,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$('.joe_load').html('加载中')
 				$('.joe_index__list .joe_list__loading').show()
 				$.ajax({
-					url: Joe.prototype.BASE_API,
+					url: Joe.BASE_API,
 					type: 'POST',
 					data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
 					success(res) {
@@ -106,15 +100,8 @@ document.addEventListener('DOMContentLoaded', () => {
 	/* 激活列表特效 */
 	{
 		const wow = $('.joe_index__list').attr('data-wow')
-		if (wow !== 'off' && wow) {
-			new WOW({
-				boxClass: 'wow',
-				animateClass: `animated ${wow}`,
-				offset: 0,
-				mobile: true,
-				live: true,
-				scrollContainer: null
-			}).init()
-		}
+		if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animated ${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init()
 	}
+
+	console.timeEnd("Index.js执行时长")
 })

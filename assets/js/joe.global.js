@@ -1,27 +1,26 @@
-window.Joe = function () {
-	/* 解决移动端Hover问题 */
-	{
-		document.addEventListener('touchstart', () => {})
-	}
+window.Joe = {
+	BASE_API: '/index.php/joe/api',
+	IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
+	encryption: str => window.btoa(unescape(encodeURIComponent(str))),
+	decrypt: str => decodeURIComponent(escape(window.atob(str)))
+}
 
+console.time('Global.js执行时长')
+
+document.addEventListener('DOMContentLoaded', () => {
 	/* 激活全局下拉框功能 */
 	{
 		$('.joe_dropdown').each(function (index, item) {
 			const menu = $(this).find('.joe_dropdown__menu')
-			/* 弹出方式 */
 			const trigger = $(item).attr('trigger') || 'click'
-			/* 弹出高度 */
 			const placement = $(item).attr('placement') || $(this).height() || 0
-			/* 设置弹出高度 */
 			menu.css('top', placement)
-			/* 如果是hover，则绑定hover事件 */
 			if (trigger === 'hover') {
 				$(this).hover(
 					() => $(this).addClass('active'),
 					() => $(this).removeClass('active')
 				)
 			} else {
-				/* 否则绑定点击事件 */
 				$(this).on('click', function (e) {
 					$(this).toggleClass('active')
 					$(document).one('click', () => $(this).removeClass('active'))
@@ -34,13 +33,10 @@ window.Joe = function () {
 
 	/* 激活全局返回顶部功能 */
 	{
-		const handleScroll = () => {
-			let scrollTop = document.documentElement.scrollTop || document.body.scrollTop
-			scrollTop > 300 ? $('.joe_action .joe_action_item.scroll').addClass('active') : $('.joe_action .joe_action_item.scroll').removeClass('active')
-		}
+		const handleScroll = () => ((document.documentElement.scrollTop || document.body.scrollTop) > 300 ? $('.joe_action_item.scroll').addClass('active') : $('.joe_action_item.scroll').removeClass('active'))
 		handleScroll()
 		$(window).on('scroll', () => handleScroll())
-		$('.joe_action .joe_action_item.scroll').on('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }))
+		$('.joe_action_item.scroll').on('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }))
 	}
 
 	/* 激活侧边栏人生倒计时功能 */
@@ -85,20 +81,19 @@ window.Joe = function () {
 			let htmlStr = ''
 			timelife.forEach((item, index) => {
 				htmlStr += `
-					<div class="item">
-						<div class="title">
-							${item.title}
-							<span class="text">${item.num}</span>
-							${item.endTitle}
-						</div>
-						<div class="progress">
-							<div class="progress-bar">
-								<div class="progress-bar-inner progress-bar-inner-${index}" style="width: ${item.percent}"></div>
+						<div class="item">
+							<div class="title">
+								${item.title}
+								<span class="text">${item.num}</span>
+								${item.endTitle}
 							</div>
-							<div class="progress-percentage">${item.percent}</div>
-						</div>
-					</div>
-				`
+							<div class="progress">
+								<div class="progress-bar">
+									<div class="progress-bar-inner progress-bar-inner-${index}" style="width: ${item.percent}"></div>
+								</div>
+								<div class="progress-percentage">${item.percent}</div>
+							</div>
+						</div>`
 			})
 			$('.joe_aside__item.timelife .joe_aside__item-contain').html(htmlStr)
 		}
@@ -118,7 +113,7 @@ window.Joe = function () {
 	{
 		if ($('.joe_aside__item.ranking').length !== 0) {
 			$.ajax({
-				url: Joe.prototype.BASE_API,
+				url: Joe.BASE_API,
 				type: 'POST',
 				data: { routeType: 'aside_ranking' },
 				success(res) {
@@ -127,11 +122,11 @@ window.Joe = function () {
 					if (res.code === 1) {
 						res.data.forEach((item, index) => {
 							htmlStr += `
-								<li class="item">
-									<span class="sort">${index + 1}</span>
-									<a class="link" href="${item.url}" title="${item.title}" target="_blank" rel="noopener noreferrer nofollow">${item.title}</a>
-								</li>
-							`
+									<li class="item">
+										<span class="sort">${index + 1}</span>
+										<a class="link" href="${item.url}" title="${item.title}" target="_blank" rel="noopener noreferrer nofollow">${item.title}</a>
+									</li>
+								`
 						})
 					} else {
 						htmlStr += `<li class="error">数据抓取异常！</li>`
@@ -146,23 +141,8 @@ window.Joe = function () {
 	{
 		$('.joe_aside__item:last-child').css('top', $('.joe_header').height() + 15)
 	}
-
+	/* 懒加载 */
 	new LazyLoad('.lazyload')
-}
 
-/* 加密 */
-Joe.prototype.encryption = str => window.btoa(unescape(encodeURIComponent(str)))
-/* 解密 */
-Joe.prototype.decrypt = str => decodeURIComponent(escape(window.atob(str)))
-/* 请求URL */
-Joe.prototype.BASE_API = '/index.php/joe/api'
-/* 是否是手机 */
-Joe.prototype.IS_MOBILE = /windows phone|iphone|android/gi.test(window.navigator.userAgent)
-/* 随机值 */
-Joe.prototype.getRandomIntInclusive = (min, max) => {
-	min = Math.ceil(min)
-	max = Math.floor(max)
-	return Math.floor(Math.random() * (max - min + 1) + min)
-}
-
-document.addEventListener('DOMContentLoaded', () => Joe())
+	console.timeEnd('Global.js执行时长')
+})
