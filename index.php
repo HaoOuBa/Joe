@@ -14,7 +14,11 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@5.4.5/css/swiper.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css" />
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.index.css'); ?>">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@5.4.5/js/swiper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
     <script src="<?php $this->options->themeUrl('assets/js/joe.index.js'); ?>"></script>
 </head>
 
@@ -24,8 +28,6 @@
         <div class="joe_container">
             <div class="joe_main">
                 <div class="joe_index">
-
-                    <!-- Index Banner -->
                     <?php
                     $carousel = [];
                     $carousel_text = $this->options->JIndex_Carousel;
@@ -49,8 +51,6 @@
                     ?>
                     <?php if (sizeof($carousel) > 0 || sizeof($recommend) === 2) : ?>
                         <div class="joe_index__banner">
-
-                            <!-- Index Carousel -->
                             <?php if (sizeof($carousel) > 0) : ?>
                                 <div class="swiper-container">
                                     <div class="swiper-wrapper">
@@ -69,8 +69,6 @@
                                     <div class="swiper-pagination"></div>
                                 </div>
                             <?php endif; ?>
-
-                            <!-- Index Recommend -->
                             <?php if (sizeof($recommend) === 2) : ?>
                                 <div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
                                     <?php foreach ($recommend as $cid) : ?>
@@ -89,8 +87,6 @@
                             <?php endif; ?>
                         </div>
                     <?php endif; ?>
-
-                    <!-- Index Hot -->
                     <?php if ($this->options->JIndex_Hot === "on") : ?>
                         <?php $this->widget('Widget_Contents_Hot@Index', 'pageSize=4')->to($item); ?>
                         <div class="joe_index__hot">
@@ -109,8 +105,6 @@
                             </ul>
                         </div>
                     <?php endif; ?>
-
-                    <!-- Index Ad -->
                     <?php
                     $index_ad_text = $this->options->JIndex_Ad;
                     $index_ad = null;
@@ -129,8 +123,6 @@
                     <?php endif; ?>
 
                     <div class="joe_index__title">
-
-                        <!-- Index Title -->
                         <ul class="joe_index__title-title">
                             <li class="item" data-type="created">最新文章</li>
                             <li class="item" data-type="commentsNum">评论最多</li>
@@ -138,8 +130,6 @@
                             <li class="item" data-type="views">浏览最多</li>
                             <li class="line"></li>
                         </ul>
-
-                        <!-- Index Notice -->
                         <?php
                         $index_notice_text = $this->options->JIndex_Notice;
                         $index_notice = null;
@@ -158,8 +148,6 @@
                             </div>
                         <?php endif; ?>
                     </div>
-
-                    <!-- Index List -->
                     <div class="joe_index__list" data-wow="<?php $this->options->JList_Animate() ?>">
                         <ul class="joe_list"></ul>
                         <ul class="joe_list__loading">

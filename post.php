@@ -3,15 +3,17 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.post.css'); ?>">
+    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script src="<?php $this->options->themeUrl('assets/js/joe.post&page.js'); ?>"></script>
 </head>
 
 <body>
     <div id="Joe">
         <?php $this->need('public/header.php'); ?>
-
-        <!-- Post Bread -->
         <div class="joe_container joe_bread">
             <ul class="joe_bread__bread">
                 <li class="item">
@@ -30,12 +32,9 @@
                 <li class="item">正文</li>
             </ul>
         </div>
-
         <div class="joe_container">
             <div class="joe_main joe_post">
                 <div class="joe_detail" data-cid="<?php echo $this->cid ?>">
-
-                    <!-- Post Category -->
                     <?php if (sizeof($this->categories) > 0) : ?>
                         <div class="joe_detail__category">
                             <?php foreach (array_slice($this->categories, 0, 5) as $key => $item) : ?>
@@ -43,8 +42,6 @@
                             <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
-
-                    <!-- Post Article -->
                     <?php $this->need('public/article.php'); ?>
                 </div>
             </div>

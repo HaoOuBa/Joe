@@ -1255,14 +1255,14 @@
 			cursor: zoom-in;
 			margin: 0 auto;
 			&:hover {
-				transform: translateY(-5px);
-				box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.25);
+				// transform: translateY(-5px);
+				box-shadow: 0 34px 20px -24px rgba(136, 161, 206, 0.3);
 			}
 		}
 		ol,
 		ul {
 			color: var(--routine);
-			margin-bottom: 20px;
+			margin-bottom: 15px;
 			padding: 0 30px;
 			li {
 				line-height: 26px;
@@ -1307,12 +1307,14 @@
 				}
 			}
 		}
+		span.block {
+			display: block;
+		}
 		&-hide {
 			background: repeating-linear-gradient(145deg, var(--classD), var(--classD) 15px, var(--background) 0, var(--background) 25px);
 			padding: 10px 0;
 			text-align: center;
 			position: relative;
-			margin-bottom: 15px;
 			user-select: none;
 			i {
 				position: relative;

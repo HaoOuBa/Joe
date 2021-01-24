@@ -1,4 +1,4 @@
-<div class="joe_footer">
+<footer class="joe_footer">
     <div class="joe_container">
         <div class="left">
             <?php $this->options->JFooter_Left() ?>
@@ -8,7 +8,7 @@
             <?php $this->options->JFooter_Right() ?>
         </div>
     </div>
-</div>
+</footer>
 
 <div class="joe_action">
     <div class="joe_action_item scroll">

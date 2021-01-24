@@ -1,8 +1,7 @@
 <h1 class="joe_detail__title"><?php _getEncryptionTitle($this) ?></h1>
-
 <div class="joe_detail__count">
     <div class="joe_detail__count-information">
-        <img class="avatar" src="<?php _getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author(); ?>" />
+        <img class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" data-original="<?php _getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author(); ?>" />
         <div class="meta">
             <div class="author">
                 <a class="link" href="<?php $this->author->permalink(); ?>" title="<?php $this->author(); ?>"><?php $this->author(); ?></a>
@@ -20,7 +19,6 @@
     </div>
     <time class="joe_detail__count-created" datetime="<?php $this->date('m/d'); ?>"><?php $this->date('m/d'); ?></time>
 </div>
-
 <div class="joe_detail__article">
     <?php if ($this->is('post')) : ?>
         <?php if ($this->hidden) : ?>
@@ -34,7 +32,6 @@
         <?php _parseContent($this) ?>
     <?php endif; ?>
 </div>
-
 <div class="joe_detail__agree">
     <div class="agree">
         <div class="icon">
@@ -48,7 +45,6 @@
         <span class="text"><?php _getAgree($this) ?></span>
     </div>
 </div>
-
 <div class="joe_detail__copyright">
     <div class="content">
         <div class="item">

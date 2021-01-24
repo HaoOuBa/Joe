@@ -4,7 +4,7 @@
             <section class="joe_aside__item author">
                 <img class="image" onerror="<?php _getLazyload() ?>" src="<?php $this->options->JAside_Author_Image() ?>" alt="<?php $this->author->screenName(); ?>" />
                 <div class="user">
-                    <img class="avatar" src="<?php _getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author->screenName(); ?>" />
+                    <img class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" data-original="<?php _getAvatarByMail($this->author->mail) ?>" alt="<?php $this->author->screenName(); ?>" />
                     <a class="link" href="<?php $this->options->JAside_Author_Link() ?>" target="_blank" rel="noopener noreferrer nofollow"><?php $this->author->screenName(); ?></a>
                     <p class="motto"><?php _getAsideAuthorMotto() ?></p>
                 </div>
@@ -26,7 +26,6 @@
                 <?php endif; ?>
             </section>
         <?php endif; ?>
-
         <?php if (in_array('timelife', $this->options->JAside)) : ?>
             <section class="joe_aside__item timelife">
                 <div class="joe_aside__item-title">
@@ -40,7 +39,6 @@
                 <div class="joe_aside__item-contain"></div>
             </section>
         <?php endif; ?>
-
         <?php if (in_array('hot', $this->options->JAside)) : ?>
             <section class="joe_aside__item hot">
                 <div class="joe_aside__item-title">
@@ -74,7 +72,6 @@
                 </ol>
             </section>
         <?php endif; ?>
-
         <?php if (in_array('newreply', $this->options->JAside)) : ?>
             <section class="joe_aside__item newreply">
                 <div class="joe_aside__item-title">
@@ -91,7 +88,7 @@
                         <?php while ($item->next()) : ?>
                             <li class="item">
                                 <div class="user">
-                                    <img class="avatar" src="<?php _getAvatarByMail($item->mail) ?>" alt="<?php $item->author(false) ?>" />
+                                    <img class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" data-original="<?php _getAvatarByMail($item->mail) ?>" alt="<?php $item->author(false) ?>" />
                                     <div class="info">
                                         <div class="author"><?php $item->author(false) ?></div>
                                         <span class="date"><?php $item->date('Y-m-d'); ?></span>
@@ -110,7 +107,6 @@
                 </ul>
             </section>
         <?php endif; ?>
-
         <?php if (in_array('ranking', $this->options->JAside)) : ?>
             <section class="joe_aside__item ranking">
                 <div class="joe_aside__item-title">
@@ -126,7 +122,6 @@
                 </ul>
             </section>
         <?php endif; ?>
-
         <?php if (in_array('weather', $this->options->JAside) && $this->options->JAside_Weather_Key) : ?>
             <section class="joe_aside__item weather" data-key="<?php $this->options->JAside_Weather_Key() ?>" data-style="<?php $this->options->JAside_Weather_Style() ?>">
                 <div class="joe_aside__item-title">

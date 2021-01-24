@@ -52,12 +52,16 @@ function _getEncryptionTitle($item, $type = true)
 /* 过滤文章内容 */
 function _parseContent($post)
 {
-    $db = Typecho_Db::get();
-    $result = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
-    if ($result) {
-        $content = preg_replace("/\[hide\](.*?)\[\/hide\]/sm", '<div style="margin-bottom: 15px">$1</div>', $post->content);
-    } else {
-        $content = preg_replace("/\[hide\](.*?)\[\/hide\]/sm", '<p class="joe_detail__article-hide">此处内容 <i data-scroll="comment">回复</i> 可见</p>', $post->content);
+    /* 优先判断文章内是否有回复可见的内容 */
+    $content = $post->content;
+    if (preg_match('/\[hide\].*\[\/hide\]/', $content)) {
+        $db = Typecho_Db::get();
+        $hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
+        if ($hasComment) {
+            $content = preg_replace('/\[hide\](.*?)\[\/hide\]/sm', '$1', $content);
+        } else {
+            $content = preg_replace('/\[hide\](.*?)\[\/hide\]/sm', '<span class="joe_detail__article-hide block">此处内容 <i data-scroll="comment">回复</i> 可见</span>', $content);
+        }
     }
     echo $content;
 }
@@ -196,6 +200,12 @@ function _getLazyload($type = true)
 {
     if ($type) echo Helper::options()->JLazyload;
     else return Helper::options()->JLazyload;
+}
+
+function _getAvatarLazyload($type = true)
+{
+    if ($type) echo "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/lazyload_avatar.png";
+    else return "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/lazyload_avatar.png";
 }
 
 function _getAsideAuthorNav()

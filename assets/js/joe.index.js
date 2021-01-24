@@ -4,7 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		if ($('.joe_index__banner .swiper-container').length !== 0) {
 			let direction = 'horizontal'
 			if (!Joe.prototype.IS_MOBILE && $('.joe_index__banner-recommend .item').length === 2) direction = 'vertical'
-			new Swiper('.swiper-container', { direction, loop: true, autoplay: true, mousewheel: true, pagination: { el: '.swiper-pagination' } })
+			new Swiper('.swiper-container', {
+				keyboard: true,
+				direction,
+				loop: true,
+				autoplay: true,
+				mousewheel: true,
+				pagination: { el: '.swiper-pagination' }
+			})
 		}
 	}
 
