@@ -29,10 +29,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* 动态背景 */
     {
-        if (!Joe.IS_MOBILE) {
-            if (Joe.DYNAMIC_BACKGROUND !== 'off' && Joe.DYNAMIC_BACKGROUND && !Joe.WALLPAPER_BACKGROUND_PC) {
-                $.getScript(`https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
-            }
+        if (!Joe.IS_MOBILE && Joe.DYNAMIC_BACKGROUND !== 'off' && Joe.DYNAMIC_BACKGROUND && !Joe.WALLPAPER_BACKGROUND_PC) {
+            $.getScript(`https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
         }
     }
 

@@ -1,6 +1,7 @@
 html[data-night='night'] {
     body::before {
         background: #202122;
+        z-index: -500;
     }
 }
 
