@@ -1,11 +1,15 @@
 <?php
 
+/* 页面加载计时 */
+_startCountTime();
+
 /* 主题开发API */
 require_once('route.php');
 
 /* 主题初始化 */
 function themeInit($self)
 {
+
     /* 主题开放API 路由规则 */
     $path_info = $self->request->getPathinfo();
     if ($path_info === "/joe/api") {
@@ -34,6 +38,26 @@ function _getVersion()
 {
     return "1.0.0";
 };
+
+function _isMobile()
+{
+    if (isset($_SERVER['HTTP_X_WAP_PROFILE']))
+        return true;
+    if (isset($_SERVER['HTTP_VIA'])) {
+        return stristr($_SERVER['HTTP_VIA'], "wap") ? true : false;
+    }
+    if (isset($_SERVER['HTTP_USER_AGENT'])) {
+        $clientkeywords = array('nokia', 'sony', 'ericsson', 'mot', 'samsung', 'htc', 'sgh', 'lg', 'sharp', 'sie-', 'philips', 'panasonic', 'alcatel', 'lenovo', 'iphone', 'ipod', 'blackberry', 'meizu', 'android', 'netfront', 'symbian', 'ucweb', 'windowsce', 'palm', 'operamini', 'operamobi', 'openwave', 'nexusone', 'cldc', 'midp', 'wap', 'mobile');
+        if (preg_match("/(" . implode('|', $clientkeywords) . ")/i", strtolower($_SERVER['HTTP_USER_AGENT'])))
+            return true;
+    }
+    if (isset($_SERVER['HTTP_ACCEPT'])) {
+        if ((strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') !== false) && (strpos($_SERVER['HTTP_ACCEPT'], 'text/html') === false || (strpos($_SERVER['HTTP_ACCEPT'], 'vnd.wap.wml') < strpos($_SERVER['HTTP_ACCEPT'], 'text/html')))) {
+            return true;
+        }
+    }
+    return false;
+}
 
 /* 获取加密的文章标题 */
 function _getEncryptionTitle($item, $type = true)
@@ -66,10 +90,7 @@ function _parseContent($post)
     echo $content;
 }
 
-/* 页面计时 */
-timerStart();
-
-function timerStart()
+function _startCountTime()
 {
     global $timeStart;
     $mTime     = explode(' ', microtime());
@@ -77,13 +98,13 @@ function timerStart()
     return true;
 }
 
-function timerStop($precision = 3)
+function _endCountTime($precision = 3)
 {
     global $timeStart, $timeEnd;
     $mTime     = explode(' ', microtime());
     $timeEnd   = $mTime[1] + $mTime[0];
     $timeTotal = number_format($timeEnd - $timeStart, $precision);
-    echo '<span class="joe_time_count"><svg viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M872 64c13.2544 0 24 10.7456 24 24 0 13.2544-10.7456 24-24 24h-104v177.456c0 67.0672-36.4912 128.8224-95.2368 161.1744l-111.0816 61.1744 111.328 61.536C731.6176 605.7328 768 667.4112 768 734.376V912h104c13.2544 0 24 10.7456 24 24 0 13.2544-10.7456 24-24 24H152c-13.2544 0-24-10.7456-24-24 0-13.2544 10.7456-24 24-24h104V734.544c0-67.0672 36.4912-128.8224 95.2368-161.1744l111.08-61.176-111.328-61.5328C292.3824 418.2656 256 356.5872 256 289.6224V112H152c-13.2544 0-24-10.7456-24-24 0-13.2544 10.7456-24 24-24h720zM512.4 539.4112l-138.0064 76.0032A136 136 0 0 0 304 734.544V912h416V734.3776a136 136 0 0 0-70.2096-119.0272l-137.3904-75.9392zM720 112H304v177.6224a136 136 0 0 0 70.2096 119.0272l137.3904 75.9392 138.0064-76.0032A136 136 0 0 0 720 289.456V112z" fill="#979797" p-id="2750"></path></svg>' . ($timeTotal < 1 ? $timeTotal * 1000 . 'ms' : $timeTotal . 's') . '</span>';
+    echo $timeTotal < 1 ? $timeTotal * 1000 . 'ms' : $timeTotal . 's';
 }
 
 function _getAvatarByMail($mail)

@@ -9,6 +9,32 @@
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
+<script>
+    window.Joe = {
+        LIVE2D: '<?php $this->options->JLive2d() ?>', // Live2d
+        BASE_API: '/index.php/joe/api', // 请求基准URL
+        DYNAMIC_BACKGROUND: '<?php $this->options->JDynamic_Background() ?>', // 动态背景
+        WALLPAPER_BACKGROUND_PC: '<?php $this->options->JWallpaper_Background_PC() ?>', // PC端静态背景
+        WALLPAPER_BACKGROUND_WAP: '<?php $this->options->JWallpaper_Background_WAP() ?>', // WAP端静态背景
+        IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent), // 是否是手机端
+        encryption: str => window.btoa(unescape(encodeURIComponent(str))), // 加密字符串
+        decrypt: str => decodeURIComponent(escape(window.atob(str))), // 解密字符串
+    }
+</script>
+<style>
+    body::before {
+        background: <?php
+                    if (_isMobile()) {
+                        echo $this->options->JWallpaper_Background_WAP ? "url(" . $this->options->JWallpaper_Background_WAP . ")" : "#f5f5f5";
+                    } else {
+                        echo $this->options->JWallpaper_Background_PC ? "url(" . $this->options->JWallpaper_Background_PC . ")" : "#f5f5f5";
+                    }
+                    ?>;
+        background-position: center 0;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+</style>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/js/joe.scroll.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/js/joe.lazyload.js"></script>

@@ -187,6 +187,46 @@ function themeConfig($form)
     $JFooter_Right->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JFooter_Right);
 
+    /* Live2d */
+    $JLive2d = new Typecho_Widget_Helper_Form_Element_Select(
+        'JLive2d',
+        array(
+            'off' => '关闭（默认）',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-shizuku@1.0.5/assets/shizuku.model.json' => 'shizuku',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-izumi@1.0.5/assets/izumi.model.json' => 'izumi',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-haru@1.0.5/01/assets/haru01.model.json' => 'haru01',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-haru@1.0.5/02/assets/haru02.model.json' => 'haru02',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-wanko@1.0.5/assets/wanko.model.json' => 'wanko',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-hijiki@1.0.5/assets/hijiki.model.json' => 'hijiki',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-koharu@1.0.5/assets/koharu.model.json' => 'koharu',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-z16@1.0.5/assets/z16.model.json' => 'z16',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-haruto@1.0.5/assets/haruto.model.json' => 'haruto',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-tororo@1.0.5/assets/tororo.model.json' => 'tororo',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-chitose@1.0.5/assets/chitose.model.json' => 'chitose',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-miku@1.0.5/assets/miku.model.json' => 'miku',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-epsilon2_1@1.0.5/assets/Epsilon2.1.model.json' => 'Epsilon2.1',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-unitychan@1.0.5/assets/unitychan.model.json' => 'unitychan',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-nico@1.0.5/assets/nico.model.json' => 'nico',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-rem@1.0.1/assets/rem.model.json' => 'rem',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-nito@1.0.5/assets/nito.model.json' => 'nito',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-nipsilon@1.0.5/assets/nipsilon.model.json' => 'nipsilon',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-ni-j@1.0.5/assets/ni-j.model.json' => 'ni-j',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-nietzsche@1.0.5/assets/nietzche.model.json' => 'nietzche',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-platelet@1.1.0/assets/platelet.model.json' => 'platelet',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-isuzu@1.0.4/assets/model.json' => 'isuzu',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-jth@1.0.0/assets/model/katou_01/katou_01.model.json' => 'katou_01',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-mikoto@1.0.0/assets/mikoto.model.json' => 'mikoto',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-mashiro-seifuku@1.0.1/assets/seifuku.model.json' => 'seifuku',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-ichigo@1.0.1/assets/ichigo.model.json' => 'ichigo',
+            'https://cdn.jsdelivr.net/npm/live2d-widget-model-hk_fos@1.0.0/assets/hk416.model.json' => 'hk416'
+        ),
+        'off',
+        '选择一款喜爱的Live2D动态人物模型',
+        '介绍：开启后会在右下角显示一个小人'
+    );
+    $JLive2d->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JLive2d->multiMode());
+
     $JAside = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'JAside',
         array(
@@ -420,6 +460,48 @@ function themeConfig($form)
     );
     $JLazyload->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JLazyload);
+
+    $JDynamic_Background = new Typecho_Widget_Helper_Form_Element_Select(
+        'JDynamic_Background',
+        array(
+            'off' => '关闭（默认）',
+            'backdrop1.js' => '效果1',
+            'backdrop2.js' => '效果2',
+            'backdrop3.js' => '效果3',
+            'backdrop4.js' => '效果4',
+            'backdrop5.js' => '效果5',
+            'backdrop6.js' => '效果6'
+        ),
+        'off',
+        '是否开启动态背景图（仅限PC）',
+        '介绍：用于设置PC端动态背景，如果下方填写了PC端静态壁纸，则优先显示下方静态壁纸！
+         注意：手机端是不支持此项的'
+    );
+    $JDynamic_Background->setAttribute('class', 'joe_content joe_image');
+    $form->addInput($JDynamic_Background->multiMode());
+
+    $JWallpaper_Background_PC = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JWallpaper_Background_PC',
+        NULL,
+        NULL,
+        'PC端网站背景图片（非必填）',
+        '介绍：PC端网站的背景图片，不填写时显示默认的灰色。<br />
+         格式：图片URL地址 或 随机图片api 例如：http://api.btstu.cn/sjbz/?lx=dongman <br />
+         注意：此项设置会优先显示，如果开启上方动态壁纸，会覆盖上方动态壁纸！'
+    );
+    $JWallpaper_Background_PC->setAttribute('class', 'joe_content joe_image');
+    $form->addInput($JWallpaper_Background_PC);
+
+    $JWallpaper_Background_WAP = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JWallpaper_Background_WAP',
+        NULL,
+        NULL,
+        'WAP端网站背景图片（非必填）',
+        '介绍：WAP端网站的背景图片，不填写时显示默认的灰色。<br />
+         格式：图片URL地址 或 随机图片api 例如：http://api.btstu.cn/sjbz/?lx=m_dongman'
+    );
+    $JWallpaper_Background_WAP->setAttribute('class', 'joe_content joe_image');
+    $form->addInput($JWallpaper_Background_WAP);
 
     $JIndex_Carousel = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JIndex_Carousel',
