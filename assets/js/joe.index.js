@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 初始化首页列表功能 */
 	{
-		let queryData = { page: 1, pageSize: 10, type: 'created' }
+		let queryData = { page: 1, pageSize: 12, type: 'created' }
 		const initDom = () => {
 			$('.joe_index__list .joe_list').html('')
 			let activeItem = $('.joe_index__title-title .item[data-type="' + queryData.type + '"]')
@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		pushDom()
 		$('.joe_index__title-title .item').on('click', async function () {
 			if ($(this).attr('data-type') === queryData.type) return
-			queryData = { page: 1, pageSize: 10, type: $(this).attr('data-type') }
+			queryData = { page: 1, pageSize: 12, type: $(this).attr('data-type') }
 			initDom()
 			pushDom()
 		})

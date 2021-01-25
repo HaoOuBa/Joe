@@ -32,20 +32,44 @@
                     <?php
                     $friends = [];
                     $friends_color = [
-                        '#0396ff',
-                        '#ea5455',
-                        '#7367f0',
-                        '#28c76f',
-                        '#9f44d3',
+                        '#F8D800',
+                        '#0396FF',
+                        '#EA5455',
+                        '#7367F0',
+                        '#32CCBC',
+                        '#F6416C',
+                        '#28C76F',
+                        '#9F44D3',
+                        '#F55555',
+                        '#736EFE',
+                        '#E96D71',
+                        '#DE4313',
+                        '#D939CD',
+                        '#4C83FF',
+                        '#F072B6',
+                        '#C346C2',
+                        '#5961F9',
+                        '#FD6585',
+                        '#465EFB',
+                        '#FFC600',
+                        '#FA742B',
+                        '#5151E5',
+                        '#BB4E75',
+                        '#FF52E5',
+                        '#49C628',
+                        '#00EAFF',
+                        '#F067B4',
+                        '#F067B4',
+                        '#ff9a9e',
+                        '#00f2fe',
+                        '#4facfe',
+                        '#f093fb',
                         '#6fa3ef',
                         '#bc99c4',
                         '#46c47c',
                         '#f9bb3c',
                         '#e8583d',
                         '#f68e5f',
-                        '#67c23a',
-                        '#e6a23c',
-                        '#f56c6c'
                     ];
                     $friends_text = $this->options->JFriends;
                     if ($friends_text) {
@@ -68,7 +92,7 @@
                                     <a class="contain" href="http://ae.js.cn" target="_blank" rel="noopener noreferrer" style="background: <?php echo $friends_color[rand(0, count($friends_color) - 1)] ?>">
                                         <span class="title"><?php echo $item['name']; ?></span>
                                         <div class="content">
-                                            <p class="desc"><?php echo $item['desc']; ?></p>
+                                            <div class="desc"><?php echo $item['desc']; ?></div>
                                             <img class="avatar" src="<?php echo $item['avatar']; ?>" alt="<?php echo $item['name']; ?>" />
                                         </div>
                                     </a>
