@@ -87,7 +87,7 @@ function _parseContent($post)
         if ($hasComment) {
             $content = preg_replace('/\[hide\](.*?)\[\/hide\]/sm', '$1', $content);
         } else {
-            $content = preg_replace('/\[hide\](.*?)\[\/hide\]/sm', '<span class="joe_detail__article-hide block">此处内容 <i data-scroll="comment">回复</i> 可见</span>', $content);
+            $content = preg_replace('/\[hide\](.*?)\[\/hide\]/sm', '<span class="joe_detail__article-hide block">此处内容作者设置了 <i data-scroll="comment">回复</i> 可见</span>', $content);
         }
     }
     echo $content;

@@ -1148,6 +1148,7 @@ html[data-night='night'] {
 				flex-direction: column;
 				height: 35px;
 				justify-content: space-between;
+				font-size: 12px;
 				.author {
 					.link {
 						font-weight: 500;
@@ -1161,7 +1162,6 @@ html[data-night='night'] {
 					display: flex;
 					align-items: center;
 					color: var(--minor);
-					font-size: 12px;
 					line-height: 16px;
 					.line {
 						color: var(--seat);
@@ -1441,10 +1441,11 @@ html[data-night='night'] {
 		}
 		&-hide {
 			background: repeating-linear-gradient(145deg, var(--classD), var(--classD) 15px, var(--background) 0, var(--background) 25px);
-			padding: 10px 0;
+			padding: 15px 0;
 			text-align: center;
 			position: relative;
 			user-select: none;
+			line-height: normal;
 			i {
 				position: relative;
 				font-style: normal;
