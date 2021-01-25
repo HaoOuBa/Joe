@@ -75,6 +75,22 @@ function themeConfig($form)
     $JNavMaxNum->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JNavMaxNum->multiMode());
 
+    $JCustomNavs = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JCustomNavs',
+        NULL,
+        NULL,
+        '导航栏自定义链接（非必填）',
+        '介绍：用于自定义导航栏链接 <br />
+         格式：跳转文字 || 跳转链接（中间使用两个竖杠分隔）<br />
+         其他：一行一个，一行代表一个超链接 <br />
+         例如：<br />
+            百度一下 || https://baidu.com <br />
+            腾讯视频 || https://v.qq.com
+         '
+    );
+    $JCustomNavs->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JCustomNavs);
+
     $JList_Animate = new Typecho_Widget_Helper_Form_Element_Select(
         'JList_Animate',
         array(
@@ -565,4 +581,17 @@ function themeConfig($form)
     );
     $JIndex_Notice->setAttribute('class', 'joe_content joe_index');
     $form->addInput($JIndex_Notice);
+
+    $JFriends = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JFriends',
+        NULL,
+        'Joe的博客 || https://ae.js.cn || https://cdn.jsdelivr.net/npm/typecho_joe_theme@4.3.5/assets/img/link.png || Joe主题作者',
+        '友情链接（非必填）',
+        '介绍：用于填写友情链接 <br />
+         注意：您需要先增加友联链接页面，该项才会生效 <br />
+         格式：博客名称 || 博客地址 || 博客头像 || 博客简介 <br />
+         其他：一行一个，一行代表一个友联'
+    );
+    $JFriends->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JFriends);
 } ?>

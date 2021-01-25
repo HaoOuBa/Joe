@@ -34,6 +34,20 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    /* 搜索框弹窗 */
+    {
+        $('.joe_header__above-search .input').on('click', e => {
+            e.stopPropagation();
+            $('.joe_header__above-search .result').addClass('active');
+        });
+        $(document).on('click', function () {
+            $('.joe_header__above-search .result').removeClass('active');
+        });
+        $(document).on('scroll', function () {
+            $('.joe_header__above-search .result').removeClass('active');
+        });
+    }
+
     /* 激活全局下拉框功能 */
     {
         $('.joe_dropdown').each(function (index, item) {
@@ -180,6 +194,22 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
+
+    /* 计算页面滚动多少 */
+    {
+        const calcProgress = () => {
+            let scrollTop = $(window).scrollTop();
+            let documentHeight = $(document).height();
+            let windowHeight = $(window).height();
+            let progress = parseInt((scrollTop / (documentHeight - windowHeight)) * 100);
+            if (progress <= 0) progress = 0;
+            if (progress >= 100) progress = 100;
+            $('.joe_header__below-progress').css('width', progress + '%');
+        };
+        calcProgress();
+        $(window).on('scroll', () => calcProgress());
+    }
+
     /* 懒加载 */
     new LazyLoad('.lazyload');
 

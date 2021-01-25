@@ -9,6 +9,9 @@ require_once('route.php');
 /* 主题初始化 */
 function themeInit($self)
 {
+    Helper::options()->commentsThreaded = true;
+    /* 强制显示一页15篇文章 */
+    $self->parameter->pageSize = 15;
 
     /* 主题开放API 路由规则 */
     $path_info = $self->request->getPathinfo();

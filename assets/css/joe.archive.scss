@@ -1,0 +1,41 @@
+.joe_archive {
+    border-radius: 8px;
+    padding: 0 15px;
+    background: var(--background);
+    box-shadow: var(--box-shadow);
+    &__title {
+        display: flex;
+        align-items: center;
+        height: 45px;
+        line-height: 45px;
+        color: var(--main);
+        border-bottom: 1px solid var(--classC);
+        &-icon {
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            min-height: 20px;
+            margin-right: 5px;
+        }
+        &-title {
+            display: flex;
+            align-items: center;
+            .muted {
+                color: var(--theme);
+                margin: 0 5px;
+            }
+        }
+    }
+    &__empty {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 50px 0;
+        color: var(--routine);
+        &-icon {
+            margin-bottom: 30px;
+            fill: var(--routine);
+        }
+    }
+}

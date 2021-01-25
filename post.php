@@ -14,6 +14,7 @@
 <body>
     <div id="Joe">
         <?php $this->need('public/header.php'); ?>
+        
         <div class="joe_container joe_bread">
             <ul class="joe_bread__bread">
                 <li class="item">
@@ -43,6 +44,8 @@
                         </div>
                     <?php endif; ?>
                     <?php $this->need('public/article.php'); ?>
+                    <?php $this->need('public/handle.php'); ?>
+                    <?php $this->need('public/copyright.php'); ?>
                 </div>
             </div>
             <?php $this->need('public/aside.php'); ?>

@@ -30,3 +30,5 @@
 <script>
     console.log("PHP输出页面时长: <?php _endCountTime(); ?>")
 </script>
+
+<?php $this->footer(); ?>
