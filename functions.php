@@ -474,8 +474,8 @@ function themeConfig($form)
         ),
         'off',
         '是否开启动态背景图（仅限PC）',
-        '介绍：用于设置PC端动态背景，如果下方填写了PC端静态壁纸，则优先显示下方静态壁纸！
-         注意：手机端是不支持此项的'
+        '介绍：用于设置PC端动态背景<br />
+         注意：如果您填写了下方PC端静态壁纸，将优先展示下方静态壁纸！如需显示动态壁纸，请将PC端静态壁纸设置成空'
     );
     $JDynamic_Background->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JDynamic_Background->multiMode());
@@ -487,7 +487,7 @@ function themeConfig($form)
         'PC端网站背景图片（非必填）',
         '介绍：PC端网站的背景图片，不填写时显示默认的灰色。<br />
          格式：图片URL地址 或 随机图片api 例如：http://api.btstu.cn/sjbz/?lx=dongman <br />
-         注意：此项设置会优先显示，如果开启上方动态壁纸，会覆盖上方动态壁纸！'
+         注意：如果需要显示上方动态壁纸，请不要填写此项，此项优先级最高！'
     );
     $JWallpaper_Background_PC->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JWallpaper_Background_PC);
