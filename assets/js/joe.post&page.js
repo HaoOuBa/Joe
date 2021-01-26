@@ -33,7 +33,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* 设置文章内的链接为新窗口打开 */
     {
-        $('.joe_detail__article a').each(() => $(this).attr({ target: '_blank', rel: 'noopener noreferrer nofollow' }));
+        $('.joe_detail__article a').each(function () {
+            $(this).attr({ target: '_blank', rel: 'noopener noreferrer nofollow' });
+        });
     }
 
     /* 当前页的CID */

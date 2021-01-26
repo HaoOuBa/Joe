@@ -193,6 +193,78 @@ function _parseAsideLink($link)
     echo str_replace("#", "?scroll=", $link);
 }
 
+function _getAgentOS($agent)
+{
+    $os = "Linux";
+    if (preg_match('/win/i', $agent)) {
+        if (preg_match('/nt 6.0/i', $agent)) {
+            $os = 'Windows Vista';
+        } else if (preg_match('/nt 6.1/i', $agent)) {
+            $os = 'Windows 7';
+        } else if (preg_match('/nt 6.2/i', $agent)) {
+            $os = 'Windows 8';
+        } else if (preg_match('/nt 6.3/i', $agent)) {
+            $os = 'Windows 8.1';
+        } else if (preg_match('/nt 5.1/i', $agent)) {
+            $os = 'Windows XP';
+        } else if (preg_match('/nt 10.0/i', $agent)) {
+            $os = 'Windows 10';
+        } else {
+            $os = 'Windows X64';
+        }
+    } else if (preg_match('/android/i', $agent)) {
+        if (preg_match('/android 9/i', $agent)) {
+            $os = 'Android Pie';
+        } else if (preg_match('/android 8/i', $agent)) {
+            $os = 'Android Oreo';
+        } else {
+            $os = 'Android';
+        }
+    } else if (preg_match('/ubuntu/i', $agent)) {
+        $os = 'Ubuntu';
+    } else if (preg_match('/linux/i', $agent)) {
+        $os = 'Linux';
+    } else if (preg_match('/iPhone/i', $agent)) {
+        $os = 'iPhone';
+    } else if (preg_match('/mac/i', $agent)) {
+        $os = 'MacOS';
+    } else if (preg_match('/fusion/i', $agent)) {
+        $os = 'Android';
+    } else {
+        $os = 'Linux';
+    }
+    echo $os;
+}
+
+function _getAgentBrowser($agent)
+{
+    if (preg_match('/MSIE\s([^\s|;]+)/i', $agent, $regs)) {
+        $outputer = 'Internet Explore';
+    } else if (preg_match('/FireFox\/([^\s]+)/i', $agent, $regs)) {
+        $outputer = 'FireFox';
+    } else if (preg_match('/Maxthon([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+        $outputer = 'MicroSoft Edge';
+    } else if (preg_match('#360([a-zA-Z0-9.]+)#i', $agent, $regs)) {
+        $outputer = '360 Fast Browser';
+    } else if (preg_match('/Edge([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+        $outputer = 'MicroSoft Edge';
+    } else if (preg_match('/UC/i', $agent)) {
+        $outputer = 'UC Browser';
+    } else if (preg_match('/QQ/i', $agent, $regs) || preg_match('/QQ Browser\/([^\s]+)/i', $agent, $regs)) {
+        $outputer = 'QQ Browser';
+    } else if (preg_match('/UBrowser/i', $agent, $regs)) {
+        $outputer = 'UC Browser';
+    } else if (preg_match('/Opera[\s|\/]([^\s]+)/i', $agent, $regs)) {
+        $outputer = 'Opera';
+    } else if (preg_match('/Chrome([\d]*)\/([^\s]+)/i', $agent, $regs)) {
+        $outputer = 'Google Chrome';
+    } else if (preg_match('/safari\/([^\s]+)/i', $agent, $regs)) {
+        $outputer = 'Safari';
+    } else {
+        $outputer = 'Google Chrome';
+    }
+    echo $outputer;
+}
 
 function _parseAsideReply($text, $type = true)
 {
@@ -217,6 +289,22 @@ function _parseReply($text)
         $text
     );
     return $text;
+}
+
+function _getParentReply($parent)
+{
+    if ($parent !== "0") {
+        $db = Typecho_Db::get();
+        $commentInfo = $db->fetchRow($db->select('author')->from('table.comments')->where('coid = ?', $parent));
+        echo '<div class="parent"><span style="vertical-align: 1px;">@</span> ' . $commentInfo['author'] . '</div>';
+    }
+}
+
+function _parseCommentReply($text)
+{
+    $text = _parseReply($text);
+    $text = preg_replace('/\{!{(.*?)\}!}/', '<img src="$1" class="draw_image"/>', $text);
+    echo $text;
 }
 
 

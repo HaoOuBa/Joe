@@ -210,6 +210,31 @@ document.addEventListener('DOMContentLoaded', () => {
         $(window).on('scroll', () => calcProgress());
     }
 
+    /* 评论框点击切换画图模式和文本模式 */
+    {
+        $('.joe_comment__respond-type .item').on('click', function () {
+            $(this).addClass('active').siblings().removeClass('active');
+            if ($(this).attr('data-type') === 'draw') {
+                $('.joe_comment__respond-form .body .draw').show().siblings().hide();
+                $('#joe_comment_draw').prop('width', $('.joe_comment__respond-form .body').width());
+            } else {
+                $('.joe_comment__respond-form .body .text').show().siblings().hide();
+            }
+        });
+    }
+
+    /* 激活画图功能 */
+    {
+        if ($('#joe_comment_draw').length !== 0) {
+            window.sketchpad = new Sketchpad({
+                element: '#joe_comment_draw',
+                height: 300,
+                penSize: 5,
+                color: '303133'
+            });
+        }
+    }
+
     /* 懒加载 */
     new LazyLoad('.lazyload');
 

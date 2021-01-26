@@ -104,6 +104,7 @@
                     <?php $this->need('public/handle.php'); ?>
                     <?php $this->need('public/copyright.php'); ?>
                 </div>
+                <?php $this->need('public/comment.php'); ?>
             </div>
             <?php $this->need('public/aside.php'); ?>
         </div>
