@@ -12,8 +12,32 @@ document.addEventListener('DOMContentLoaded', () => {
                     $('#Joe_Baidu_Record').css('color', '#67C23A');
                     $('#Joe_Baidu_Record').html('已收录');
                 } else {
-                    const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
-                    $('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" rel="noopener noreferrer nofollow" style="color: #F56C6C">未收录，提交收录</a>`);
+                    /* 如果填写了Token，则自动推送给百度 */
+                    if (Joe.BAIDU_PUSH) {
+                        $('#Joe_Baidu_Record').html('<span style="color: #E6A23C">未收录，推送中...</span>');
+                        const _timer = setTimeout(function () {
+                            $.ajax({
+                                url: Joe.BASE_API,
+                                type: 'POST',
+                                data: {
+                                    routeType: 'baidu_push',
+                                    domain: encodeURI(window.location.hostname),
+                                    url: encodeURI(window.location.href)
+                                },
+                                success(res) {
+                                    if (res.error) {
+                                        $('#Joe_Baidu_Record').html('<span style="color: #F56C6C">推送失败，请检查！</span>');
+                                    } else {
+                                        $('#Joe_Baidu_Record').html('<span style="color: #67C23A">推送成功！</span>');
+                                    }
+                                }
+                            });
+                            clearTimeout(_timer);
+                        }, 1000);
+                    } else {
+                        const url = `https://ziyuan.baidu.com/linksubmit/url?sitename=${encodeURI(window.location.href)}`;
+                        $('#Joe_Baidu_Record').html(`<a target="_blank" href="${url}" rel="noopener noreferrer nofollow" style="color: #F56C6C">未收录，提交收录</a>`);
+                    }
                 }
             }
         });

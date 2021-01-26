@@ -1,6 +1,6 @@
 <?php
 
-/* 排行榜 */
+/* 侧边栏热门排行榜 */
 function _getRanking($self)
 {
     header("HTTP/1.1 200 OK");
@@ -24,7 +24,7 @@ function _getRanking($self)
     }
 }
 
-/* 列表 */
+/* 获取文章列表 */
 function _getPost($self)
 {
     header("HTTP/1.1 200 OK");
@@ -38,7 +38,7 @@ function _getPost($self)
             "image" => _getThumbnail($item, false),
             "time" => date('Y-m-d', $item->created),
             "created" => date('Y年m月d日', $item->created),
-            "title" => _getEncryptionTitle($item, false),
+            "title" => $item->title,
             "abstract" => _getAbstract($item, false),
             "category" => $item->categories,
             "views" => _getViews($item, false),
@@ -51,7 +51,7 @@ function _getPost($self)
     $self->response->throwJson(array("data" => $result));
 }
 
-/* 浏览量 */
+/* 增加浏览量 */
 function _handleViews($self)
 {
     header("HTTP/1.1 200 OK");
@@ -69,7 +69,7 @@ function _handleViews($self)
     }
 }
 
-/* 点赞 */
+/* 点赞和取消点赞 */
 function _handleAgree($self)
 {
     header("HTTP/1.1 200 OK");
@@ -92,7 +92,7 @@ function _handleAgree($self)
     }
 }
 
-/* 收录 */
+/* 查询是否收录 */
 function _getRecord($self)
 {
     header("HTTP/1.1 200 OK");
@@ -122,4 +122,26 @@ function _getRecord($self)
     } else {
         $self->response->throwJson(array("data" => "已收录"));
     }
+}
+
+/* 主动推送到百度收录 */
+function _pushRecord($self)
+{
+    header("HTTP/1.1 200 OK");
+    $domain = $self->request->domain;
+    $url = $self->request->url;
+    $token = Helper::options()->JBaiduToken;
+    $urls = explode(",", $url);
+    $api = 'http://data.zz.baidu.com/urls?site=' . $domain . '&token=' . $token;
+    $ch = curl_init();
+    $options =  array(
+        CURLOPT_URL => $api,
+        CURLOPT_POST => true,
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_POSTFIELDS => implode("\n", $urls),
+        CURLOPT_HTTPHEADER => array('Content-Type: text/plain'),
+    );
+    curl_setopt_array($ch, $options);
+    $result = curl_exec($ch);
+    $self->response->throwJson(json_decode($result));
 }

@@ -36,13 +36,6 @@
         <div class="joe_container">
             <div class="joe_main joe_post">
                 <div class="joe_detail" data-cid="<?php echo $this->cid ?>">
-                    <?php if (sizeof($this->categories) > 0) : ?>
-                        <div class="joe_detail__category">
-                            <?php foreach (array_slice($this->categories, 0, 5) as $key => $item) : ?>
-                                <a href="<?php echo $item['permalink']; ?>" class="item item-<?php echo $key ?>" title="<?php echo $item['name']; ?>"><?php echo $item['name']; ?></a>
-                            <?php endforeach; ?>
-                        </div>
-                    <?php endif; ?>
                     <?php $this->need('public/article.php'); ?>
                     <?php $this->need('public/handle.php'); ?>
                     <?php $this->need('public/copyright.php'); ?>

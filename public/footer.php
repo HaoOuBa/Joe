@@ -1,9 +1,9 @@
 <footer class="joe_footer">
     <div class="joe_container">
-        <div class="left">
+        <div>
             <?php $this->options->JFooter_Left() ?>
         </div>
-        <div class="right">
+        <div>
             <?php $this->options->JFooter_Right() ?>
         </div>
     </div>

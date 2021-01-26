@@ -1,6 +1,9 @@
 <?php
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
+
+/* Joe核心文件 */
 require_once("core/core.php");
+
 function themeConfig($form)
 {
     $_db = Typecho_Db::get();
@@ -181,9 +184,7 @@ function themeConfig($form)
     $JFooter_Left = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFooter_Left',
         NULL,
-        '<span class="info">
-            2019 - 2020 © Reach - <a href="http://ae.js.cn" target="_blank" rel="noopener noreferrer">Joe</a>
-        </span>',
+        '2019 - 2020 © Reach - <a href="http://ae.js.cn" target="_blank" rel="noopener noreferrer">Joe</a>',
         '自定义底部栏左侧内容（非必填）',
         '介绍：用于修改全站底部左侧内容 <br>
          例如：2019 - 2020 © Reach - Joe             '
@@ -594,4 +595,15 @@ function themeConfig($form)
     );
     $JFriends->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JFriends);
+
+    $JBaiduToken = new Typecho_Widget_Helper_Form_Element_Text(
+        'JBaiduToken',
+        NULL,
+        NULL,
+        '百度推送Token',
+        '介绍：填写此处，前台文章页如果未收录，则会自动将当前链接推送给百度加快收录
+         其他：Token在百度收录平台注册账号获取'
+    );
+    $JBaiduToken->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JBaiduToken);
 } ?>

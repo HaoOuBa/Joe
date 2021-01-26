@@ -14,6 +14,7 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
+    <!-- 首页所使用到的CSS以及JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@5.4.5/css/swiper.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css" />
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.index.css'); ?>">
@@ -74,12 +75,12 @@
                                     <?php foreach ($recommend as $cid) : ?>
                                         <?php $this->widget('Widget_Archive@' . $cid, 'pageSize=1&type=post', 'cid=' . $cid)->to($item); ?>
                                         <figure class="item">
-                                            <a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php _getEncryptionTitle($item) ?>">
-                                                <img class="lazyload" onerror="<?php _getLazyload() ?>" src="<?php _getLazyload(); ?>" data-original="<?php _getThumbnail($item); ?>" alt="<?php _getEncryptionTitle($item) ?>" width="100%" />
+                                            <a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
+                                                <img class="lazyload" onerror="<?php _getLazyload() ?>" src="<?php _getLazyload(); ?>" data-original="<?php _getThumbnail($item); ?>" alt="<?php $item->title() ?>" width="100%" />
                                             </a>
                                             <figcaption class="information">
                                                 <span class="information_type">推荐</span>
-                                                <span class="information_title"><?php _getEncryptionTitle($item) ?></span>
+                                                <span class="information_title"><?php $item->title() ?></span>
                                             </figcaption>
                                         </figure>
                                     <?php endforeach; ?>

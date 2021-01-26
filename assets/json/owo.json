@@ -1,0 +1,259 @@
+{
+    "泡泡": {
+        "type": "image",
+        "container": [
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E591B5E591B5_2x.png\">", "data": "::(呵呵)", "text": "呵呵" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E59388E59388_2x.png\">", "data": "::(哈哈)", "text": "哈哈" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E59090E8888C_2x.png\">", "data": "::(吐舌)", "text": "吐舌" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5A4AAE5BC80E5BF83_2x.png\">", "data": "::(太开心)", "text": "太开心" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E7AC91E79CBC_2x.png\">", "data": "::(笑眼)", "text": "笑眼" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E88AB1E5BF83_2x.png\">", "data": "::(花心)", "text": "花心" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5B08FE4B996_2x.png\">", "data": "::(小乖)", "text": "小乖" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E4B996_2x.png\">", "data": "::(乖)", "text": "乖" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E68D82E598B4E7AC91_2x.png\">", "data": "::(捂嘴笑)", "text": "捂嘴笑" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E6BB91E7A8BD_2x.png\">", "data": "::(滑稽)", "text": "滑稽" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E4BDA0E68782E79A84_2x.png\">", "data": "::(你懂的)", "text": "你懂的" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E4B88DE9AB98E585B4_2x.png\">", "data": "::(不高兴)", "text": "不高兴" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E68092_2x.png\">", "data": "::(怒)", "text": "怒" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E6B197_2x.png\">", "data": "::(汗)", "text": "汗" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E9BB91E7BABF_2x.png\">", "data": "::(黑线)", "text": "黑线" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E6B3AA_2x.png\">", "data": "::(泪)", "text": "泪" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E79C9FE6A392_2x.png\">", "data": "::(真棒)", "text": "真棒" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E596B7_2x.png\">", "data": "::(喷)", "text": "喷" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E6838AE593AD_2x.png\">", "data": "::(惊哭)", "text": "惊哭" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E998B4E999A9_2x.png\">", "data": "::(阴险)", "text": "阴险" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E98499E8A786_2x.png\">", "data": "::(鄙视)", "text": "鄙视" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E985B7_2x.png\">", "data": "::(酷)", "text": "酷" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5958A_2x.png\">", "data": "::(啊)", "text": "啊" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E78B82E6B197_2x.png\">", "data": "::(狂汗)", "text": "狂汗" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/what_2x.png\">", "data": "::(what)", "text": "what" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E79691E997AE_2x.png\">", "data": "::(疑问)", "text": "疑问" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E985B8E788BD_2x.png\">", "data": "::(酸爽)", "text": "酸爽" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E59180E592A9E788B9_2x.png\">", "data": "::(呀咩爹)", "text": "呀咩爹" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5A794E5B188_2x.png\">", "data": "::(委屈)", "text": "委屈" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E6838AE8AEB6_2x.png\">", "data": "::(惊讶)", "text": "惊讶" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E79DA1E8A789_2x.png\">", "data": "::(睡觉)", "text": "睡觉" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E7AC91E5B0BF_2x.png\">", "data": "::(笑尿)", "text": "笑尿" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E68C96E9BCBB_2x.png\">", "data": "::(挖鼻)", "text": "挖鼻" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E59090_2x.png\">", "data": "::(吐)", "text": "吐" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E78A80E588A9_2x.png\">", "data": "::(犀利)", "text": "犀利" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5B08FE7BAA2E884B8_2x.png\">", "data": "::(小红脸)", "text": "小红脸" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E68792E5BE97E79086_2x.png\">", "data": "::(懒得理)", "text": "懒得理" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E58B89E5BCBA_2x.png\">", "data": "::(勉强)", "text": "勉强" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E788B1E5BF83_2x.png\">", "data": "::(爱心)", "text": "爱心" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5BF83E7A28E_2x.png\">", "data": "::(心碎)", "text": "心碎" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E78EABE791B0_2x.png\">", "data": "::(玫瑰)", "text": "玫瑰" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E7A4BCE789A9_2x.png\">", "data": "::(礼物)", "text": "礼物" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5BDA9E899B9_2x.png\">", "data": "::(彩虹)", "text": "彩虹" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5A4AAE998B3_2x.png\">", "data": "::(太阳)", "text": "太阳" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E6989FE6989FE69C88E4BAAE_2x.png\">", "data": "::(星星月亮)", "text": "星星月亮" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E992B1E5B881_2x.png\">", "data": "::(钱币)", "text": "钱币" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E88CB6E69DAF_2x.png\">", "data": "::(茶杯)", "text": "茶杯" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E89B8BE7B395_2x.png\">", "data": "::(蛋糕)", "text": "蛋糕" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5A4A7E68B87E68C87_2x.png\">", "data": "::(大拇指)", "text": "大拇指" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E8839CE588A9_2x.png\">", "data": "::(胜利)", "text": "胜利" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/haha_2x.png\">", "data": "::(haha)", "text": "haha" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/OK_2x.png\">", "data": "::(OK)", "text": "OK" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E6B299E58F91_2x.png\">", "data": "::(沙发)", "text": "沙发" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E6898BE7BAB8_2x.png\">", "data": "::(手纸)", "text": "手纸" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E9A699E89589_2x.png\">", "data": "::(香蕉)", "text": "香蕉" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E4BEBFE4BEBF_2x.png\">", "data": "::(便便)", "text": "便便" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E88DAFE4B8B8_2x.png\">", "data": "::(药丸)", "text": "药丸" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E7BAA2E9A286E5B7BE_2x.png\">", "data": "::(红领巾)", "text": "红领巾" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E89CA1E7839B_2x.png\">", "data": "::(蜡烛)", "text": "蜡烛" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E99FB3E4B990_2x.png\">", "data": "::(音乐)", "text": "音乐" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E781AFE6B3A1_2x.png\">", "data": "::(灯泡)", "text": "灯泡" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5BC80E5BF83_2x.png\">", "data": "::(开心)", "text": "开心" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E992B1_2x.png\">", "data": "::(钱)", "text": "钱" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E592A6_2x.png\">", "data": "::(咦)", "text": "咦" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E591BC_2x.png\">", "data": "::(呼)", "text": "呼" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E586B7_2x.png\">", "data": "::(冷)", "text": "冷" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E7949FE6B094_2x.png\">", "data": "::(生气)", "text": "生气" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/paopao/E5BCB1_2x.png\">", "data": "::(弱)", "text": "弱" }
+        ]
+    },
+    "阿鲁": {
+        "type": "image",
+        "container": [
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E9AB98E585B4_2x.png\">", "data": ":@(高兴)", "text": "高兴" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E5B08FE68092_2x.png\">", "data": ":@(小怒)", "text": "小怒" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E884B8E7BAA2_2x.png\">", "data": ":@(脸红)", "text": "脸红" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E58685E4BCA4_2x.png\">", "data": ":@(内伤)", "text": "内伤" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E8A385E5A4A7E6ACBE_2x.png\">", "data": ":@(装大款)", "text": "装大款" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E8B59EE4B880E4B8AA_2x.png\">", "data": ":@(赞一个)", "text": "赞一个" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E5AEB3E7BE9E_2x.png\">", "data": ":@(害羞)", "text": "害羞" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E6B197_2x.png\">", "data": ":@(汗)", "text": "汗" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E59090E8A180E58092E59CB0_2x.png\">", "data": ":@(吐血倒地)", "text": "吐血倒地" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E6B7B1E6809D_2x.png\">", "data": ":@(深思)", "text": "深思" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E4B88DE9AB98E585B4_2x.png\">", "data": ":@(不高兴)", "text": "不高兴" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E697A0E8AFAD_2x.png\">", "data": ":@(无语)", "text": "无语" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E4BAB2E4BAB2_2x.png\">", "data": ":@(亲亲)", "text": "亲亲" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E58FA3E6B0B4_2x.png\">", "data": ":@(口水)", "text": "口水" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E5B0B4E5B0AC_2x.png\">", "data": ":@(尴尬)", "text": "尴尬" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E4B8ADE68C87_2x.png\">", "data": ":@(中指)", "text": "中指" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E683B3E4B880E683B3_2x.png\">", "data": ":@(想一想)", "text": "想一想" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E593ADE6B3A3_2x.png\">", "data": ":@(哭泣)", "text": "哭泣" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E4BEBFE4BEBF_2x.png\">", "data": ":@(便便)", "text": "便便" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E78CAEE88AB1_2x.png\">", "data": ":@(献花)", "text": "献花" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E79AB1E79C89_2x.png\">", "data": ":@(皱眉)", "text": "皱眉" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E582BBE7AC91_2x.png\">", "data": ":@(傻笑)", "text": "傻笑" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E78B82E6B197_2x.png\">", "data": ":@(狂汗)", "text": "狂汗" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E59090_2x.png\">", "data": ":@(吐)", "text": "吐" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E596B7E6B0B4_2x.png\">", "data": ":@(喷水)", "text": "喷水" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E79C8BE4B88DE8A781_2x.png\">", "data": ":@(看不见)", "text": "看不见" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E9BC93E68E8C_2x.png\">", "data": ":@(鼓掌)", "text": "鼓掌" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E998B4E69A97_2x.png\">", "data": ":@(阴暗)", "text": "阴暗" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E995BFE88D89_2x.png\">", "data": ":@(长草)", "text": "长草" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E78CAEE9BB84E7939C_2x.png\">", "data": ":@(献黄瓜)", "text": "献黄瓜" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E982AAE681B6_2x.png\">", "data": ":@(邪恶)", "text": "邪恶" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E69C9FE5BE85_2x.png\">", "data": ":@(期待)", "text": "期待" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E5BE97E6848F_2x.png\">", "data": ":@(得意)", "text": "得意" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E59090E8888C_2x.png\">", "data": ":@(吐舌)", "text": "吐舌" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E596B7E8A180_2x.png\">", "data": ":@(喷血)", "text": "喷血" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E697A0E68980E8B093_2x.png\">", "data": ":@(无所谓)", "text": "无所谓" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E8A782E5AF9F_2x.png\">", "data": ":@(观察)", "text": "观察" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E69A97E59CB0E8A782E5AF9F_2x.png\">", "data": ":@(暗地观察)", "text": "暗地观察" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E882BFE58C85_2x.png\">", "data": ":@(肿包)", "text": "肿包" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E4B8ADE69EAA_2x.png\">", "data": ":@(中枪)", "text": "中枪" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E5A4A7E59BA7_2x.png\">", "data": ":@(大囧)", "text": "大囧" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E591B2E78999_2x.png\">", "data": ":@(呲牙)", "text": "呲牙" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E68AA0E9BCBB_2x.png\">", "data": ":@(抠鼻)", "text": "抠鼻" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E4B88DE8AFB4E8AF9D_2x.png\">", "data": ":@(不说话)", "text": "不说话" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E592BDE6B094_2x.png\">", "data": ":@(咽气)", "text": "咽气" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E6ACA2E591BC_2x.png\">", "data": ":@(欢呼)", "text": "欢呼" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E99481E79C89_2x.png\">", "data": ":@(锁眉)", "text": "锁眉" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E89CA1E7839B_2x.png\">", "data": ":@(蜡烛)", "text": "蜡烛" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E59D90E7AD89_2x.png\">", "data": ":@(坐等)", "text": "坐等" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E587BBE68E8C_2x.png\">", "data": ":@(击掌)", "text": "击掌" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E6838AE5969C_2x.png\">", "data": ":@(惊喜)", "text": "惊喜" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E5969CE69E81E8808CE6B3A3_2x.png\">", "data": ":@(喜极而泣)", "text": "喜极而泣" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E68ABDE7839F_2x.png\">", "data": ":@(抽烟)", "text": "抽烟" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E4B88DE587BAE68980E69699_2x.png\">", "data": ":@(不出所料)", "text": "不出所料" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E684A4E68092_2x.png\">", "data": ":@(愤怒)", "text": "愤怒" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E697A0E5A588_2x.png\">", "data": ":@(无奈)", "text": "无奈" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E9BB91E7BABF_2x.png\">", "data": ":@(黑线)", "text": "黑线" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E68A95E9998D_2x.png\">", "data": ":@(投降)", "text": "投降" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E79C8BE783ADE997B9_2x.png\">", "data": ":@(看热闹)", "text": "看热闹" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E68987E880B3E58589_2x.png\">", "data": ":@(扇耳光)", "text": "扇耳光" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E5B08FE79CBCE79D9B_2x.png\">", "data": ":@(小眼睛)", "text": "小眼睛" },
+            { "icon": "<img class=\"biaoqing\" src=\"/usr/themes/Typecho-Joe-Theme/assets/owo/aru/E4B8ADE58880_2x.png\">", "data": ":@(中刀)", "text": "中刀" }
+        ]
+    },
+    "颜文字": {
+        "type": "emoticon",
+        "container": [
+            {
+                "icon": "OωO",
+                "text": "Author: DIYgod"
+            },
+            {
+                "icon": "|´・ω・)ノ",
+                "text": "Hi"
+            },
+            {
+                "icon": "ヾ(≧∇≦*)ゝ",
+                "text": "开心"
+            },
+            {
+                "icon": "(☆ω☆)",
+                "text": "星星眼"
+            },
+            {
+                "icon": "（╯‵□′）╯︵┴─┴",
+                "text": "掀桌"
+            },
+            {
+                "icon": "￣﹃￣",
+                "text": "流口水"
+            },
+            {
+                "icon": "(/ω＼)",
+                "text": "捂脸"
+            },
+            {
+                "icon": "∠( ᐛ 」∠)＿",
+                "text": "给跪"
+            },
+            {
+                "icon": "(๑•̀ㅁ•́ฅ)",
+                "text": "Hi"
+            },
+            {
+                "icon": "→_→",
+                "text": "斜眼"
+            },
+            {
+                "icon": "୧(๑•̀⌄•́๑)૭",
+                "text": "加油"
+            },
+            {
+                "icon": "٩(ˊᗜˋ*)و",
+                "text": "有木有WiFi"
+            },
+            {
+                "icon": "(ノ°ο°)ノ",
+                "text": "前方高能预警"
+            },
+            {
+                "icon": "(´இ皿இ｀)",
+                "text": "我从未见过如此厚颜无耻之人"
+            },
+            {
+                "icon": "⌇●﹏●⌇",
+                "text": "吓死宝宝惹"
+            },
+            {
+                "icon": "(ฅ´ω`ฅ)",
+                "text": "已阅留爪"
+            },
+            {
+                "icon": "(╯°A°)╯︵○○○",
+                "text": "去吧大师球"
+            },
+            {
+                "icon": "φ(￣∇￣o)",
+                "text": "太萌惹"
+            },
+            {
+                "icon": "ヾ(´･ ･｀｡)ノ\"",
+                "text": "咦咦咦"
+            },
+            {
+                "icon": "( ง ᵒ̌皿ᵒ̌)ง⁼³₌₃",
+                "text": "气呼呼"
+            },
+            {
+                "icon": "(ó﹏ò｡)",
+                "text": "我受到了惊吓"
+            },
+            {
+                "icon": "Σ(っ °Д °;)っ",
+                "text": "什么鬼"
+            },
+            {
+                "icon": "( ,,´･ω･)ﾉ\"(´っω･｀｡)",
+                "text": "摸摸头"
+            },
+            {
+                "icon": "╮(╯▽╰)╭ ",
+                "text": "无奈"
+            },
+            {
+                "icon": "o(*////▽////*)q ",
+                "text": "脸红"
+            },
+            {
+                "icon": "＞﹏＜",
+                "text": ""
+            },
+            {
+                "icon": "( ๑´•ω•) \"(ㆆᴗㆆ)",
+                "text": ""
+            },
+            {
+                "icon": "(｡•ˇ‸ˇ•｡)",
+                "text": ""
+            }
+        ]
+    }
+}

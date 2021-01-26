@@ -1,10 +1,9 @@
 console.time('Global.js执行时长');
 
 document.addEventListener('DOMContentLoaded', () => {
-    /* 昼夜模式 */
+    /* 初始化昼夜模式 */
     {
         if (localStorage.getItem('data-night')) {
-            $('html').attr('data-night', 'night');
             $('.joe_action_item.mode .icon-1').addClass('active');
             $('.joe_action_item.mode .icon-2').removeClass('active');
         } else {
@@ -226,13 +225,31 @@ document.addEventListener('DOMContentLoaded', () => {
     /* 激活画图功能 */
     {
         if ($('#joe_comment_draw').length !== 0) {
-            window.sketchpad = new Sketchpad({
-                element: '#joe_comment_draw',
-                height: 300,
-                penSize: 5,
-                color: '303133'
+            /* 激活画板 */
+            window.sketchpad = new Sketchpad({ element: '#joe_comment_draw', height: 300, penSize: 5, color: '303133' });
+            /* 撤销上一步 */
+            $('.joe_comment__respond-form .body .draw .icon-undo').on('click', () => window.sketchpad.undo());
+            /* 动画预览 */
+            $('.joe_comment__respond-form .body .draw .icon-animate').on('click', () => window.sketchpad.animate(10));
+            /* 更改画板的线宽 */
+            $('.joe_comment__respond-form .body .draw .line li').on('click', function () {
+                window.sketchpad.penSize = $(this).attr('data-line');
+                $(this).addClass('active').siblings().removeClass('active');
+            });
+            /* 更改画板的颜色 */
+            $('.joe_comment__respond-form .body .draw .color li').on('click', function () {
+                window.sketchpad.color = $(this).attr('data-color');
+                $(this).addClass('active').siblings().removeClass('active');
             });
         }
+    }
+
+    /* 激活点击回复可见的回复按钮，页面滚动到评论区 */
+    {
+        $('.joe_detail__article-hide i').on('click', function () {
+            const top = $('.joe_comment').offset().top - $('.joe_header').height() - 15;
+            window.scrollTo({ top, behavior: 'smooth' });
+        });
     }
 
     /* 懒加载 */

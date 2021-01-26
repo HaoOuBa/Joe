@@ -1,5 +1,6 @@
+/* 搜索页的样式 */
 .joe_archive {
-    border-radius: 8px;
+    border-radius: var(--radius-wrap);
     padding: 0 15px;
     background: var(--background);
     box-shadow: var(--box-shadow);

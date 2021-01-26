@@ -1108,6 +1108,13 @@ html[data-night='night'] {
                 background: #9f44d3;
             }
         }
+        .edit {
+            color: var(--minor);
+            margin-left: auto;
+            &:hover {
+                color: var(--theme);
+            }
+        }
     }
     &__title {
         font-size: 24px;
@@ -1123,7 +1130,7 @@ html[data-night='night'] {
         align-items: center;
         justify-content: space-between;
         padding-bottom: 15px;
-        border-bottom: 1px solid var(--classB);
+        border-bottom: 1px solid var(--classC);
         &::after {
             content: '';
             position: absolute;
@@ -1472,6 +1479,45 @@ html[data-night='night'] {
                 }
             }
         }
+        &-protected {
+            display: flex;
+            justify-content: center;
+            background: repeating-linear-gradient(145deg, var(--classB), var(--classB) 15px, var(--background) 0, var(--background) 30px);
+            padding: 20px 0;
+            margin-bottom: 15px;
+            .contain {
+                position: relative;
+                box-shadow: var(--box-shadow);
+                .icon {
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    left: 15px;
+                }
+                .password {
+                    width: 300px;
+                    height: 44px;
+                    border: none;
+                    border-radius: var(--radius-inner);
+                    color: var(--routine);
+                    padding-left: 50px;
+                    background: var(--background);
+                }
+                .submit {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    height: 44px;
+                    line-height: 44px;
+                    width: 44px;
+                    transition: opacity 0.35s;
+                    cursor: pointer;
+                    text-align: center;
+                    font-size: 13px;
+                    color: var(--main);
+                }
+            }
+        }
     }
     &__agree {
         display: flex;
@@ -1515,7 +1561,7 @@ html[data-night='night'] {
     }
     &__copyright {
         padding-top: 15px;
-        border-top: 1px solid var(--classB);
+        border-top: 1px solid var(--classC);
         .content {
             background: var(--classD);
             padding: 15px;
@@ -1721,19 +1767,9 @@ html[data-night='night'] {
         font-size: 24px;
         color: var(--main);
         text-shadow: var(--text-shadow);
-        border-bottom: 1px solid var(--classB);
+        border-bottom: 1px solid var(--classC);
         margin-bottom: 15px;
         padding-bottom: 15px;
-    }
-    &__empty {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        color: var(--routine);
-        &-icon {
-            fill: var(--routine);
-        }
     }
     &__close {
         display: flex;
@@ -1756,6 +1792,7 @@ html[data-night='night'] {
                 height: 32px;
                 color: var(--main);
                 border: none;
+                transition: color 0.35s, background 0.35s;
                 &:first-child {
                     border-top-left-radius: var(--radius-inner);
                 }
@@ -1811,7 +1848,7 @@ html[data-night='night'] {
                 padding: 15px;
                 .text {
                     width: 100%;
-                    height: 180px;
+                    height: 200px;
                     border: none;
                     resize: none;
                     vertical-align: middle;
@@ -1833,6 +1870,7 @@ html[data-night='night'] {
                             cursor: pointer;
                             margin-right: 10px;
                             color: var(--main);
+                            transition: color 0.35s;
                             &.active {
                                 color: var(--theme);
                             }
@@ -1851,6 +1889,7 @@ html[data-night='night'] {
                             border-radius: 50%;
                             margin: 0 5px;
                             cursor: pointer;
+                            transition: box-shadow 0.35s;
                             &.active {
                                 box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
                             }
@@ -1884,6 +1923,23 @@ html[data-night='night'] {
                     canvas {
                         background: var(--background);
                         border-radius: var(--radius-inner);
+                    }
+                }
+            }
+            .foot {
+                position: relative;
+                display: flex;
+                justify-content: flex-end;
+                padding: 0 15px 15px;
+                .submit {
+                    button {
+                        border-radius: 3px;
+                        height: 32px;
+                        padding: 0 15px;
+                        border: none;
+                        background: var(--theme);
+                        color: #fff;
+                        font-size: 14px;
                     }
                 }
             }
