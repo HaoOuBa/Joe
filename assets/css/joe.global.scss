@@ -1965,6 +1965,9 @@ html[data-night='night'] {
                             color: var(--main);
                             .author {
                                 margin-right: 10px;
+                                a {
+                                    color: #409eff;
+                                }
                             }
                             .owner {
                                 background: var(--theme);
