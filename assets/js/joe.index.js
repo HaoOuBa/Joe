@@ -1,3 +1,4 @@
+/* 首页需要用到的JS */
 console.time("Index.js执行时长")
 document.addEventListener('DOMContentLoaded', () => {
 	/* 激活轮播图功能 */

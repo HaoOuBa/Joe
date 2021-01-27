@@ -10,6 +10,21 @@
         BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
         encryption: str => window.btoa(unescape(encodeURIComponent(str))),
         decrypt: str => decodeURIComponent(escape(window.atob(str))),
+        changeURLArg: function(url, arg, arg_val) {
+            let pattern = arg + '=([^&]*)'
+            let replaceText = arg + '=' + arg_val
+            if (url.match(pattern)) {
+                let tmp = '/(' + arg + '=)([^&]*)/gi'
+                return url.replace(eval(tmp), replaceText)
+            } else {
+                if (url.match('[?]')) {
+                    return url + '&' + replaceText
+                } else {
+                    return url + '?' + replaceText
+                }
+            }
+            return url + '\n' + arg + '\n' + arg_val
+        }
     }
 </script>
 <style>

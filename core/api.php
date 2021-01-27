@@ -145,3 +145,4 @@ function _pushRecord($self)
     $result = curl_exec($ch);
     $self->response->throwJson(json_decode($result));
 }
+

@@ -1,6 +1,10 @@
+/* 详情页和独立页面需要用到的JS */
 console.time('Post&Page.js执行时长');
 
 document.addEventListener('DOMContentLoaded', () => {
+    /* 当前页的CID */
+    const cid = $('.joe_detail').attr('data-cid');
+
     /* 获取本篇文章百度收录情况 */
     {
         $.ajax({
@@ -61,9 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
             $(this).attr({ target: '_blank', rel: 'noopener noreferrer nofollow' });
         });
     }
-
-    /* 当前页的CID */
-    const cid = $('.joe_detail').attr('data-cid');
 
     /* 激活浏览功能 */
     {
@@ -134,6 +135,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (href && href.includes('#')) {
                 $(item).attr('href', href.replace('#comments', '?scroll=joe_comment'));
             }
+        });
+    }
+
+    /* 密码保护文章，输入密码访问 */
+    {
+        $('.joe_detail__article-protected').on('submit', function (e) {
+                    
         });
     }
 

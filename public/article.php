@@ -40,16 +40,16 @@
 <div class="joe_detail__article">
     <?php if ($this->is('post')) : ?>
         <?php if ($this->hidden) : ?>
-            <div data-cid="<?php $this->cid(); ?>" class="joe_detail__article-protected" data-action="<?php echo Typecho_Widget::widget('Widget_Security')->getTokenUrl($this->permalink); ?>">
+            <form class="joe_detail__article-protected" action="<?php echo Typecho_Widget::widget('Widget_Security')->getTokenUrl($this->permalink); ?>">
                 <div class="contain">
                     <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
                         <path d="M812.63104 664.064h-439.0912a79.0272 79.0272 0 0 0-78.95552 79.09888v196.9664h518.04672a79.0272 79.0272 0 0 0 78.9504-79.09888v-117.84704a79.0272 79.0272 0 0 0-78.9504-79.11936z" fill="#F4CA1C" p-id="7008"></path>
                         <path d="M812.97408 382.976h-32.36864V313.3696a272.256 272.256 0 1 0-544.512 0V382.976h-25.0624A113.91488 113.91488 0 0 0 97.28 496.77312v367.32928A113.91488 113.91488 0 0 0 211.03104 977.92h601.94304A113.90976 113.90976 0 0 0 926.72 864.1024V496.77312A113.90976 113.90976 0 0 0 812.97408 382.976zM305.7152 313.3696a202.63424 202.63424 0 1 1 405.26848 0V382.976H305.7152V313.3696zM857.088 864.1024a44.1856 44.1856 0 0 1-44.12416 44.15488H211.03104a44.19584 44.19584 0 0 1-44.11904-44.15488V496.77312a44.19584 44.19584 0 0 1 44.11904-44.16512h601.94304a44.1856 44.1856 0 0 1 44.12416 44.16v367.3344z m-331.71456-309.9648a62.69952 62.69952 0 0 0-34.816 114.82112v103.45984a34.816 34.816 0 1 0 69.632 0v-103.45984a62.69952 62.69952 0 0 0-34.80576-114.82112z" fill="#595BB3" p-id="7009"></path>
                     </svg>
                     <input class="password" type="password" placeholder="请输入访问密码...">
-                    <span class="submit">确定</span>
+                    <button class="submit" type="submit">确定</button>
                 </div>
-            </div>
+            </form>
         <?php else : ?>
             <?php _parseContent($this, $this->user->hasLogin()) ?>
         <?php endif; ?>

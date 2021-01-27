@@ -1,3 +1,4 @@
+/* 搜索页面需要用到的JS */
 console.time('Archive.js执行时长');
 document.addEventListener('DOMContentLoaded', () => {
     /* 激活列表特效 */
