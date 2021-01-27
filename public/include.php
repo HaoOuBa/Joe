@@ -45,9 +45,9 @@
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css'); ?>">
 <!-- 全局公用JS（静态资源放在了CDN上，如果你的服务器带宽不够，请不要修改成本地，cdn采用jsdelivr放心不会失效） -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/js/joe.scroll.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/js/joe.lazyload.js"></script>
-<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/js/joe.sketchpad.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/scroll/joe.scroll.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/lazyload/joe.lazyload.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/sketchpad/joe.sketchpad.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@5.4.5/js/swiper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
@@ -56,4 +56,4 @@
 <script src="<?php $this->options->themeUrl('assets/js/joe.global.js'); ?>"></script>
 <!-- 下面是异步加载的JS -->
 <script async src="https://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0"></script>
-<script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/js/joe.smooth.js"></script>
+<script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/smooth/joe.smooth.js"></script>
