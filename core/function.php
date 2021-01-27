@@ -112,8 +112,8 @@ function _getLazyload($type = true)
 /* 获取头像懒加载图 */
 function _getAvatarLazyload($type = true)
 {
-    if ($type) echo "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/lazyload_avatar.png";
-    else return "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/lazyload_avatar.png";
+    if ($type) echo "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/lazyload_avatar.jpg";
+    else return "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/lazyload_avatar.jpg";
 }
 
 /* 查询文章浏览量 */
