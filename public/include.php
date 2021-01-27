@@ -8,6 +8,7 @@
         WALLPAPER_BACKGROUND_PC: '<?php $this->options->JWallpaper_Background_PC() ?>',
         IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
         BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
+        DOCUMENT_TITLE: '<?php $this->options->JDocumentTitle() ?>',
         encryption: str => window.btoa(unescape(encodeURIComponent(str))),
         decrypt: str => decodeURIComponent(escape(window.atob(str))),
         changeURLArg: function(url, arg, arg_val) {

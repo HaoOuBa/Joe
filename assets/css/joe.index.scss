@@ -283,4 +283,36 @@
             top: 10px;
         }
     }
+    &.swiper-container-vertical {
+        .swiper-button-next,
+        .swiper-button-prev {
+            display: none;
+        }
+    }
+    .swiper-button-next,
+    .swiper-button-prev {
+        background: rgba(0, 0, 0, 0.1);
+        transition: background 0.35s, right 0.35s, left 0.35s;
+        border-radius: 2px;
+        &:hover {
+            background: rgba(0, 0, 0, 0.25);
+        }
+        &::after {
+            font-size: 20px;
+        }
+    }
+    .swiper-button-next {
+        right: -27px;
+    }
+    .swiper-button-prev {
+        left: -27px;
+    }
+    &:hover {
+        .swiper-button-next {
+            right: 10px;
+        }
+        .swiper-button-prev {
+            left: 10px;
+        }
+    }
 }

@@ -204,7 +204,6 @@ function themeConfig($form)
     $JFooter_Right->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JFooter_Right);
 
-    /* Live2d */
     $JLive2d = new Typecho_Widget_Helper_Form_Element_Select(
         'JLive2d',
         array(
@@ -243,6 +242,16 @@ function themeConfig($form)
     );
     $JLive2d->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JLive2d->multiMode());
+
+    $JDocumentTitle = new Typecho_Widget_Helper_Form_Element_Text(
+        'JDocumentTitle',
+        NULL,
+        NULL,
+        '网页被隐藏时显示的标题',
+        '介绍：在PC端切换网页标签时，网站标题显示的内容。如果不填写，则默认不开启'
+    );
+    $JDocumentTitle->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JDocumentTitle);
 
     $JAside = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'JAside',
@@ -536,7 +545,7 @@ function themeConfig($form)
     $JIndex_Carousel->setAttribute('class', 'joe_content joe_index');
     $form->addInput($JIndex_Carousel);
 
-    $JIndex_Recommend = new Typecho_Widget_Helper_Form_Element_Textarea(
+    $JIndex_Recommend = new Typecho_Widget_Helper_Form_Element_Text(
         'JIndex_Recommend',
         NULL,
         NULL,
@@ -548,6 +557,18 @@ function themeConfig($form)
     );
     $JIndex_Recommend->setAttribute('class', 'joe_content joe_index');
     $form->addInput($JIndex_Recommend);
+
+    $JIndexSticky = new Typecho_Widget_Helper_Form_Element_Text(
+        'JIndexSticky',
+        NULL,
+        NULL,
+        '首页置顶文章（非必填）',
+        '介绍：请务必填写正确的格式 <br />
+         格式：文章的ID || 文章的ID || 文章的ID （中间使用两个竖杠分隔）<br />
+         例如：1 || 2 || 3'
+    );
+    $JIndexSticky->setAttribute('class', 'joe_content joe_index');
+    $form->addInput($JIndexSticky);
 
     $JIndex_Hot = new Typecho_Widget_Helper_Form_Element_Radio(
         'JIndex_Hot',

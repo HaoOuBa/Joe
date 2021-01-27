@@ -317,6 +317,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    /* 切换标签显示不同的标题 */
+    {
+        if (Joe.DOCUMENT_TITLE) {
+            const TITLE = document.title;
+            document.addEventListener('visibilitychange', () => {
+                if (document.visibilityState === 'hidden') {
+                    document.title = Joe.DOCUMENT_TITLE;
+                } else {
+                    document.title = TITLE;
+                }
+            });
+        }
+    }
+
     /* 懒加载 */
     new LazyLoad('.lazyload');
 

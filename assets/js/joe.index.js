@@ -1,42 +1,53 @@
 /* 首页需要用到的JS */
-console.time("Index.js执行时长")
+console.time('Index.js执行时长');
 document.addEventListener('DOMContentLoaded', () => {
-	/* 激活轮播图功能 */
-	{
-		if ($('.joe_index__banner .swiper-container').length !== 0) {
-			let direction = 'horizontal'
-			if (!Joe.IS_MOBILE && $('.joe_index__banner-recommend .item').length === 2) direction = 'vertical'
-			new Swiper('.swiper-container', { keyboard: true, direction, loop: true, autoplay: true, mousewheel: true, pagination: { el: '.swiper-pagination' } })
-		}
-	}
+    /* 激活轮播图功能 */
+    {
+        if ($('.joe_index__banner .swiper-container').length !== 0) {
+            let direction = 'horizontal';
+            if (!Joe.IS_MOBILE && $('.joe_index__banner-recommend .item').length === 2) direction = 'vertical';
+            new Swiper('.swiper-container', {
+                keyboard: true,
+                direction,
+                loop: true,
+                autoplay: true,
+                mousewheel: true,
+                pagination: { el: '.swiper-pagination' },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev'
+                }
+            });
+        }
+    }
 
-	/* 初始化首页列表功能 */
-	{
-		let queryData = { page: 1, pageSize: 12, type: 'created' }
-		const initDom = () => {
-			$('.joe_index__list .joe_list').html('')
-			let activeItem = $('.joe_index__title-title .item[data-type="' + queryData.type + '"]')
-			let activeLine = $('.joe_index__title-title .line')
-			activeItem.addClass('active').siblings().removeClass('active')
-			activeLine.css({ left: activeItem.position().left, width: activeItem.width() })
-		}
-		const pushDom = () => {
-			return new Promise((reslove, reject) => {
-				$('.joe_load').attr('loading', true)
-				$('.joe_load').html('加载中')
-				$('.joe_index__list .joe_list__loading').show()
-				$.ajax({
-					url: Joe.BASE_API,
-					type: 'POST',
-					data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
-					success(res) {
-						if (res.data.length === 0) {
-							$('.joe_load').remove()
-							$('.joe_index__list .joe_list__loading').hide()
-							return
-						}
-						res.data.forEach(_ => {
-							$('.joe_index__list .joe_list').append(`
+    /* 初始化首页列表功能 */
+    {
+        let queryData = { page: 1, pageSize: 12, type: 'created' };
+        const initDom = () => {
+            $('.joe_index__list .joe_list').html('');
+            let activeItem = $('.joe_index__title-title .item[data-type="' + queryData.type + '"]');
+            let activeLine = $('.joe_index__title-title .line');
+            activeItem.addClass('active').siblings().removeClass('active');
+            activeLine.css({ left: activeItem.position().left, width: activeItem.width() });
+        };
+        const pushDom = () => {
+            return new Promise((reslove, reject) => {
+                $('.joe_load').attr('loading', true);
+                $('.joe_load').html('加载中');
+                $('.joe_index__list .joe_list__loading').show();
+                $.ajax({
+                    url: Joe.BASE_API,
+                    type: 'POST',
+                    data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
+                    success(res) {
+                        if (res.data.length === 0) {
+                            $('.joe_load').remove();
+                            $('.joe_index__list .joe_list__loading').hide();
+                            return;
+                        }
+                        res.data.forEach(_ => {
+                            $('.joe_index__list .joe_list').append(`
                                 <li class="joe_list__item wow">
                                     <div class="line"></div>
                                     <a href="${_.permalink}" class="thumbnail" title="${_.title}">
@@ -49,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                     </a>
                                     <div class="information">
                                         <a href="${_.permalink}" class="title" title="${_.title}">
+                                            <span class="badge" style="display: ${_.type === 'sticky' ? 'block' : 'none'}">置顶</span>
                                             <h6>${_.title}</h6>
                                         </a>
                                         <a class="abstract" href="${_.permalink}" title="文章摘要">${_.abstract}</a>
@@ -68,41 +80,41 @@ document.addEventListener('DOMContentLoaded', () => {
                                         </div>
                                     </div>
                                 </li>
-                            `)
-						})
-						$('.joe_load').removeAttr('loading')
-						$('.joe_load').html('查看更多')
-						$('.joe_index__list .joe_list__loading').hide()
-						new LazyLoad('.list_lazyload')
-						reslove(res.data.length > 0 ? res.data.length - 1 : 0)
-					}
-				})
-			})
-		}
-		initDom()
-		pushDom()
-		$('.joe_index__title-title .item').on('click', async function () {
-			if ($(this).attr('data-type') === queryData.type) return
-			queryData = { page: 1, pageSize: 12, type: $(this).attr('data-type') }
-			initDom()
-			pushDom()
-		})
-		$('.joe_load').on('click', async function () {
-			if ($(this).attr('loading')) return
-			queryData.page++
-			let length = await pushDom()
-			length = $('.joe_index__list .joe_list .joe_list__item').length - length
-			const queryElement = `.joe_index__list .joe_list .joe_list__item:nth-child(${length})`
-			const offset = $(queryElement).offset().top - $('.joe_header').height()
-			window.scrollTo({ top: offset - 15, behavior: 'smooth' })
-		})
-	}
+                            `);
+                        });
+                        $('.joe_load').removeAttr('loading');
+                        $('.joe_load').html('查看更多');
+                        $('.joe_index__list .joe_list__loading').hide();
+                        new LazyLoad('.list_lazyload');
+                        reslove(res.data.length > 0 ? res.data.length - 1 : 0);
+                    }
+                });
+            });
+        };
+        initDom();
+        pushDom();
+        $('.joe_index__title-title .item').on('click', async function () {
+            if ($(this).attr('data-type') === queryData.type) return;
+            queryData = { page: 1, pageSize: 12, type: $(this).attr('data-type') };
+            initDom();
+            pushDom();
+        });
+        $('.joe_load').on('click', async function () {
+            if ($(this).attr('loading')) return;
+            queryData.page++;
+            let length = await pushDom();
+            length = $('.joe_index__list .joe_list .joe_list__item').length - length;
+            const queryElement = `.joe_index__list .joe_list .joe_list__item:nth-child(${length})`;
+            const offset = $(queryElement).offset().top - $('.joe_header').height();
+            window.scrollTo({ top: offset - 15, behavior: 'smooth' });
+        });
+    }
 
-	/* 激活列表特效 */
-	{
-		const wow = $('.joe_index__list').attr('data-wow')
-		if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animated ${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init()
-	}
+    /* 激活列表特效 */
+    {
+        const wow = $('.joe_index__list').attr('data-wow');
+        if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animated ${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init();
+    }
 
-	console.timeEnd("Index.js执行时长")
-})
+    console.timeEnd('Index.js执行时长');
+});

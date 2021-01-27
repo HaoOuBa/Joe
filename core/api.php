@@ -32,6 +32,28 @@ function _getPost($self)
     $pageSize = $self->request->pageSize;
     $type = $self->request->type;
     $result = [];
+    /* 增加置顶文章功能，通过JS判断（如果你想添加其他标签的话，请先看置顶如何实现的） */
+    $sticky_text = Helper::options()->JIndexSticky;
+    if ($sticky_text && $page == 1) {
+        $sticky_arr = explode("||", $sticky_text);
+        foreach ($sticky_arr as $cid) {
+            $self->widget('Widget_Archive@' . $cid, 'pageSize=1&type=post', 'cid=' . $cid)->to($item);
+            $result[] = array(
+                "image" => _getThumbnail($item, false),
+                "time" => date('Y-m-d', $item->created),
+                "created" => date('Y年m月d日', $item->created),
+                "title" => $item->title,
+                "abstract" => _getAbstract($item, false),
+                "category" => $item->categories,
+                "views" => _getViews($item, false),
+                "commentsNum" => number_format($item->commentsNum),
+                "agree" => _getAgree($item, false),
+                "permalink" => $item->permalink,
+                "lazyload" => _getLazyload(false),
+                "type" => "sticky"
+            );
+        }
+    }
     $self->widget('Widget_Contents_Sort', 'page=' . $page . '&pageSize=' . $pageSize . '&type=' . $type)->to($item);
     while ($item->next()) {
         $result[] = array(
@@ -45,7 +67,8 @@ function _getPost($self)
             "commentsNum" => number_format($item->commentsNum),
             "agree" => _getAgree($item, false),
             "permalink" => $item->permalink,
-            "lazyload" => _getLazyload(false)
+            "lazyload" => _getLazyload(false),
+            "type" => "normal"
         );
     };
     $self->response->throwJson(array("data" => $result));
@@ -145,4 +168,3 @@ function _pushRecord($self)
     $result = curl_exec($ch);
     $self->response->throwJson(json_decode($result));
 }
-
