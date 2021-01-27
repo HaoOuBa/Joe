@@ -126,5 +126,44 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     }
+
+    /* 格式化分页的hash值 */
+    {
+        $('.joe_comment .joe_pagination a').each((index, item) => {
+            const href = $(item).attr('href');
+            if (href && href.includes('#')) {
+                $(item).attr('href', href.replace('#comments', '?scroll=joe_comment'));
+            }
+        });
+    }
+
     console.timeEnd('Post&Page.js执行时长');
+});
+
+/* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
+window.addEventListener('load', function () {
+    /* 激活点击回复可见的回复按钮，页面滚动到评论区 */
+    {
+        $('.joe_detail__article-hide i').on('click', function () {
+            const top = $('.joe_comment').offset().top - $('.joe_header').height() - 15;
+            window.scrollTo({ top, behavior: 'smooth' });
+        });
+    }
+    /* 判断地址栏是否有锚点链接，有则跳转到对应位置 */
+    {
+        const scroll = new URLSearchParams(location.search).get('scroll');
+        if (scroll) {
+            const height = $('.joe_header').height();
+            let elementEL = null;
+            if ($('#' + scroll).length > 0) {
+                elementEL = $('#' + scroll);
+            } else {
+                elementEL = $('.' + scroll);
+            }
+            if (elementEL && elementEL.length > 0) {
+                const top = elementEL.offset().top - height - 15;
+                window.scrollTo({ top, behavior: 'smooth' });
+            }
+        }
+    }
 });

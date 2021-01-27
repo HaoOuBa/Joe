@@ -33,3 +33,37 @@
         }
     }
 }
+
+.joe_post {
+    &__pagination {
+        display: flex;
+        justify-content: space-between;
+        &-item {
+            margin-bottom: 15px;
+            a {
+                display: block;
+                height: 32px;
+                line-height: 32px;
+                padding: 0 15px;
+                color: #fff;
+                border-radius: 3px;
+                background: var(--theme);
+                font-size: 12px;
+                box-shadow: var(--box-shadow);
+                &:hover{
+                    animation: pulse 1s;
+                    box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+                }
+            }
+            &.next {
+                margin-left: auto;
+            }
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 var(--theme);
+    }
+}

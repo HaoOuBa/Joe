@@ -3,18 +3,15 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+    <!-- 文章页需要用到的CSS及JS -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.post.css'); ?>">
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
     <script src="<?php $this->options->themeUrl('assets/js/joe.post&page.js'); ?>"></script>
 </head>
 
 <body>
     <div id="Joe">
         <?php $this->need('public/header.php'); ?>
-        
+
         <div class="joe_container joe_bread">
             <ul class="joe_bread__bread">
                 <li class="item">
@@ -33,6 +30,7 @@
                 <li class="item">正文</li>
             </ul>
         </div>
+
         <div class="joe_container">
             <div class="joe_main joe_post">
                 <div class="joe_detail" data-cid="<?php echo $this->cid ?>">
@@ -40,6 +38,10 @@
                     <?php $this->need('public/handle.php'); ?>
                     <?php $this->need('public/copyright.php'); ?>
                 </div>
+                <ul class="joe_post__pagination">
+                    <?php $this->theNext('<li class="joe_post__pagination-item prev">%s</li>', '', ['title' => '上一篇']); ?>
+                    <?php $this->thePrev('<li class="joe_post__pagination-item next">%s</li>', '', ['title' => '下一篇']); ?>
+                </ul>
                 <?php $this->need('public/comment.php'); ?>
             </div>
             <?php $this->need('public/aside.php'); ?>

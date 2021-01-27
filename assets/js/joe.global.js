@@ -244,14 +244,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /* 激活点击回复可见的回复按钮，页面滚动到评论区 */
-    {
-        $('.joe_detail__article-hide i').on('click', function () {
-            const top = $('.joe_comment').offset().top - $('.joe_header').height() - 15;
-            window.scrollTo({ top, behavior: 'smooth' });
-        });
-    }
-
     /* 懒加载 */
     new LazyLoad('.lazyload');
 

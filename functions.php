@@ -18,8 +18,8 @@ function themeConfig($form)
     } catch (Exception $e) {
     }
 ?>
-    <link rel="stylesheet" href="<?php Helper::options()->themeUrl('assets/css/joe.config.css') ?>">
-    <script src="<?php Helper::options()->themeUrl('assets/js/joe.config.js') ?>"></script>
+    <link rel="stylesheet" href="<?php Helper::options()->themeUrl('assets/config/css/joe.config.css') ?>">
+    <script src="<?php Helper::options()->themeUrl('assets/config/js/joe.config.js') ?>"></script>
     <div class="joe_config">
         <div>
             <div class="joe_config__aside">

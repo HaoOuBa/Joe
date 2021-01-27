@@ -1460,23 +1460,6 @@ html[data-night='night'] {
                 font-style: normal;
                 cursor: pointer;
                 color: var(--theme);
-                &::after {
-                    content: '';
-                    position: absolute;
-                    bottom: -2px;
-                    left: 0;
-                    right: 0;
-                    width: 100%;
-                    height: 1px;
-                    background: var(--theme);
-                    transform: scaleX(0.25);
-                    opacity: 0;
-                    transition: transform 0.35s, opacity 0.35s;
-                }
-                &:hover::after {
-                    opacity: 1;
-                    transform: scaleX(1);
-                }
             }
         }
         &-protected {

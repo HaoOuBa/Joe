@@ -14,10 +14,7 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
+    <!-- 友联页面需要用到的CSS及JS -->
     <script src="<?php $this->options->themeUrl('assets/js/joe.post&page.js'); ?>"></script>
 </head>
 

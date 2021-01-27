@@ -86,8 +86,8 @@
 <?php
 function threadedComments($comments, $options)
 { ?>
-    <li class="comment-list__item" id="li-<?php $comments->theId(); ?>">
-        <div class="contain" id="<?php $comments->theId(); ?>">
+    <li class="comment-list__item" id="<?php $comments->theId(); ?>">
+        <div class="contain">
             <img class="avatar lazyload" src="<?php _getAvatarLazyload() ?>" data-original="<?php _getAvatarByMail($comments->mail); ?>" alt="<?php $comments->author(); ?>" />
             <div class="content">
                 <div class="user">
