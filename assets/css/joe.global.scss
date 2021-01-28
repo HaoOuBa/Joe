@@ -1933,10 +1933,10 @@ html[data-night='night'] {
 						border: none;
 						background: var(--theme);
 						color: #fff;
-                        font-size: 14px;
-                        &:hover{
-                            animation: 5s ease-in-out 0s infinite normal none running shake;
-                        }
+						font-size: 14px;
+						&:hover {
+							animation: 5s ease-in-out 0s infinite normal none running shake;
+						}
 					}
 				}
 			}
