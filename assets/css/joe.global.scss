@@ -1911,9 +1911,10 @@ html[data-night='night'] {
 			.foot {
 				position: relative;
 				display: flex;
-				justify-content: flex-end;
+				justify-content: space-between;
 				padding: 0 15px 15px;
 				.submit {
+					white-space: nowrap;
 					.cancle {
 						display: none;
 						color: var(--main);
@@ -1933,7 +1934,7 @@ html[data-night='night'] {
 						color: #fff;
                         font-size: 14px;
                         &:hover{
-                            animation: 5s ease-in-out 0s infinite normal none running a;
+                            animation: 5s ease-in-out 0s infinite normal none running shake;
                         }
 					}
 				}

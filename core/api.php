@@ -168,3 +168,51 @@ function _pushRecord($self)
     $result = curl_exec($ch);
     $self->response->throwJson(json_decode($result));
 }
+
+/* 获取壁纸分类 */
+function _getWallpaperType($self)
+{
+    header("HTTP/1.1 200 OK");
+    $arrContextOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false,]];
+    $json = file_get_contents("http://cdn.apc.360.cn/index.php?c=WallPaper&a=getAllCategoriesV2&from=360chrome", false, stream_context_create($arrContextOptions));
+    $res = json_decode($json, TRUE);
+    if ($res['errno'] == 0) {
+        $self->response->throwJson([
+            "code" => 1,
+            "data" => $res['data']
+        ]);
+    } else {
+        $self->response->throwJson([
+            "code" => 0,
+            "data" => null
+        ]);
+    }
+}
+
+/* 获取壁纸列表 */
+function _getWallpaperList($self)
+{
+    header("HTTP/1.1 200 OK");
+    $cid = $self->request->cid;
+    $start = $self->request->start;
+    $count = $self->request->count;
+    $arrContextOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false,]];
+    $json = file_get_contents(
+        "http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome",
+        false,
+        stream_context_create($arrContextOptions)
+    );
+    $res = json_decode($json, TRUE);
+    if ($res['errno'] == 0) {
+        $self->response->throwJson([
+            "code" => 1,
+            "data" => $res['data'],
+            "total" => $res['total']
+        ]);
+    } else {
+        $self->response->throwJson([
+            "code" => 0,
+            "data" => null
+        ]);
+    }
+}

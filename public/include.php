@@ -9,6 +9,7 @@
         IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
         BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
         DOCUMENT_TITLE: '<?php $this->options->JDocumentTitle() ?>',
+        LAZY_LOAD: '<?php _getLazyload() ?>',
         encryption: str => window.btoa(unescape(encodeURIComponent(str))),
         decrypt: str => decodeURIComponent(escape(window.atob(str))),
         changeURLArg: function(url, arg, arg_val) {
@@ -57,7 +58,6 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@5.4.5/css/swiper.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css" />
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.normalize.css'); ?>">
-<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.owo.css'); ?>">
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css'); ?>">
 <!-- 全局公用JS（静态资源放在了CDN上，如果你的服务器带宽不够，请不要修改成本地，cdn采用jsdelivr放心不会失效） -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
@@ -68,7 +68,6 @@
 <script src="https://cdn.jsdelivr.net/npm/swiper@5.4.5/js/swiper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
-<script src="<?php $this->options->themeUrl('assets/js/joe.owo.js'); ?>"></script>
 <script src="<?php $this->options->themeUrl('assets/js/joe.global.js'); ?>"></script>
 <!-- 下面是异步加载的JS -->
 <script async src="https://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0"></script>

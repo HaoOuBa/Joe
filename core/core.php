@@ -12,6 +12,9 @@ require_once('parse.php');
 /* 主题内置开放API */
 require_once('api.php');
 
+/* 插件方法 */
+require_once('factory.php');
+
 /* 页面加载计时 */
 _startCountTime();
 
@@ -53,6 +56,12 @@ function themeInit($self)
                 break;
             case 'handle_agree':
                 _handleAgree($self);
+                break;
+            case 'wallpaper_type':
+                _getWallpaperType($self);
+                break;
+            case 'wallpaper_list':
+                _getWallpaperList($self);
                 break;
         };
     }

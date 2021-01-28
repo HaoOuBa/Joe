@@ -331,19 +331,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    /* 激活OωO表情 */
-    {
-        new OwO({
-            logo: 'OωO表情',
-            container: document.querySelector('.joe_owo__container'),
-            target: document.querySelector('.joe_owo__target'),
-            api: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/json/owo.json',
-            position: 'down',
-            width: '100%',
-            maxHeight: '250px'
-        });
-    }
-
     /* 懒加载 */
     new LazyLoad('.lazyload');
 
