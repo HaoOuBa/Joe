@@ -1151,6 +1151,7 @@ html[data-night='night'] {
 				margin-right: 10px;
 				border: 1px solid var(--classA);
 				padding: 3px;
+				object-fit: cover;
 			}
 			.meta {
 				display: flex;
@@ -1955,6 +1956,7 @@ html[data-night='night'] {
 						margin-right: 15px;
 						padding: 3px;
 						border: 1px solid var(--classD);
+						object-fit: cover;
 					}
 					.content {
 						min-width: 0;
