@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('.joe_wallpaper__type-list').on('click', '.item', function () {
         const cid = $(this).attr('data-cid');
         if (queryData.cid === cid || isLoading) return;
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         $(this).addClass('active').siblings().removeClass('active');
         queryData.cid = cid;
         queryData.start = 0;
@@ -84,6 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $('.joe_wallpaper__pagination').on('click', '.joe_wallpaper__pagination-item', function () {
         const start = $(this).attr('data-start');
         if (!start || isLoading) return;
+        window.scrollTo({ top: 0, behavior: 'smooth' })
         queryData.start = Number(start);
         getList();
     });
