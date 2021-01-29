@@ -63,6 +63,9 @@ function themeInit($self)
             case 'wallpaper_list':
                 _getWallpaperList($self);
                 break;
+            case 'maccms_list':
+                _getMaccmsList($self);
+                break;
         };
     }
 }

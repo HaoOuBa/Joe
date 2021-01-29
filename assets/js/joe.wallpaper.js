@@ -1,4 +1,4 @@
-/* 详情页和独立页面需要用到的JS */
+/* 壁纸页面需要用到的JS */
 console.time('Wallpaper.js执行时长');
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -21,12 +21,11 @@ document.addEventListener('DOMContentLoaded', () => {
             routeType: 'wallpaper_type'
         },
         success(res) {
+            if (res.code !== 1) return $('.joe_wallpaper__type-list').html('<li class="error">壁纸抓取失败！请联系作者！</li>');
             let htmlStr = '';
-            if (res.code !== 1) return (htmlStr = '<li class="error">壁纸抓取失败！请联系作者！</li>');
             res.data.forEach(_ => (htmlStr += `<li class="item" data-cid="${_.id}">${_.name}</li>`));
             $('.joe_wallpaper__type-list').html(htmlStr);
             $('.joe_wallpaper__type-list .item').first().click();
-            queryData.cid = $('.joe_wallpaper__type-list .item').first().attr('data-cid');
         }
     });
 
@@ -43,7 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     /* 渲染DOM */
     function getList() {
         isLoading = true;
-        $('.joe_wallpaper__loading').css('display', 'flex');
         $('.joe_wallpaper__list').html('');
         $.ajax({
             url: Joe.BASE_API,
@@ -55,19 +53,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 count: queryData.count
             },
             success(res) {
-                let htmlStr = '';
                 if (res.code !== 1) return;
+                let htmlStr = '';
                 res.data.forEach(_ => {
                     htmlStr += `
                         <a class="item animated bounceIn" data-fancybox="gallery" href="${_.url}">
-                            <img class="wallpaper_lazyload" src="${Joe.LAZY_LOAD}" data-original="${_.img_1024_768}">
+                            <img onerror="javascript: this.src = '${Joe.LAZY_LOAD}'" class="wallpaper_lazyload" src="${Joe.LAZY_LOAD}" data-original="${_.img_1024_768}" alt="壁纸">
                         </a>`;
                 });
                 $('.joe_wallpaper__list').html(htmlStr);
                 new LazyLoad('.wallpaper_lazyload');
                 total = res.total;
                 isLoading = false;
-                $('.joe_wallpaper__loading').css('display', 'none');
                 initPagination();
             }
         });
