@@ -44,6 +44,12 @@ input[type='text'] {
 	font-weight: 500;
 }
 
+iframe {
+	display: block;
+	border: none;
+	margin: 0 auto;
+}
+
 textarea {
 	resize: none;
 	-webkit-appearance: none;
