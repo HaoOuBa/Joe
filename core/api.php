@@ -216,3 +216,41 @@ function _getWallpaperList($self)
         ]);
     }
 }
+
+/* 抓取苹果CMS视频分类 */
+function _getMaccmsList($self)
+{
+    header("HTTP/1.1 200 OK");
+    $cms_api = Helper::options()->JMaccmsAPI;
+    $ac = $self->request->ac ? $self->request->ac : '';
+    $ids = $self->request->ids ? $self->request->ids : '';
+    $t = $self->request->t ? $self->request->t : '';
+    $pg = $self->request->pg ? $self->request->pg : '';
+    $wd = $self->request->wd ? $self->request->wd : '';
+
+    if ($cms_api) {
+        $arrContextOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false,]];
+        $json = file_get_contents(
+            $cms_api . '?ac=' . $ac . '&ids=' . $ids . '&t=' . $t . '&pg=' . $pg . '&wd=' . $wd,
+            false,
+            stream_context_create($arrContextOptions)
+        );
+        $res = json_decode($json, TRUE);
+        if ($res['code']  === 1) {
+            $self->response->throwJson([
+                "code" => 1,
+                "data" => $res,
+            ]);
+        } else {
+            $self->response->throwJson([
+                "code" => 0,
+                "data" => "抓取失败！请联系作者！"
+            ]);
+        }
+    } else {
+        $self->response->throwJson([
+            "code" => 0,
+            "data" => "后台苹果CMS API未填写！"
+        ]);
+    }
+}

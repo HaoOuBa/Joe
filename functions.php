@@ -627,4 +627,17 @@ function themeConfig($form)
     );
     $JBaiduToken->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JBaiduToken);
+
+    $JMaccmsAPI = new Typecho_Widget_Helper_Form_Element_Text(
+        'JMaccmsAPI',
+        NULL,
+        NULL,
+        '苹果CMS开放API',
+        '介绍：请填写苹果CMS V10开放API，用于视频页面使用<br />
+         例如：ok资源网提供的：https://api.okzy.tv/api.php/provide/vod/ <br />
+         如果您搭建了苹果cms网站，那么用你自己的即可，如果没有，请去网上找API <br />
+         '
+    );
+    $JMaccmsAPI->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JMaccmsAPI);
 } ?>
