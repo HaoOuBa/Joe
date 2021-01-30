@@ -237,6 +237,7 @@
 				}
 			}
 			.description {
+				overflow: hidden;
 				dt {
 					font-size: 24px;
 					color: var(--main);
@@ -244,7 +245,7 @@
 					overflow: hidden;
 					text-overflow: ellipsis;
 					white-space: nowrap;
-					margin-bottom: 15px;
+					margin-bottom: 10px;
 				}
 				dd {
 					position: relative;
@@ -260,7 +261,7 @@
 						word-break: break-all;
 						color: var(--routine);
 						display: -webkit-box;
-						-webkit-line-clamp: 3;
+						-webkit-line-clamp: 2;
 						/*! autoprefixer: off */
 						-webkit-box-orient: vertical;
 						/* autoprefixer: on */
