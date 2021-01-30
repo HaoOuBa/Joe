@@ -137,12 +137,22 @@ document.addEventListener('DOMContentLoaded', () => {
 						<dd><span class="muted">类型：</span><p class="text">${item.vod_class || '未知'}</p></dd>
 						<dd><span class="muted">主演：</span><p class="text">${item.vod_actor || '未知'}</p></dd>
 						<dd><span class="muted">导演：</span><p class="text">${item.vod_director || '未知'}</p></dd>
-						<dd><span class="muted">简介：</span><p class="text">${item.vod_content ? item.vod_content : item.vod_blurb}</p></dd>
+						<dd><span class="muted">简介：</span><p class="text">${getContent(item)}</p></dd>
 					</dl>
 				`)
 				new LazyLoad('.video_lazyload')
 			}
 		})
+	}
+
+	function getContent(item) {
+		if (item.vod_content) {
+			return item.vod_content.replace(/<[^>]+>/g, '')
+		} else if (item.vod_blurb) {
+			return item.vod_blurb.replace(/<[^>]+>/g, '')
+		} else {
+			return '暂无简介'
+		}
 	}
 
 	console.timeEnd('Video.js执行时长')
