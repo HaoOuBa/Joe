@@ -6,7 +6,10 @@ function _getRanking($self)
     header("HTTP/1.1 200 OK");
     $ranking_txt = Helper::options()->JAside_Ranking;
     $ranking_arr = explode("$", $ranking_txt);
-    $arrContextOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false,]];
+    $arrContextOptions = [
+        'ssl' => ['verify_peer' => false, 'verify_peer_name' => false],
+        'http' => ['method' => 'GET', 'timeout' => 5]
+    ];
     $json = file_get_contents("https://the.top/v1/{$ranking_arr[1]}/1/9", false, stream_context_create($arrContextOptions));
     $res = json_decode($json, TRUE);
     if ($res['code'] === 0) {
@@ -173,7 +176,10 @@ function _pushRecord($self)
 function _getWallpaperType($self)
 {
     header("HTTP/1.1 200 OK");
-    $arrContextOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false,]];
+    $arrContextOptions = [
+        'ssl' => ['verify_peer' => false, 'verify_peer_name' => false],
+        'http' => ['method' => 'GET', 'timeout' => 5]
+    ];
     $json = file_get_contents("http://cdn.apc.360.cn/index.php?c=WallPaper&a=getAllCategoriesV2&from=360chrome", false, stream_context_create($arrContextOptions));
     $res = json_decode($json, TRUE);
     if ($res['errno'] == 0) {
@@ -196,7 +202,10 @@ function _getWallpaperList($self)
     $cid = $self->request->cid;
     $start = $self->request->start;
     $count = $self->request->count;
-    $arrContextOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false,]];
+    $arrContextOptions = [
+        'ssl' => ['verify_peer' => false, 'verify_peer_name' => false],
+        'http' => ['method' => 'GET', 'timeout' => 5]
+    ];
     $json = file_get_contents(
         "http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome",
         false,
@@ -229,14 +238,17 @@ function _getMaccmsList($self)
     $wd = $self->request->wd ? $self->request->wd : '';
 
     if ($cms_api) {
-        $arrContextOptions = ['ssl' => ['verify_peer' => false, 'verify_peer_name' => false,]];
+        $arrContextOptions = [
+            'ssl' => ['verify_peer' => false, 'verify_peer_name' => false],
+            'http' => ['method' => 'GET', 'timeout' => 5]
+        ];
         $json = file_get_contents(
             $cms_api . '?ac=' . $ac . '&ids=' . $ids . '&t=' . $t . '&pg=' . $pg . '&wd=' . $wd,
             false,
             stream_context_create($arrContextOptions)
         );
         $res = json_decode($json, TRUE);
-        if ($res['code']  === 1) {
+        if ($res['code'] === 1) {
             $self->response->throwJson([
                 "code" => 1,
                 "data" => $res,
