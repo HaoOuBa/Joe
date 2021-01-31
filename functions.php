@@ -607,7 +607,7 @@ function themeConfig($form)
     $JFriends = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFriends',
         NULL,
-        'Joe的博客 || https://ae.js.cn || https://cdn.jsdelivr.net/npm/typecho_joe_theme@4.3.5/assets/img/link.png || Joe主题作者',
+        'Joe的博客 || https://ae.js.cn || https://cdn.jsdelivr.net/npm/typecho_joe_theme@4.3.5/assets/img/link.png || Eternity is not a distance but a decision',
         '友情链接（非必填）',
         '介绍：用于填写友情链接 <br />
          注意：您需要先增加友联链接页面（新增独立页面-右侧模板选择友联），该项才会生效 <br />
@@ -634,10 +634,21 @@ function themeConfig($form)
         NULL,
         '苹果CMS开放API',
         '介绍：请填写苹果CMS V10开放API，用于视频页面使用<br />
-         例如：ok资源网提供的：https://api.okzy.tv/api.php/provide/vod/ <br />
+         例如：https://v.ini0.com/api.php/provide/vod/ <br />
          如果您搭建了苹果cms网站，那么用你自己的即可，如果没有，请去网上找API <br />
          '
     );
     $JMaccmsAPI->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JMaccmsAPI);
+
+    $JCustomPlayer = new Typecho_Widget_Helper_Form_Element_Text(
+        'JCustomPlayer',
+        NULL,
+        NULL,
+        '自定义视频播放器（非必填）',
+        '介绍：用于修改主题自带的默认播放器 <br />
+         注意：主题自带的播放器只能解析M3U8的视频格式'
+    );
+    $JCustomPlayer->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JCustomPlayer);
 } ?>

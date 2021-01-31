@@ -32,6 +32,10 @@
                             <p class="error">正在拼命加载中...</p>
                         </div>
                     </div>
+                    <div class="joe_video__player joe_video__contain">
+                        <div class="joe_video__contain-title">正在播放：</div>
+                        <iframe src="" data-player="<?php echo $this->options->JCustomPlayer ? $this->options->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=' ?>" class="joe_video__player-play"></iframe>
+                    </div>
                 <?php else : ?>
                     <div class="joe_video__type joe_video__contain">
                         <div class="joe_video__contain-title">视频分类</div>

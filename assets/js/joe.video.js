@@ -127,6 +127,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (res.code !== 1) return $('.joe_video__detail-info').html(`<p class="error">${res.data}</p>`)
 				if (!res.data.list.length) return $('.joe_video__detail-info').html(`<p class="error">数据抓取异常！请检查！</p>`)
 				const item = res.data.list[0]
+				/* 设置视频详情 */
 				$('.joe_video__detail-info').html(`
 					<div class="thumbnail">
 						<img class="pic video_lazyload" onerror="javascript: this.src = '${Joe.LAZY_LOAD}'" src="${Joe.LAZY_LOAD}" data-original="${item.vod_pic}" alt="${item.vod_name}">
@@ -141,6 +142,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					</dl>
 				`)
 				new LazyLoad('.video_lazyload')
+				/* 设置视频播放标题 */
+				$('.joe_video__player .joe_video__contain-title').html('正在播放：' + item.vod_name)
 			}
 		})
 	}

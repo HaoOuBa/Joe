@@ -277,4 +277,11 @@
 			}
 		}
 	}
+	&__player {
+		&-play {
+			width: 100%;
+			height: 480px;
+			background: #000;
+		}
+	}
 }
