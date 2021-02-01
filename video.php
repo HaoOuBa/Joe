@@ -34,7 +34,7 @@
                     </div>
                     <div class="joe_video__player joe_video__contain">
                         <div class="joe_video__contain-title">正在播放：</div>
-                        <iframe src="" data-player="<?php echo $this->options->JCustomPlayer ? $this->options->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=' ?>" class="joe_video__player-play"></iframe>
+                        <iframe class="joe_video__player-play" data-player="<?php echo $this->options->JCustomPlayer ? $this->options->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=' ?>"></iframe>
                     </div>
                 <?php else : ?>
                     <div class="joe_video__type joe_video__contain">
@@ -45,11 +45,14 @@
                     </div>
                     <div class="joe_video__list joe_video__contain">
                         <div class="joe_video__contain-title">视频列表</div>
+                        <div class="joe_video__list-search">
+                            <input class="input" type="text" placeholder="请输入影片名称...">
+                            <button class="button">搜 索</button>
+                        </div>
                         <div class="joe_video__list-item"></div>
                     </div>
                     <ul class="joe_video__pagination"></ul>
                 <?php endif; ?>
-
             </div>
             <?php $this->need('public/aside.php'); ?>
         </div>
