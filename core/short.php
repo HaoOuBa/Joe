@@ -18,6 +18,22 @@ function _parseShortCode($content)
             $content
         );
     }
-
+    /* 过滤bilibili播放器 */
+    if (preg_match('/\[bilibili\s{0,}bvid="\w{0,}"\s{0,}\/\]/', $content)) {
+        $content = preg_replace(
+            '/\[bilibili\s{0,}bvid="(\w{0,})"\s{0,}\/\]/',
+            '<iframe class="joe_detail__article-player block" allowfullscreen="true" src="//player.bilibili.com/player.html?bvid=$1"></iframe>',
+            $content
+        );
+    }
+    /* 过滤dplayer播放器 */
+    if (preg_match('/\[dplayer\s{0,}src=".{0,}"\s{0,}\/\]/', $content)) {
+        $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=';
+        $content = preg_replace(
+            '/\[dplayer\s{0,}src="(.{0,})"\s{0,}\/\]/',
+            '<iframe class="joe_detail__article-player block" allowfullscreen="true" src="' . $player . '$1"></iframe>',
+            $content
+        );
+    }
     return $content;
 }

@@ -1463,6 +1463,10 @@ html[data-night='night'] {
 				color: var(--theme);
 			}
 		}
+		&-player {
+			width: 100%;
+			height: 500px;
+		}
 		&-protected {
 			display: flex;
 			justify-content: center;

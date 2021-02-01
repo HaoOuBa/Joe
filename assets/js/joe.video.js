@@ -117,7 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         /* 搜索功能 */
         const searchFn = () => {
             const val = $('.joe_video__list-search input').val();
-            if (!val || isLoading) return;
+            if (isLoading) return;
             queryData.pg = 1;
             queryData.t = '';
             queryData.wd = val;

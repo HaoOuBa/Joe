@@ -647,6 +647,7 @@ function themeConfig($form)
         NULL,
         '自定义视频播放器（非必填）',
         '介绍：用于修改主题自带的默认播放器 <br />
+         例如：https://v.ini0.com/player/?url= <br />
          注意：主题自带的播放器只能解析M3U8的视频格式'
     );
     $JCustomPlayer->setAttribute('class', 'joe_content joe_other');
