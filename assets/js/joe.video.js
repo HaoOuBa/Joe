@@ -78,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         /* 初始化分页 */
         function initPagination() {
+            if(pagecount == 0) return $(".joe_video__pagination").hide()
+            $(".joe_video__pagination").show()
             let htmlStr = '';
             if (queryData.pg != 1) {
                 htmlStr += `
