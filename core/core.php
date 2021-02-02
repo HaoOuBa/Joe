@@ -66,6 +66,9 @@ function themeInit($self)
             case 'maccms_list':
                 _getMaccmsList($self);
                 break;
+            case 'huya_list':
+                _getHuyaList($self);
+                break;
         };
     }
 }

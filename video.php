@@ -24,7 +24,6 @@
         <?php $this->need('public/header.php'); ?>
         <div class="joe_container">
             <div class="joe_main">
-
                 <?php if (isset($_GET['vod_id'])) : ?>
                     <div class="joe_video__detail joe_video__contain">
                         <div class="joe_video__contain-title">影片简介</div>

@@ -241,3 +241,24 @@ function _getMaccmsList($self)
         ]);
     }
 }
+
+/* 获取虎牙视频列表 */
+function _getHuyaList($self)
+{
+    header("HTTP/1.1 200 OK");
+    $gameId = $self->request->gameId;
+    $page = $self->request->page;
+    $json = _curl("https://www.huya.com/cache.php?m=LiveList&do=getLiveListByPage&gameId={$gameId}&tagAll=0&page={$page}");
+    $res = json_decode($json, TRUE);
+    if ($res['status'] === 200) {
+        $self->response->throwJson([
+            "code" => 1,
+            "data" => $res['data'],
+        ]);
+    } else {
+        $self->response->throwJson([
+            "code" => 0,
+            "data" => "抓取失败！请联系作者！"
+        ]);
+    }
+}

@@ -25,11 +25,17 @@
         <div class="joe_container">
             <div class="joe_main">
                 <div class="joe_live__type">
-                    <div class="joe_live__type-title">直播分类</div>
-                    <ul class="joe_live__type-list">
+                    <div class="joe_live__type-title">
+                        <div class="text">直播分类</div>
+                        <svg class="icon" viewBox="0 0 1229 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+                            <path d="M292.64896 475.648a51.4048 51.4048 0 1 1-72.704 72.704l-204.8-204.8a51.2 51.2 0 0 1 0-72.704l204.8-204.8a51.4048 51.4048 0 1 1 72.704 72.704L123.68896 307.2l168.96 168.448zM51.49696 358.4a51.2 51.2 0 0 1 0-102.4h614.4a51.2 51.2 0 0 1 0 102.4h-614.4z m885.248 189.952a51.4048 51.4048 0 1 1 72.704-72.704l204.8 204.8a51.2 51.2 0 0 1 0 72.704l-204.8 204.8a51.4048 51.4048 0 1 1-72.704-72.704L1105.70496 716.8l-168.96-168.448zM1177.89696 665.6a51.2 51.2 0 1 1 0 102.4h-614.4a51.2 51.2 0 0 1 0-102.4h614.4z" p-id="12828"></path>
+                        </svg>
+                    </div>
+                    <div class="joe_live__type-list">
                         <li class="error">正在拼命加载中...</li>
-                    </ul>
+                    </div>
                 </div>
+                <div class="joe_live__list"></div>
             </div>
             <?php $this->need('public/aside.php'); ?>
         </div>
