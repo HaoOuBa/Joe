@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (res.code !== 1) return $('.joe_wallpaper__type-list').html('<li class="error">壁纸抓取失败！请联系作者！</li>')
 			if (!res.data.length) return $('.joe_wallpaper__type-list').html(`<li class="error">暂无数据！</li>`)
 			let htmlStr = ''
-			res.data.forEach(_ => (htmlStr += `<li class="item" data-cid="${_.id}">${_.name}</li>`))
+			res.data.forEach(_ => (htmlStr += `<li class="item animated swing" data-cid="${_.id}">${_.name}</li>`))
 			$('.joe_wallpaper__type-list').html(htmlStr)
 			$('.joe_wallpaper__type-list .item').first().click()
 		}

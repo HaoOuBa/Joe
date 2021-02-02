@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (res.code !== 1) return $('.joe_video__type-list').html(`<li class="error">${res.data}</li>`);
                 if (!res.data.class.length) return $('.joe_video__type-list').html(`<li class="error">暂无数据！</li>`);
                 let htmlStr = '<li class="item" data-t="">全部</li>';
-                res.data.class.forEach(_ => (htmlStr += `<li class="item" data-t="${_.type_id}">${_.type_name}</li>`));
+                res.data.class.forEach(_ => (htmlStr += `<li class="item animated swing" data-t="${_.type_id}">${_.type_name}</li>`));
                 $('.joe_video__type-list').html(htmlStr);
                 $('.joe_video__type-list .item').first().click();
             }
