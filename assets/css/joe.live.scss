@@ -99,7 +99,7 @@
                 .recommendTagName {
                     position: absolute;
                     top: 8px;
-                    left: 8px;
+                    right: 8px;
                     background: #f90;
                     color: #fff;
                     font-size: 12px;
@@ -144,53 +144,72 @@
                 }
             }
             .description {
+                position: relative;
                 background: var(--background);
-                padding: 10px;
+                padding: 15px 10px 10px;
+                .avatar {
+                    position: absolute;
+                    top: -20px;
+                    left: 0;
+                    z-index: 9;
+                    .icon {
+                        height: 35px;
+                        fill: var(--background);
+                    }
+                    img {
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        width: 25px;
+                        height: 25px;
+                        object-fit: cover;
+                        border-radius: 50%;
+                    }
+                }
+                .nick {
+                    position: relative;
+                    color: var(--minor);
+                    font-size: 12px;
+                    padding-left: 13px;
+                    margin-bottom: 5px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    &::before {
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        transform: translateY(-50%);
+                        content: '';
+                        border: 2px solid #0056ff;
+                        height: 4px;
+                        width: 4px;
+                        border-radius: 50%;
+                    }
+                }
                 .introduction {
                     white-space: nowrap;
                     overflow: hidden;
                     text-overflow: ellipsis;
                     color: var(--main);
-                    margin-bottom: 10px;
+                    border-bottom: 1px solid var(--classD);
+                    padding-bottom: 8px;
+                    margin-bottom: 8px;
                 }
                 .meta {
                     display: flex;
                     align-items: center;
-                    justify-content: space-between;
-                    .user {
-                        flex: 1;
-                        min-width: 0;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        white-space: nowrap;
-                        img {
-                            width: 22px;
-                            height: 22px;
-                            object-fit: cover;
-                            border-radius: 50%;
-                            margin-right: 3px;
-                        }
-                        span {
-                            color: var(--routine);
-                            font-size: 12px;
-                        }
+                    font-size: 12px;
+                    color: var(--minor);
+                    .icon {
+                        width: 13px;
+                        height: 13px;
+                        margin-right: 3px;
                     }
-                    .game {
-                        font-size: 12px;
-                        display: flex;
-                        align-items: center;
-                        .icon {
-                            width: 13px;
-                            height: 13px;
-                            margin-right: 3px;
-                        }
-                        .total {
-                            color: var(--minor);
-                            margin-right: 8px;
-                        }
-                        .name {
-                            color: #f90;
-                        }
+                    .name {
+                        color: #f90;
+                        margin-left: auto;
                     }
                 }
             }
