@@ -3,6 +3,7 @@
     if (localStorage.getItem('data-night')) document.querySelector("html").setAttribute("data-night", "night")
     window.Joe = {
         LIVE2D: '<?php $this->options->JLive2d() ?>',
+        // BASE_API: '<?php echo $this->options->rewrite == 0 ? '/index.php/joe/api' : '/joe/api' ?>',
         BASE_API: '/index.php/joe/api',
         DYNAMIC_BACKGROUND: '<?php $this->options->JDynamic_Background() ?>',
         WALLPAPER_BACKGROUND_PC: '<?php $this->options->JWallpaper_Background_PC() ?>',

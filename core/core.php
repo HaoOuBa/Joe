@@ -10,7 +10,7 @@ require_once('function.php');
 require_once('parse.php');
 
 /* 主题内置开放API */
-require_once('api.php');
+require_once('route.php');
 
 /* 插件方法 */
 require_once('factory.php');
@@ -37,7 +37,8 @@ function themeInit($self)
 
     /* 主题开放API 路由规则 */
     $path_info = $self->request->getPathinfo();
-    if ($path_info === "/joe/api") {
+
+    if ($path_info == "/joe/api") {
         switch ($self->request->routeType) {
             case 'aside_ranking':
                 _getRanking($self);
