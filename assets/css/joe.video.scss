@@ -72,7 +72,6 @@
         }
     }
     &__list {
-        margin-bottom: 15px;
         &-item {
             display: grid;
             gap: 15px;
@@ -201,6 +200,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-end;
+        padding-top: 15px;
         &-item {
             user-select: none;
             cursor: pointer;

@@ -26,7 +26,7 @@ function _parseContent($post, $login)
 function _parseCommentReply($text)
 {
     $text = _parseReply($text);
-    $text = preg_replace('/\{!{(.*?)\}!}/', '<img src="$1" class="draw_image"/>', $text);
+    $text = preg_replace('/\{!{(.*?)\}!}/', '<img src="$1" class="draw_image" alt="画图"/>', $text);
     echo $text;
 }
 

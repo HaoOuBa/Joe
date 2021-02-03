@@ -1,5 +1,3 @@
-/* 首页需要用到的JS */
-console.time('Index.js执行时长');
 document.addEventListener('DOMContentLoaded', () => {
     /* 激活轮播图功能 */
     {
@@ -115,6 +113,4 @@ document.addEventListener('DOMContentLoaded', () => {
         const wow = $('.joe_index__list').attr('data-wow');
         if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animated ${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init();
     }
-
-    console.timeEnd('Index.js执行时长');
 });

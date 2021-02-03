@@ -1,6 +1,3 @@
-/* 全局公用JS */
-console.time('Global.js执行时长');
-
 document.addEventListener('DOMContentLoaded', () => {
     /* 初始化昼夜模式 */
     {
@@ -333,6 +330,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* 懒加载 */
     new LazyLoad('.lazyload');
-
-    console.timeEnd('Global.js执行时长');
 });

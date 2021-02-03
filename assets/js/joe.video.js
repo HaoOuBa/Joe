@@ -1,6 +1,3 @@
-/* 视频页面需要用到JS */
-console.time('Video.js执行时长');
-
 document.addEventListener('DOMContentLoaded', () => {
     const p = new URLSearchParams(window.location.search);
     const vod_id = p.get('vod_id');
@@ -9,15 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     } else {
         initVideoList();
     }
-    /* 初始化列表页 */
     function initVideoList() {
-        /* 当前的分类id */
         let queryData = { pg: '', t: '', wd: '' };
-        /* 总页数 */
         let pagecount = '';
-        /* 是否正在加载列表 */
         let isLoading = false;
-        /* 获取视频分类 */
         $.ajax({
             url: Joe.BASE_API,
             type: 'POST',
@@ -31,7 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 $('.joe_video__type-list .item').first().click();
             }
         });
-        /* 点击切换分类 */
         $('.joe_video__type-list').on('click', '.item', function () {
             const t = $(this).attr('data-t');
             if (isLoading) return;
@@ -43,7 +34,6 @@ document.addEventListener('DOMContentLoaded', () => {
             $('.joe_video__list-search input').val('');
             renderDom();
         });
-        /* 渲染视频列表 */
         function renderDom() {
             $('.joe_video__list-item').css('display', '').html('');
             isLoading = true;
@@ -76,10 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 complete: () => (isLoading = false)
             });
         }
-        /* 初始化分页 */
         function initPagination() {
-            if(pagecount == 0) return $(".joe_video__pagination").hide()
-            $(".joe_video__pagination").show()
+            if (pagecount == 0) return $('.joe_video__pagination').hide();
+            $('.joe_video__pagination').show();
             let htmlStr = '';
             if (queryData.pg != 1) {
                 htmlStr += `
@@ -106,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
             if (queryData.pg < pagecount) htmlStr += `<li class="joe_video__pagination-item" data-pg="${pagecount}">末页</li>`;
             $('.joe_video__pagination').html(htmlStr);
         }
-        /* 切换分页 */
         $('.joe_video__pagination').on('click', '.joe_video__pagination-item', function () {
             const pg = $(this).attr('data-pg');
             if (!pg || isLoading) return;
@@ -114,7 +102,6 @@ document.addEventListener('DOMContentLoaded', () => {
             queryData.pg = Number(pg);
             renderDom();
         });
-        /* 搜索功能 */
         const searchFn = () => {
             const val = $('.joe_video__list-search input').val();
             if (isLoading) return;
@@ -127,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
         $('.joe_video__list-search .button').on('click', searchFn);
         $('.joe_video__list-search .input').on('keyup', e => e.keyCode === 13 && searchFn());
     }
-    /* 初始化播放页 */
     function initVideoDetail() {
         const player = $('.joe_video__player-play').attr('data-player');
         $.ajax({
@@ -203,5 +189,4 @@ document.addEventListener('DOMContentLoaded', () => {
             return '暂无简介';
         }
     }
-    console.timeEnd('Video.js执行时长');
 });

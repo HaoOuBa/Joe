@@ -1,6 +1,3 @@
-/* 详情页和独立页面需要用到的JS */
-console.time('Post&Page.js执行时长');
-
 document.addEventListener('DOMContentLoaded', () => {
     /* 当前页的CID */
     const cid = $('.joe_detail').attr('data-cid');
@@ -144,8 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
                     
         });
     }
-
-    console.timeEnd('Post&Page.js执行时长');
 });
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
