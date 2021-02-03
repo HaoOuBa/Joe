@@ -5,6 +5,9 @@ table.typecho-list-table {
         height: 80px;
     }
 }
-.wmd-button-row {
-    height: unset;
+#wmd-button-row {
+    height: auto;
+    .wmd-button {
+        
+    }
 }
