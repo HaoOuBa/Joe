@@ -5,6 +5,7 @@
     <?php $this->need('public/include.php'); ?>
     <!-- 搜索页面需要用到的CSS及JS -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.archive.css'); ?>">
+    <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
     <script src="<?php $this->options->themeUrl('assets/js/joe.archive.js'); ?>"></script>
 </head>
 
