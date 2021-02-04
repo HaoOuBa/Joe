@@ -4,6 +4,8 @@
 <head>
     <?php $this->need('public/include.php'); ?>
     <!-- 文章页需要用到的CSS及JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css">
+    <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/prism/prism.js"></script>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.post.css'); ?>">
     <script src="<?php $this->options->themeUrl('assets/js/joe.post&page.js'); ?>"></script>
 </head>

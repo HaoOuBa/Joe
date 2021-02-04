@@ -53,7 +53,6 @@
 <?php $this->header(); ?>
 <!-- 全局公用CSS（静态资源放在了CDN上，如果你的服务器带宽不够，请不要修改成本地，cdn采用jsdelivr放心不会失效） -->
 <link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css" />
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.normalize.css'); ?>">
@@ -65,8 +64,8 @@
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/sketchpad/joe.sketchpad.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/prism.min.js"></script>
 <script src="<?php $this->options->themeUrl('assets/js/joe.global.js'); ?>"></script>
+
 <!-- 是异步加载的JS -->
 <script async src="https://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0"></script>
 <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/smooth/joe.smooth.js"></script>
