@@ -68,6 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+
     /* 激活全局返回顶部功能 */
     {
         const handleScroll = () => ((document.documentElement.scrollTop || document.body.scrollTop) > 300 ? $('.joe_action_item.scroll').addClass('active') : $('.joe_action_item.scroll').removeClass('active'));
