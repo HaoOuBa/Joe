@@ -8,6 +8,11 @@ table.typecho-list-table {
 #wmd-button-row {
     height: auto;
     .wmd-button {
-        
+        .icon {
+            width: 20px;
+            height: 20px;
+            vertical-align: middle;
+            fill: #9b9b9b;
+        }
     }
 }

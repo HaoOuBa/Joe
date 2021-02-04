@@ -18,7 +18,6 @@ require_once('factory.php');
 /* 页面加载计时 */
 _startCountTime();
 
-
 /* 主题初始化 */
 function themeInit($self)
 {
