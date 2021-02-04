@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     $('.joe_wallpaper__type-list').on('click', '.item', function () {
         const cid = $(this).attr('data-cid');
-        if (queryData.cid === cid || isLoading) return;
+        if (isLoading) return;
         window.scrollTo({ top: 0, behavior: 'smooth' });
         $(this).addClass('active').siblings().removeClass('active');
         queryData.cid = cid;
