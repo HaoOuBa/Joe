@@ -73,6 +73,16 @@ function _parseShortCode($content)
             $content
         );
     }
+     /* 过滤居中标题 */
+     if (preg_match('/\[mtitle\].{0,}\[\/mtitle\]/sSU', $content)) {
+        $content = preg_replace(
+            '/\[mtitle\](.{0,})\[\/mtitle\]/sSU',
+            '<span class="joe_detail__article-mtitle">
+                <span class="text">$1</span>
+             </span>',
+            $content
+        );
+    }
 
     return $content;
 }

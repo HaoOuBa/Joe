@@ -20,6 +20,11 @@
 	background: transparent;
 }
 
+::selection {
+	color: #fff;
+	background: var(--theme);
+}
+
 body {
 	font-size: 14px;
 	/* 我们对字体进行统一规范，力求在各个操作系统下都有最佳展示效果。 */
