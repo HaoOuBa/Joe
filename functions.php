@@ -253,6 +253,22 @@ function themeConfig($form)
     $JDocumentTitle->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JDocumentTitle);
 
+    $JCursorEffects = new Typecho_Widget_Helper_Form_Element_Select(
+        'JCursorEffects',
+        array(
+            'off' => '关闭（默认）',
+            'cursor1.js' => '效果1',
+            'cursor2.js' => '效果2',
+            'cursor3.js' => '效果3',
+            'cursor4.js' => '效果4'
+        ),
+        'off',
+        '选择页面点击特效',
+        '介绍：用于开启炫酷的页面点击特效'
+    );
+    $JCursorEffects->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JCursorEffects->multiMode());
+
     $JAside = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'JAside',
         array(

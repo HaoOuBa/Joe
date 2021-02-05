@@ -83,17 +83,48 @@ function themeFields($layout)
             'off' => '关闭'
         ),
         'on',
-        '是否开启当前页面的侧边栏',
+        '是否开启当前页侧边栏',
         '介绍：用于单独设置当前页侧边栏的开启状态 <br /> 
          注意：只有在外观设置侧边栏开启状态下生效'
     );
     $layout->addItem($aside);
 
+    $keywords = new Typecho_Widget_Helper_Form_Element_Text(
+        'keywords',
+        NULL,
+        NULL,
+        'SEO关键词（非常重要！）',
+        '介绍：用于设置当前页SEO关键词 <br />
+         注意：多个关键词使用英文逗号进行隔开 <br />
+         例如：Typecho,Typecho主题,Typecho模板'
+    );
+    $layout->addItem($keywords);
+
+    $description = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'description',
+        NULL,
+        NULL,
+        'SEO描述语（非常重要！）',
+        '介绍：用于设置当前页SEO描述语 <br />
+         注意：SEO描述语不应当过长也不应当过少'
+    );
+    $layout->addItem($description);
+
+    $abstract = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'abstract',
+        NULL,
+        NULL,
+        '自定义摘要（非必填）',
+        '填写时：将会显示填写的摘要 <br>
+         不填写时：默认取文章里的内容'
+    );
+    $layout->addItem($abstract);
+
     $thumb = new Typecho_Widget_Helper_Form_Element_Textarea(
         'thumb',
         NULL,
         NULL,
-        '自定义文章缩略图',
+        '自定义缩略图（非必填）',
         '填写时：将会显示填写的文章缩略图 <br>
          不填写时：<br>
             1、若文章有图片则取文章内图片 <br>
@@ -101,14 +132,4 @@ function themeFields($layout)
             3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片'
     );
     $layout->addItem($thumb);
-
-    $abstract = new Typecho_Widget_Helper_Form_Element_Textarea(
-        'abstract',
-        NULL,
-        NULL,
-        '自定义文章摘要',
-        '填写时：将会显示填写的摘要 <br>
-         不填写时：默认取文章里的内容'
-    );
-    $layout->addItem($abstract);
 }

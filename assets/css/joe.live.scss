@@ -92,7 +92,7 @@
             display: block;
             width: 100%;
             overflow: hidden;
-            border-radius: 8px;
+            border-radius: var(--radius-wrap);
             .thumb {
                 position: relative;
                 width: 100%;

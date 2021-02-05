@@ -1,8 +1,12 @@
 table.typecho-list-table {
     textarea[name='fields[thumb]'],
-    textarea[name='fields[abstract]'] {
+    textarea[name='fields[abstract]'],
+    textarea[name='fields[description]'] {
         width: 100%;
         height: 80px;
+    }
+    input[name='fields[keywords]'] {
+        width: 100%;
     }
 }
 #wmd-button-row {

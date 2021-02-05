@@ -50,7 +50,13 @@
 <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
 <link rel="shortcut icon" href="<?php $this->options->JFavicon() ?>" />
 <title><?php $this->archiveTitle(array('category' => '分类 %s 下的文章', 'search' => '包含关键字 %s 的文章', 'tag' => '标签 %s 下的文章', 'author' => '%s 发布的文章'), '', ' - '); ?><?php $this->options->title(); ?></title>
-<?php $this->header(); ?>
+<?php if ($this->is('single')) : ?>
+    <meta name="description" content="<?php $this->fields->description(); ?>" />
+    <meta name="keywords" content="<?php $this->fields->keywords(); ?>" />
+    <?php $this->header('keywords=&description='); ?>
+<?php else : ?>
+    <?php $this->header(); ?>
+<?php endif; ?>
 <!-- 全局公用CSS（静态资源放在了CDN上，如果你的服务器带宽不够，请不要修改成本地，cdn采用jsdelivr放心不会失效） -->
 <link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
@@ -68,4 +74,6 @@
 <!-- 异步加载的JS -->
 <script async src="https://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0"></script>
 <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/smooth/joe.smooth.js"></script>
-<script async src="<?php $this->options->themeUrl('assets/cursor/cursor3.js'); ?>"></script>
+<?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
+    <script async src="<?php $this->options->themeUrl('assets/cursor/' . $this->options->JCursorEffects); ?>"></script>
+<?php endif; ?>
