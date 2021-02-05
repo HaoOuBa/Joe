@@ -269,6 +269,26 @@ function themeConfig($form)
     $JCursorEffects->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCursorEffects->multiMode());
 
+    $JCustomCSS = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JCustomCSS',
+        NULL,
+        NULL,
+        '自定义CSS（非必填）',
+        '介绍：请填写自定义CSS内容，填写时无需填写style标签。'
+    );
+    $JCustomCSS->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JCustomCSS);
+
+    $JCustomScript = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JCustomScript',
+        NULL,
+        NULL,
+        '自定义JS（非必填）',
+        '介绍：请填写自定义JS内容，例如网站统计等，填写时无需填写script标签。'
+    );
+    $JCustomScript->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JCustomScript);
+
     $JAside = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'JAside',
         array(
@@ -633,17 +653,6 @@ function themeConfig($form)
     $JFriends->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JFriends);
 
-    $JBaiduToken = new Typecho_Widget_Helper_Form_Element_Text(
-        'JBaiduToken',
-        NULL,
-        NULL,
-        '百度推送Token',
-        '介绍：填写此处，前台文章页如果未收录，则会自动将当前链接推送给百度加快收录
-         其他：Token在百度收录平台注册账号获取'
-    );
-    $JBaiduToken->setAttribute('class', 'joe_content joe_other');
-    $form->addInput($JBaiduToken);
-
     $JMaccmsAPI = new Typecho_Widget_Helper_Form_Element_Text(
         'JMaccmsAPI',
         NULL,
@@ -668,4 +677,16 @@ function themeConfig($form)
     );
     $JCustomPlayer->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JCustomPlayer);
+
+
+    $JBaiduToken = new Typecho_Widget_Helper_Form_Element_Text(
+        'JBaiduToken',
+        NULL,
+        NULL,
+        '百度推送Token',
+        '介绍：填写此处，前台文章页如果未收录，则会自动将当前链接推送给百度加快收录
+         其他：Token在百度收录平台注册账号获取'
+    );
+    $JBaiduToken->setAttribute('class', 'joe_content joe_post');
+    $form->addInput($JBaiduToken);
 } ?>

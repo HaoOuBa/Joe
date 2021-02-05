@@ -29,6 +29,7 @@
 
 <script>
     console.log("PHP输出页面时长: <?php _endCountTime(); ?>")
+    <?php $this->options->JCustomScript() ?>
 </script>
 
 <?php $this->footer(); ?>

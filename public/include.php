@@ -41,6 +41,8 @@
         background-repeat: no-repeat;
         background-size: cover;
     }
+
+    <?php $this->options->JCustomCSS() ?>
 </style>
 <!-- <<<<<<<<<<<<<<<<<<<< 主题开始 >>>>>>>>>>>>>>>>>>>> -->
 <meta charset="utf-8" />
@@ -75,5 +77,5 @@
 <script async src="https://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0"></script>
 <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/smooth/joe.smooth.js"></script>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
-    <script async src="<?php $this->options->themeUrl('assets/cursor/' . $this->options->JCursorEffects); ?>"></script>
+    <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/cursor/<?php $this->options->JCursorEffects() ?>"></script>
 <?php endif; ?>
