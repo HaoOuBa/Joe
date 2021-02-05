@@ -35,5 +35,21 @@ function _parseShortCode($content)
             $content
         );
     }
+    /* 过滤完成任务勾选 */
+    if (preg_match('/\[x\]/', $content)) {
+        $content = preg_replace(
+            '/\[x\]/',
+            '<input type="checkbox" class="joe_detail__article-checkbox" checked disabled></input>',
+            $content
+        );
+    }
+    /* 过滤未完成任务勾选 */
+    if (preg_match('/\[\s{1}\]/', $content)) {
+        $content = preg_replace(
+            '/\[\s{1}\]/',
+            '<input type="checkbox" class="joe_detail__article-checkbox" disabled></input>',
+            $content
+        );
+    }
     return $content;
 }

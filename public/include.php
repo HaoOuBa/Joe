@@ -68,3 +68,4 @@
 <!-- 异步加载的JS -->
 <script async src="https://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0"></script>
 <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/smooth/joe.smooth.js"></script>
+<script async src="<?php $this->options->themeUrl('assets/cursor/cursor3.js'); ?>"></script>
