@@ -104,5 +104,15 @@ function _parseContent($post, $login)
             $content
         );
     }
+    /* 过滤note button */
+    if (preg_match('/\{abtn\s{0,}icon=".{0,}"\s{0,}color=".{0,}"\s{0,}href=".{0,}"\s{0,}radius=".{0,}"\s{0,}\}.{0,}\{\/abtn\}/sSU', $content)) {
+        $content = preg_replace(
+            '/\{abtn\s{0,}icon="(.{0,})"\s{0,}color="(.{0,})"\s{0,}href="(.{0,})"\s{0,}radius="(.{0,})"\s{0,}\}(.{0,})\{\/abtn\}/sSU',
+            '<a class="joe_detail__article-abtn" style="background: $2; border-radius: $4" href="$3" target="_blank" rel="noopener noreferrer nofollow">
+                <span class="icon"><i class="$1 fa"></i></span><span class="content">$5</span>
+             </a>',
+            $content
+        );
+    }
     echo $content;
 }
