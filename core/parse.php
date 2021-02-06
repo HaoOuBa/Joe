@@ -3,25 +3,6 @@
 /* 过滤短代码 */
 require_once('short.php');
 
-/* 过滤文章内容 */
-function _parseContent($post, $login)
-{
-    /* 优先判断文章内是否有回复可见的内容 */
-    $content = $post->content;
-    if (preg_match('/\[hide\].{0,}\[\/hide\]/sSU', $content)) {
-        $db = Typecho_Db::get();
-        $hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
-        if ($hasComment || $login) {
-            $content = preg_replace('/\[hide\](.{0,})\[\/hide\]/sSU', '$1', $content);
-        } else {
-            $content = preg_replace('/\[hide\](.{0,})\[\/hide\]/sSU', '<span class="joe_detail__article-hide block">此处内容作者设置了 <i>回复</i> 可见</span>', $content);
-        }
-    }
-    $content = _parseShortCode($content);
-    echo $content;
-}
-
-
 /* 过滤评论回复 */
 function _parseCommentReply($text)
 {
