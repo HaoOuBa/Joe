@@ -88,7 +88,7 @@
                         <ul class="joe_detail__friends">
                             <?php foreach ($friends as $item) : ?>
                                 <li class="joe_detail__friends-item">
-                                    <a class="contain" href="http://ae.js.cn" target="_blank" rel="noopener noreferrer" style="background: <?php echo $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">
+                                    <a class="contain" href="<?php echo $item['url']; ?>" target="_blank" rel="noopener noreferrer" style="background: <?php echo $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">
                                         <span class="title"><?php echo $item['name']; ?></span>
                                         <div class="content">
                                             <div class="desc"><?php echo $item['desc']; ?></div>

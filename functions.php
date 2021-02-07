@@ -184,7 +184,7 @@ function themeConfig($form)
     $JFooter_Left = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFooter_Left',
         NULL,
-        '2019 - 2020 © Reach - <a href="http://ae.js.cn" target="_blank" rel="noopener noreferrer">Joe</a>',
+        '2019 - 2020 © Reach - <a href="https://as.js.cn" target="_blank" rel="noopener noreferrer">Joe</a>',
         '自定义底部栏左侧内容（非必填）',
         '介绍：用于修改全站底部左侧内容 <br>
          例如：2019 - 2020 © Reach - Joe             '
@@ -195,8 +195,7 @@ function themeConfig($form)
     $JFooter_Right = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFooter_Right',
         NULL,
-        '<a href="https://ae.js.cn/feed/" target="_blank" rel="noopener noreferrer">RSS</a>
-         <a href="https://ae.js.cn/index.php/sitemap" target="_blank" rel="noopener noreferrer" style="margin-left: 15px">MAP</a>',
+        '<a href="https://as.js.cn/feed/" target="_blank" rel="noopener noreferrer">RSS</a>',
         '自定义底部栏右侧内容（非必填）',
         '介绍：用于修改全站底部右侧内容 <br>
          例如：&lt;a href="/"&gt;首页&lt;/a&gt; &lt;a href="/"&gt;关于&lt;/a&gt;'
@@ -322,7 +321,7 @@ function themeConfig($form)
     $JAside_Author_Link = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JAside_Author_Link',
         NULL,
-        "https://ae.js.cn",
+        "https://as.js.cn",
         '作者栏 —— 跳转链接',
         '介绍：用于修改作者栏的跳转链接'
     );
@@ -643,7 +642,7 @@ function themeConfig($form)
     $JFriends = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFriends',
         NULL,
-        'Joe的博客 || https://ae.js.cn || https://cdn.jsdelivr.net/npm/typecho_joe_theme@4.3.5/assets/img/link.png || Eternity is not a distance but a decision',
+        'Joe的博客 || https://as.js.cn || https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/link.png || Eternity is not a distance but a decision',
         '友情链接（非必填）',
         '介绍：用于填写友情链接 <br />
          注意：您需要先增加友联链接页面（新增独立页面-右侧模板选择友联），该项才会生效 <br />
