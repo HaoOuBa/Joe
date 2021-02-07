@@ -87,6 +87,7 @@
             grid-template-columns: repeat(4, 1fr);
             column-gap: 15px;
             .item {
+                overflow: hidden;
                 .link {
                     display: block;
                     .inner {
