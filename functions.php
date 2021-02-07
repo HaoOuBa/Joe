@@ -573,8 +573,8 @@ function themeConfig($form)
          格式：图片地址 || 跳转链接 || 标题 （中间使用两个竖杠分隔）<br />
          其他：一行一个，一行代表一个轮播图 <br />
          例如：<br />
-            https://puui.qpic.cn/media_img/lena/PICykqaoi_580_1680/0 || http://baidu.com || 百度一下 <br />
-            https://puui.qpic.cn/tv/0/1223447268_1680580/0 || http://v.qq.com || 腾讯视频
+            https://puui.qpic.cn/media_img/lena/PICykqaoi_580_1680/0 || https://baidu.com || 百度一下 <br />
+            https://puui.qpic.cn/tv/0/1223447268_1680580/0 || https://v.qq.com || 腾讯视频
          '
     );
     $JIndex_Carousel->setAttribute('class', 'joe_content joe_index');
