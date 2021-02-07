@@ -2136,7 +2136,7 @@
                         color: #fff;
                         font-size: 14px;
                         &:hover {
-                            animation: 5s ease-in-out 0s infinite normal none running shake;
+                            animation: 5s ease-in-out 0s infinite normal none running shaked;
                         }
                     }
                 }
@@ -2451,7 +2451,7 @@
     }
 }
 
-@keyframes shake {
+@keyframes shaked {
     2% {
         transform: translateY(1.5px) rotate(1.5deg);
     }
