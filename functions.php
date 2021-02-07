@@ -547,7 +547,7 @@ function themeConfig($form)
         NULL,
         'PC端网站背景图片（非必填）',
         '介绍：PC端网站的背景图片，不填写时显示默认的灰色。<br />
-         格式：图片URL地址 或 随机图片api 例如：http://api.btstu.cn/sjbz/?lx=dongman <br />
+         格式：图片URL地址 或 随机图片api 例如：https://api.btstu.cn/sjbz/?lx=dongman <br />
          注意：如果需要显示上方动态壁纸，请不要填写此项，此项优先级最高！'
     );
     $JWallpaper_Background_PC->setAttribute('class', 'joe_content joe_image');
@@ -559,7 +559,7 @@ function themeConfig($form)
         NULL,
         'WAP端网站背景图片（非必填）',
         '介绍：WAP端网站的背景图片，不填写时显示默认的灰色。<br />
-         格式：图片URL地址 或 随机图片api 例如：http://api.btstu.cn/sjbz/?lx=m_dongman'
+         格式：图片URL地址 或 随机图片api 例如：https://api.btstu.cn/sjbz/?lx=m_dongman'
     );
     $JWallpaper_Background_WAP->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JWallpaper_Background_WAP);
@@ -622,7 +622,7 @@ function themeConfig($form)
         '首页大屏广告',
         '介绍：请务必填写正确的格式 <br />
          格式：广告图片 || 广告链接 （中间使用两个竖杠分隔，限制一个）<br />
-         例如：https://puui.qpic.cn/media_img/lena/PICykqaoi_580_1680/0 || http://baidu.com'
+         例如：https://puui.qpic.cn/media_img/lena/PICykqaoi_580_1680/0 || https://baidu.com'
     );
     $JIndex_Ad->setAttribute('class', 'joe_content joe_index');
     $form->addInput($JIndex_Ad);
@@ -634,7 +634,7 @@ function themeConfig($form)
         '首页通知文字（非必填）',
         '介绍：请务必填写正确的格式 <br />
          格式：通知文字 || 跳转链接（中间使用两个竖杠分隔，限制一个）<br />
-         例如：欢迎加入Joe官方QQ群 || http://baidu.com'
+         例如：欢迎加入Joe官方QQ群 || https://baidu.com'
     );
     $JIndex_Notice->setAttribute('class', 'joe_content joe_index');
     $form->addInput($JIndex_Notice);
