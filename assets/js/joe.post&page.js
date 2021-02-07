@@ -47,6 +47,17 @@ document.addEventListener('DOMContentLoaded', () => {
     /* 激活代码高亮 */
     {
         Prism.highlightAll();
+        $("pre[class*='language-']").each(function (index, item) {
+            let text = $(item).find("code[class*='language-']").text();
+            let span = $(`<span class="copy"><i class="fa fa-clone"></i></span>`);
+            new ClipboardJS(span[0], { text: () => text }).on('success', () => Qmsg.success('复制成功！'));
+            $(item).append(span);
+        });
+    }
+
+    /* 激活复制功能 */
+    {
+        new ClipboardJS('.joe_detail__article-copy').on('success', () => Qmsg.success('复制成功！'));
     }
 
     /* 激活图片预览功能 */
@@ -137,9 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* 密码保护文章，输入密码访问 */
     {
-        $('.joe_detail__article-protected').on('submit', function (e) {
-                    
-        });
+        $('.joe_detail__article-protected').on('submit', function (e) {});
     }
 });
 

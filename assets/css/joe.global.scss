@@ -1309,8 +1309,7 @@
         }
         pre[class*='language-'] {
             position: relative;
-            padding: 15px;
-            padding-top: 35px;
+            padding: 30px 15px 12px;
             margin: 0 0 15px;
             border-radius: var(--radius-inner);
             &::after {
@@ -1333,6 +1332,20 @@
                 background: #fc625d;
                 box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
                 z-index: 1;
+            }
+            .copy {
+                position: absolute;
+                top: 9px;
+                right: 15px;
+                z-index: 5;
+                color: #909399;
+                font-size: 14px;
+                transition: color 0.35s;
+                cursor: pointer;
+                user-select: none;
+                &:hover {
+                    color: #c0c4cc;
+                }
             }
         }
         img {
@@ -1606,13 +1619,13 @@
             }
         }
         &-anote {
-			position: relative;
+            position: relative;
             display: inline-block;
             color: #fff;
             height: 35px;
             line-height: 35px;
             transform: translateZ(0);
-			transition: transform 0.35s;
+            transition: transform 0.35s;
             &:hover {
                 transform: translateY(-3px);
             }
@@ -1687,6 +1700,10 @@
                 overflow: hidden;
                 text-overflow: ellipsis;
             }
+        }
+        &-copy {
+            cursor: pointer;
+            user-select: none;
         }
     }
     &__agree {

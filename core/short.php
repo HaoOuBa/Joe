@@ -114,5 +114,13 @@ function _parseContent($post, $login)
             $content
         );
     }
+    /* 过滤复制粘贴功能 */
+    if (preg_match('/\{copy\s{0,}text=".{0,}"\s{0,}\}.{0,}\{\/copy\}/sSU', $content)) {
+        $content = preg_replace(
+            '/\{copy\s{0,}text="(.{0,})"\s{0,}\}(.{0,})\{\/copy\}/sSU',
+            '<span data-clipboard-text="$1" class="joe_detail__article-copy">$2</span>',
+            $content
+        );
+    }
     echo $content;
 }
