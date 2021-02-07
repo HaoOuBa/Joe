@@ -237,7 +237,7 @@ function themeConfig($form)
             'https://cdn.jsdelivr.net/npm/live2d-widget-model-hk_fos@1.0.0/assets/hk416.model.json' => 'hk416'
         ),
         'off',
-        '选择一款喜爱的Live2D动态人物模型',
+        '选择一款喜爱的Live2D动态人物模型（仅在屏幕分辨率大于1760px下显示）',
         '介绍：开启后会在右下角显示一个小人'
     );
     $JLive2d->setAttribute('class', 'joe_content joe_global');

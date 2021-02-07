@@ -1,0 +1,61 @@
+/* 基类：基于 最大屏幕 + 有侧边栏 下进行适配 */
+
+/* 有侧边栏时候的样式 */
+html {
+    @media (max-width: 1760px) {
+        #live2d-widget {
+            visibility: hidden;
+        }
+    }
+    @media (max-width: 1400px) {
+        .joe_live__play-player {
+            height: 520px;
+        }
+        .joe_detail__friends {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        .joe_video__source-list {
+            grid-template-columns: repeat(7, 1fr);
+        }
+    }
+    @media (max-width: 1200px) {
+        .joe_live__list-item .thumb {
+            height: 125px;
+        }
+    }
+    @media (max-width: 992px) {
+    }
+    @media (max-width: 768px) {
+    }
+    @media (max-width: 576px) {
+    }
+}
+
+/* 没有侧边栏时候的样式 */
+html .noaside {
+    .joe_live__list {
+        grid-template-columns: repeat(4, 1fr);
+    }
+    .joe_video__list-item {
+        grid-template-columns: repeat(7, 1fr);
+    }
+    .joe_wallpaper__list {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    @media (max-width: 1400px) {
+        .joe_detail__friends {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        .joe_video__list-item {
+            grid-template-columns: repeat(6, 1fr);
+        }
+    }
+    @media (max-width: 1200px) {
+    }
+    @media (max-width: 992px) {
+    }
+    @media (max-width: 768px) {
+    }
+    @media (max-width: 576px) {
+    }
+}

@@ -83,11 +83,10 @@
     &__hot {
         padding-top: 15px;
         &-list {
-            display: flex;
-            margin: 0 -5px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            column-gap: 15px;
             .item {
-                width: 25%;
-                padding: 0 5px;
                 .link {
                     display: block;
                     .inner {

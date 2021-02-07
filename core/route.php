@@ -6,7 +6,7 @@ function _getRanking($self)
     header("HTTP/1.1 200 OK");
     $ranking_txt = Helper::options()->JAside_Ranking;
     $ranking_arr = explode("$", $ranking_txt);
-    $json = _curl("https://the.top/v1/{$ranking_arr[1]}/1/9");
+    $json = _curl("https://rank.the.top/v1/{$ranking_arr[1]}/1/9");
     $res = json_decode($json, TRUE);
     if ($res['code'] === 0) {
         $self->response->throwJson([

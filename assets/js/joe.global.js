@@ -207,6 +207,19 @@ document.addEventListener('DOMContentLoaded', () => {
         $(window).on('scroll', () => calcProgress());
     }
 
+    /* 判断页面上是否有侧边栏 */
+    {
+        const getAside = () => {
+            if ($('.joe_aside').length === 0) {
+                $('body').addClass('noaside');
+            } else {
+                $('body').removeClass('noaside');
+            }
+        };
+        getAside();
+        $(window).on('resize', () => getAside());
+    }
+
     /* 评论框点击切换画图模式和文本模式 */
     {
         $('.joe_comment__respond-type .item').on('click', function () {

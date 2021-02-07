@@ -75,7 +75,7 @@
         &-item {
             display: grid;
             gap: 15px;
-            grid-template-columns: repeat(6, 1fr);
+            grid-template-columns: repeat(5, 1fr);
             border-top: 1px solid var(--classC);
             padding-top: 15px;
             .item {
@@ -263,7 +263,7 @@
             .description {
                 overflow: hidden;
                 dt {
-                    font-size: 24px;
+                    font-size: 22px;
                     color: var(--main);
                     max-width: 100%;
                     overflow: hidden;

@@ -1,0 +1,48 @@
+/* 昼夜模式专用css */
+/* 以下配色为全球公认的一套色彩值，如无必要，无需修改下方色彩值（主题色可以修改） */
+html {
+    --theme: #409eff;
+    --background: #fff;
+    --main: #303133;
+    --routine: #606266;
+    --minor: #909399;
+    --seat: #c0c4cc;
+    --classA: #dcdfe6;
+    --classB: #e4e7ed;
+    --classC: #ebeef5;
+    --classD: #f2f6fc;
+    --radius-wrap: 8px;
+    --radius-inner: 4px;
+    --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    --box-shadow: 0px 0px 20px -5px rgba(158, 158, 158, 0.22);
+}
+
+/* 黑夜模式的配色方案是我随便写的一套，您可以修改配色成您的一套方案 */
+html[data-night='night'] {
+    --background: #333;
+    --theme: #54b5db;
+    --main: #808080;
+    --routine: #7b7b7b;
+    --minor: #6d6d6d;
+    --seat: #666;
+    --classA: #444;
+    --classB: #444;
+    --classC: #444;
+    --classD: #444;
+    --text-shadow: none;
+    --box-shadow: none;
+}
+
+/* 此处用于修改黑夜模式下没有覆盖到的小地方的样式 */
+html[data-night='night'] {
+    body::before {
+        background: #202122;
+        z-index: -500;
+    }
+    .joe_header__above-logo img {
+        display: none;
+    }
+    .joe_header__above-logo svg {
+        display: block;
+    }
+}
