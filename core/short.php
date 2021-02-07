@@ -31,7 +31,7 @@ function _parseContent($post, $login)
     }
     /* 过滤dplayer播放器 */
     if (preg_match('/\{dplayer\s{0,}src=".{0,}"\s{0,}\/\}/sSU', $content)) {
-        $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=';
+        $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : '/usr/themes/joe/library/player.php?url=';
         $content = preg_replace(
             '/\{dplayer\s{0,}src="(.{0,})"\s{0,}\/\}/sSU',
             '<iframe class="joe_detail__article-player block" allowfullscreen="true" src="' . $player . '$1"></iframe>',
