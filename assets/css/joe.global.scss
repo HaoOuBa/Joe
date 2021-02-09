@@ -1158,15 +1158,16 @@
             position: relative;
         }
         h1 {
-            padding: 0 15px 0 20px;
+            padding: 0 15px;
             &::before {
-                content: '#';
-                color: var(--theme);
-                font-weight: 700;
+                content: '';
                 position: absolute;
-                top: 0;
+                top: 8.5px;
                 left: 0;
-                line-height: 24px;
+                height: 7px;
+                width: 7px;
+                border-radius: 50%;
+                background: var(--theme);
             }
         }
         h2 {
@@ -1183,16 +1184,15 @@
             }
         }
         h3 {
-            padding: 0 15px;
+            padding: 0 15px 0 20px;
             &::before {
-                content: '';
+                content: '#';
+                color: var(--theme);
+                font-weight: 700;
                 position: absolute;
-                top: 8.5px;
+                top: 0;
                 left: 0;
-                height: 7px;
-                width: 7px;
-                border-radius: 50%;
-                background: var(--theme);
+                line-height: 24px;
             }
         }
         h4 {
