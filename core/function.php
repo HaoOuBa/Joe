@@ -195,7 +195,7 @@ function _getAbstract($item, $type = true)
 /* 获取文章缩略图 */
 function _getThumbnail($item, $type = true)
 {
-    $randomThumb = '/usr/themes/joe/assets/thumb/' . rand(1, 14) . '.png';
+    $randomThumb = '/usr/themes/joe/assets/thumb/' . rand(1, 42) . '.jpg';
     $custom_thumbnail = Helper::options()->JThumbnail;
     if ($custom_thumbnail) {
         $custom_thumbnail_arr = explode("\r\n", $custom_thumbnail);
