@@ -52,13 +52,12 @@ document.addEventListener('DOMContentLoaded', () => {
 								<a class="item animated bounceIn" href="${window.location.href + '?vod_id=' + _.vod_id}" target="_blank" rel="noopener noreferrer nofollow">
 									<i class="year" style="display: ${_.vod_year && _.vod_year != 0 ? 'block' : 'none'}">${_.vod_year}</i>
 									<div class="thumb">
-										<img onerror="javascript: this.src = '${Joe.LAZY_LOAD}'" class="pic video_lazyload" src="${Joe.LAZY_LOAD}" data-original="${_.vod_pic}" alt="${_.vod_name}">
+										<img class="pic lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.vod_pic}" onerror="javascript: this.src = '${Joe.LAZY_LOAD}'" alt="${_.vod_name}">
 									</div>    
 									<p class="title">${_.vod_name}</p>
 								</a>`;
                         });
                         $('.joe_video__list-item').html(htmlStr);
-                        new LazyLoad('.video_lazyload');
                     }
                     pagecount = res.data.pagecount;
                     initPagination();
@@ -131,7 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 /* 设置视频详情 */
                 $('.joe_video__detail-info').html(`
 					<div class="thumbnail">
-						<img class="pic video_lazyload" onerror="javascript: this.src = '${Joe.LAZY_LOAD}'" src="${Joe.LAZY_LOAD}" data-original="${item.vod_pic}" alt="${item.vod_name}">
+						<img class="pic lazyload" src="${Joe.LAZY_LOAD}" data-src="${item.vod_pic}" onerror="javascript: this.src = '${Joe.LAZY_LOAD}'" alt="${item.vod_name}">
 						<i class="year" style="display: ${item.vod_year && item.vod_year != 0 ? 'block' : 'none'}">${item.vod_year}</i>
 					</div>
 					<dl class="description">
@@ -142,7 +141,6 @@ document.addEventListener('DOMContentLoaded', () => {
 						<dd><span class="muted">简介：</span><p class="text">${getContent(item)}</p></dd>
 					</dl>
 				`);
-                new LazyLoad('.video_lazyload');
                 /* 设置视频播放标题 */
                 $('.joe_video__player .joe_video__contain-title').html('正在播放：' + item.vod_name);
                 /* 设置播放链接 */

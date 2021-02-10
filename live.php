@@ -29,7 +29,7 @@
                     <div class="joe_live__contain joe_live__play">
                         <div class="joe_live__contain-title joe_live__play-title">正在播放：<?php echo $_GET['title'] ?></div>
                         <?php ini_set('user_agent', 'Mozilla/5.0 (Linux; U; Android 2.3.7; en-us; Nexus One Build/FRF91) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1'); ?>
-                        <iframe class="joe_live__play-player" src="<?php echo 'https://liveshare.huya.com/iframe/' . $_GET['profileRoom']  ?>"></iframe>
+                        <iframe class="joe_live__play-player lazyload" data-src="<?php echo 'https://liveshare.huya.com/iframe/' . $_GET['profileRoom']  ?>"></iframe>
                     </div>
                 <?php else : ?>
                     <!-- 列表页 -->

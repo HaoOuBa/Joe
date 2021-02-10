@@ -33,7 +33,7 @@
                     </div>
                     <div class="joe_video__player joe_video__contain">
                         <div class="joe_video__contain-title">正在播放：</div>
-                        <iframe allowfullscreen="true" class="joe_video__player-play" data-player="<?php echo $this->options->JCustomPlayer ? $this->options->JCustomPlayer : '/usr/themes/joe/library/player.php?url=' ?>"></iframe>
+                        <iframe allowfullscreen="true" class="joe_video__player-play" data-player="<?php echo $this->options->JCustomPlayer ? $this->options->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=' ?>"></iframe>
                     </div>
                 <?php else : ?>
                     <div class="joe_video__type joe_video__contain">

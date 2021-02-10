@@ -344,7 +344,4 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-
-    /* 懒加载 */
-    new LazyLoad('.lazyload');
 });

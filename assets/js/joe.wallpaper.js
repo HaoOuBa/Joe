@@ -40,10 +40,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (res.code !== 1) return;
                 let htmlStr = '';
                 res.data.forEach(_ => {
-                    htmlStr += `<a class="item animated bounceIn" data-fancybox="gallery" href="${_.url}"><img onerror="javascript: this.src = '${Joe.LAZY_LOAD}'" class="wallpaper_lazyload" src="${Joe.LAZY_LOAD}" data-original="${_.img_1024_768 || _.url}" alt="壁纸"></a>`;
+                    htmlStr += `
+                        <a class="item animated bounceIn" data-fancybox="gallery" href="${_.url}">
+                            <img class="lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.img_1024_768 || _.url}" onerror="javascript: this.src = '${Joe.LAZY_LOAD}'" alt="壁纸">
+                        </a>`;
                 });
                 $('.joe_wallpaper__list').html(htmlStr);
-                new LazyLoad('.wallpaper_lazyload');
                 total = res.total;
                 initPagination();
             },
