@@ -88,6 +88,7 @@
             column-gap: 15px;
             .item {
                 overflow: hidden;
+                border-radius: var(--radius-inner);
                 .link {
                     display: block;
                     .inner {
@@ -102,9 +103,8 @@
                         }
                         .image {
                             width: 100%;
-                            height: 125px;
+                            height: 120px;
                             object-fit: cover;
-                            border-radius: var(--radius-inner) var(--radius-inner) 0 0;
                             transition: opacity 0.35s;
                         }
                         .title {
@@ -117,7 +117,6 @@
                             line-height: 32px;
                             color: var(--minor);
                             background: var(--classD);
-                            border-radius: 0 0 5px 5px;
                             transition: background 0.35s;
                         }
                         .views {

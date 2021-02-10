@@ -1,6 +1,11 @@
 <header class="joe_header">
     <div class="joe_header__above">
         <div class="joe_container">
+            <div class="joe_header__above-slide">
+                <span class="line"></span>
+                <span class="line"></span>
+                <span class="line"></span>
+            </div>
             <a title="<?php $this->options->title(); ?>" class="joe_header__above-logo" href="<?php $this->options->siteUrl(); ?>">
                 <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php $this->options->JLogo() ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="<?php $this->options->title(); ?>" />
                 <svg class="profile-color-modes" height="45" viewBox="0 0 106 60" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
