@@ -1,0 +1,360 @@
+/* 基类：基于 最大屏幕 + 有侧边栏 下进行适配 */
+
+html {
+	@media (max-width: 1760px) {
+		#live2d-widget {
+			visibility: hidden;
+		}
+	}
+	@media (max-width: 1400px) {
+		.joe_video__list-item {
+			grid-template-columns: repeat(5, 1fr);
+		}
+		.joe_live__play-player {
+			height: 500px;
+		}
+		.joe_list__item.single .thumbnail {
+			height: 230px;
+		}
+		.joe_list__item.multiple .thumbnail {
+			grid-template-rows: 150px;
+		}
+	}
+	@media (max-width: 1200px) {
+		.joe_wallpaper__list {
+			grid-template-columns: repeat(3, 1fr);
+		}
+		.joe_detail__friends {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.joe_video__list-item {
+			grid-template-columns: repeat(4, 1fr);
+		}
+		.joe_video__player-play {
+			height: 450px;
+		}
+		.joe_live__list {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.joe_live__play-player {
+			height: 450px;
+		}
+		.joe_detail__article-player {
+			height: 450px;
+		}
+		.joe_list__item.multiple .thumbnail {
+			grid-template-rows: 125px;
+		}
+		.joe_list__item.single .thumbnail {
+			height: 200px;
+		}
+		.joe_index__ad-link .image {
+			height: 180px;
+		}
+		.joe_index__hot-list .item .link .inner .image {
+			height: 90px;
+		}
+		.joe_index__banner {
+			display: block;
+		}
+		.joe_index__banner-recommend {
+			padding-top: 15px;
+			width: 100%;
+			margin-left: 0;
+			display: grid;
+			grid-template-columns: repeat(2, 1fr);
+			gap: 15px;
+			&.noswiper {
+				padding-top: 0;
+			}
+		}
+		.joe_index__banner-recommend .item {
+			margin: 0 !important;
+		}
+		.joe_index__hot-list {
+			column-gap: 10px;
+		}
+		.joe_video__list-item .item .thumb {
+			height: 200px;
+		}
+	}
+	@media (max-width: 992px) {
+		.joe_aside {
+			display: none;
+		}
+		.joe_video__list-item .item .thumb {
+			height: 220px;
+		}
+		.joe_video__source-list {
+			grid-template-columns: repeat(5, 1fr);
+		}
+		.joe_live__play-player {
+			height: 420px;
+		}
+		.joe_video__player-play {
+			height: 420px;
+		}
+		.joe_detail__article-player {
+			height: 420px;
+		}
+		.swiper-container {
+			height: 300px;
+		}
+		.swiper-container .item {
+			height: 300px;
+		}
+		.joe_header__above-logo {
+			padding-right: 0;
+		}
+		.joe_header__above-logo::after {
+			display: none;
+		}
+		.joe_header__above-search {
+			display: none;
+		}
+		.joe_header__above-searchicon {
+			display: block;
+		}
+	}
+	@media (max-width: 768px) {
+		.joe_header__above-nav {
+			display: none;
+		}
+		.joe_header__below {
+			display: none;
+		}
+		.joe_header__above-logo {
+			height: 55px;
+		}
+		.joe_header__above-logo img {
+			max-height: 45px;
+		}
+		.joe_header__searchout {
+			top: 55px;
+		}
+		.joe_header__above-slide {
+			display: block;
+		}
+		.swiper-container {
+			height: 180px;
+			.item {
+				height: 180px;
+			}
+		}
+		.joe_index__banner-recommend {
+			gap: 10px;
+			.item {
+				height: 100px;
+			}
+		}
+		.joe_index__hot-list {
+			overflow-x: auto;
+			grid-template-columns: repeat(4, 200px);
+			&::-webkit-scrollbar {
+				display: none;
+			}
+		}
+		.joe_index__ad-link .image {
+			height: 120px;
+		}
+		.joe_index__title-notice {
+			display: none;
+		}
+		.joe_index__title-title .item {
+			margin-right: 15px;
+		}
+		.joe_list__item {
+			.information {
+				.title {
+					h6 {
+						font-size: 16px;
+					}
+				}
+				.abstract {
+					max-height: 46px;
+				}
+			}
+			&.none {
+				.information {
+					height: 130px;
+				}
+			}
+			&.multiple {
+				.thumbnail {
+					grid-template-rows: 80px;
+					gap: 10px;
+				}
+			}
+			&.single {
+				.thumbnail {
+					height: 150px;
+				}
+			}
+			&.default {
+				padding-bottom: 47px;
+				.thumbnail {
+					width: 120px;
+					min-width: 120px;
+					height: 80px;
+					min-height: 80px;
+					margin-right: 10px;
+					time {
+						display: none;
+					}
+				}
+				.information {
+					.title {
+						margin-bottom: 0;
+					}
+					.abstract {
+						margin-top: auto;
+					}
+					.meta {
+						position: absolute;
+						bottom: 15px;
+						left: 0;
+						right: 0;
+					}
+				}
+			}
+		}
+		.joe_wallpaper {
+			&__list {
+				grid-template-columns: repeat(2, 1fr);
+			}
+			&__pagination {
+				justify-content: center;
+			}
+		}
+		.joe_detail {
+			&__friends {
+				grid-template-columns: repeat(1, 1fr);
+			}
+			&__article {
+				font-size: 14px;
+				&-player {
+					height: 230px;
+				}
+			}
+		}
+		.joe_video {
+			&__list-item {
+				grid-template-columns: repeat(3, 1fr);
+				.item .thumb {
+					height: 140px;
+				}
+			}
+			&__pagination {
+				justify-content: center;
+			}
+			&__source-list {
+				grid-template-columns: repeat(3, 1fr);
+			}
+			&__player-play {
+				height: 230px;
+			}
+		}
+		.joe_live {
+			&__pagination {
+				justify-content: center;
+			}
+			&__list-item .thumb {
+				height: 100px;
+			}
+		}
+	}
+}
+
+/* 没有侧边栏时候的样式 */
+html .noaside {
+	.joe_detail__friends {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	.joe_video__list-item {
+		grid-template-columns: repeat(7, 1fr);
+	}
+	.joe_video__source-list {
+		grid-template-columns: repeat(8, 1fr);
+	}
+	.joe_live__list {
+		grid-template-columns: repeat(4, 1fr);
+	}
+	.joe_list__item.multiple .thumbnail {
+		grid-template-rows: 200px;
+	}
+	.joe_list__item.single .thumbnail {
+		height: 300px;
+	}
+	.joe_index__ad-link .image {
+		height: 250px;
+	}
+	.joe_index__hot-list .item .link .inner .image {
+		height: 140px;
+	}
+	@media (max-width: 1400px) {
+		.joe_video__list-item {
+			grid-template-columns: repeat(6, 1fr);
+		}
+		.joe_list__item.multiple .thumbnail {
+			grid-template-rows: 180px;
+		}
+		.joe_list__item.single .thumbnail {
+			height: 270px;
+		}
+	}
+	@media (max-width: 1200px) {
+		.joe_wallpaper__list {
+			grid-template-columns: repeat(4, 1fr);
+		}
+		.joe_detail__friends {
+			grid-template-columns: repeat(3, 1fr);
+		}
+		.joe_live__list {
+			grid-template-columns: repeat(3, 1fr);
+		}
+		.joe_index__hot-list .item .link .inner .image {
+			height: 120px;
+		}
+		.joe_list__item.single .thumbnail {
+			height: 250px;
+		}
+		.joe_list__item.multiple .thumbnail {
+			grid-template-rows: 150px;
+		}
+		.joe_index__banner-recommend .item {
+			height: 180px;
+		}
+	}
+	@media (max-width: 992px) {
+		.joe_wallpaper__list {
+			grid-template-columns: repeat(3, 1fr);
+		}
+		.joe_detail__friends {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.joe_video__list-item {
+			grid-template-columns: repeat(4, 1fr);
+		}
+		.joe_video__source-list {
+			grid-template-columns: repeat(5, 1fr);
+		}
+		.joe_live__list {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.joe_index__banner-recommend .item {
+			height: 160px;
+		}
+		.joe_index__hot-list .item .link .inner .image {
+			height: 90px;
+		}
+		.joe_index__ad-link .image {
+			height: 200px;
+		}
+		.joe_list__item.single .thumbnail {
+			height: 220px;
+		}
+		.joe_list__item.multiple .thumbnail {
+			grid-template-rows: 130px;
+		}
+	}
+}

@@ -323,10 +323,13 @@ document.addEventListener('DOMContentLoaded', () => {
 					Array.from(arr).forEach(_ => {
 						if (_.parentNode.className === 'container') str = _
 					})
-					if (!/Joe/.test(res)) return Qmsg.warning(str.textContent.trim() || '')
-					window.location.href = Joe.changeURLArg(location.href, 'scroll', 'joe_comment')
-				},
-				complete: () => (isSubmit = false)
+					if (!/Joe/.test(res)) {
+						Qmsg.warning(str.textContent.trim() || '')
+						isSubmit = false
+					} else {
+						window.location.href = Joe.changeURLArg(location.href, 'scroll', 'joe_comment')
+					}
+				}
 			})
 		})
 	}
@@ -349,6 +352,30 @@ document.addEventListener('DOMContentLoaded', () => {
 	{
 		$('.joe_header__above-slide').on('click', function () {
 			$(this).toggleClass('active')
+		})
+	}
+
+	/* 小屏幕搜索框 */
+	{
+		$('.joe_header__above-searchicon').on('click', function () {
+			if ($('.joe_header__searchout').hasClass('active')) {
+				$('body').css('overflow', '')
+				$('.joe_mask').removeClass('active')
+				$('.joe_header__searchout').removeClass('active')
+			} else {
+				$('body').css('overflow', 'hidden')
+				$('.joe_mask').addClass('active')
+				$('.joe_header__searchout').addClass('active')
+			}
+		})
+	}
+
+	/* 点击遮罩层关闭 */
+	{
+		$('.joe_mask').on('click', function () {
+			$('body').css('overflow', '')
+			$('.joe_mask').removeClass('active')
+			$('.joe_header__searchout').removeClass('active')
 		})
 	}
 })

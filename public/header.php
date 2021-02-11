@@ -1,4 +1,5 @@
 <header class="joe_header">
+    
     <div class="joe_header__above">
         <div class="joe_container">
             <div class="joe_header__above-slide">
@@ -151,10 +152,14 @@
                         </a>
                         <?php $index++; ?>
                     <?php endwhile; ?>
-                    </ul>
+                </nav>
             </form>
+            <svg class="joe_header__above-searchicon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                <path d="M1008.190624 932.031321l-236.471871-236.471871a431.153179 431.153179 0 1 0-76.157382 76.157382l236.407873 236.471872a53.758152 53.758152 0 0 0 76.157382 0 53.758152 53.758152 0 0 0 0-76.157383zM107.805575 431.184538a323.636875 323.636875 0 0 1 323.316886-323.380884 323.700873 323.700873 0 0 1 323.380883 323.380884 323.636875 323.636875 0 0 1-323.380883 323.316886 323.636875 323.636875 0 0 1-323.316886-323.316886z" p-id="18926"></path>
+            </svg>
         </div>
     </div>
+
     <div class="joe_header__below">
         <div class="joe_container">
             <nav class="joe_header__below-class">
@@ -186,4 +191,72 @@
         </div>
         <div class="joe_header__below-progress"></div>
     </div>
+
+    <div class="joe_header__searchout">
+        <div class="joe_container">
+            <div class="joe_header__searchout-inner">
+                <form class="search" method="post" action="<?php $this->options->siteUrl(); ?>">
+                    <input maxlength="16" autocomplete="off" placeholder="请输入关键字..." name="s" value="<?php echo $this->is('search') ? $this->archiveTitle(' &raquo; ', '', '') : '' ?>" class="input" type="text" />
+                    <button type="submit" class="submit">Search</button>
+                </form>
+                <?php $this->widget('Widget_Metas_Tag_Cloud', array('sort' => 'count', 'ignoreZeroCount' => true, 'desc' => true, 'limit' => 20))->to($tags); ?>
+                <?php if ($tags->have()) : ?>
+                    <div class="title">
+                        <svg class="icon" viewBox="0 0 1445 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="22" height="22">
+                            <path d="M1055.021176 277.865412a348.762353 348.762353 0 0 1 348.400942 348.340706c0 178.959059-136.131765 327.68-311.777883 346.172235l-758.603294 2.349176A291.237647 291.237647 0 0 1 42.164706 683.791059a291.237647 291.237647 0 0 1 273.227294-290.334118A369.242353 369.242353 0 0 1 683.791059 42.164706a370.567529 370.567529 0 0 1 344.18447 236.905412c9.336471-0.783059 18.191059-1.204706 27.045647-1.204706z m-371.230117-121.615059a255.036235 255.036235 0 0 0-254.735059 254.795294v95.954824H333.101176a177.031529 177.031529 0 0 0-176.790588 176.790588 177.031529 177.031529 0 0 0 176.790588 176.850823h721.980236a234.676706 234.676706 0 0 0 234.315294-234.435764 234.616471 234.616471 0 0 0-234.315294-234.255059 234.616471 234.616471 0 0 0-234.315294 234.315294v18.070588H706.56v-18.070588A348.400941 348.400941 0 0 1 915.817412 307.2a255.578353 255.578353 0 0 0-232.026353-151.009882z" p-id="20337"></path>
+                        </svg>标签搜索
+                    </div>
+                    <ul class="cloud">
+                        <?php $colors  = [
+                            '#F8D800',
+                            '#0396FF',
+                            '#EA5455',
+                            '#7367F0',
+                            '#32CCBC',
+                            '#F6416C',
+                            '#28C76F',
+                            '#9F44D3',
+                            '#F55555',
+                            '#736EFE',
+                            '#E96D71',
+                            '#DE4313',
+                            '#D939CD',
+                            '#4C83FF',
+                            '#F072B6',
+                            '#C346C2',
+                            '#5961F9',
+                            '#FD6585',
+                            '#465EFB',
+                            '#FFC600',
+                            '#FA742B',
+                            '#5151E5',
+                            '#BB4E75',
+                            '#FF52E5',
+                            '#49C628',
+                            '#00EAFF',
+                            '#F067B4',
+                            '#F067B4',
+                            '#ff9a9e',
+                            '#00f2fe',
+                            '#4facfe',
+                            '#f093fb',
+                            '#6fa3ef',
+                            '#bc99c4',
+                            '#46c47c',
+                            '#f9bb3c',
+                            '#e8583d',
+                            '#f68e5f',
+                        ]; ?>
+                        <?php while ($tags->next()) : ?>
+                            <li class="item">
+                                <a style="background: <?php echo $colors[mt_rand(0, count($colors) - 1)] ?>" href="<?php $tags->permalink(); ?>"><?php $tags->name(); ?></a>
+                            </li>
+                        <?php endwhile; ?>
+                    </ul>
+                <?php endif; ?>
+            </div>
+        </div>
+    </div>
 </header>
+
+<div class="joe_mask"></div>
