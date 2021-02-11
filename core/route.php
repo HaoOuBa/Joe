@@ -38,7 +38,8 @@ function _getPost($self)
         foreach ($sticky_arr as $cid) {
             $self->widget('Widget_Archive@' . $cid, 'pageSize=1&type=post', 'cid=' . $cid)->to($item);
             $result[] = array(
-                "image" => _getThumbnail($item, false),
+                "mode" => $item->fields->mode ? $item->fields->mode : 'default',
+                "image" => _getThumbnails($item),
                 "time" => date('Y-m-d', $item->created),
                 "created" => date('Y年m月d日', $item->created),
                 "title" => $item->title,
@@ -56,7 +57,8 @@ function _getPost($self)
     $self->widget('Widget_Contents_Sort', 'page=' . $page . '&pageSize=' . $pageSize . '&type=' . $type)->to($item);
     while ($item->next()) {
         $result[] = array(
-            "image" => _getThumbnail($item, false),
+            "mode" => $item->fields->mode ? $item->fields->mode : 'default',
+            "image" => _getThumbnails($item),
             "time" => date('Y-m-d', $item->created),
             "created" => date('Y年m月d日', $item->created),
             "title" => $item->title,

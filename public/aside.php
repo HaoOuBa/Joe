@@ -57,7 +57,7 @@
                             <li class="item">
                                 <a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
                                     <i class="sort"><?php echo $index; ?></i>
-                                    <img class="image lazyload" src="<?php _getLazyload(); ?>" data-src="<?php _getThumbnail($item); ?>" onerror="javascript: this.src='<?php _getLazyload() ?>';" alt="<?php $item->title() ?>" />
+                                    <img class="image lazyload" src="<?php _getLazyload(); ?>" data-src="<?php echo _getThumbnails($item)[0]; ?>" onerror="javascript: this.src='<?php _getLazyload() ?>';" alt="<?php $item->title() ?>" />
                                     <div class="describe">
                                         <h6><?php $item->title(); ?></h6>
                                         <span><?php _getViews($item); ?> 阅读 - <?php $item->date('m/d'); ?></span>

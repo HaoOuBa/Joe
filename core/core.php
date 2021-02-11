@@ -76,6 +76,21 @@ function themeInit($self)
 /* 增加自定义字段 */
 function themeFields($layout)
 {
+    $mode = new Typecho_Widget_Helper_Form_Element_Radio(
+        'mode',
+        array(
+            'default' => '默认模式',
+            'single' => '大图模式',
+            'multiple' => '三图模式',
+            'none' => '无图模式'
+        ),
+        'default',
+        '文章显示方式',
+        '介绍：用于设置当前文章在首页和搜索页的显示方式 <br /> 
+         注意：独立页面该功能不会生效'
+    );
+    $layout->addItem($mode);
+
     $aside = new Typecho_Widget_Helper_Form_Element_Radio(
         'aside',
         array(
@@ -129,7 +144,8 @@ function themeFields($layout)
          不填写时：<br>
             1、若文章有图片则取文章内图片 <br>
             2、若文章无图片，并且外观设置里未填写·自定义缩略图·选项，则取模板自带图片 <br>
-            3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片'
+            3、若文章无图片，并且外观设置里填写了·自定义缩略图·选项，则取自定义缩略图图片 <br>
+         注意：多个缩略图时换行填写，一行一个（仅在三图模式下生效）'
     );
     $layout->addItem($thumb);
 }
