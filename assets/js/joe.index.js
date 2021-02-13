@@ -36,8 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         </a>
                         <div class="information">
                             <a href="${_.permalink}" class="title" title="${_.title}">
-                                <span class="badge" style="display: ${_.type === 'sticky' ? 'block' : 'none'}">置顶</span>
-                                <h6>${_.title}</h6>
+                                <span class="badge" style="display: ${_.type === 'sticky' ? 'inline-block' : 'none'}">置顶</span>${_.title}
                             </a>
                             <a class="abstract" href="${_.permalink}" title="文章摘要">${_.abstract}</a>
                             <div class="meta">
@@ -63,8 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="line"></div>
                         <div class="information">
                             <a href="${_.permalink}" class="title" title="${_.title}">
-                                <span class="badge" style="display: ${_.type === 'sticky' ? 'block' : 'none'}">置顶</span>
-                                <h6>${_.title}</h6>
+                                <span class="badge" style="display: ${_.type === 'sticky' ? 'inline-block' : 'none'}">置顶</span>${_.title}
                             </a>
                             <div class="meta">
                                 <ul class="items">
@@ -100,8 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="line"></div>
                         <div class="information">
                             <a href="${_.permalink}" class="title" title="${_.title}">
-                                <span class="badge" style="display: ${_.type === 'sticky' ? 'block' : 'none'}">置顶</span>
-                                <h6>${_.title}</h6>
+                                <span class="badge" style="display: ${_.type === 'sticky' ? 'inline-block' : 'none'}">置顶</span>${_.title}
                             </a>
                             <a class="abstract" href="${_.permalink}" title="文章摘要">${_.abstract}</a>
                         </div>
@@ -136,8 +133,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         <div class="line"></div>
                         <div class="information">
                             <a href="${_.permalink}" class="title" title="${_.title}">
-                                <span class="badge" style="display: ${_.type === 'sticky' ? 'block' : 'none'}">置顶</span>
-                                <h6>${_.title}</h6>
+                                <span class="badge" style="display: ${_.type === 'sticky' ? 'inline-block' : 'none'}">置顶</span>${_.title}
                             </a>
                             <a class="abstract" href="${_.permalink}" title="文章摘要">${_.abstract}</a>
                             <div class="meta">

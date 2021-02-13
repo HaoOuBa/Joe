@@ -46,7 +46,7 @@
                                         </a>
                                         <div class="information">
                                             <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>">
-                                                <h6><?php $this->title() ?></h6>
+                                                <?php $this->title() ?>
                                             </a>
                                             <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要"><?php _getAbstract($this) ?></a>
                                             <div class="meta">
@@ -64,7 +64,7 @@
                                         <div class="line"></div>
                                         <div class="information">
                                             <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>">
-                                                <h6><?php $this->title() ?></h6>
+                                                <?php $this->title() ?>
                                             </a>
                                             <div class="meta">
                                                 <ul class="items">
@@ -92,7 +92,7 @@
                                         <div class="line"></div>
                                         <div class="information">
                                             <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>">
-                                                <h6><?php $this->title() ?></h6>
+                                                <?php $this->title() ?>
                                             </a>
                                             <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要"><?php _getAbstract($this) ?></a>
                                         </div>
@@ -116,7 +116,7 @@
                                         <div class="line"></div>
                                         <div class="information">
                                             <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>">
-                                                <h6><?php $this->title() ?></h6>
+                                                <?php $this->title() ?>
                                             </a>
                                             <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要"><?php _getAbstract($this) ?></a>
                                             <div class="meta">

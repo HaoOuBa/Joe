@@ -564,6 +564,17 @@ function themeConfig($form)
     $JWallpaper_Background_WAP->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JWallpaper_Background_WAP);
 
+    $JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JAside_Wap_Image',
+        NULL,
+        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/wap_aside_image.jpg",
+        '移动端侧边栏背景',
+        '介绍：用于修改移动端侧边栏背景图片 <br/>
+         格式：图片地址 或 Base64地址'
+    );
+    $JAside_Wap_Image->setAttribute('class', 'joe_content joe_image');
+    $form->addInput($JAside_Wap_Image);
+
     $JIndex_Carousel = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JIndex_Carousel',
         NULL,

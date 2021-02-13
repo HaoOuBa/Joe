@@ -127,9 +127,9 @@
                     <div class="joe_index__title">
                         <ul class="joe_index__title-title">
                             <li class="item" data-type="created">最新文章</li>
+                            <li class="item" data-type="views">热门文章</li>
                             <li class="item" data-type="commentsNum">评论最多</li>
                             <li class="item" data-type="agree">点赞最多</li>
-                            <li class="item" data-type="views">浏览最多</li>
                             <li class="line"></li>
                         </ul>
                         <?php
