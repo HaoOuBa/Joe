@@ -1,5 +1,5 @@
 <header class="joe_header">
-    
+
     <div class="joe_header__above">
         <div class="joe_container">
             <div class="joe_header__above-slide">
@@ -256,6 +256,10 @@
                 <?php endif; ?>
             </div>
         </div>
+    </div>
+
+    <div class="joe_header__slideout">
+        <img src="" alt="">
     </div>
 </header>
 

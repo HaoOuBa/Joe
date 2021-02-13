@@ -467,6 +467,22 @@
 			}
 		}
 	}
+	&__slideout {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		width: 70%;
+		z-index: 990;
+		background: var(--background);
+		transform: translate3d(-100%, 0, 0);
+		visibility: hidden;
+		transition: transform 0.35s, visibility 0.35s;
+		&.active {
+			visibility: visible;
+			transform: translate3d(0, 0, 0);
+		}
+	}
 }
 
 .joe_aside {
