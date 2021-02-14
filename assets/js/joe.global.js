@@ -350,19 +350,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 小屏幕伸缩侧边栏 */
 	{
-		$('.joe_header__above-slide').on('click', function () {
+		$('.joe_header__above-slideicon').on('click', function () {
 			/* 关闭搜索框 */
 			$('.joe_header__searchout').removeClass('active')
 			/* 处理开启关闭状态 */
 			if ($('.joe_header__slideout').hasClass('active')) {
 				$('body').css('overflow', '')
-				$('.joe_mask').removeClass('active')
-				$('.joe_header__above-slide').removeClass('active')
+				$('.joe_header__mask').removeClass('active slideout')
 				$('.joe_header__slideout').removeClass('active')
 			} else {
 				$('body').css('overflow', 'hidden')
-				$('.joe_mask').addClass('active')
-				$('.joe_header__above-slide').addClass('active')
+				$('.joe_header__mask').addClass('active slideout')
 				$('.joe_header__slideout').addClass('active')
 			}
 		})
@@ -372,16 +370,15 @@ document.addEventListener('DOMContentLoaded', () => {
 	{
 		$('.joe_header__above-searchicon').on('click', function () {
 			/* 关闭侧边栏 */
-			$('.joe_header__above-slide').removeClass('active')
 			$('.joe_header__slideout').removeClass('active')
 			/* 处理开启关闭状态 */
 			if ($('.joe_header__searchout').hasClass('active')) {
 				$('body').css('overflow', '')
-				$('.joe_mask').removeClass('active')
+				$('.joe_header__mask').removeClass('active slideout')
 				$('.joe_header__searchout').removeClass('active')
 			} else {
 				$('body').css('overflow', 'hidden')
-				$('.joe_mask').addClass('active')
+				$('.joe_header__mask').addClass('active')
 				$('.joe_header__searchout').addClass('active')
 			}
 		})
@@ -389,20 +386,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 点击遮罩层关闭 */
 	{
-		$('.joe_mask').on('click', function () {
+		$('.joe_header__mask').on('click', function () {
 			$('body').css('overflow', '')
-			$('.joe_mask').removeClass('active')
+			$('.joe_header__mask').removeClass('active slideout')
 			$('.joe_header__searchout').removeClass('active')
 			$('.joe_header__slideout').removeClass('active')
-			$('.joe_header__above-slide').removeClass('active')
 		})
 	}
 
-	/* 移动端侧边栏 */
+	/* 移动端侧边栏菜单手风琴 */
 	{
 		$('.joe_header__slideout-menu .panel').on('click', function () {
 			const panelBox = $(this).parent().parent()
-			console.log(panelBox);
 			/* 清除全部内容 */
 			panelBox.find('.panel').not($(this)).removeClass('in')
 			panelBox.find('.panel-body').not($(this).siblings('.panel-body')).stop().hide('fast')

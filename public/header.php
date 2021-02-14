@@ -2,11 +2,9 @@
 
     <div class="joe_header__above">
         <div class="joe_container">
-            <div class="joe_header__above-slide">
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span>
-            </div>
+            <svg class="joe_header__above-slideicon" viewBox="0 0 1152 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
+                <path d="M76.032 872a59.968 59.968 0 1 0 0 120h999.936a59.968 59.968 0 1 0 0-120H76.032z m16-420.032a59.968 59.968 0 1 0 0 120h599.936a59.968 59.968 0 1 0 0-119.936H92.032zM76.032 32a59.968 59.968 0 1 0 0 120h999.936a60.032 60.032 0 0 0 0-120H76.032z" p-id="68770"></path>
+            </svg>
             <a title="<?php $this->options->title(); ?>" class="joe_header__above-logo" href="<?php $this->options->siteUrl(); ?>">
                 <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php $this->options->JLogo() ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="<?php $this->options->title(); ?>" />
                 <svg class="profile-color-modes" height="45" viewBox="0 0 106 60" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
@@ -259,7 +257,7 @@
     </div>
 
     <div class="joe_header__slideout">
-        <img class="joe_header__slideout-image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php $this->options->JAside_Wap_Image() ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="<?php $this->author->screenName(); ?>" />
+        <img class="joe_header__slideout-image" src="<?php $this->options->JAside_Wap_Image() ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="<?php $this->author->screenName(); ?>" />
         <div class="joe_header__slideout-author">
             <img class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($this->author->mail) ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="<?php $this->author->screenName(); ?>" />
             <div class="info">
@@ -347,6 +345,7 @@
             <?php endif; ?>
         </ul>
     </div>
+
+    <div class="joe_header__mask"></div>
 </header>
 
-<div class="joe_mask"></div>
