@@ -533,12 +533,24 @@
 					}
 				}
 			}
+			.current {
+				a {
+					color: var(--theme);
+					font-weight: 500;
+					font-size: 15px;
+				}
+			}
 			.slides {
 				display: none;
 				border-left: 1px solid var(--classC);
 				padding-left: 15px;
 				.link {
 					color: var(--routine);
+				}
+				.current {
+					color: var(--theme);
+					font-weight: 500;
+					font-size: 15px;
 				}
 			}
 		}

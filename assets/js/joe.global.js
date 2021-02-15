@@ -396,6 +396,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 移动端侧边栏菜单手风琴 */
 	{
+		$('.joe_header__slideout-menu .current').parents('.panel-body').show().siblings('.panel').addClass('in')
 		$('.joe_header__slideout-menu .panel').on('click', function () {
 			const panelBox = $(this).parent().parent()
 			/* 清除全部内容 */

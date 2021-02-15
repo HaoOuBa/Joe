@@ -304,11 +304,11 @@
                             <?php $children = $category->getAllChildren($category->mid); ?>
                             <?php if (empty($children)) : ?>
                                 <li>
-                                    <a class="link" href="<?php $category->permalink(); ?>" title="<?php $category->name(); ?>"><?php $category->name(); ?></a>
+                                    <a class="link <?php echo $this->is('category', $category->slug) ? 'current' : '' ?>" href="<?php $category->permalink(); ?>" title="<?php $category->name(); ?>"><?php $category->name(); ?></a>
                                 </li>
                             <?php else : ?>
                                 <li>
-                                    <div class="link panel">
+                                    <div class="link panel <?php echo $this->is('category', $category->slug) ? 'current' : '' ?>">
                                         <a href="<?php $category->permalink(); ?>" title="<?php $category->name(); ?>"><?php $category->name(); ?></a>
                                         <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="13" height="13">
                                             <path d="M624.86499999 512.247l-292.15499999-292.159c-12.28-12.27-12.28-32.186 0-44.457 12.27-12.28 32.186-12.28 44.457 0l314.388 314.388c12.28 12.27 12.28 32.186 0 44.457l-314.388 314.387c-6.136 6.14-14.183 9.211-22.228 9.211s-16.092-3.071-22.228-9.211c-12.28-12.27-12.28-32.186 0-44.457l292.155-292.16z" p-id="1742"></path>
@@ -318,7 +318,7 @@
                                         <?php foreach ($children as $mid) : ?>
                                             <?php $child = $category->getCategory($mid); ?>
                                             <li>
-                                                <a class="link" href="<?php echo $child['permalink'] ?>" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
+                                                <a class="link <?php echo $this->is('category', $child['slug']) ? 'current' : '' ?>" href="<?php echo $child['permalink'] ?>" title="<?php echo $child['name']; ?>"><?php echo $child['name']; ?></a>
                                             </li>
                                         <?php endforeach; ?>
                                     </ul>
@@ -339,7 +339,7 @@
                 <ul class="slides panel-body">
                     <?php foreach ($pages->stack as $item) : ?>
                         <li>
-                            <a class="link" href="<?php echo $item['permalink'] ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
+                            <a class="link <?php echo $this->is('page', $item['slug']) ? 'current' : '' ?>" href="<?php echo $item['permalink'] ?>" title="<?php echo $item['title'] ?>"><?php echo $item['title'] ?></a>
                         </li>
                     <?php endforeach; ?>
                 </ul>
