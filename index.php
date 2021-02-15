@@ -15,11 +15,11 @@
 <head>
     <?php $this->need('public/include.php'); ?>
     <!-- 首页所使用到的CSS以及JS -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.index.css'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.index.css?v=217'); ?>">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@5.4.5/css/swiper.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@5.4.5/js/swiper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/wowjs@1.1.3/dist/wow.min.js"></script>
-    <script src="<?php $this->options->themeUrl('assets/js/joe.index.js?v=212'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('assets/js/joe.index.js?v=217'); ?>"></script>
 </head>
 
 <body>
@@ -80,8 +80,8 @@
                                                 <img class="lazyload" src="<?php _getLazyload(); ?>" data-src="<?php echo _getThumbnails($item)[0]; ?>" onerror="javascript: this.src='<?php _getLazyload() ?>';" alt="<?php $item->title() ?>" width="100%" />
                                             </a>
                                             <figcaption class="information">
-                                                <span class="information_type">推荐</span>
-                                                <span class="information_title"><?php $item->title() ?></span>
+                                                <span class="type">推荐</span>
+                                                <div class="text"><?php $item->title() ?></div>
                                             </figcaption>
                                         </figure>
                                     <?php endforeach; ?>
@@ -97,7 +97,7 @@
                                     <li class="item">
                                         <a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
                                             <figure class="inner">
-                                                <span class="views"><?php _getViews($item); ?></span>
+                                                <span class="views"><?php _getViews($item); ?> ℃</span>
                                                 <img class="image lazyload" src="<?php _getLazyload(); ?>" data-src="<?php echo _getThumbnails($item)[0]; ?>" onerror="javascript: this.src='<?php _getLazyload() ?>';" alt="<?php $item->title(); ?>" />
                                                 <figcaption class="title"><?php $item->title(); ?></figcaption>
                                             </figure>

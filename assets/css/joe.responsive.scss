@@ -163,11 +163,8 @@ html {
 			}
 			&__hot {
 				&-list {
-					overflow-x: auto;
-					grid-template-columns: repeat(4, 200px);
-					&::-webkit-scrollbar {
-						display: none;
-					}
+					grid-template-columns: repeat(2, 1fr);
+					gap: 10px;
 				}
 			}
 			&__ad {
@@ -271,7 +268,29 @@ html {
 					}
 				}
 			}
+			&__loading {
+				.item {
+					.thumbnail{
+						width: 120px;
+						min-width: 120px;
+						height: 80px;
+						min-height: 80px;
+					}
+					.information {
+						.title {
+							margin-bottom: 10px;
+							height: 20px;
+						}
+						.abstract {
+							p {
+								height: 15px;
+							}
+						}
+					}
+				}
+			}
 		}
+		
 		.joe_wallpaper {
 			&__list {
 				grid-template-columns: repeat(2, 1fr);

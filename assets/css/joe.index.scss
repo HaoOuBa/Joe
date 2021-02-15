@@ -38,14 +38,10 @@
 					display: block;
 					width: 100%;
 					height: 100%;
-					transition: opacity 0.35s;
 					img {
 						width: 100%;
 						height: 100%;
 						object-fit: cover;
-					}
-					&:hover {
-						opacity: 0.85;
 					}
 				}
 				.information {
@@ -60,21 +56,26 @@
 					background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
 					color: #fff;
 					line-height: 20px;
-					&_type {
-                        background-image: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3);
+					white-space: nowrap;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					.type {
+						background-image: linear-gradient(270deg, #986fee, #8695e6, #68b7dd, #18d7d3);
 						background-color: #8695e6;
-						padding: 0 5px;
-						height: 20px;
+						text-align: center;
+						padding: 0 8px;
 						border-radius: 2px;
-						margin-right: 5px;
+						height: 20px;
 						font-size: 12px;
+						color: #fff;
+						z-index: 2;
+						user-select: none;
+						margin-right: 5px;
 					}
-					&_title {
+					.text {
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
-						flex: 1;
-						font-size: 14px;
 					}
 				}
 			}
@@ -88,7 +89,6 @@
 			column-gap: 15px;
 			.item {
 				overflow: hidden;
-				border-radius: var(--radius-inner);
 				.link {
 					display: block;
 					.inner {
@@ -106,6 +106,7 @@
 							height: 120px;
 							object-fit: cover;
 							transition: opacity 0.35s;
+							border-radius: var(--radius-inner) var(--radius-inner) 0 0;
 						}
 						.title {
 							font-size: 13px;
@@ -118,6 +119,7 @@
 							color: var(--minor);
 							background: var(--classD);
 							transition: background 0.35s;
+							border-radius: 0 0 var(--radius-inner) var(--radius-inner);
 						}
 						.views {
 							display: flex;
