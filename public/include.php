@@ -10,6 +10,7 @@
         BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
         DOCUMENT_TITLE: '<?php $this->options->JDocumentTitle() ?>',
         LAZY_LOAD: '<?php _getLazyload() ?>',
+        BIRTHDAY: '<?php $this->options->JBirthDay() ?>',
         encryption: str => window.btoa(unescape(encodeURIComponent(str))),
         decrypt: str => decodeURIComponent(escape(window.atob(str))),
         changeURLArg: (url, arg, arg_val) => {

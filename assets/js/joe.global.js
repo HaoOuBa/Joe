@@ -406,4 +406,33 @@ document.addEventListener('DOMContentLoaded', () => {
 			$(this).toggleClass('in').siblings('.panel-body').stop().toggle('fast')
 		})
 	}
+
+	/* 初始化网站运行时间 */
+	{
+		const getRunTime = () => {
+			const birthDay = new Date('2021/1/1 00:00:00')
+			const today = +new Date()
+			const timePast = today - birthDay.getTime()
+			let day = timePast / (1000 * 24 * 60 * 60)
+			let dayPast = Math.floor(day)
+			let hour = (day - dayPast) * 24
+			let hourPast = Math.floor(hour)
+			let minute = (hour - hourPast) * 60
+			let minutePast = Math.floor(minute)
+			let second = (minute - minutePast) * 60
+			let secondPast = Math.floor(second)
+			day = String(dayPast).padStart(2, 0)
+			hour = String(hourPast).padStart(2, 0)
+			minute = String(minutePast).padStart(2, 0)
+			second = String(secondPast).padStart(2, 0)
+			$('.joe_run__day').html(day)
+			$('.joe_run__hour').html(hour)
+			$('.joe_run__minute').html(minute)
+			$('.joe_run__second').html(second)
+		}
+		if (Joe.BIRTHDAY) {
+			getRunTime()
+			setInterval(getRunTime, 1000)
+		}
+	}
 })

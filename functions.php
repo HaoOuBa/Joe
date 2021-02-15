@@ -288,6 +288,18 @@ function themeConfig($form)
     $JCustomScript->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomScript);
 
+    $JBirthDay = new Typecho_Widget_Helper_Form_Element_Text(
+        'JBirthDay',
+        NULL,
+        NULL,
+        '网站成立日期（非必填）',
+        '介绍：用于显示当前站点已经运行了多少时间。<br>
+         注意：填写时务必保证填写正确！例如：2021/1/1 00:00:00 <br>
+         其他：不填写则不显示 '
+    );
+    $JBirthDay->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JBirthDay);
+
     $JAside = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'JAside',
         array(

@@ -487,7 +487,7 @@
 				display: flex;
 				align-items: center;
 				color: var(--routine);
-				line-height: 28px;
+				padding: 5px 0;
 				.icon {
 					width: 15px;
 					height: 15px;
@@ -495,6 +495,7 @@
 					margin-right: 5px;
 				}
 				strong {
+					font-weight: 500;
 					color: var(--theme);
 				}
 			}
@@ -2181,6 +2182,9 @@
 		align-items: center;
 		justify-content: space-between;
 		min-height: 65px;
+		.run {
+			margin: 0 auto 0 10px;
+		}
 		a {
 			color: var(--minor);
 			transition: all 0.35s;
@@ -2599,6 +2603,16 @@
 	}
 	.joe_pagination {
 		padding-top: 0;
+	}
+}
+
+.joe_run {
+	&__day,
+	&__hour,
+	&__minute,
+	&__second {
+		font-weight: 500;
+		color: var(--theme);
 	}
 }
 

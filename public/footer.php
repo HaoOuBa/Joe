@@ -1,9 +1,14 @@
 <footer class="joe_footer">
     <div class="joe_container">
-        <div>
+        <div class="item">
             <?php $this->options->JFooter_Left() ?>
         </div>
-        <div>
+        <?php if ($this->options->JBirthDay) : ?>
+            <div class="item run">
+                <span>已运行 <strong class="joe_run__day">00</strong> 天 <strong class="joe_run__hour">00</strong> 时 <strong class="joe_run__minute">00</strong> 分 <strong class="joe_run__second">00</strong> 秒</span>
+            </div>
+        <?php endif; ?>
+        <div class="item">
             <?php $this->options->JFooter_Right() ?>
         </div>
     </div>

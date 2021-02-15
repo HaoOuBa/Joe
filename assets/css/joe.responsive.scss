@@ -400,6 +400,18 @@ html {
 				}
 			}
 		}
+		.joe_footer .joe_container {
+			flex-direction: column;
+			justify-content: center;
+			padding-top: 10px;
+			padding-bottom: 10px;
+			> .item {
+				padding: 5px 0;
+				.run {
+					margin: 0;
+				}
+			}
+		}
 	}
 }
 
