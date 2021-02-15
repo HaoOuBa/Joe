@@ -410,7 +410,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	/* 初始化网站运行时间 */
 	{
 		const getRunTime = () => {
-			const birthDay = new Date('2021/1/1 00:00:00')
+			const birthDay = new Date(Joe.BIRTHDAY)
 			const today = +new Date()
 			const timePast = today - birthDay.getTime()
 			let day = timePast / (1000 * 24 * 60 * 60)
@@ -431,7 +431,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.joe_run__second').html(second)
 		}
 		if (Joe.BIRTHDAY && /(\d{4})\/(\d{1,2})\/(\d{1,2}) (\d{1,2})\:(\d{1,2})\:(\d{1,2})/.test(Joe.BIRTHDAY)) {
-			console.log(1);
 			getRunTime()
 			setInterval(getRunTime, 1000)
 		}
