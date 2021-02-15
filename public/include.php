@@ -78,7 +78,7 @@
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/sketchpad/joe.sketchpad.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/qmsg/qmsg.js"></script>
-<script src="<?php $this->options->themeUrl('assets/js/joe.global.js?v=214'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/js/joe.global.js?v=215'); ?>"></script>
 <!-- 异步加载的JS -->
 <script async src="https://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0"></script>
 <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/smooth/joe.smooth.js"></script>

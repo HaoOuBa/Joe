@@ -477,6 +477,28 @@
 				}
 			}
 		}
+		&-count {
+			background: var(--background);
+			border-radius: var(--radius-wrap);
+			padding: 10px 15px;
+			box-shadow: var(--box-shadow);
+			margin-bottom: 15px;
+			.item {
+				display: flex;
+				align-items: center;
+				color: var(--routine);
+				line-height: 28px;
+				.icon {
+					width: 15px;
+					height: 15px;
+					fill: var(--routine);
+					margin-right: 5px;
+				}
+				strong {
+					color: var(--theme);
+				}
+			}
+		}
 		&-menu {
 			background: var(--background);
 			padding: 10px 15px;
