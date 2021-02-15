@@ -430,7 +430,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.joe_run__minute').html(minute)
 			$('.joe_run__second').html(second)
 		}
-		if (Joe.BIRTHDAY) {
+		if (Joe.BIRTHDAY && /(\d{4})\/(\d{1,2})\/(\d{1,2}) (\d{1,2})\:(\d{1,2})\:(\d{1,2})/.test(Joe.BIRTHDAY)) {
+			console.log(1);
 			getRunTime()
 			setInterval(getRunTime, 1000)
 		}

@@ -295,7 +295,7 @@ function themeConfig($form)
         '网站成立日期（非必填）',
         '介绍：用于显示当前站点已经运行了多少时间。<br>
          注意：填写时务必保证填写正确！例如：2021/1/1 00:00:00 <br>
-         其他：不填写则不显示 '
+         其他：不填写则不显示，若填写错误，则不会显示计时'
     );
     $JBirthDay->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JBirthDay);
