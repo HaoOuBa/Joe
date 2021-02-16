@@ -3,7 +3,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-    return "5.0.8";
+    return "5.0.9";
 };
 
 /* 判断是否是手机 */
@@ -295,4 +295,19 @@ function _curl($url)
     $result = curl_exec($ch);
     curl_close($ch);
     return $result;
+}
+
+/* 判断敏感词是否在字符串内 */
+function _checkSensitiveWords($words_str, $str)
+{
+    $words = explode("||", $words_str);
+    if (empty($words)) {
+        return false;
+    }
+    foreach ($words as $word) {
+        if (false !== strpos($str, trim($word))) {
+            return true;
+        }
+    }
+    return false;
 }

@@ -711,6 +711,27 @@ function themeConfig($form)
     $JCustomPlayer->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JCustomPlayer);
 
+    $JSensitiveWords = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JSensitiveWords',
+        NULL,
+        '你妈死了 || 傻逼 || 操你妈 || 射你妈一脸',
+        '评论敏感词（非必填）',
+        '介绍：用于设置评论敏感词汇，如果用户评论包含这些词汇，则将会禁止评论 <br />
+         例如：你妈死了 || 你妈炸了 || 我是你爹 || 你妈坟头冒烟 （多个使用 || 分隔开）'
+    );
+    $JSensitiveWords->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JSensitiveWords);
+
+    $JLimitOneChinese = new Typecho_Widget_Helper_Form_Element_Select(
+        'JLimitOneChinese',
+        array('off' => '关闭（默认）', 'on' => '开启'),
+        'off',
+        '是否开启评论至少包含一个中文',
+        '介绍：开启后如果评论内容未包含一个中文，则将会禁止评论 <br />
+         其他：用于屏蔽国外机器人刷的全英文垃圾广告信息'
+    );
+    $JLimitOneChinese->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JLimitOneChinese->multiMode());
 
     $JBaiduToken = new Typecho_Widget_Helper_Form_Element_Text(
         'JBaiduToken',
