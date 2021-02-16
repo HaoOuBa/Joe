@@ -587,6 +587,17 @@ function themeConfig($form)
     $JAside_Wap_Image->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JAside_Wap_Image);
 
+    $JShare_QQ_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JShare_QQ_Image',
+        NULL,
+        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/link.png",
+        'QQ分享链接图片',
+        '介绍：用于修改在QQ内分享时卡片链接显示的图片 <br/>
+         格式：图片地址'
+    );
+    $JShare_QQ_Image->setAttribute('class', 'joe_content joe_image');
+    $form->addInput($JShare_QQ_Image);
+
     $JIndex_Carousel = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JIndex_Carousel',
         NULL,
