@@ -290,7 +290,6 @@ html {
 				}
 			}
 		}
-		
 		.joe_wallpaper {
 			&__list {
 				grid-template-columns: repeat(2, 1fr);
@@ -382,6 +381,12 @@ html {
 				position: absolute;
 				top: 15px;
 				right: 15px;
+				.item:first-child{
+					border-bottom-left-radius: var(--radius-inner);
+				}
+				.item:last-child{
+					border-bottom-right-radius: var(--radius-inner);
+				}
 			}
 			&__respond-form {
 				.head {
@@ -416,6 +421,14 @@ html {
 				margin-left: 0;
 				&-type {
 					position: static;
+					.item {
+						&:first-child {
+							border-bottom-left-radius: 0;
+						}
+						&:last-child {
+							border-bottom-right-radius: 0;
+						}
+					}
 				}
 			}
 		}

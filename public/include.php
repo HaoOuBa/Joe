@@ -67,7 +67,7 @@
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.mode.css'); ?>">
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.normalize.css'); ?>">
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css?v=218'); ?>">
-<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.responsive.css?v=218'); ?>">
+<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.responsive.css?v=299'); ?>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/qmsg/qmsg.css" />
 <link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
