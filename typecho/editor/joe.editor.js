@@ -163,7 +163,7 @@ $(function () {
     /* 此处无需修改 */
     items.forEach(_ => {
         let item = $(`<li class="wmd-button" id="${_.id}" title="${_.title}">${_.svg}</li>`);
-        item.on('mousedown touchstart', () => $('#text').insertContent(getInsertTextById(_.id)));
+        item.on('mousedown', () => $('#text').insertContent(getInsertTextById(_.id)));
         $('#wmd-button-row').append(item);
     });
 });
