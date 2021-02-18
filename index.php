@@ -114,7 +114,7 @@
                                     <li class="item">
                                         <a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
                                             <figure class="inner">
-                                                <span class="views"><?php _getViews($item); ?> ℃</span>
+                                                <span class="views"><?php $item->views(); ?> ℃</span>
                                                 <img class="image lazyload" src="<?php _getLazyload(); ?>" data-src="<?php echo _getThumbnails($item)[0]; ?>" onerror="javascript: this.src='<?php _getLazyload() ?>';" alt="<?php $item->title(); ?>" />
                                                 <figcaption class="title"><?php $item->title(); ?></figcaption>
                                             </figure>
