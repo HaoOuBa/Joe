@@ -1693,7 +1693,7 @@
 				}
 			}
 		}
-		img {
+		img:not(.owo_image) {
 			display: block;
 			max-width: 100%;
 			border-radius: var(--radius-inner);
@@ -1704,6 +1704,10 @@
 				transform: translateY(-5px);
 				box-shadow: 0 34px 20px -24px rgba(136, 161, 206, 0.3);
 			}
+		}
+		.owo_image {
+			max-height: 26px;
+			vertical-align: top;
 		}
 		ol,
 		ul {
