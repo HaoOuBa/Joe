@@ -159,9 +159,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				$(this).addClass('active').siblings().removeClass('active')
 				const url = $(this).attr('data-src')
 				$('.joe_detail__article-video .play iframe').attr({ src: player + url })
-				$('.joe_detail__article-video .play .title').html('正在播放：' + $(this).html())
-				const offset = $('.joe_detail__article-video .play').offset().top - $('.joe_header').height() - 15
-				window.scrollTo({ top: offset, behavior: 'smooth' })
 			})
 			$('.joe_detail__article-video .episodes .item').first().click()
 		}

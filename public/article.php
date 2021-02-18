@@ -43,7 +43,7 @@
     <?php if (!$this->hidden && $this->fields->video) : ?>
         <div class="joe_detail__article-video">
             <div class="play">
-                <div class="title">正在播放：</div>
+                <div class="title">播放预览</div>
                 <div class="box">
                     <iframe allowfullscreen="true" data-player="<?php echo $this->options->JCustomPlayer ? $this->options->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=' ?>"></iframe>
                 </div>
