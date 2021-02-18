@@ -45,9 +45,9 @@ function _getPost($self)
                 "title" => $item->title,
                 "abstract" => _getAbstract($item, false),
                 "category" => $item->categories,
-                "views" => _getViews($item, false),
+                "views" => $item->views,
                 "commentsNum" => number_format($item->commentsNum),
-                "agree" => _getAgree($item, false),
+                "agree" => $item->agree,
                 "permalink" => $item->permalink,
                 "lazyload" => _getLazyload(false),
                 "type" => "sticky"
@@ -64,9 +64,9 @@ function _getPost($self)
             "title" => $item->title,
             "abstract" => _getAbstract($item, false),
             "category" => $item->categories,
-            "views" => _getViews($item, false),
+            "views" => $item->views,
             "commentsNum" => number_format($item->commentsNum),
-            "agree" => _getAgree($item, false),
+            "agree" => $item->agree,
             "permalink" => $item->permalink,
             "lazyload" => _getLazyload(false),
             "type" => "normal"
