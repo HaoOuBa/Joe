@@ -148,4 +148,18 @@ function themeFields($layout)
          注意：多个缩略图时换行填写，一行一个（仅在三图模式下生效）'
     );
     $layout->addItem($thumb);
+
+    $video = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'video',
+        NULL,
+        NULL,
+        'M3U8或MP4地址（非必填）',
+        '填写后，文章会插入一个视频模板 <br>
+         格式：视频名称&视频地址。如果有多个，换行写即可 <br>
+         例如：<br>
+            第01集$https://iqiyi.cdn9-okzy.com/20201104/17638_8f3022ce/index.m3u8 <br>
+            第02集$https://iqiyi.cdn9-okzy.com/20201104/17639_5dcb8a3b/index.m3u8 
+        '
+    );
+    $layout->addItem($video);
 }

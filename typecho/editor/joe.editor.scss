@@ -1,7 +1,8 @@
 table.typecho-list-table {
     textarea[name='fields[thumb]'],
     textarea[name='fields[abstract]'],
-    textarea[name='fields[description]'] {
+    textarea[name='fields[description]'],
+    textarea[name='fields[video]'] {
         width: 100%;
         height: 80px;
     }

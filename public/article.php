@@ -37,7 +37,29 @@
     <time class="joe_detail__count-created" datetime="<?php $this->date('m/d'); ?>"><?php $this->date('m/d'); ?></time>
 </div>
 
+
+
 <div class="joe_detail__article">
+    <?php if (!$this->hidden && $this->fields->video) : ?>
+        <div class="joe_detail__article-video">
+            <div class="play">
+                <div class="title">正在播放：</div>
+                <div class="box">
+                    <iframe allowfullscreen="true" data-player="<?php echo $this->options->JCustomPlayer ? $this->options->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=' ?>"></iframe>
+                </div>
+            </div>
+            <div class="episodes">
+                <div class="title">剧集列表</div>
+                <?php $video_arr = explode("\r\n", $this->fields->video); ?>
+                <div class="box">
+                    <?php foreach ($video_arr as $item) : ?>
+                        <div class="item" data-src="<?php echo explode("$", $item)[1] ?>"><?php echo explode("$", $item)[0] ?></div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+    <?php endif ?>
+
     <?php if ($this->is('post')) : ?>
         <?php if ($this->hidden) : ?>
             <form class="joe_detail__article-protected" action="<?php echo Typecho_Widget::widget('Widget_Security')->getTokenUrl($this->permalink); ?>">
