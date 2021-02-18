@@ -146,7 +146,7 @@
                         <a href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>" class="item">
                             <span class="sort"><?php echo $index; ?></span>
                             <span class="text"><?php $item->title(); ?></span>
-                            <span class="views"><?php _getViews($item); ?> 阅读</span>
+                            <span class="views"><?php $item->views(); ?> 阅读</span>
                         </a>
                         <?php $index++; ?>
                     <?php endwhile; ?>
