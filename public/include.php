@@ -1,6 +1,6 @@
 <script>
     /* 用于页面一进入，直接判断是否是黑夜模式，请勿将它移走或删除，必须放这里，解决闪烁问题，下面的style也是，请勿修改 */
-    if (localStorage.getItem('data-night')) document.querySelector("html").setAttribute("data-night", "night")
+    localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
     window.Joe = {
         LIVE2D: '<?php $this->options->JLive2d() ?>',
         BASE_API: '<?php echo $this->options->rewrite == 0 ? '/index.php/joe/api' : '/joe/api' ?>',
@@ -11,24 +11,10 @@
         DOCUMENT_TITLE: '<?php $this->options->JDocumentTitle() ?>',
         LAZY_LOAD: '<?php _getLazyload() ?>',
         BIRTHDAY: '<?php $this->options->JBirthDay() ?>',
-        encryption: str => window.btoa(unescape(encodeURIComponent(str))),
-        decrypt: str => decodeURIComponent(escape(window.atob(str))),
-        changeURLArg: (url, arg, arg_val) => {
-            let pattern = arg + '=([^&]*)';
-            let replaceText = arg + '=' + arg_val;
-            if (url.match(pattern)) {
-                let tmp = '/(' + arg + '=)([^&]*)/gi';
-                return url.replace(eval(tmp), replaceText);
-            } else {
-                if (url.match('[?]')) {
-                    return url + '&' + replaceText;
-                } else {
-                    return url + '?' + replaceText;
-                }
-            }
-            return url + '\n' + arg + '\n' + arg_val;
-        }
     }
+    /* 判断是否是ie浏览器 */
+    function detectIE(){var n=window.navigator.userAgent,e=n.indexOf("MSIE ");if(e>0)return parseInt(n.substring(e+5,n.indexOf(".",e)),10);if(n.indexOf("Trident/")>0){var r=n.indexOf("rv:");return parseInt(n.substring(r+3,n.indexOf(".",r)),10)}var i=n.indexOf("Edge/");return i>0&&parseInt(n.substring(i+5,n.indexOf(".",i)),10)}
+    detectIE() && (alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。'), (location.href = 'https://www.baidu.com'))
 </script>
 <style>
     body::before {

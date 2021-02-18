@@ -1,4 +1,21 @@
 document.addEventListener('DOMContentLoaded', () => {
+	/* 公共修改地址栏URL函数 */
+	const changeURLArg = (url, arg, arg_val) => {
+		let pattern = arg + '=([^&]*)'
+		let replaceText = arg + '=' + arg_val
+		if (url.match(pattern)) {
+			let tmp = '/(' + arg + '=)([^&]*)/gi'
+			return url.replace(eval(tmp), replaceText)
+		} else {
+			if (url.match('[?]')) {
+				return url + '&' + replaceText
+			} else {
+				return url + '?' + replaceText
+			}
+		}
+		return url + '\n' + arg + '\n' + arg_val
+	}
+
 	/* 初始化昼夜模式 */
 	{
 		if (localStorage.getItem('data-night')) {
@@ -327,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						Qmsg.warning(str.textContent.trim() || '')
 						isSubmit = false
 					} else {
-						window.location.href = Joe.changeURLArg(location.href, 'scroll', 'joe_comment')
+						window.location.href = changeURLArg(location.href, 'scroll', 'joe_comment')
 					}
 				}
 			})

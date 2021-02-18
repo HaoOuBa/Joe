@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+	const encryption = str => window.btoa(unescape(encodeURIComponent(str)))
+	const decrypt = str => decodeURIComponent(escape(window.atob(str)))
+
 	/* 当前页的CID */
 	const cid = $('.joe_detail').attr('data-cid')
 
@@ -76,7 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 激活浏览功能 */
 	{
-		let viewsArr = localStorage.getItem(Joe.encryption('views')) ? JSON.parse(Joe.decrypt(localStorage.getItem(Joe.encryption('views')))) : []
+		let viewsArr = localStorage.getItem(encryption('views')) ? JSON.parse(decrypt(localStorage.getItem(encryption('views')))) : []
 		const flag = viewsArr.includes(cid)
 		if (!flag) {
 			$.ajax({
@@ -87,8 +90,8 @@ document.addEventListener('DOMContentLoaded', () => {
 					if (res.code !== 1) return
 					$('#Joe_Article_Views').html(`${res.data.views} 阅读`)
 					viewsArr.push(cid)
-					const name = Joe.encryption('views')
-					const val = Joe.encryption(JSON.stringify(viewsArr))
+					const name = encryption('views')
+					const val = encryption(JSON.stringify(viewsArr))
 					localStorage.setItem(name, val)
 				}
 			})
@@ -97,14 +100,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 激活文章点赞功能 */
 	{
-		let agreeArr = localStorage.getItem(Joe.encryption('agree')) ? JSON.parse(Joe.decrypt(localStorage.getItem(Joe.encryption('agree')))) : []
+		let agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage.getItem(encryption('agree')))) : []
 		if (agreeArr.includes(cid)) $('.joe_detail__agree .icon-1').addClass('active')
 		else $('.joe_detail__agree .icon-2').addClass('active')
 		let _loading = false
 		$('.joe_detail__agree .icon').on('click', function () {
 			if (_loading) return
 			_loading = true
-			agreeArr = localStorage.getItem(Joe.encryption('agree')) ? JSON.parse(Joe.decrypt(localStorage.getItem(Joe.encryption('agree')))) : []
+			agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage.getItem(encryption('agree')))) : []
 			let flag = agreeArr.includes(cid)
 			$.ajax({
 				url: Joe.BASE_API,
@@ -125,8 +128,8 @@ document.addEventListener('DOMContentLoaded', () => {
 						$('.joe_detail__agree .icon-1').addClass('active')
 						$('.joe_detail__agree .icon').addClass('active')
 					}
-					const name = Joe.encryption('agree')
-					const val = Joe.encryption(JSON.stringify(agreeArr))
+					const name = encryption('agree')
+					const val = encryption(JSON.stringify(agreeArr))
 					localStorage.setItem(name, val)
 				},
 				complete() {
