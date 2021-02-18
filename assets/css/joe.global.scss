@@ -1024,7 +1024,7 @@
 						/* autoprefixer: on */
 						overflow: hidden;
 						text-overflow: ellipsis;
-
+						word-break: break-all;
 						color: var(--minor);
 						font-size: 13px;
 						font-weight: 500;
