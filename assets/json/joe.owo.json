@@ -70,7 +70,8 @@
             { "icon": "<img alt=\"表情\" src=\"/usr/themes/Joe/assets/owo/paopao/E591BC_2x.png\">", "data": "::(呼)", "text": "呼" },
             { "icon": "<img alt=\"表情\" src=\"/usr/themes/Joe/assets/owo/paopao/E586B7_2x.png\">", "data": "::(冷)", "text": "冷" },
             { "icon": "<img alt=\"表情\" src=\"/usr/themes/Joe/assets/owo/paopao/E7949FE6B094_2x.png\">", "data": "::(生气)", "text": "生气" },
-            { "icon": "<img alt=\"表情\" src=\"/usr/themes/Joe/assets/owo/paopao/E5BCB1_2x.png\">", "data": "::(弱)", "text": "弱" }
+            { "icon": "<img alt=\"表情\" src=\"/usr/themes/Joe/assets/owo/paopao/E5BCB1_2x.png\">", "data": "::(弱)", "text": "弱" },
+            { "icon": "<img alt=\"表情\" src=\"/usr/themes/Joe/assets/owo/paopao/E78B97E5A4B4_2x.png\">", "data": "::(狗头)", "text": "狗头" }
         ]
     },
     "阿鲁": {

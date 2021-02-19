@@ -2539,17 +2539,27 @@
             .foot {
                 position: relative;
                 display: flex;
+                align-items: center;
                 justify-content: space-between;
                 padding: 0 15px 15px;
                 .owo {
-					.seat {
-						color: var(--routine);
-                        height: 100%;
-						display: flex;
-						align-items: center;
-					}
+                    min-height: 32px;
+                    padding-top: 3px;
+                    .seat {
+                        text-align: center;
+                        color: var(--routine);
+                        height: 26px;
+                        line-height: 26px;
+                        background: var(--background);
+                        opacity: 0.85;
+                        border-radius: 13px;
+                        width: 70px;
+                    }
                 }
                 .submit {
+                    position: absolute;
+                    top: 0;
+                    right: 15px;
                     white-space: nowrap;
                     .cancle {
                         display: none;
@@ -2718,40 +2728,21 @@
             cursor: pointer;
         }
         .box {
-            position: absolute;
-            left: 0;
-            width: 300px;
+            width: 100%;
+            display: none;
             background: var(--background);
-            box-shadow: var(--box-shadow);
             border-radius: var(--radius-inner);
             overflow: hidden;
-            visibility: hidden;
-            transform: scale(0.5);
-            border: 1px solid var(--classD);
-            opacity: 0;
-            transition: visibility, 0.35s, opacity 0.35s, transform 0.35s;
-            &.show {
-                visibility: visible;
-                transform: scale(1);
-                opacity: 1;
-            }
+            margin-top: 15px;
             .scroll {
                 display: none;
                 max-height: 200px;
                 overflow-y: auto;
                 overscroll-behavior: none;
                 padding: 5px;
-                &:nth-child(3) .item {
-                    text-align: center;
-                    white-space: nowrap;
-                    overflow: hidden;
-                    text-overflow: ellipsis;
-                    width: 50%;
-                    user-select: none;
-                    color: var(--routine);
-                }
                 .item {
-                    width: 20%;
+                    text-align: center;
+                    width: calc(100% / 18);
                     display: inline-block;
                     padding: 5px;
                     cursor: pointer;
@@ -2765,26 +2756,32 @@
                         background: var(--classD);
                     }
                 }
+                &:nth-child(3) {
+                    .item {
+                        color: var(--routine);
+                        width: calc(100% / 5);
+                    }
+                }
             }
             .bar {
                 display: flex;
                 align-items: center;
-                border-top: 1px solid var(--classD);
+                border-top: 1px solid var(--classC);
                 .item {
                     line-height: 30px;
                     padding: 0 10px;
                     cursor: pointer;
                     color: var(--routine);
-                    transition: background 0.25s;
+                    transition: background 0.25s, color 0.25s;
                     &.active {
-                        background: var(--classD);
+                        color: #fff;
+                        background: var(--theme);
                     }
                 }
             }
         }
     }
 }
-
 
 .profile-color-modes-illu-frame {
     opacity: 0;

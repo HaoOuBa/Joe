@@ -39,18 +39,18 @@ class JoeOwO {
     initEvent() {
         /* 容器 */
         const contain = this.options.contain;
-        const height = $(contain).height();
 
         /* 点击页面关闭 */
         $(document).on('click', function () {
-            $(contain + ' .box').removeClass('show');
+            const box = contain + ' .box';
+            $(box).stop().slideUp('fast');
         });
 
         /* 点击占位符，显示表情弹窗 */
         const seat = contain + ' .seat';
         $(seat).on('click', function (e) {
             e.stopPropagation();
-            $(this).siblings('.box').css('top', height).toggleClass('show');
+            $(this).siblings('.box').stop().slideToggle('fast');
         });
 
         /* 点击tab栏，切换表情类型 */
