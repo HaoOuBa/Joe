@@ -21,3 +21,91 @@ table.typecho-list-table {
         }
     }
 }
+
+.joe_owo {
+    &__contain {
+        position: relative;
+        * {
+            box-sizing: border-box;
+        }
+        .seat {
+            user-select: none;
+            cursor: pointer;
+        }
+        .box {
+            position: absolute;
+            left: 0;
+            width: 300px;
+            background: #fff;
+            box-shadow: 0px 0px 20px -5px rgba(158, 158, 158, 0.22);
+            border-radius: 4px;
+            overflow: hidden;
+            visibility: hidden;
+            transform: scale(0.5);
+            opacity: 0;
+            transition: visibility, 0.35s, opacity 0.35s, transform 0.35s;
+            &.show {
+                visibility: visible;
+                transform: scale(1);
+                opacity: 1;
+            }
+            .scroll {
+                display: none;
+                max-height: 200px;
+                overflow-y: auto;
+                overscroll-behavior: none;
+                padding: 5px;
+                &::-webkit-scrollbar {
+                    width: 8px;
+                    height: 8px;
+                }
+                &::-webkit-scrollbar-thumb {
+                    border-radius: 4px;
+                    background: #c0c4cc;
+                }
+                &::-webkit-scrollbar-track {
+                    background: transparent;
+                }
+                &:nth-child(3) .item {
+                    text-align: center;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    width: 50%;
+                    user-select: none;
+                }
+                .item {
+                    width: 20%;
+                    display: inline-block;
+                    padding: 5px;
+                    cursor: pointer;
+                    border-radius: 4px;
+                    transition: background 0.25s;
+                    margin: 0;
+                    img {
+                        max-width: 100%;
+                        max-height: 100%;
+                    }
+                    &:hover {
+                        background: #f2f6fc;
+                    }
+                }
+            }
+            .bar {
+                display: flex;
+                align-items: center;
+                border-top: 1px solid #f2f6fc;
+                .item {
+                    line-height: 30px;
+                    padding: 0 10px;
+                    cursor: pointer;
+                    color: var(--routine);
+                    transition: background 0.25s;
+                    &.active {
+                        background: #f2f6fc;
+                    }
+                }
+            }
+        }
+    }
+}

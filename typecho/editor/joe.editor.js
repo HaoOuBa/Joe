@@ -3,7 +3,6 @@ $(function () {
     $('#wmd-button-bar .wmd-edittab').remove();
     $('#wmd-button-row .wmd-spacer').remove();
     $('#wmd-button-row #wmd-code-button').remove();
-
     /* 增加自定义功能 */
     const items = [
         {
@@ -159,11 +158,19 @@ $(function () {
         }
         return str;
     }
-
     /* 此处无需修改 */
     items.forEach(_ => {
         let item = $(`<li class="wmd-button" id="${_.id}" title="${_.title}">${_.svg}</li>`);
         item.on('mousedown', () => $('#text').insertContent(getInsertTextById(_.id)));
         $('#wmd-button-row').append(item);
+    });
+
+    $('#wmd-button-row').append(`
+        <li class="wmd-button joe_owo__contain" title="插入表情"></li>
+    `);
+
+    new JoeOwO({
+        target: '#text',
+        seat: '<svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 160c194.4 0 352 157.6 352 352s-157.6 352-352 352S160 706.4 160 512 317.6 160 512 160z m0 64a288 288 0 1 0 0 576 288 288 0 0 0 0-576z m122.08 326.624l61.024 19.264a191.488 191.488 0 0 1-28.736 56.288A191.744 191.744 0 0 1 512 704a191.744 191.744 0 0 1-179.648-124.096l-3.456-10.016 61.024-19.264c4.256 13.44 10.72 26.112 19.136 37.44A127.744 127.744 0 0 0 512 640a127.744 127.744 0 0 0 119.264-81.408l2.816-8zM400 352a48 48 0 1 1 0 96 48 48 0 0 1 0-96z m224 0a48 48 0 1 1 0 96 48 48 0 0 1 0-96z" p-id="2401" fill="#9b9b9b"></path></svg>'
     });
 });
