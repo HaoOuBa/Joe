@@ -4,7 +4,7 @@ class JoeOwO {
             contain: '.joe_owo__contain',
             target: '.joe_owo__target',
             seat: 'OωO',
-            api: '/usr/themes/Joe/assets/json/joe.owo.json'
+            api: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/json/joe.owo.json'
         };
         this.options = Object.assign(defaultOption, options);
         $.ajax({
