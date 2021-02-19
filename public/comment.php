@@ -30,7 +30,7 @@
                         </div>
                     </div>
                     <div class="body">
-                        <textarea class="text OwO-target" name="text" autocomplete="off" placeholder="说点什么吧，点击右上方切换成画图试试？"></textarea>
+                        <textarea class="text joe_owo__target" name="text" autocomplete="off" placeholder="说点什么吧，点击右上方切换成画图试试？"></textarea>
                         <div class="draw" style="display: none;">
                             <ul class="line">
                                 <li data-line="3">细</li>
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="foot">
-                        <div class="OwO"></div>
+                        <div class="owo joe_owo__contain"></div>
                         <div class="submit">
                             <span class="cancle joe_comment__cancle">取消</span>
                             <button type="submit">发表评论</button>
