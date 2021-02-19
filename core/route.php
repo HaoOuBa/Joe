@@ -50,7 +50,7 @@ function _getPost($self)
                 "agree" => $item->agree,
                 "permalink" => $item->permalink,
                 "lazyload" => _getLazyload(false),
-                "type" => "sticky"
+                "type" => "sticky",
             );
         }
     }

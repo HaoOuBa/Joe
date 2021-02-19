@@ -1030,6 +1030,7 @@
 						font-weight: 500;
 						line-height: 24px;
 						transition: all 0.35s;
+						max-height: 48px;
 						&:hover {
 							color: var(--theme);
 						}
@@ -1067,6 +1068,7 @@
 				color: var(--main);
 				font-size: 18px;
 				line-height: 24px;
+				max-height: 48px;
 				transition: color 0.35s;
 				&:hover {
 					color: var(--theme);
@@ -1095,6 +1097,7 @@
 				color: var(--minor);
 				word-break: break-all;
 				line-height: 22px;
+				max-height: 44px;
 				opacity: 0.85;
 			}
 		}
@@ -1693,7 +1696,7 @@
 				}
 			}
 		}
-		img {
+		img:not(.owo_image) {
 			display: block;
 			max-width: 100%;
 			border-radius: var(--radius-inner);
@@ -1704,6 +1707,10 @@
 				transform: translateY(-5px);
 				box-shadow: 0 34px 20px -24px rgba(136, 161, 206, 0.3);
 			}
+		}
+		.owo_image {
+			max-height: 26px;
+			vertical-align: top;
 		}
 		ol,
 		ul {

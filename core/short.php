@@ -4,6 +4,11 @@ function _parseContent($post, $login)
 {
     /* 优先判断文章内是否有回复可见的内容 */
     $content = $post->content;
+
+    /* 过滤表情 */
+    $content = _parseReply($content);
+
+    /* 过滤回复可见 */
     if (preg_match('/\{hide\}.{0,}\{\/hide\}/sSU', $content)) {
         $db = Typecho_Db::get();
         $hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
