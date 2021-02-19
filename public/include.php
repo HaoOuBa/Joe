@@ -69,7 +69,6 @@
 <script src="<?php $this->options->themeUrl('assets/js/joe.owo.js?v=686'); ?>"></script>
 <script src="<?php $this->options->themeUrl('assets/js/joe.global.js?v=686'); ?>"></script>
 <!-- 异步加载的JS -->
-<script async src="https://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0"></script>
 <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/smooth/joe.smooth.js"></script>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
     <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/cursor/<?php $this->options->JCursorEffects() ?>"></script>

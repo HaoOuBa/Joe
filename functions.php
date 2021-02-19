@@ -372,7 +372,7 @@ function themeConfig($form)
     $JAside_Author_Nav->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Nav->multiMode());
 
-    $JAside_Weather_Key = new Typecho_Widget_Helper_Form_Element_Textarea(
+    $JAside_Weather_Key = new Typecho_Widget_Helper_Form_Element_Text(
         'JAside_Weather_Key',
         NULL,
         NULL,
