@@ -71,6 +71,12 @@ function themeInit($self)
                 break;
         };
     }
+
+    /* 增加自定义sitemap功能 */
+    if ($self->request->getRequestUri() == "/sitemap.xml" || $self->request->getRequestUri() == "/index.php/sitemap.xml") {
+        $self->setThemeFile("library/sitemap.php");
+        $self->response->setStatus(200);
+    }
 }
 
 /* 增加自定义字段 */
