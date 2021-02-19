@@ -14,7 +14,6 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <!-- 壁纸页面需要用到的CSS及JS -->
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.wallpaper.css'); ?>">
     <script src="<?php $this->options->themeUrl('assets/js/joe.wallpaper.js'); ?>"></script>
 </head>
