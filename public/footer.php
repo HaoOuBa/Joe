@@ -9,7 +9,7 @@
             </div>
         <?php endif; ?>
         <div class="item">
-            <?php $this->options->JFooter_Right() ?>
+            <?php $this->options->JFooter_Right() ?><span class="dot">·</span><a href="<?php $this->options->index("sitemap.html"); ?>" target="_blank" rel="noopener noreferrer">SiteMap</a>
         </div>
     </div>
 </footer>
