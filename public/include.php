@@ -52,8 +52,8 @@
 <!-- 全局公用CSS（静态资源放在了CDN上，如果你的服务器带宽不够，请不要修改成本地，cdn采用jsdelivr放心不会失效） -->
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.mode.css'); ?>">
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.normalize.css'); ?>">
-<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css?v=21221'); ?>">
-<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.responsive.css?v=545'); ?>">
+<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css?v=3434'); ?>">
+<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.responsive.css?v=3434'); ?>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/qmsg/qmsg.css" />
 <link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
