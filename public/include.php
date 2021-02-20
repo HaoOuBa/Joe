@@ -66,7 +66,7 @@
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/sketchpad/joe.sketchpad.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/qmsg/qmsg.js"></script>
-<script src="<?php $this->options->themeUrl('assets/js/joe.extend.js'); ?>"></script>
+<script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/js/joe.extend.js"></script>
 <script src="<?php $this->options->themeUrl('assets/js/joe.global.js'); ?>"></script>
 <!-- 异步加载的JS -->
 <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/smooth/joe.smooth.js"></script>
