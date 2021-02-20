@@ -107,16 +107,11 @@ var JoeOwO = /*#__PURE__*/ (function () {
                 /* 点击表情，向文本框插入内容 */
 
                 var items = contain + ' .scroll .item';
-                var textarea = $(this.options.target)[0];
+                var textarea = $(this.options.target);
                 $(items).on('click', function () {
-                    var text = $(this).attr('data-text');
-                    var cursorPos = textarea.selectionEnd;
-                    var areaValue = textarea.value;
-                    textarea.value = areaValue.slice(0, cursorPos) + text + areaValue.slice(cursorPos);
-                    textarea.focus();
+                    textarea.insertContent($(this).attr('data-text'));
                 });
                 /* 默认激活第一个 */
-
                 $(barItem).first().click();
             }
         }
