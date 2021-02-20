@@ -1,8 +1,11 @@
 $(function () {
-    $('#wmd-editarea textarea').attr('placeholder', '请输入文章内容...（支持图片粘贴上传）');
+    $('#wmd-editarea textarea').attr('placeholder', '请输入文章内容...（开启粘贴上传功能后，支持图片粘贴上传哦~）');
     $('#wmd-button-bar .wmd-edittab').remove();
     $('#wmd-button-row .wmd-spacer').remove();
     $('#wmd-button-row #wmd-code-button').remove();
+    $('#wmd-fullscreen-button').on('click', function () {
+        $('.fullscreen #text').css('top', $('.fullscreen #wmd-button-bar').outerHeight());
+    });
     /* 增加自定义功能 */
     const items = [
         {

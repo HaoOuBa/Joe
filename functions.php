@@ -734,6 +734,17 @@ function themeConfig($form)
     $JLimitOneChinese->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JLimitOneChinese->multiMode());
 
+    $JPasteUpload = new Typecho_Widget_Helper_Form_Element_Select(
+        'JPasteUpload',
+        array('off' => '关闭（默认）', 'on' => '开启'),
+        'off',
+        '是否开启编辑器粘贴上传图片功能',
+        '介绍：开启后文章编辑器将拥有图片上传功能 <br />
+         其他：Typecho开发版已实现粘贴上传，如果您使用的是开发版，请关闭此项'
+    );
+    $JPasteUpload->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JPasteUpload->multiMode());
+
     $JBaiduToken = new Typecho_Widget_Helper_Form_Element_Text(
         'JBaiduToken',
         NULL,

@@ -9,9 +9,49 @@ class Editor
 {
     public static function edit()
     {
-        echo "<link rel='stylesheet' href='" . Helper::options()->themeUrl . '/typecho/editor/joe.editor.css' . "'>";
-        echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.extend.js' . "'></script>";
-        echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.editor.js' . "'></script>";
+        echo "<link rel='stylesheet' href='" . Helper::options()->themeUrl . '/typecho/editor/joe.editor.css' . "'>\n";
+        echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.extend.js' . "'></script>\n";
+        echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.editor.js' . "'></script>\n";
+        if (Helper::options()->JPasteUpload === "on") { ?>
+            <script>
+                $("#text").on("paste", event => {
+                    let clipboardData = event.clipboardData || window.clipboardData || event.originalEvent.clipboardData;
+                    if (!clipboardData || !clipboardData.items) return;
+                    let items = clipboardData.items;
+                    let file = null;
+                    if (items.length === 0) return;
+                    for (let i = 0; i < items.length; i++) {
+                        if (items[i].kind === 'file' && items[i].type.match(/^image/)) {
+                            event.preventDefault(), file = items[i].getAsFile()
+                        }
+                    }
+                    if (!file) return;
+                    let uploadUrl = '<?php Helper::security()->index('/action/upload'); ?>';
+                    ($('input[name="cid"]').val()) && (uploadUrl = uploadUrl + '&cid=' + cid);
+                    let random = Date.now().toString(36);
+                    let fileName = random + '.png'
+                    let uploadText = '[图片上传中...(' + random + ')]';
+                    $('#text').insertContent(uploadText)
+                    let formData = new FormData();
+                    formData.append('name', fileName);
+                    formData.append('file', file, fileName);
+                    $.ajax({
+                        method: 'post',
+                        url: uploadUrl,
+                        data: formData,
+                        contentType: false,
+                        processData: false,
+                        success(res) {
+                            $("#text").val($("#text").val().replace(uploadText, '![' + res[1].title + '](' + res[0] + ')'))
+                        },
+                        error() {
+                            $("#text").val($("#text").val().replace(uploadText, '[图片上传失败！(' + random + ')]'))
+                        }
+                    });
+                })
+            </script>
+<?php
+        }
     }
 }
 

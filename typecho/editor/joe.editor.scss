@@ -10,6 +10,11 @@ table.typecho-list-table {
         width: 100%;
     }
 }
+
+body.fullscreen {
+    overflow-x: hidden;
+}
+
 #wmd-button-row {
     height: auto;
     .wmd-button {
