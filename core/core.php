@@ -117,7 +117,8 @@ function themeFields($layout)
         'SEO关键词（非常重要！）',
         '介绍：用于设置当前页SEO关键词 <br />
          注意：多个关键词使用英文逗号进行隔开 <br />
-         例如：Typecho,Typecho主题,Typecho模板'
+         例如：Typecho,Typecho主题,Typecho模板 <br />
+         其他：如果不填写此项，则默认取文章标签'
     );
     $layout->addItem($keywords);
 
@@ -127,7 +128,8 @@ function themeFields($layout)
         NULL,
         'SEO描述语（非常重要！）',
         '介绍：用于设置当前页SEO描述语 <br />
-         注意：SEO描述语不应当过长也不应当过少'
+         注意：SEO描述语不应当过长也不应当过少 <br />
+         其他：如果不填写此项，则默认截取文章片段'
     );
     $layout->addItem($description);
 

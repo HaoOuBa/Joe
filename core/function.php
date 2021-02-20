@@ -3,7 +3,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-    return "5.2.4";
+    return "5.2.5";
 };
 
 /* 判断是否是手机 */
@@ -185,7 +185,7 @@ function _getAbstract($item, $type = true)
         if ($item->fields->abstract) {
             $abstract = $item->fields->abstract;
         } else {
-            $abstract = strip_tags($item->excerpt);
+            $abstract = Typecho_Common::subStr(strip_tags($item->excerpt), 0, 180, '...');;
         }
     }
     if ($abstract === '') $abstract = "暂无简介";
