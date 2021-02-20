@@ -4,6 +4,8 @@
 function _getRanking($self)
 {
     header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $ranking_txt = Helper::options()->JAside_Ranking;
     $ranking_arr = explode("$", $ranking_txt);
     $json = _curl("https://rank.the.top/v1/{$ranking_arr[1]}/1/9");
@@ -27,6 +29,8 @@ function _getRanking($self)
 function _getPost($self)
 {
     header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $page = $self->request->page;
     $pageSize = $self->request->pageSize;
     $type = $self->request->type;
@@ -79,6 +83,8 @@ function _getPost($self)
 function _handleViews($self)
 {
     header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $cid     = $self->request->cid;
     $db = Typecho_Db::get();
     $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
@@ -97,6 +103,8 @@ function _handleViews($self)
 function _handleAgree($self)
 {
     header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $cid = $self->request->cid;
     $type = $self->request->type;
     $db = Typecho_Db::get();
@@ -120,6 +128,8 @@ function _handleAgree($self)
 function _getRecord($self)
 {
     header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $site = $self->request->site;
     $encryption = md5(mt_rand(1655, 100860065) . time());
     $baiduSite = "https://www.baidu.com/s?ie=utf-8&newi=1&mod=1&isid={$encryption}&wd={$site}&rsv_spt=1&rsv_iqid={$encryption}&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=0&rsv_dl=ib&rsv_sug3=2&rsv_sug1=1&rsv_sug7=001&rsv_n=2&rsv_btype=i&inputT=3083&rsv_sug4=3220&rsv_sug=9&rsv_sid=32818_1460_33042_33060_31660_33099_33101_32961_26350_22159&_ss=1&clist=&hsug=&f4s=1&csor=38&_cr1=32951";
@@ -152,6 +162,8 @@ function _getRecord($self)
 function _pushRecord($self)
 {
     header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $domain = $self->request->domain;
     $url = $self->request->url;
     $token = Helper::options()->JBaiduToken;
@@ -174,6 +186,8 @@ function _pushRecord($self)
 function _getWallpaperType($self)
 {
     header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $json = _curl("http://cdn.apc.360.cn/index.php?c=WallPaper&a=getAllCategoriesV2&from=360chrome");
     $res = json_decode($json, TRUE);
     if ($res['errno'] == 0) {
@@ -193,6 +207,8 @@ function _getWallpaperType($self)
 function _getWallpaperList($self)
 {
     header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $cid = $self->request->cid;
     $start = $self->request->start;
     $count = $self->request->count;
@@ -215,6 +231,9 @@ function _getWallpaperList($self)
 /* 抓取苹果CMS视频分类 */
 function _getMaccmsList($self)
 {
+    header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     header("HTTP/1.1 200 OK");
     $cms_api = Helper::options()->JMaccmsAPI;
     $ac = $self->request->ac ? $self->request->ac : '';
@@ -248,6 +267,8 @@ function _getMaccmsList($self)
 function _getHuyaList($self)
 {
     header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $gameId = $self->request->gameId;
     $page = $self->request->page;
     $json = _curl("https://www.huya.com/cache.php?m=LiveList&do=getLiveListByPage&gameId={$gameId}&tagAll=0&page={$page}");
