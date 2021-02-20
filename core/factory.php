@@ -11,7 +11,6 @@ class Editor
     {
         echo "<link rel='stylesheet' href='" . Helper::options()->themeUrl . '/typecho/editor/joe.editor.css' . "'>";
         echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.extend.js' . "'></script>";
-        echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.owo.js' . "'></script>";
         echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.editor.js' . "'></script>";
     }
 }

@@ -164,13 +164,50 @@ $(function () {
         item.on('mousedown', () => $('#text').insertContent(getInsertTextById(_.id)));
         $('#wmd-button-row').append(item);
     });
-
-    $('#wmd-button-row').append(`
-        <li class="wmd-button joe_owo__contain" title="插入表情"></li>
-    `);
-
-    new JoeOwO({
-        target: '#text',
-        seat: '<svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 160c194.4 0 352 157.6 352 352s-157.6 352-352 352S160 706.4 160 512 317.6 160 512 160z m0 64a288 288 0 1 0 0 576 288 288 0 0 0 0-576z m122.08 326.624l61.024 19.264a191.488 191.488 0 0 1-28.736 56.288A191.744 191.744 0 0 1 512 704a191.744 191.744 0 0 1-179.648-124.096l-3.456-10.016 61.024-19.264c4.256 13.44 10.72 26.112 19.136 37.44A127.744 127.744 0 0 0 512 640a127.744 127.744 0 0 0 119.264-81.408l2.816-8zM400 352a48 48 0 1 1 0 96 48 48 0 0 1 0-96z m224 0a48 48 0 1 1 0 96 48 48 0 0 1 0-96z" p-id="2401" fill="#9b9b9b"></path></svg>'
+    $.ajax({
+        url: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/json/joe.owo.json',
+        success(res) {
+            let barStr = '';
+            let scrollStr = '';
+            for (let key in res) {
+                barStr += `<div class="item" data-index="${res[key].index}">${key}</div>`;
+                scrollStr += `
+                    <ul class="scroll" data-index="${res[key].index}">
+                        ${res[key].container.map(_ => `<li class="item" data-text="${_.data}">${_.icon}</li>`).join('')} 
+                    </ul>
+                `;
+            }
+            $('#wmd-button-row').append(`
+                <li class="wmd-button joe_owo__contain" title="插入表情">
+                    <div class="seat">
+                        <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M512 160c194.4 0 352 157.6 352 352s-157.6 352-352 352S160 706.4 160 512 317.6 160 512 160z m0 64a288 288 0 1 0 0 576 288 288 0 0 0 0-576z m122.08 326.624l61.024 19.264a191.488 191.488 0 0 1-28.736 56.288A191.744 191.744 0 0 1 512 704a191.744 191.744 0 0 1-179.648-124.096l-3.456-10.016 61.024-19.264c4.256 13.44 10.72 26.112 19.136 37.44A127.744 127.744 0 0 0 512 640a127.744 127.744 0 0 0 119.264-81.408l2.816-8zM400 352a48 48 0 1 1 0 96 48 48 0 0 1 0-96z m224 0a48 48 0 1 1 0 96 48 48 0 0 1 0-96z" p-id="2401" fill="#9b9b9b"></path></svg>
+                    </div>
+                    <div class="box">
+                        ${scrollStr}
+                        <div class="bar">${barStr}</div>
+                    </div>
+                </li>
+            `);
+            $(document).on('click', function () {
+                $('.joe_owo__contain .box').removeClass('show');
+            });
+            $('.joe_owo__contain .seat').on('click', function (e) {
+                e.stopPropagation();
+                $(this).siblings('.box').toggleClass('show');
+            });
+            $('.joe_owo__contain .box .bar .item').on('click', function (e) {
+                e.stopPropagation();
+                $(this).addClass('active').siblings().removeClass('active');
+                const scrollIndx = '.joe_owo__contain .box .scroll[data-index="' + $(this).attr('data-index') + '"]';
+                $(scrollIndx).show().siblings('.scroll').hide();
+            });
+            /* 点击表情，向文本框插入内容 */
+            $('.joe_owo__contain .scroll .item').on('click', function () {
+                const text = $(this).attr('data-text');
+                $('#text').insertContent(text);
+            });
+            /* 默认激活第一个 */
+            $('.joe_owo__contain .box .bar .item').first().click();
+        }
     });
 });

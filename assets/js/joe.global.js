@@ -457,7 +457,48 @@ document.addEventListener('DOMContentLoaded', () => {
     /* 初始化表情功能 */
     {
         if ($('.joe_owo__contain').length > 0 && $('.joe_owo__target').length > 0) {
-            new JoeOwO();
+            $.ajax({
+                url: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/json/joe.owo.json',
+                success(res) {
+                    let barStr = '';
+                    let scrollStr = '';
+                    for (let key in res) {
+                        barStr += `<div class="item" data-index="${res[key].index}">${key}</div>`;
+                        scrollStr += `
+                            <ul class="scroll" data-index="${res[key].index}">
+                                ${res[key].container.map(_ => `<li class="item" data-text="${_.data}">${_.icon}</li>`).join('')} 
+                            </ul>
+                        `;
+                    }
+                    $(".joe_owo__contain").html(`
+                        <div class="seat">OωO</div>
+                        <div class="box">
+                            ${scrollStr}
+                            <div class="bar">${barStr}</div>
+                        </div>
+                    `)
+                    $(document).on('click', function () {
+                        $('.joe_owo__contain .box').stop().slideUp('fast');
+                    });
+                    $('.joe_owo__contain .seat').on('click', function (e) {
+                        e.stopPropagation();
+                        $(this).siblings('.box').stop().slideToggle('fast')
+                    });
+                    $('.joe_owo__contain .box .bar .item').on('click', function (e) {
+                        e.stopPropagation();
+                        $(this).addClass('active').siblings().removeClass('active');
+                        const scrollIndx = '.joe_owo__contain .box .scroll[data-index="' + $(this).attr('data-index') + '"]';
+                        $(scrollIndx).show().siblings('.scroll').hide();
+                    });
+                    /* 点击表情，向文本框插入内容 */
+                    $('.joe_owo__contain .scroll .item').on('click', function () {
+                        const text = $(this).attr('data-text');
+                        $('.joe_owo__target').insertContent(text);
+                    });
+                    /* 默认激活第一个 */
+                    $('.joe_owo__contain .box .bar .item').first().click();
+                }
+            });
         }
     }
 });
