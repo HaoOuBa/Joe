@@ -27,7 +27,8 @@ class Editor
                     }
                     if (!file) return;
                     let uploadUrl = '<?php Helper::security()->index('/action/upload'); ?>';
-                    ($('input[name="cid"]').val()) && (uploadUrl = uploadUrl + '&cid=' + cid);
+                    let cid = $('input[name="cid"]').val()
+                    cid && (uploadUrl = uploadUrl + '&cid=' + cid);
                     let random = Date.now().toString(36);
                     let fileName = random + '.png'
                     let uploadText = '[图片上传中...(' + random + ')]';
