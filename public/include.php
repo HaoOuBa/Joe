@@ -55,7 +55,9 @@
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css'); ?>">
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.responsive.css'); ?>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/qmsg/qmsg.css" />
-<link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
+<?php if (in_array('weather', $this->options->JAside) && $this->options->JAside_Weather_Key) : ?>
+    <link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
+<?php endif; ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
