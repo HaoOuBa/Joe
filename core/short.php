@@ -22,7 +22,7 @@ function _parseContent($post, $login)
     if (preg_match('/\{music-list\s{0,}id="\d{0,}"\s{0,}\/\}/SU', $content)) {
         $content = preg_replace(
             '/\{music-list\s{0,}id="(\d{0,})"\s{0,}\/\}/SU',
-            '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=0&id=$1&auto=0&height=430" width="330" height="450"></iframe>',
+            '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=0&id=$1&auto=1&height=430" width="330" height="450"></iframe>',
             $content
         );
     }
@@ -30,7 +30,7 @@ function _parseContent($post, $login)
     if (preg_match('/\{music\s{0,}id="\d{0,}"\s{0,}\/\}/SU', $content)) {
         $content = preg_replace(
             '/\{music\s{0,}id="(\d{0,})"\s{0,}\/\}/SU',
-            '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=2&id=$1&auto=0&height=66" width="330" height="86"></iframe>',
+            '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=2&id=$1&auto=1&height=66" width="330" height="86"></iframe>',
             $content
         );
     }
