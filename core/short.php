@@ -8,124 +8,148 @@ function _parseContent($post, $login)
     /* 过滤表情 */
     $content = _parseReply($content);
 
+    /* 过滤默认卡片 */
+    if (strpos($content, '{/card-default}') !== false) {
+        $content = preg_replace_callback(
+            '/\{card-default\s{0,}width="(.{0,})"\s{0,}label="(.{0,})"\s{0,}\}(.{0,})\{\/card-default\}/sSU',
+            function ($matches) {
+                return '<span class="joe_detail__article-card block" style="width: ' . $matches[1] . '">
+                            <span class="title block">' . $matches[2] . '</span>
+                            <span class="content block">' . $matches[3] . '</span>
+                        </span>
+                ';
+            },
+            $content
+        );
+    }
+
+    /* 过滤消息提示 */
+    if (strpos($content, '{/message}') !== false) {
+        $content = preg_replace_callback(
+            '/\{message\s{0,}type="(success|info|warning|error)"\s{0,}\}(.{0,})\{\/message\}/sSU',
+            function ($matches) {
+                return '<span class="joe_detail__article-message block ' . $matches[1] . '">
+                            <span class="icon"></span>
+                            <span class="content">' . $matches[2] . '</span>
+                        </span>
+                ';
+            },
+            $content
+        );
+    }
+
+    /* 过滤note button */
+    if (strpos($content, '{/anote}') !== false) {
+        $content = preg_replace_callback(
+            '/\{anote\s{0,}icon="(.{0,})"\s{0,}href="(.{0,})"\s{0,}type="(secondary|success|warning|error|info)"\s{0,}}(.{0,})\{\/anote\}/sSU',
+            function ($matches) {
+                return '<a class="joe_detail__article-anote ' . $matches[3] . '" href="' . $matches[2] . '" target="_blank" rel="noopener noreferrer nofollow">
+                            <span class="icon"><i class="fa ' . $matches[1] . '"></i></span><span class="content">' . $matches[4] . '</span>
+                        </a>
+                ';
+            },
+            $content
+        );
+    }
+
+    /* 过滤普通button */
+    if (strpos($content, '{/abtn}') !== false) {
+        $content = preg_replace_callback(
+            '/\{abtn\s{0,}icon="(.{0,})"\s{0,}color="(.{0,})"\s{0,}href="(.{0,})"\s{0,}radius="(.{0,})"\s{0,}\}(.{0,})\{\/abtn\}/sSU',
+            function ($matches) {
+                return '<a class="joe_detail__article-abtn" style="background: ' . $matches[2] . '; border-radius: ' . $matches[4] . '" href="' . $matches[3] . '" target="_blank" rel="noopener noreferrer nofollow">
+                            <span class="icon"><i class="' . $matches[1] . ' fa"></i></span><span class="content">' . $matches[5] . '</span>
+                        </a>
+                ';
+            },
+            $content
+        );
+    }
+
     /* 过滤回复可见 */
-    if (preg_match('/\{hide\}.{0,}\{\/hide\}/sSU', $content)) {
+    if (strpos($content, '{/hide}') !== false) {
         $db = Typecho_Db::get();
         $hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
         if ($hasComment || $login) {
-            $content = preg_replace('/\{hide\}(.{0,})\{\/hide\}/sSU', '$1', $content);
+            $content = strtr($content, array("{hide}" => "", "{/hide}" => ""));
         } else {
-            $content = preg_replace('/\{hide\}(.{0,})\{\/hide\}/sSU', '<span class="joe_detail__article-hide block">此处内容作者设置了 <i>回复</i> 可见</span>', $content);
+            $content = preg_replace_callback(
+                '/\{hide\}.{0,}\{\/hide\}/sSU',
+                function () {
+                    return '<span class="joe_detail__article-hide block">此处内容作者设置了 <i>回复</i> 可见</span>';
+                },
+                $content
+            );
         }
     }
-    /* 过滤网易云音乐歌单 */
-    if (preg_match('/\{music-list\s{0,}id="\d{0,}"\s{0,}\/\}/SU', $content)) {
-        $content = preg_replace(
-            '/\{music-list\s{0,}id="(\d{0,})"\s{0,}\/\}/SU',
-            '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=0&id=$1&auto=1&height=430" width="330" height="450"></iframe>',
+
+    /* 过滤网易云音乐 */
+    if (strpos($content, '{music') !== false) {
+        $content = preg_replace_callback(
+            '/\{music-list\s{0,}id="(\w{0,})"\s{0,}\/\}/SU',
+            function ($matches) {
+                return '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=0&id=' . $matches[1] . '&auto=1&height=430" width="330" height="450"></iframe>';
+            },
+            $content
+        );
+        $content = preg_replace_callback(
+            '/\{music\s{0,}id="(\w{0,})"\s{0,}\/\}/SU',
+            function ($matches) {
+                return '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=2&id=' . $matches[1] . '&auto=1&height=66" width="330" height="86"></iframe>';
+            },
             $content
         );
     }
-    /* 过滤网易云音乐单首歌 */
-    if (preg_match('/\{music\s{0,}id="\d{0,}"\s{0,}\/\}/SU', $content)) {
-        $content = preg_replace(
-            '/\{music\s{0,}id="(\d{0,})"\s{0,}\/\}/SU',
-            '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=2&id=$1&auto=1&height=66" width="330" height="86"></iframe>',
-            $content
-        );
-    }
+
     /* 过滤dplayer播放器 */
-    if (preg_match('/\{dplayer\s{0,}src=".{0,}"\s{0,}\/\}/sSU', $content)) {
-        $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=';
-        $content = preg_replace(
+    if (strpos($content, '{dplayer') !== false) {
+        $content = preg_replace_callback(
             '/\{dplayer\s{0,}src="(.{0,})"\s{0,}\/\}/sSU',
-            '<iframe class="joe_detail__article-player block lazyload" allowfullscreen="true" data-src="' . $player . '$1"></iframe>',
+            function ($matches) {
+                $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=';
+                return '<iframe class="joe_detail__article-player block lazyload" allowfullscreen="true" data-src="' . $player . $matches[1] . '"></iframe>';
+            },
             $content
         );
     }
+
     /* 过滤bilibili播放器 */
-    if (preg_match('/\{bilibili\s{0,}bvid="\w{0,}"\s{0,}\/\}/sSU', $content)) {
-        $content = preg_replace(
+    if (strpos($content, '{bilibili') !== false) {
+        $content = preg_replace_callback(
             '/\{bilibili\s{0,}bvid="(\w{0,})"\s{0,}\/\}/sSU',
-            '<iframe class="joe_detail__article-player block lazyload" allowfullscreen="true" data-src="//player.bilibili.com/player.html?bvid=$1"></iframe>',
+            function ($matches) {
+                return '<iframe class="joe_detail__article-player block lazyload" allowfullscreen="true" data-src="//player.bilibili.com/player.html?bvid=' . $matches[1] . '"></iframe>';
+            },
             $content
         );
     }
+
     /* 过滤完成任务勾选 */
-    if (preg_match('/\{x\}/SU', $content)) {
-        $content = preg_replace(
-            '/\{x\}/SU',
-            '<input type="checkbox" class="joe_detail__article-checkbox" checked disabled></input>',
-            $content
-        );
+    if (strpos($content, '{x}') !== false || strpos($content, '{ }') !== false) {
+        $content = strtr($content, array(
+            "{x}" => '<input type="checkbox" class="joe_detail__article-checkbox" checked disabled></input>',
+            "{ }" => '<input type="checkbox" class="joe_detail__article-checkbox" disabled></input>'
+        ));
     }
-    /* 过滤未完成任务勾选 */
-    if (preg_match('/\{\s{1}\}/SU', $content)) {
-        $content = preg_replace(
-            '/\{\s{1}\}/SU',
-            '<input type="checkbox" class="joe_detail__article-checkbox" disabled></input>',
-            $content
-        );
-    }
-    /* 过滤默认卡片 */
-    if (preg_match('/\{card-default\s{0,}width=".{0,}"\s{0,}label=".{0,}"\s{0,}\}.{0,}\{\/card-default\}/sSU', $content)) {
-        $content = preg_replace(
-            '/\{card-default\s{0,}width="(.{0,})"\s{0,}label="(.{0,})"\s{0,}\}(.{0,})\{\/card-default\}/sSU',
-            '<span class="joe_detail__article-card block" style="width: $1">
-                <span class="title block">$2</span>
-                <span class="content block">$3</span>
-             </span>',
-            $content
-        );
-    }
-    /* 过滤消息提示 */
-    if (preg_match('/\{message\s{0,}type="success|info|warning|error"\s{0,}\}.{0,}\{\/message\}/sSU', $content)) {
-        $content = preg_replace(
-            '/\{message\s{0,}type="(success|info|warning|error)"\s{0,}\}(.{0,})\{\/message\}/sSU',
-            '<span class="joe_detail__article-message block $1">
-                <span class="icon"></span>
-                <span class="content">$2</span>
-             </span>',
-            $content
-        );
-    }
-    /* 过滤居中标题 */
-    if (preg_match('/\{mtitle\}.{0,}\{\/mtitle\}/sSU', $content)) {
-        $content = preg_replace(
-            '/\{mtitle\}(.{0,})\{\/mtitle\}/sSU',
-            '<span class="joe_detail__article-mtitle">
-                <span class="text">$1</span>
-             </span>',
-            $content
-        );
-    }
-    /* 过滤note button */
-    if (preg_match('/\{anote\s{0,}icon=".{0,}"\s{0,}href=".{0,}"\s{0,}type="secondary|success|warning|error|info"\s{0,}}.{0,}\{\/anote\}/sSU', $content)) {
-        $content = preg_replace(
-            '/\{anote\s{0,}icon="(.{0,})"\s{0,}href="(.{0,})"\s{0,}type="(secondary|success|warning|error|info)"\s{0,}}(.{0,})\{\/anote\}/sSU',
-            '<a class="joe_detail__article-anote $3" href="$2" target="_blank" rel="noopener noreferrer nofollow">
-                <span class="icon"><i class="fa $1"></i></span><span class="content">$4</span>
-             </a>',
-            $content
-        );
-    }
-    /* 过滤note button */
-    if (preg_match('/\{abtn\s{0,}icon=".{0,}"\s{0,}color=".{0,}"\s{0,}href=".{0,}"\s{0,}radius=".{0,}"\s{0,}\}.{0,}\{\/abtn\}/sSU', $content)) {
-        $content = preg_replace(
-            '/\{abtn\s{0,}icon="(.{0,})"\s{0,}color="(.{0,})"\s{0,}href="(.{0,})"\s{0,}radius="(.{0,})"\s{0,}\}(.{0,})\{\/abtn\}/sSU',
-            '<a class="joe_detail__article-abtn" style="background: $2; border-radius: $4" href="$3" target="_blank" rel="noopener noreferrer nofollow">
-                <span class="icon"><i class="$1 fa"></i></span><span class="content">$5</span>
-             </a>',
-            $content
-        );
-    }
+
     /* 过滤复制粘贴功能 */
-    if (preg_match('/\{copy\s{0,}text=".{0,}"\s{0,}\}.{0,}\{\/copy\}/sSU', $content)) {
-        $content = preg_replace(
+    if (strpos($content, '{/copy}') !== false) {
+        $content = preg_replace_callback(
             '/\{copy\s{0,}text="(.{0,})"\s{0,}\}(.{0,})\{\/copy\}/sSU',
-            '<span data-clipboard-text="$1" class="joe_detail__article-copy">$2</span>',
+            function ($matches) {
+                return '<span data-clipboard-text="' . $matches[1] . '" class="joe_detail__article-copy">' . $matches[2] . '</span>';
+            },
             $content
         );
     }
+
+    /* 过滤居中标题 */
+    if (strpos($content, '{/mtitle}') !== false) {
+        $content = strtr($content, array(
+            "{mtitle}" => '<span class="joe_detail__article-mtitle"><span class="text">',
+            "{/mtitle}" => '</span></span>'
+        ));
+    }
+
     echo $content;
 }
