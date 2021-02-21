@@ -4,6 +4,7 @@
         "favicon.ico",
         "search.png",
         "assets/owo/*",
+        "assets/thumb/*",
     ],
-    "aggressiveCompression": "true"
+    "aggressiveCompression": "false"
 }
