@@ -274,7 +274,9 @@ function themeConfig($form)
         NULL,
         NULL,
         '自定义CSS（非必填）',
-        '介绍：请填写自定义CSS内容，填写时无需填写style标签。'
+        '介绍：请填写自定义CSS内容，填写时无需填写style标签。<br />
+         其他：如果想修改主题色、卡片透明度等，都可以通过这个实现 <br />
+         例如：body { --theme: #ff6800; --background: rgba(255,255,255,0.85) }'
     );
     $JCustomCSS->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomCSS);
