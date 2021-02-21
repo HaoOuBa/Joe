@@ -119,10 +119,7 @@ function threadedComments($comments, $options)
                     <div class="handle">
                         <time class="date" datetime="<?php $comments->date('Y-m-d'); ?>"><?php $comments->date('Y-m-d'); ?></time>
                         <span class="reply joe_comment__reply" data-id="<?php $comments->theId(); ?>" data-coid="<?php $comments->coid(); ?>">
-                            <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
-                                <path d="M947.2 467.968h-276.48v61.44h276.48zM947.2 650.24h-363.52v61.44h363.52zM947.2 832.512H482.304v61.44H947.2zM519.168 179.2l122.368 85.504-352.256 503.808-122.368-85.504L519.168 179.2m-14.848-85.504L81.92 698.368l223.232 156.16L727.04 249.856 504.32 93.696z" p-id="6645"></path>
-                                <path d="M433.152 195.072L397.824 245.76l223.232 155.648 35.328-50.176zM143.36 740.864l-61.44-42.496v237.056l222.72-81.408-60.928-43.008-100.352 36.864z" p-id="6646"></path>
-                            </svg>回复
+                            <i class="icon fa fa-pencil" aria-hidden="true"></i>回复
                         </span>
                     </div>
                 </div>
