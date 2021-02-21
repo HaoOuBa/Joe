@@ -39,7 +39,7 @@
                 <div class="joe_aside__item-contain"></div>
             </section>
         <?php endif; ?>
-        <?php if ($this->is('index') && $this->options->JIndex_Hot !== "on" || !$this->is('index') && in_array('hot', $this->options->JAside)) : ?>
+        <?php if (in_array('hot', $this->options->JAside)) : ?>
             <section class="joe_aside__item hot">
                 <div class="joe_aside__item-title">
                     <svg class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="18">

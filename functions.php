@@ -309,7 +309,7 @@ function themeConfig($form)
             'author' => '作者栏',
             'timelife' => '计时栏',
             'weather' => '天气栏（需先在下方填写KEY值）',
-            'hot' => '热门文章栏（首页时，热门文章和侧栏热门文章只会显示其中一个）',
+            'hot' => '热门文章栏',
             'ranking' => '排行榜栏',
             'newreply' => '最新回复栏'
         ),
