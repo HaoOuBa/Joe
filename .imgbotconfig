@@ -1,0 +1,9 @@
+{
+    "schedule": "schedule",
+    "ignoredFiles": [
+        "favicon.ico",
+        "search.png",
+        "assets/owo/*",
+    ],
+    "aggressiveCompression": "true"
+}
