@@ -186,7 +186,7 @@ function themeConfig($form)
         NULL,
         '2019 - 2020 © Reach - <a href="https://as.js.cn" target="_blank" rel="noopener noreferrer">Joe</a>',
         '自定义底部栏左侧内容（非必填）',
-        '介绍：用于修改全站底部左侧内容 <br>
+        '介绍：用于修改全站底部左侧内容（wap端上方） <br>
          例如：2019 - 2020 © Reach - Joe             '
     );
     $JFooter_Left->setAttribute('class', 'joe_content joe_global');
@@ -198,7 +198,7 @@ function themeConfig($form)
         '<a href="https://as.js.cn/feed/" target="_blank" rel="noopener noreferrer">RSS</a>
          <a href="https://as.js.cn/sitemap.xml" target="_blank" rel="noopener noreferrer" style="margin-left: 15px">MAP</a>',
         '自定义底部栏右侧内容（非必填）',
-        '介绍：用于修改全站底部右侧内容 <br>
+        '介绍：用于修改全站底部右侧内容（wap端下方） <br>
          例如：&lt;a href="/"&gt;首页&lt;/a&gt; &lt;a href="/"&gt;关于&lt;/a&gt;'
     );
     $JFooter_Right->setAttribute('class', 'joe_content joe_global');
@@ -291,6 +291,28 @@ function themeConfig($form)
     );
     $JCustomScript->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomScript);
+
+    $JCustomHeadEnd = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JCustomHeadEnd',
+        NULL,
+        NULL,
+        '自定义增加&lt;head&gt;&lt;/head&gt;里内容（非必填）',
+        '介绍：此处用于在&lt;head&gt;&lt;/head&gt;标签里增加自定义内容 <br />
+         例如：可以填写引入第三方css、js等等'
+    );
+    $JCustomHeadEnd->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JCustomHeadEnd);
+
+    $JCustomBodyEnd = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JCustomBodyEnd',
+        NULL,
+        NULL,
+        '自定义&lt;body&gt;&lt;/body&gt;末尾位置内容（非必填）',
+        '介绍：此处用于填写在&lt;body&gt;&lt;/body&gt;标签末尾位置的内容 <br>
+         例如：可以填写引入第三方js脚本等等'
+    );
+    $JCustomBodyEnd->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JCustomBodyEnd);
 
     $JBirthDay = new Typecho_Widget_Helper_Form_Element_Text(
         'JBirthDay',

@@ -37,4 +37,6 @@
     <?php $this->options->JCustomScript() ?>
 </script>
 
+<?php $this->options->JCustomBodyEnd() ?>
+
 <?php $this->footer(); ?>

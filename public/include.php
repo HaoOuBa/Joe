@@ -67,3 +67,4 @@
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
 	<script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/cursor/<?php $this->options->JCursorEffects() ?>"></script>
 <?php endif; ?>
+<?php $this->options->JCustomHeadEnd() ?>
