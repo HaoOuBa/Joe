@@ -185,7 +185,7 @@ function _getAbstract($item, $type = true)
 		if ($item->fields->abstract) {
 			$abstract = $item->fields->abstract;
 		} else {
-			$abstract = Typecho_Common::subStr(strip_tags($item->excerpt), 0, 180, '...');;
+			$abstract = strip_tags($item->excerpt);
 		}
 	}
 	if ($abstract === '') $abstract = "暂无简介";

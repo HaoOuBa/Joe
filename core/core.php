@@ -29,7 +29,7 @@ function themeInit($self)
     Helper::options()->commentsRequireMail = true;
     /* 强奸用户要求无需填写url */
     Helper::options()->commentsRequireURL = false;
-    /* 强制用户评论回复 */
+    /* 强制用户开启评论回复 */
     Helper::options()->commentsThreaded = true;
     /* 强制显示一页12篇文章 */
     $self->parameter->pageSize = 12;
