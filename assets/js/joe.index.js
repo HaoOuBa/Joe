@@ -174,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     type: 'POST',
                     data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
                     success(res) {
+			res = JSON.parse(res)
                         if (res.data.length === 0) {
                             $('.joe_load').removeAttr('loading');
                             $('.joe_load').html('查看更多');
