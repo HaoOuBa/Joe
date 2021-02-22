@@ -330,6 +330,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (isSubmit) return;
             isSubmit = true;
+            $('.joe_comment__respond-form .foot .submit button').html('发送中...');
             $.ajax({
                 url,
                 type: 'POST',
@@ -344,6 +345,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (!/Joe/.test(res)) {
                         Qmsg.warning(str.textContent.trim() || '');
                         isSubmit = false;
+                        $('.joe_comment__respond-form .foot .submit button').html('发表评论');
                     } else {
                         window.location.href = changeURLArg(location.href, 'scroll', 'joe_comment');
                     }

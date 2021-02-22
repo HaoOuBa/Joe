@@ -248,7 +248,8 @@ function themeConfig($form)
         NULL,
         NULL,
         '网页被隐藏时显示的标题',
-        '介绍：在PC端切换网页标签时，网站标题显示的内容。如果不填写，则默认不开启'
+        '介绍：在PC端切换网页标签时，网站标题显示的内容。如果不填写，则默认不开启 <br />
+         注意：严禁加单引号或双引号！！！否则会导致网站出错！！'
     );
     $JDocumentTitle->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JDocumentTitle);
