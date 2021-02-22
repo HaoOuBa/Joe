@@ -55,14 +55,14 @@ document.addEventListener('DOMContentLoaded', () => {
                             <a target="_blank" rel="noopener noreferrer nofollow" class="joe_live__list-item animated bounceIn" href="${window.location.href + '?profileRoom=' + _.profileRoom + '&title=' + _.nick}">
                                 <div class="thumb">
                                     <i class="recommendTagName" style="display: ${_.recommendTagName ? '' : 'none'}">${_.recommendTagName}</i>
-                                    <img class="screenshot lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.screenshot}" onerror="javascript: this.src = '${Joe.LAZY_LOAD}';" alt="${_.introduction}" />
+                                    <img width="100%" height="100%" class="screenshot lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.screenshot}" onerror="javascript: this.src = '${Joe.LAZY_LOAD}';" alt="${_.introduction}" />
                                 </div>
                                 <div class="description">
                                     <div class="avatar">
                                         <svg class="icon" viewBox="0 0 76 31" version="1.1" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M57.7,11.4c-1.4-1.4-2.7-2.9-4.1-4.4c-0.2-0.3-0.5-0.5-0.8-0.8c-0.2-0.2-0.3-0.3-0.5-0.5l0,0C48.6,2.2,43.5,0,38,0S27.4,2.2,23.6,5.7l0,0c-0.2,0.2-0.3,0.3-0.5,0.5c-0.3,0.3-0.5,0.5-0.8,0.8c-1.4,1.5-2.7,3-4.1,4.4c-5,5.1-11.7,6.1-18.3,6.3V31h9.4h8.9h39.4h4.9H76V17.6C69.4,17.4,62.7,16.5,57.7,11.4z"></path>
                                         </svg>
-                                        <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${_.avatar180}" onerror="javascript: this.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="${_.nick}"/>
+                                        <img width="25" height="25" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${_.avatar180}" onerror="javascript: this.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="${_.nick}"/>
                                     </div>
                                     <div class="nick">${_.nick}</div>
                                     <p class="introduction">${_.introduction}</p>

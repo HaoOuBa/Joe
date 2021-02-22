@@ -18,7 +18,7 @@
 <h1 class="joe_detail__title"><?php $this->title() ?></h1>
 <div class="joe_detail__count">
     <div class="joe_detail__count-information">
-        <img class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($this->author->mail) ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="<?php $this->author(); ?>" />
+        <img width="35" height="35" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($this->author->mail) ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="<?php $this->author(); ?>" />
         <div class="meta">
             <div class="author">
                 <a class="link" href="<?php $this->author->permalink(); ?>" title="<?php $this->author(); ?>"><?php $this->author(); ?></a>

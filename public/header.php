@@ -257,9 +257,9 @@
     </div>
 
     <div class="joe_header__slideout">
-        <img class="joe_header__slideout-image" src="<?php $this->options->JAside_Wap_Image() ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="<?php $this->author->screenName(); ?>" />
+        <img width="100%" height="150" class="joe_header__slideout-image" src="<?php $this->options->JAside_Wap_Image() ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="<?php $this->author->screenName(); ?>" />
         <div class="joe_header__slideout-author">
-            <img class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($this->author->mail) ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="<?php $this->author->screenName(); ?>" />
+            <img width="50" height="50" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($this->author->mail) ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="<?php $this->author->screenName(); ?>" />
             <div class="info">
                 <a class="link" href="<?php $this->options->JAside_Author_Link() ?>" target="_blank" rel="noopener noreferrer nofollow"><?php $this->author->screenName(); ?></a>
                 <p class="motto"><?php _getAsideAuthorMotto() ?></p>

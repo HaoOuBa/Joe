@@ -93,7 +93,7 @@
                                         <span class="title"><?php echo $item['name']; ?></span>
                                         <div class="content">
                                             <div class="desc"><?php echo $item['desc']; ?></div>
-                                            <img class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php echo $item['avatar']; ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="<?php echo $item['name']; ?>" />
+                                            <img width="40" height="40" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php echo $item['avatar']; ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="<?php echo $item['name']; ?>" />
                                         </div>
                                     </a>
                                 </li>

@@ -101,7 +101,7 @@ function threadedComments($comments, $options)
     <li class="comment-list__item">
         <div class="comment-list__item-contain" id="<?php $comments->theId(); ?>">
             <div class="term">
-                <img class="avatar lazyload" src="<?php _getAvatarLazyload() ?>" data-src="<?php _getAvatarByMail($comments->mail); ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="头像" />
+                <img width="48" height="48" class="avatar lazyload" src="<?php _getAvatarLazyload() ?>" data-src="<?php _getAvatarByMail($comments->mail); ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="头像" />
                 <div class="content">
                     <div class="user">
                         <span class="author"><?php $comments->author(); ?></span>
