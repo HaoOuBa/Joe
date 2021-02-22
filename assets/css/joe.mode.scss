@@ -17,26 +17,27 @@ html {
     --box-shadow: 0px 0px 20px -5px rgba(158, 158, 158, 0.22);
 }
 
-/* 黑夜模式的配色方案是我随便写的一套，您可以修改配色成您的一套方案 */
-html[data-night='night'] {
-    --background: #333;
+/* 黑夜模式的配色方案 */
+html[data-night='night'] body {
     --theme: #54b5db;
-    --main: #808080;
-    --routine: #7b7b7b;
-    --minor: #6d6d6d;
+    --background: #333;
+    --main: #717273;
+    --routine: #696969;
+    --minor: #606060;
     --seat: #666;
-    --classA: #444;
-    --classB: #444;
-    --classC: #444;
-    --classD: #444;
+    --classA: #515253;
+    --classB: #454545;
+    --classC: #414243;
+    --classD: #404040;
     --text-shadow: none;
     --box-shadow: none;
 }
 
 /* 此处用于修改黑夜模式下没有覆盖到的小地方的样式 */
 html[data-night='night'] {
+    /* 这里务必不能修改！！！ */
     body::before {
-        background: #202122;
+        background: #121212;
         z-index: -500;
     }
     .joe_header__above-logo img {
@@ -45,4 +46,5 @@ html[data-night='night'] {
     .joe_header__above-logo svg {
         display: block;
     }
+    /* 自定义的样式，写在这个下面 */
 }
