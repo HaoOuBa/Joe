@@ -184,6 +184,15 @@
         border-radius: 8px;
         line-height: 28px;
         color: #606266;
+        .title {
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e4e7ed;
+            font-weight: 500;
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #67C23A;
+        }
         ol {
             padding: 0 40px;
             margin-bottom: 15px;

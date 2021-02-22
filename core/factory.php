@@ -9,9 +9,9 @@ class Editor
 {
     public static function edit()
     {
-        echo "<link rel='stylesheet' href='" . Helper::options()->themeUrl . '/typecho/editor/joe.editor.css' . "'>\n";
-        echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.extend.js' . "'></script>\n";
-        echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.editor.js' . "'></script>\n";
+        echo "<link rel='stylesheet' href='" . Helper::options()->themeUrl . '/typecho/editor/joe.editor.css?update=20210202' . "'>\n";
+        echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.extend.js?update=20210202' . "'></script>\n";
+        echo "<script src='" . Helper::options()->themeUrl . '/typecho/editor/joe.editor.js?update=20210202' . "'></script>\n";
         if (Helper::options()->JPasteUpload === "on") { ?>
             <script>
                 $("#text").on("paste", event => {
