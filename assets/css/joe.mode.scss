@@ -20,31 +20,107 @@ html {
 /* 黑夜模式的配色方案 */
 html[data-night='night'] body {
     --theme: #54b5db;
-    --background: #333;
-    --main: #717273;
-    --routine: #696969;
-    --minor: #606060;
-    --seat: #666;
-    --classA: #515253;
-    --classB: #454545;
-    --classC: #414243;
-    --classD: #404040;
-    --text-shadow: none;
-    --box-shadow: none;
+    --background: rgba(18, 18, 18, 1);
+    --main: rgba(255, 255, 255, 0.87);
+    --routine: rgba(255, 255, 255, 0.87);
+    --minor: rgba(255, 255, 255, 0.6);
+    --seat: rgba(255, 255, 255, 0.6);
+    --classA: rgba(255, 255, 255, 0.78);
+    --classB: rgba(255, 255, 255, 0.70);
+    --classC: rgba(255, 255, 255, 0.6);
+    --classD: rgba(255, 255, 255, 0.13);
+    --classE: rgba(255, 255, 255, 0.05);
+    --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    --box-shadow: 0px 0px 20px -5px rgba(84 181 219, 0.22);
 }
 
 /* 此处用于修改黑夜模式下没有覆盖到的小地方的样式 */
 html[data-night='night'] {
+
     /* 这里务必不能修改！！！ */
     body::before {
-        background: #121212;
+        background: #000000;
         z-index: -500;
     }
-    .joe_header__above-logo img {
-        display: none;
-    }
-    .joe_header__above-logo svg {
-        display: block;
-    }
+
     /* 自定义的样式，写在这个下面 */
+    .joe_header__above {
+        background: var(--classE);
+    }
+
+    .joe_header__above-logo {
+        .lightmode-logo {
+            display: none;
+        }
+
+        .darkmode-logo {
+            display: block;
+        }
+    }
+
+    .joe_header__above-search {
+        .input {
+            background: var(--background);
+        }
+
+        .submit {
+            color: var(--main);
+        }
+
+        .text {
+            color: var(--main);
+        }
+    }
+
+    .joe_detail__article {
+        table {
+            color: var(--main);
+
+            thead {
+                th {
+                    background: var(--classD);
+                }
+            }
+        }
+
+        .joe_detail__article-abtn {
+            color: var(--main)
+        }
+    }
+
+    .joe_detail__article-anote {
+        color: var(--main);
+    }
+
+    .joe_detail__article-message {
+        &.success {
+            color: #c1d6c3;
+        }
+
+        &.info {
+            color: #e0ebfd;
+        }
+
+        &.warning {
+            color: #ffe497;
+        }
+
+        &.error {
+            color: #f9dfdf;
+        }
+    }
+
+    .joe_comment {
+        .joe_comment__respond-type {
+            .item.active {
+                color: var(--main)
+            }
+        }
+
+        .owner {
+            color: var(--main)
+        }
+    }
+
+
 }
