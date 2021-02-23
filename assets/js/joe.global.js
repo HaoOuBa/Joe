@@ -335,6 +335,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 url,
                 type: 'POST',
                 data: { author, mail, text, parent },
+                datatype: 'text',
                 success(res) {
                     let arr = [],
                         str = '';

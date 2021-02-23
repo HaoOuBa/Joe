@@ -1786,6 +1786,8 @@
             .contain {
                 position: relative;
                 box-shadow: var(--box-shadow);
+                border-radius: 20px;
+                overflow: hidden;
                 .icon {
                     position: absolute;
                     top: 50%;
@@ -1793,26 +1795,21 @@
                     left: 15px;
                 }
                 .password {
-                    width: 300px;
-                    height: 44px;
+                    width: 250px;
+                    height: 40px;
                     border: none;
-                    border-radius: var(--radius-inner);
                     color: var(--routine);
                     padding-left: 50px;
                     background: var(--background);
                 }
                 .submit {
                     position: absolute;
-                    top: 0;
-                    right: 0;
-                    height: 44px;
-                    line-height: 44px;
-                    width: 44px;
-                    cursor: pointer;
-                    text-align: center;
-                    font-size: 13px;
+                    top: 50%;
+                    right: 15px;
+                    transform: translateY(-50%);
                     color: var(--main);
-                    user-select: none;
+                    border: none;
+                    background: none;
                 }
             }
         }
