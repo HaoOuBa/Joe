@@ -27,7 +27,7 @@ html[data-night='night'] body {
     --seat: rgba(255, 255, 255, 0.6);
     --classA: rgba(255, 255, 255, 0.78);
     --classB: rgba(255, 255, 255, 0.70);
-    --classC: rgba(255, 255, 255, 0.6);
+    --classC: rgba(255, 255, 255, 0.5);
     --classD: rgba(255, 255, 255, 0.13);
     --classE: rgba(255, 255, 255, 0.05);
     --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
@@ -49,11 +49,19 @@ html[data-night='night'] {
     }
 
     .joe_header__above-logo {
-        .lightmode-logo {
+        // .lightmode-logo {
+        //     display: none;
+        // }
+
+        // .darkmode-logo {
+        //     display: block;
+        // }
+
+        img {
             display: none;
         }
 
-        .darkmode-logo {
+        svg {
             display: block;
         }
     }
@@ -114,6 +122,16 @@ html[data-night='night'] {
         .joe_comment__respond-type {
             .item.active {
                 color: var(--main)
+            }
+        }
+
+        .joe_comment__respond-form {
+            .submit button {
+                color: var(--main)
+            }
+
+            .head {
+                border-bottom: 1px solid var(--classC)
             }
         }
 
