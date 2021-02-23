@@ -1992,10 +1992,10 @@
                 display: inline-block;
                 vertical-align: top;
                 padding: 0 12px;
-                max-width: 500px;
-                white-space: nowrap;
+                max-width: 200px;
                 overflow: hidden;
                 text-overflow: ellipsis;
+                white-space: nowrap;
             }
             &.secondary {
                 background: #34495e;
@@ -2041,7 +2041,7 @@
             .content {
                 display: inline-block;
                 vertical-align: top;
-                max-width: 500px;
+                max-width: 200px;
                 white-space: nowrap;
                 overflow: hidden;
                 text-overflow: ellipsis;
