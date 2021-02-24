@@ -11,6 +11,7 @@
         DOCUMENT_TITLE: '<?php $this->options->JDocumentTitle() ?>',
         LAZY_LOAD: '<?php _getLazyload() ?>',
         BIRTHDAY: '<?php $this->options->JBirthDay() ?>',
+        MOTTO: '<?php _getAsideAuthorMotto() ?>'
     }
 
     function detectIE() {

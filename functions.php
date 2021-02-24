@@ -356,11 +356,22 @@ function themeConfig($form)
     $JAside->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside->multiMode());
 
+    $JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JAside_Wap_Image',
+        NULL,
+        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/wap_aside_image.jpg",
+        '移动端侧边栏背景',
+        '介绍：用于修改移动端侧边栏背景图片 <br/>
+         格式：图片地址 或 Base64地址'
+    );
+    $JAside_Wap_Image->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Wap_Image);
+
     $JAside_Author_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JAside_Author_Image',
         NULL,
         "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/aside_author_image.jpg",
-        '作者栏 —— 背景',
+        '作者栏 —— 背景（PC端）',
         '介绍：用于修改作者栏的背景图片 <br/>
          格式：图片地址 <br />
          注意：不填写时，则显示默认背景'
@@ -372,7 +383,7 @@ function themeConfig($form)
         'JAside_Author_Link',
         NULL,
         "https://as.js.cn",
-        '作者栏 —— 跳转链接',
+        '作者栏 —— 跳转链接（PC及WAP）',
         '介绍：用于修改作者栏的跳转链接'
     );
     $JAside_Author_Link->setAttribute('class', 'joe_content joe_aside');
@@ -382,9 +393,12 @@ function themeConfig($form)
         'JAside_Author_Motto',
         NULL,
         "有钱终成眷属，没钱亲眼目睹",
-        '作者栏 —— 座右铭',
+        '作者栏 —— 座右铭（PC及WAP）',
         '介绍：用于显示在侧边栏作者信息的座右铭。<br />
-         格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条'
+         格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条，也可以填写API地址 <br />
+         其他：API和自定义的座右铭完全可以一起写（换行填写），不会影响 <br />
+         注意：API需要开启跨域权限才能调取，否则会调取失败！<br />
+         推荐API：https://api.vvhan.com/api/ian'
     );
     $JAside_Author_Motto->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Motto);
@@ -613,17 +627,6 @@ function themeConfig($form)
     );
     $JWallpaper_Background_WAP->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JWallpaper_Background_WAP);
-
-    $JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
-        'JAside_Wap_Image',
-        NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/wap_aside_image.jpg",
-        '移动端侧边栏背景',
-        '介绍：用于修改移动端侧边栏背景图片 <br/>
-         格式：图片地址 或 Base64地址'
-    );
-    $JAside_Wap_Image->setAttribute('class', 'joe_content joe_image');
-    $form->addInput($JAside_Wap_Image);
 
     $JShare_QQ_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JShare_QQ_Image',

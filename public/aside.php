@@ -6,7 +6,7 @@
                 <div class="user">
                     <img width="75" height="75" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($this->author->mail) ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="<?php $this->author->screenName(); ?>" />
                     <a class="link" href="<?php $this->options->JAside_Author_Link() ?>" target="_blank" rel="noopener noreferrer nofollow"><?php $this->author->screenName(); ?></a>
-                    <p class="motto"><?php _getAsideAuthorMotto() ?></p>
+                    <p class="motto joe_motto"></p>
                 </div>
                 <?php Typecho_Widget::widget('Widget_Stat')->to($item); ?>
                 <div class="count">
