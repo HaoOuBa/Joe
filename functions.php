@@ -326,6 +326,18 @@ function themeConfig($form)
     $JBirthDay->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JBirthDay);
 
+    $JCustomFont = new Typecho_Widget_Helper_Form_Element_Text(
+        'JCustomFont',
+        NULL,
+        NULL,
+        '自定义网站字体（非必填）',
+        '介绍：用于修改全站字体，填写则使用引入的字体，不填写使用默认字体 <br>
+         格式：字体URL链接 <br>
+         注意：由于体积文件较大，建议使用cdn链接方式进行引入'
+    );
+    $JCustomFont->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JCustomFont);
+
     $JAside = new Typecho_Widget_Helper_Form_Element_Checkbox(
         'JAside',
         array(

@@ -1,32 +1,4 @@
-<script>
-	localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
-	window.Joe = {
-		LIVE2D: '<?php $this->options->JLive2d() ?>',
-		BASE_API: '<?php echo $this->options->rewrite == 0 ? '/index.php/joe/api' : '/joe/api' ?>',
-		DYNAMIC_BACKGROUND: '<?php $this->options->JDynamic_Background() ?>',
-		WALLPAPER_BACKGROUND_PC: '<?php $this->options->JWallpaper_Background_PC() ?>',
-		IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
-		BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
-		DOCUMENT_TITLE: '<?php $this->options->JDocumentTitle() ?>',
-		LAZY_LOAD: '<?php _getLazyload() ?>',
-		BIRTHDAY: '<?php $this->options->JBirthDay() ?>',
-	}
-	function detectIE(){var n=window.navigator.userAgent,e=n.indexOf("MSIE ");if(e>0){return parseInt(n.substring(e+5,n.indexOf(".",e)),10)}if(n.indexOf("Trident/")>0){var r=n.indexOf("rv:");return parseInt(n.substring(r+3,n.indexOf(".",r)),10)}var i=n.indexOf("Edge/");return i>0&&parseInt(n.substring(i+5,n.indexOf(".",i)),10)};
-  	detectIE() && (alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。'), (location.href = 'https://www.baidu.com'))
-</script>
-<style>
-	body::before {
-		background: <?php if (_isMobile()) {
-						echo $this->options->JWallpaper_Background_WAP ? "url(" . $this->options->JWallpaper_Background_WAP . ")" : "#f5f5f5";
-					} else {
-						echo $this->options->JWallpaper_Background_PC ? "url(" . $this->options->JWallpaper_Background_PC . ")" : "#f5f5f5";
-					} ?>;
-		background-position: center 0;
-		background-repeat: no-repeat;
-		background-size: cover;
-	}
-	<?php $this->options->JCustomCSS() ?>
-</style>
+<?php $this->need('public/config.php'); ?>
 <meta charset="utf-8" />
 <meta name="renderer" content="webkit" />
 <meta name="format-detection" content="email=no" />
