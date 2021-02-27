@@ -227,7 +227,7 @@
                     display: flex;
                     align-items: center;
                     overflow: hidden;
-                    padding: 0 8px;
+                    padding: 0 10px;
                     transition: background 0.35s;
                     &:last-child {
                         border-bottom: none;
@@ -250,7 +250,7 @@
                         width: 18px;
                         height: 18px;
                         line-height: 18px;
-                        border-radius: 50%;
+                        border-radius: 2px;
                         text-align: center;
                         margin-right: 8px;
                         font-weight: 500;
@@ -267,7 +267,7 @@
                     .views {
                         color: var(--seat);
                         font-size: 12px;
-                        margin-left: 3px;
+                        margin-left: 5px;
                     }
                 }
             }
