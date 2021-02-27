@@ -151,5 +151,16 @@ function _parseContent($post, $login)
         ));
     }
 
+    /* 过滤MP3音乐 */
+    if (strpos($content, '{mp3') !== false) {
+        $content = preg_replace_callback(
+            '/\{mp3\s*src="(.*)"\s*\/\}/sSU',
+            function ($matches) {
+                return '<span class="joe_detail__article-mp3 block"><audio class="joe_mp3__player" src="' . $matches[1] . '" controls></audio></span>';
+            },
+            $content
+        );
+    }
+
     echo $content;
 }

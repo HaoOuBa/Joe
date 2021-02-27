@@ -198,6 +198,11 @@ document.addEventListener('DOMContentLoaded', () => {
             $('.joe_detail__article-video .episodes .item').first().click();
         }
     }
+
+    /* mp3播放器 */
+    {
+        $('.joe_mp3__player').each((index, item) => new Plyr(item, { settings: [], iconUrl: 'https://cdn.jsdelivr.net/npm/plyr@3.6.4/dist/plyr.svg' }));
+    }
 });
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */

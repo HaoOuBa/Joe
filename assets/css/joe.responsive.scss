@@ -403,6 +403,11 @@ html {
                         }
                     }
                 }
+                &-mp3 {
+                    .plyr {
+                        max-width: 100%;
+                    }
+                }
             }
         }
         .joe_comment {

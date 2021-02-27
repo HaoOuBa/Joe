@@ -2128,6 +2128,23 @@
                 }
             }
         }
+        &-mp3 {
+            .plyr {
+                max-width: 450px;
+                margin: 0 auto;
+            }
+            .plyr--audio{
+                box-shadow: var(--box-shadow);
+                background: var(--classD);
+                border-radius: 26px;
+                padding: 0 5px;
+                --plyr-audio-control-color: var(--routine);
+                .plyr__controls{
+                    background: var(--classD);
+                }
+            }
+            
+        }
     }
     &__agree {
         display: flex;
