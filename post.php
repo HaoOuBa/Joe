@@ -5,9 +5,11 @@
     <?php $this->need('public/include.php'); ?>
     <!-- 文章页需要用到的CSS及JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.6.4/dist/plyr.min.css">
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.post.css'); ?>">
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/prism/prism.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.4/dist/plyr.min.js"></script>
     <script src="<?php $this->options->themeUrl('assets/js/joe.post&page.js'); ?>"></script>
 </head>
 
