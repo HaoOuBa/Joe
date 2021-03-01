@@ -338,63 +338,69 @@ function themeConfig($form)
     $JCustomFont->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomFont);
 
-    $JAside = new Typecho_Widget_Helper_Form_Element_Checkbox(
-        'JAside',
-        array(
-            'author' => '作者栏',
-            'timelife' => '计时栏',
-            'weather' => '天气栏（需先在下方填写KEY值）',
-            'hot' => '热门文章栏',
-            'ranking' => '排行榜栏',
-            'newreply' => '最新回复栏'
-        ),
-        null,
-        '选择首页需要显示的侧边栏栏目',
-        '介绍：用于控制首页侧边栏的栏目显示规则 <br>
-         注意：如果全部未选，则表示不开启侧边栏'
-    );
-    $JAside->setAttribute('class', 'joe_content joe_aside');
-    $form->addInput($JAside->multiMode());
 
-    $JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
-        'JAside_Wap_Image',
+
+
+    $JAside_Author_Nick = new Typecho_Widget_Helper_Form_Element_Text(
+        'JAside_Author_Nick',
         NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/wap_aside_image.jpg",
-        '移动端侧边栏背景',
-        '介绍：用于修改移动端侧边栏背景图片 <br/>
-         格式：图片地址 或 Base64地址'
+        "Typecho",
+        '博主栏博主昵称 - PC/WAP',
+        '介绍：用于修改博主栏的博主昵称 <br />
+         注意：如果不填写时则显示 *个人设置* 里的昵称'
     );
-    $JAside_Wap_Image->setAttribute('class', 'joe_content joe_aside');
-    $form->addInput($JAside_Wap_Image);
-
+    $JAside_Author_Nick->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Author_Nick);
+    /* --------------------------------------- */
+    $JAside_Author_Avatar = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JAside_Author_Avatar',
+        NULL,
+        NULL,
+        '博主栏博主头像 - PC/WAP',
+        '介绍：用于修改博主栏的博主头像 <br />
+         注意：如果不填写时则显示 *个人设置* 里的头像'
+    );
+    $JAside_Author_Avatar->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Author_Avatar);
+    /* --------------------------------------- */
     $JAside_Author_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JAside_Author_Image',
         NULL,
         "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/aside_author_image.jpg",
-        '作者栏 —— 背景（PC端）',
-        '介绍：用于修改作者栏的背景图片 <br/>
-         格式：图片地址 <br />
-         注意：不填写时，则显示默认背景'
+        '博主栏背景壁纸 - PC',
+        '介绍：用于修改PC端博主栏的背景壁纸 <br/>
+         格式：图片地址 或 Base64地址'
     );
     $JAside_Author_Image->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Image);
-
-    $JAside_Author_Link = new Typecho_Widget_Helper_Form_Element_Textarea(
+    /* --------------------------------------- */
+    $JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JAside_Wap_Image',
+        NULL,
+        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/wap_aside_image.jpg",
+        '博主栏背景壁纸 - WAP',
+        '介绍：用于修改WAP端博主栏的背景壁纸 <br/>
+         格式：图片地址 或 Base64地址'
+    );
+    $JAside_Wap_Image->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Wap_Image);
+    /* --------------------------------------- */
+    $JAside_Author_Link = new Typecho_Widget_Helper_Form_Element_Text(
         'JAside_Author_Link',
         NULL,
         "https://as.js.cn",
-        '作者栏 —— 跳转链接（PC及WAP）',
-        '介绍：用于修改作者栏的跳转链接'
+        '博主栏昵称跳转地址 - PC/WAP',
+        '介绍：用于修改博主栏点击博主昵称后的跳转地址'
     );
     $JAside_Author_Link->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Link);
-
+    /* --------------------------------------- */
     $JAside_Author_Motto = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JAside_Author_Motto',
         NULL,
         "有钱终成眷属，没钱亲眼目睹",
-        '作者栏 —— 座右铭（PC及WAP）',
-        '介绍：用于显示在侧边栏作者信息的座右铭。<br />
+        '博主栏座右铭（一言）- PC/WAP',
+        '介绍：用于修改博主栏的座右铭（一言） <br />
          格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条，也可以填写API地址 <br />
          其他：API和自定义的座右铭完全可以一起写（换行填写），不会影响 <br />
          注意：API需要开启跨域权限才能调取，否则会调取失败！<br />
@@ -402,7 +408,7 @@ function themeConfig($form)
     );
     $JAside_Author_Motto->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Motto);
-
+    /* --------------------------------------- */
     $JAside_Author_Nav = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_Author_Nav',
         array(
@@ -417,43 +423,31 @@ function themeConfig($form)
             '10' => '开启，并显示10条最新文章'
         ),
         'off',
-        '作者栏 —— 随机文章数目',
-        '介绍：用于控制作者栏的随机文章条数'
+        '博主栏下方随机文章条目 - PC',
+        '介绍：用于设置博主栏下方的随机文章显示数量 <br />
+         注意：由于此项是查询整个表，文章多时，请关闭此项'
     );
     $JAside_Author_Nav->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Nav->multiMode());
-
-    $JAside_Weather_Key = new Typecho_Widget_Helper_Form_Element_Text(
-        'JAside_Weather_Key',
-        NULL,
-        NULL,
-        '天气栏 —— 天气KEY值',
-        '介绍：用于初始化天气栏 <br/>
-         注意：填写时请填写正确的KEY值！<br />
-         其他：免费申请地址：<a href="//cj.weather.com.cn">cj.weather.com.cn</a>'
-    );
-    $JAside_Weather_Key->setAttribute('class', 'joe_content joe_aside');
-    $form->addInput($JAside_Weather_Key);
-
-    $JAside_Weather_Style = new Typecho_Widget_Helper_Form_Element_Select(
-        'JAside_Weather_Style',
+    /* --------------------------------------- */
+    $JAside_Timelife_Status = new Typecho_Widget_Helper_Form_Element_Select(
+        'JAside_Timelife_Status',
         array(
-            '1' => '自动（默认）',
-            '2' => '浅色',
-            '3' => '深色'
+            'off' => '关闭（默认）',
+            'on' => '开启'
         ),
-        '1',
-        '天气栏 —— 天气风格样式',
-        '介绍：选择一款您所喜爱的天气风格 <br />
-         注意：需要先填写天气的KEY值'
+        'off',
+        '是否开启人生倒计时模块 - PC',
+        '介绍：用于控制是否显示人生倒计时模块'
     );
-    $JAside_Weather_Style->setAttribute('class', 'joe_content joe_aside');
-    $form->addInput($JAside_Weather_Style->multiMode());
-
+    $JAside_Timelife_Status->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Timelife_Status->multiMode());
+    /* --------------------------------------- */
     $JAside_Hot_Num = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_Hot_Num',
         array(
-            '3' => '显示3条（默认）',
+            'off' => '关闭（默认）',
+            '3' => '显示3条',
             '4' => '显示4条',
             '5' => '显示5条',
             '6' => '显示6条',
@@ -462,16 +456,30 @@ function themeConfig($form)
             '9' => '显示9条',
             '10' => '显示10条',
         ),
-        '3',
-        '热门文章栏 —— 文章数',
-        '介绍：用于控制热门文章栏目的数量'
+        'off',
+        '是否开启热门文章栏 - PC',
+        '介绍：用于控制是否开启热门文章栏'
     );
     $JAside_Hot_Num->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Hot_Num->multiMode());
-
+    /* --------------------------------------- */
+    $JAside_Newreply_Status = new Typecho_Widget_Helper_Form_Element_Select(
+        'JAside_Newreply_Status',
+        array(
+            'off' => '关闭（默认）',
+            'on' => '开启'
+        ),
+        'off',
+        '是否开启最新回复栏 - PC',
+        '介绍：用于控制是否开启最新回复栏'
+    );
+    $JAside_Newreply_Status->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Newreply_Status->multiMode());
+    /* --------------------------------------- */
     $JAside_Ranking = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_Ranking',
         array(
+            'off' => '关闭（默认）',
             '知乎全站排行榜$zhihu_total' => '知乎全站排行榜',
             '知乎科学排行榜$zhihu_science' => '知乎科学排行榜',
             '知乎数码排行榜$zhihu_digital' => '知乎数码排行榜',
@@ -555,12 +563,41 @@ function themeConfig($form)
             '新浪视频榜$sina_vd' => '新浪视频榜',
             '新浪图片榜$sina_pic' => '新浪图片榜'
         ),
-        '知乎全站排行榜$zhihu_total',
-        '选择排行榜类型',
-        '介绍：用于控制侧边栏排行榜所显示的类型'
+        'off',
+        '是否开启排行榜栏 - PC',
+        '介绍：用于控制是否开启排行榜栏'
     );
     $JAside_Ranking->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Ranking->multiMode());
+    /* --------------------------------------- */
+    $JAside_Weather_Key = new Typecho_Widget_Helper_Form_Element_Text(
+        'JAside_Weather_Key',
+        NULL,
+        NULL,
+        '天气栏KEY值 - PC',
+        '介绍：用于初始化天气栏 <br/>
+         注意：填写时务必填写正确！不填写则不会显示<br />
+         其他：免费申请地址：<a href="//cj.weather.com.cn">cj.weather.com.cn</a> '
+    );
+    $JAside_Weather_Key->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Weather_Key);
+    /* --------------------------------------- */
+    $JAside_Weather_Style = new Typecho_Widget_Helper_Form_Element_Select(
+        'JAside_Weather_Style',
+        array(
+            '1' => '自动（默认）',
+            '2' => '浅色',
+            '3' => '深色'
+        ),
+        '1',
+        '选择天气栏的风格 - PC',
+        '介绍：选择一款您所喜爱的天气风格 <br />
+         注意：需要先填写天气的KEY值才会生效'
+    );
+    $JAside_Weather_Style->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Weather_Style->multiMode());
+
+
 
     $JThumbnail = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JThumbnail',
@@ -790,7 +827,7 @@ function themeConfig($form)
         NULL,
         NULL,
         '百度推送Token',
-        '介绍：填写此处，前台文章页如果未收录，则会自动将当前链接推送给百度加快收录
+        '介绍：填写此处，前台文章页如果未收录，则会自动将当前链接推送给百度加快收录 <br />
          其他：Token在百度收录平台注册账号获取'
     );
     $JBaiduToken->setAttribute('class', 'joe_content joe_post');

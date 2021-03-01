@@ -1,6 +1,5 @@
 <script>
     localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
-
     window.Joe = {
         LIVE2D: '<?php $this->options->JLive2d() ?>',
         BASE_API: '<?php echo $this->options->rewrite == 0 ? '/index.php/joe/api' : '/joe/api' ?>',
@@ -29,13 +28,28 @@
     };
     detectIE() && (alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。'), (location.href = 'https://www.baidu.com'))
 </script>
+<?php
+$format = null;
+if (strpos($this->options->JCustomFont, 'woff2') !== false) {
+    $format = 'woff2';
+} elseif (strpos($this->options->JCustomFont, 'woff') !== false) {
+    $format = 'woff';
+} elseif (strpos($this->options->JCustomFont, 'ttf') !== false) {
+    $format = 'truetype';
+} elseif (strpos($this->options->JCustomFont, 'eot') !== false) {
+    $format = 'embedded-opentype';
+} elseif (strpos($this->options->JCustomFont, 'svg') !== false) {
+    $format = 'svg';
+}
+?>
 <style>
     @font-face {
         font-family: 'Joe Font';
         font-weight: 400;
         font-style: normal;
-        src: url('<?php $this->options->JCustomFont() ?>');
         font-display: swap;
+        src: url('<?php $this->options->JCustomFont() ?>');
+        <?php if ($format) echo "src: url('{$this->options->JCustomFont}') fromat('{$format}');" ?>
     }
 
     body {

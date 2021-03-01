@@ -20,15 +20,15 @@ html {
 /* 黑夜模式的配色方案 */
 html[data-night='night'] body {
     --theme: #54b5db;
-    --background: #333;
-    --main: #717273;
-    --routine: #696969;
-    --minor: #606060;
+    --background: #232323;
+    --main: #999;
+    --routine: #888;
+    --minor: #777;
     --seat: #666;
     --classA: #515253;
     --classB: #454545;
     --classC: #414243;
-    --classD: #404040;
+    --classD: #303030;
     --text-shadow: none;
     --box-shadow: none;
 }
@@ -47,4 +47,26 @@ html[data-night='night'] {
         display: block;
     }
     /* 自定义的样式，写在这个下面 */
+    .joe_detail__article-video .episodes .box .item:not(.active) {
+        background: var(--classC);
+    }
+    .joe_detail__article blockquote {
+        background: var(--classD);
+        color: var(--routine);
+        border-color: var(--classA);
+    }
+    .joe_detail__article code {
+        background: #fdf0ec38;
+        color: #a6aba8;
+    }
+    .joe_detail__article pre code {
+        background: none;
+        color: unset;
+    }
+    .joe_detail__article-anote {
+        color: #ffffff9c;
+    }
+    .joe_detail__article-abtn {
+        color: #ffffff9c;
+    }
 }

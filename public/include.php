@@ -16,10 +16,10 @@
 <?php else : ?>
 	<?php $this->header(); ?>
 <?php endif; ?>
-<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.mode.css?update=20210222'); ?>">
-<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.normalize.css'); ?>">
-<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css'); ?>">
-<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.responsive.css'); ?>">
+<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.mode.css?update=20210301'); ?>">
+<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.normalize.css?update=20210301'); ?>">
+<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css?update=20210301'); ?>">
+<link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.responsive.css?update=20210301'); ?>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/qmsg/qmsg.css" />
 <?php if ($this->options->JAside && in_array('weather', $this->options->JAside) && $this->options->JAside_Weather_Key) : ?>
 	<link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
@@ -34,7 +34,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/qmsg/qmsg.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/js/joe.extend.js"></script>
-<script src="<?php $this->options->themeUrl('assets/js/joe.global.js?update=20210224'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/js/joe.global.js?update=20210301'); ?>"></script>
 <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/smooth/joe.smooth.js"></script>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
 	<script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/cursor/<?php $this->options->JCursorEffects() ?>"></script>

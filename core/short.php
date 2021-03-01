@@ -88,14 +88,14 @@ function _parseContent($post, $login)
         $content = preg_replace_callback(
             '/\{music-list\s*id="(\w*)"\s*\/\}/SU',
             function ($matches) {
-                return '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=0&id=' . $matches[1] . '&auto=0&height=430" width="330" height="450"></iframe>';
+                return '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=0&id=' . $matches[1] . '&auto=0&height=430" width="100%" height="450"></iframe>';
             },
             $content
         );
         $content = preg_replace_callback(
             '/\{music\s*id="(\w*)"\s*\/\}/SU',
             function ($matches) {
-                return '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=2&id=' . $matches[1] . '&auto=0&height=66" width="330" height="86"></iframe>';
+                return '<iframe class="lazyload" data-src="//music.163.com/outchain/player?type=2&id=' . $matches[1] . '&auto=0&height=66" width="100%" height="86"></iframe>';
             },
             $content
         );

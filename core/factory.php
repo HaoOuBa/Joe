@@ -37,8 +37,8 @@ class Editor
                     formData.append('name', fileName);
                     formData.append('file', file, fileName);
                     $.ajax({
-                        method: 'post',
                         url: uploadUrl,
+                        method: 'post',
                         data: formData,
                         contentType: false,
                         processData: false,

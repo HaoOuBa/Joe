@@ -15,8 +15,8 @@
 <head>
     <?php $this->need('public/include.php'); ?>
     <!-- 直播页面需要用到的CSS及JS -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.live.css'); ?>">
-    <script src="<?php $this->options->themeUrl('assets/js/joe.live.js'); ?>"></script>
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.live.css?update=20210301'); ?>">
+    <script src="<?php $this->options->themeUrl('assets/js/joe.live.js?update=20210301'); ?>"></script>
 </head>
 
 <body>
@@ -36,8 +36,8 @@
                     <div class="joe_live__type joe_live__contain">
                         <div class="joe_live__type-title joe_live__contain-title">
                             <div class="text">直播分类</div>
-                            <svg class="icon" viewBox="0 0 1229 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
-                                <path d="M292.64896 475.648a51.4048 51.4048 0 1 1-72.704 72.704l-204.8-204.8a51.2 51.2 0 0 1 0-72.704l204.8-204.8a51.4048 51.4048 0 1 1 72.704 72.704L123.68896 307.2l168.96 168.448zM51.49696 358.4a51.2 51.2 0 0 1 0-102.4h614.4a51.2 51.2 0 0 1 0 102.4h-614.4z m885.248 189.952a51.4048 51.4048 0 1 1 72.704-72.704l204.8 204.8a51.2 51.2 0 0 1 0 72.704l-204.8 204.8a51.4048 51.4048 0 1 1-72.704-72.704L1105.70496 716.8l-168.96-168.448zM1177.89696 665.6a51.2 51.2 0 1 1 0 102.4h-614.4a51.2 51.2 0 0 1 0-102.4h614.4z" p-id="12828"></path>
+                            <svg class="icon" viewBox="0 0 1229 1024" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+                                <path d="M292.649 475.648a51.405 51.405 0 1 1-72.704 72.704l-204.8-204.8a51.2 51.2 0 0 1 0-72.704l204.8-204.8a51.405 51.405 0 1 1 72.704 72.704L123.689 307.2l168.96 168.448zM51.497 358.4a51.2 51.2 0 0 1 0-102.4h614.4a51.2 51.2 0 0 1 0 102.4h-614.4zm885.248 189.952a51.405 51.405 0 1 1 72.704-72.704l204.8 204.8a51.2 51.2 0 0 1 0 72.704l-204.8 204.8a51.405 51.405 0 1 1-72.704-72.704l168.96-168.448-168.96-168.448zM1177.897 665.6a51.2 51.2 0 1 1 0 102.4h-614.4a51.2 51.2 0 0 1 0-102.4h614.4z" />
                             </svg>
                         </div>
                         <div class="joe_live__type-list">

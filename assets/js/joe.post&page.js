@@ -154,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let isSubmit = false;
         $('.joe_detail__article-protected').on('submit', function (e) {
             e.preventDefault();
-            const url = $(this).attr('action');
+            const url = $(this).attr('action') + '?time=' + +new Date();
             const protectPassword = $(this).find('input[type="password"]').val();
             if (protectPassword.trim() === '') return Qmsg.info('请输入访问密码！');
             if (isSubmit) return;

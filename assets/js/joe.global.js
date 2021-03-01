@@ -225,19 +225,6 @@ document.addEventListener('DOMContentLoaded', () => {
         $(window).on('scroll', () => calcProgress());
     }
 
-    /* 判断页面上是否有侧边栏 */
-    {
-        const getAside = () => {
-            if ($('.joe_aside').length === 0) {
-                $('body').addClass('noaside');
-            } else {
-                $('body').removeClass('noaside');
-            }
-        };
-        getAside();
-        $(window).on('resize', () => getAside());
-    }
-
     /* 评论框点击切换画图模式和文本模式 */
     {
         $('.joe_comment__respond-type .item').on('click', function () {
@@ -315,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let isSubmit = false;
         $('.joe_comment__respond-form').on('submit', function (e) {
             e.preventDefault();
-            const url = $('.joe_comment__respond-form').attr('action');
+            const url = $('.joe_comment__respond-form').attr('action') + '?time=' + +new Date();
             const type = $('.joe_comment__respond-form').attr('data-type');
             const parent = $('.joe_comment__respond-form').attr('data-coid');
             const author = $(".joe_comment__respond-form .head input[name='author']").val();
