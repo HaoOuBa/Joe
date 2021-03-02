@@ -34,6 +34,9 @@
             <div class="joe_aside__item-contain"></div>
         </section>
     <?php endif; ?>
+    <?php if ($this->options->JCustomAside) : ?>
+        <section class="joe_aside__item"><?php $this->options->JCustomAside() ?></section>
+    <?php endif; ?>
     <?php if ($this->options->JAside_Hot_Num && $this->options->JAside_Hot_Num !== 'off') : ?>
         <section class="joe_aside__item hot">
             <div class="joe_aside__item-title">

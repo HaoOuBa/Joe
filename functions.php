@@ -599,15 +599,26 @@ function themeConfig($form)
         'JADContent',
         NULL,
         NULL,
-        '侧边栏广告（非必填）',
-        '介绍：用于设置侧边栏广告<br />
+        '侧边栏广告 - PC',
+        '介绍：用于设置侧边栏广告 <br />
          格式：广告图片 || 跳转链接 （中间使用两个竖杠分隔）<br />
          例如：https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/thumb/1.jpg || https://as.js.cn <br />
          注意：如果您只想显示图片不想跳转，可填写：广告图片 || javascript:void(0)'
     );
     $JADContent->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JADContent);
-
+    /* --------------------------------------- */
+    $JCustomAside = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JCustomAside',
+        NULL,
+        NULL,
+        '自定义侧边栏模块 - PC',
+        '介绍：用于自定义侧边栏模块 <br />
+         格式：请填写前端代码，不会写请勿填写 <br />
+         例如：您可以在此处添加一个搜索框、时间、宠物、恋爱计时等等'
+    );
+    $JCustomAside->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JCustomAside);
 
 
     $JThumbnail = new Typecho_Widget_Helper_Form_Element_Textarea(
