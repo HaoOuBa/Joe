@@ -132,4 +132,10 @@
             </div>
         </section>
     <?php endif; ?>
+    <?php if ($this->options->JADContent) : ?>
+        <a class="joe_aside__item advert" target="_blank" rel="noopener noreferrer nofollow" href="<?php echo explode("||", $this->options->JADContent)[1]; ?>" title="广告">
+            <img class="lazyload" width="100%" src="<?php _getLazyload() ?>" data-src="<?php echo explode("||", $this->options->JADContent)[0]; ?>" onerror="javascript: this.src='<?php _getLazyload() ?>';" alt="广告" />
+            <span class="icon">广告</span>
+        </a>
+    <?php endif; ?>
 </aside>

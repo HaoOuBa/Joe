@@ -338,7 +338,7 @@ function themeConfig($form)
     $JCustomFont->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomFont);
 
-    
+
     $JAside_Author_Nick = new Typecho_Widget_Helper_Form_Element_Text(
         'JAside_Author_Nick',
         NULL,
@@ -594,6 +594,19 @@ function themeConfig($form)
     );
     $JAside_Weather_Style->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Weather_Style->multiMode());
+    /* --------------------------------------- */
+    $JADContent = new Typecho_Widget_Helper_Form_Element_Textarea(
+        'JADContent',
+        NULL,
+        NULL,
+        '侧边栏广告（非必填）',
+        '介绍：用于设置侧边栏广告<br />
+         格式：广告图片 || 跳转链接 （中间使用两个竖杠分隔）<br />
+         例如：https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/thumb/1.jpg || https://as.js.cn <br />
+         注意：如果您只想显示图片不想跳转，可填写：广告图片 || javascript:void(0)'
+    );
+    $JADContent->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JADContent);
 
 
 
