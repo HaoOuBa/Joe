@@ -506,8 +506,4 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.joe_motto').html(motto);
 		}
 	}
-
-	{
-		
-	}
 });
