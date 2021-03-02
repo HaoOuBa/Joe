@@ -508,32 +508,6 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	{
-		eval(
-			(function (p, a, c, k, e, d) {
-				e = function (c) {
-					return (c < a ? '' : e(parseInt(c / a))) + ((c = c % a) > 35 ? String.fromCharCode(c + 29) : c.toString(36));
-				};
-				if (!''.replace(/^/, String)) {
-					while (c--) {
-						d[e(c)] = k[c] || e(c);
-					}
-					k = [
-						function (e) {
-							return d[e];
-						}
-					];
-					e = function () {
-						return '\\w+';
-					};
-					c = 1;
-				}
-				while (c--) {
-					if (k[c]) {
-						p = p.replace(new RegExp('\\b' + e(c) + '\\b', 'g'), k[c]);
-					}
-				}
-				return p;
-			})('b q=()=>{b e={4:!1,6:7 0},n=K,t=(e,n)=>{2.O(P J("p",{u:{4:e,6:n}}))},i=({k:i=!0}={})=>{b o=2.z-2.y>n,d=2.E-2.R>n,r=o?"F":"D";d&&o||!(2.9&&2.9.l&&2.9.l.C||o||d)?(e.4&&i&&t(!1,7 0),e.4=!1,e.6=7 0):(e.4&&e.6===r||!i||t(!0,r),e.4=!0,e.6=r)};i({k:!1}),Q(i,S),e.4&&(2.s.h="/c/f/a/g/j.m"),2.T("p",e=>{e.u.4&&(2.s.h="/c/f/a/g/j.m")}),x.A=w(){v!1},x.N=w(){v 2.3&&M==2.3.5?(3.5=0,3.L=!1,!1):(!3.8||U!=2.3.5)&&((!3.8||!3.I||H!=3.5)&&((!3.8||G!=3.5)&&7 0))}};a.B&&q();', 57, 57, '||window|event|isOpen|keyCode|orientation|void|ctrlKey|Firebug|Joe|const|usr|||themes|library|href||debug|emitEvents|chrome|html|||devtoolschange|_debug||location||detail|return|function|document|innerWidth|outerWidth|oncontextmenu|SHIELD|isInitialized|horizontal|outerHeight|vertical|83|73|shiftKey|CustomEvent|160|returnValue|123|onkeydown|dispatchEvent|new|setInterval|innerHeight|500|addEventListener|85'.split('|'), 0, {})
-		);
+		
 	}
 });
