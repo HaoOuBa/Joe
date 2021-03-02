@@ -337,7 +337,19 @@ function themeConfig($form)
     );
     $JCustomFont->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomFont);
-
+    /* --------------------------------------- */
+    $JShieldF12 = new Typecho_Widget_Helper_Form_Element_Select(
+        'JShieldF12',
+        array(
+            'off' => '关闭（默认）',
+            'on' => '开启',
+        ),
+        'off',
+        '是否一键开启代码防调试',
+        '介绍：用于防止代码被控制台调试修改'
+    );
+    $JShieldF12->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JShieldF12->multiMode());
 
 
 
