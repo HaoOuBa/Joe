@@ -21,7 +21,7 @@
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.global.css?update=20210301'); ?>">
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.responsive.css?update=20210301'); ?>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/qmsg/qmsg.css" />
-<?php if ($this->options->JAside && in_array('weather', $this->options->JAside) && $this->options->JAside_Weather_Key) : ?>
+<?php if ($this->options->JAside_Weather_Key) : ?>
 	<link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
 <?php endif; ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />

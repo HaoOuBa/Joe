@@ -1,5 +1,4 @@
 <aside class="joe_aside">
-
     <section class="joe_aside__item author">
         <img width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php $this->options->JAside_Author_Image() ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="博主栏壁纸" />
         <div class="user">
@@ -22,7 +21,6 @@
             <ul class="list"><?php _getAsideAuthorNav() ?></ul>
         <?php endif; ?>
     </section>
-
     <?php if ($this->options->JAside_Timelife_Status === 'on') : ?>
         <section class="joe_aside__item timelife">
             <div class="joe_aside__item-title">
@@ -36,7 +34,6 @@
             <div class="joe_aside__item-contain"></div>
         </section>
     <?php endif; ?>
-
     <?php if ($this->options->JAside_Hot_Num && $this->options->JAside_Hot_Num !== 'off') : ?>
         <section class="joe_aside__item hot">
             <div class="joe_aside__item-title">
@@ -70,7 +67,6 @@
             </ol>
         </section>
     <?php endif; ?>
-
     <?php if ($this->options->JAside_Newreply_Status === 'on') : ?>
         <section class="joe_aside__item newreply">
             <div class="joe_aside__item-title">
@@ -106,7 +102,6 @@
             </ul>
         </section>
     <?php endif; ?>
-
     <?php if ($this->options->JAside_Ranking && $this->options->JAside_Ranking !== 'off') : ?>
         <section class="joe_aside__item ranking">
             <div class="joe_aside__item-title">
@@ -122,7 +117,6 @@
             </ul>
         </section>
     <?php endif; ?>
-
     <?php if ($this->options->JAside_Weather_Key) : ?>
         <section class="joe_aside__item weather" data-key="<?php $this->options->JAside_Weather_Key() ?>" data-style="<?php $this->options->JAside_Weather_Style() ?>">
             <div class="joe_aside__item-title">
@@ -138,5 +132,4 @@
             </div>
         </section>
     <?php endif; ?>
-
 </aside>
