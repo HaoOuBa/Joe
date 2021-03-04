@@ -261,11 +261,18 @@ function themeConfig($form)
             'cursor1.js' => '效果1',
             'cursor2.js' => '效果2',
             'cursor3.js' => '效果3',
-            'cursor4.js' => '效果4'
+            'cursor4.js' => '效果4',
+            'cursor5.js' => '效果5',
+            'cursor6.js' => '效果6',
+            'cursor7.js' => '效果7',
+            'cursor8.js' => '效果8',
+            'cursor9.js' => '效果9',
+            'cursor10.js' => '效果10',
+            'cursor11.js' => '效果11',
         ),
         'off',
-        '选择页面点击特效',
-        '介绍：用于开启炫酷的页面点击特效'
+        '选择鼠标特效',
+        '介绍：用于开启炫酷的鼠标特效'
     );
     $JCursorEffects->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCursorEffects->multiMode());
