@@ -14,9 +14,8 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <!-- 直播页面需要用到的CSS及JS -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.live.css?update=20210301'); ?>">
-    <script src="<?php $this->options->themeUrl('assets/js/joe.live.js?update=20210301'); ?>"></script>
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.live.min.css'); ?>">
+    <script src="<?php $this->options->themeUrl('assets/js/joe.live.min.js'); ?>"></script>
 </head>
 
 <body>

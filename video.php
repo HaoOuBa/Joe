@@ -14,9 +14,8 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <!-- 视频页面需要用到的CSS及JS -->
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.video.css?update=20210301'); ?>">
-    <script src="<?php $this->options->themeUrl('assets/js/joe.video.js?update=20210301'); ?>"></script>
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.video.min.css'); ?>">
+    <script src="<?php $this->options->themeUrl('assets/js/joe.video.min.js'); ?>"></script>
 </head>
 
 <body>

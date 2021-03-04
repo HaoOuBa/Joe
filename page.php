@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/prism/prism.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.4/dist/plyr.min.js"></script>
-    <script src="<?php $this->options->themeUrl('assets/js/joe.post&page.js?update=20210301'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('assets/js/joe.post&page.min.js'); ?>"></script>
 </head>
 
 <body>

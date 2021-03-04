@@ -6,17 +6,16 @@
     <!-- 文章页需要用到的CSS及JS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/plyr@3.6.4/dist/plyr.min.css">
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.post.css?update=20210301'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.post.min.css'); ?>">
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/prism/prism.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.4/dist/plyr.min.js"></script>
-    <script src="<?php $this->options->themeUrl('assets/js/joe.post&page.js?update=20210301'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('assets/js/joe.post&page.min.js'); ?>"></script>
 </head>
 
 <body>
     <div id="Joe">
         <?php $this->need('public/header.php'); ?>
-
         <div class="joe_container joe_bread">
             <ul class="joe_bread__bread">
                 <li class="item">
@@ -35,7 +34,6 @@
                 <li class="item">正文</li>
             </ul>
         </div>
-
         <div class="joe_container">
             <div class="joe_main joe_post">
                 <div class="joe_detail" data-cid="<?php echo $this->cid ?>">
@@ -51,7 +49,6 @@
             </div>
             <?php $this->need('public/aside.php'); ?>
         </div>
-
         <?php $this->need('public/footer.php'); ?>
     </div>
 </body>

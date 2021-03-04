@@ -14,9 +14,8 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.wallpaper.css?update=20210301'); ?>">
-    <script src="https://unpkg.com/infinite-scroll@3.0.6/dist/infinite-scroll.pkgd.min.js"></script>
-    <script src="<?php $this->options->themeUrl('assets/js/joe.wallpaper.js?update=20210301'); ?>"></script>
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.wallpaper.min.css'); ?>">
+    <script src="<?php $this->options->themeUrl('assets/js/joe.wallpaper.min.js'); ?>"></script>
 </head>
 
 <body>

@@ -17,7 +17,6 @@
             <span>本文链接：</span>
             <span class="text">
                 <a class="link" href="<?php $this->permalink() ?>" target="_blank" rel="noopener noreferrer nofollow"><?php $this->permalink() ?></a>
-                （转载时请注明本文出处及文章链接）
             </span>
         </div>
         <div class="item">
