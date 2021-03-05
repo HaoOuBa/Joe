@@ -58,11 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    /* 激活复制功能 */
-    {
-        new ClipboardJS('.joe_detail__article-copy').on('success', () => Qmsg.success('复制成功！'));
-    }
-
     /* 激活图片预览功能 */
     {
         $('.joe_detail__article img:not(img.owo_image)').each(function () {
@@ -198,22 +193,10 @@ document.addEventListener('DOMContentLoaded', () => {
             $('.joe_detail__article-video .episodes .item').first().click();
         }
     }
-
-    /* mp3播放器 */
-    {
-        $('.joe_mp3__player').each((index, item) => new Plyr(item, { settings: [], iconUrl: 'https://cdn.jsdelivr.net/npm/plyr@3.6.4/dist/plyr.svg' }));
-    }
 });
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
 window.addEventListener('load', function () {
-    /* 激活点击回复可见的回复按钮，页面滚动到评论区 */
-    {
-        $('.joe_detail__article-hide i').on('click', function () {
-            const top = $('.joe_comment').offset().top - $('.joe_header').height() - 15;
-            window.scrollTo({ top, behavior: 'smooth' });
-        });
-    }
     /* 判断地址栏是否有锚点链接，有则跳转到对应位置 */
     {
         const scroll = new URLSearchParams(location.search).get('scroll');

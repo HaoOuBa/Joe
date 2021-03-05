@@ -35,6 +35,7 @@
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/qmsg/qmsg.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/js/joe.extend.min.js"></script>
 <script src="<?php $this->options->themeUrl('assets/js/joe.global.min.js'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/js/joe.short.min.js'); ?>"></script>
 <script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/plugin/smooth/joe.smooth.js"></script>
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
 	<script async src="https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/cursor/<?php $this->options->JCursorEffects() ?>"></script>
