@@ -23,8 +23,6 @@ function themeInit($self)
 {
     /* 强奸用户关闭反垃圾保护 */
     Helper::options()->commentsAntiSpam = false;
-    /* 强奸用户关闭检查来源URL */
-    Helper::options()->commentsCheckReferer = false;
     /* 强奸用户要求填写邮箱 */
     Helper::options()->commentsRequireMail = true;
     /* 强奸用户要求无需填写url */
