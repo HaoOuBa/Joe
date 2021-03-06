@@ -1673,8 +1673,6 @@
 			overflow: hidden;
 			code[class*='language-'] {
 				display: block;
-				max-height: 500px;
-				overflow-y: auto;
 				white-space: pre-wrap;
 				word-break: break-all;
 				word-wrap: break-word;
@@ -2246,6 +2244,70 @@
 						min-height: 40px;
 						border-radius: 50%;
 						object-fit: cover;
+					}
+				}
+			}
+		}
+	}
+	&__leaving {
+		padding-top: 15px;
+		&-none {
+			padding: 15px 0;
+			text-align: center;
+			user-select: none;
+			color: var(--minor);
+		}
+		&-list {
+			position: relative;
+			height: 500px;
+			.item {
+				display: none;
+				position: absolute;
+				width: 200px;
+				min-height: 140px;
+				overflow: hidden;
+				box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
+				user-select: none;
+				opacity: 0.88;
+				.user {
+					display: flex;
+					align-items: center;
+					padding: 0 10px;
+					color: rgba(255, 255, 255, 1);
+					border-bottom: 1px dashed rgba(255, 255, 255, 0.85);
+					height: 40px;
+					cursor: move;
+					.avatar {
+						width: 20px;
+						height: 20px;
+						border-radius: 50%;
+					}
+					.nickname {
+						min-width: 0;
+						flex: 1;
+						margin: 0 5px;
+						white-space: nowrap;
+						overflow: hidden;
+						text-overflow: ellipsis;
+						a {
+							color: rgba(255, 255, 255, 1);
+						}
+					}
+					.date {
+						margin-left: auto;
+					}
+				}
+				.wrapper {
+					padding: 10px;
+					.content {
+						max-height: 140px;
+						overflow-y: auto;
+						word-break: break-all;
+						line-height: 24px;
+						color: #fff;
+						.draw_image {
+							max-width: 100%;
+						}
 					}
 				}
 			}

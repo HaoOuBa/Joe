@@ -66,5 +66,10 @@ function _parseContent($post, $login)
         $content = preg_replace('/{abtn(.*)}/SU', '<joe-abtn $1>', $content);
         $content = preg_replace('/{\/abtn}/SU', '</joe-abtn>', $content);
     }
+    /* 多彩按钮 */
+    if (strpos($content, '{timeline') !== false) {
+        $content = strtr($content, array("{timeline}" => '<joe-timeline>', "{/timeline}" => '</joe-timeline>'));
+        $content = strtr($content, array("{timeline-item}" => '<joe-timeline-item>', "{/timeline-item}" => '</joe-timeline-item>'));
+    }
     echo $content;
 }

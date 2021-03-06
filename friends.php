@@ -27,6 +27,7 @@
         <div class="joe_container">
             <div class="joe_main">
                 <div class="joe_detail" data-cid="<?php echo $this->cid ?>">
+                    <?php $this->need('public/batten.php'); ?>
                     <?php $this->need('public/article.php'); ?>
 
                     <?php
