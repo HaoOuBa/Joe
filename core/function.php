@@ -3,7 +3,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-	return "5.6.3";
+	return "5.6.4";
 };
 
 /* 判断是否是手机 */
@@ -249,16 +249,11 @@ function _getParentReply($parent)
 function _getAsideAuthorNav()
 {
 	if (Helper::options()->JAside_Author_Nav && Helper::options()->JAside_Author_Nav !== "off") {
+		$limit = Helper::options()->JAside_Author_Nav;
 		$db = Typecho_Db::get();
-		$result = $db->fetchAll(
-			$db->select()
-				->from('table.contents')
-				->where('table.contents.status = ?', 'publish')
-				->where('table.contents.type = ?', 'post')
-				->where("table.contents.password IS NULL OR table.contents.password = ''")
-				->where('table.contents.cid >= ?', '((SELECT MAX(cid) FROM table.contents)-(SELECT MIN(cid) FROM table.contents)) * RAND() + (SELECT MIN(cid) FROM table.contents)')
-				->limit(Helper::options()->JAside_Author_Nav)
-		);
+		$prefix = $db->getPrefix();
+		$sql = "SELECT * FROM `{$prefix}contents` WHERE cid >= (SELECT floor( RAND() * ((SELECT MAX(cid) FROM `{$prefix}contents`)-(SELECT MIN(cid) FROM `{$prefix}contents`)) + (SELECT MIN(cid) FROM `{$prefix}contents`))) and type='post' and status='publish' and (password is NULL or password='') ORDER BY cid LIMIT $limit";
+		$result = $db->query($sql);
 		foreach ($result as $item) {
 			$item = Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
 			$title = htmlspecialchars($item['title']);
