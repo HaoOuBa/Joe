@@ -3,7 +3,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-	return "5.6.5";
+	return "5.6.6";
 };
 
 /* 判断是否是手机 */
@@ -254,7 +254,7 @@ function _getAsideAuthorNav()
 		$prefix = $db->getPrefix();
 		$sql = "SELECT * FROM `{$prefix}contents` WHERE cid >= (SELECT floor( RAND() * ((SELECT MAX(cid) FROM `{$prefix}contents`)-(SELECT MIN(cid) FROM `{$prefix}contents`)) + (SELECT MIN(cid) FROM `{$prefix}contents`))) and type='post' and status='publish' and (password is NULL or password='') ORDER BY cid LIMIT $limit";
 		$result = $db->query($sql);
-		if (is_array($result)) {
+		if ($result instanceof Traversable) {
 			foreach ($result as $item) {
 				$item = Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
 				$title = htmlspecialchars($item['title']);
