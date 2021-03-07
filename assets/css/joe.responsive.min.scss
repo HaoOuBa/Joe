@@ -513,6 +513,22 @@ html {
 						display: none;
 					}
 				}
+				&__overdue {
+					&-wrapper {
+						padding: 10px;
+						.title {
+							margin-bottom: 5px;
+							font-size: 14px;
+							.icon {
+								margin-right: 5px;
+							}
+						}
+						.content {
+							font-size: 13px;
+							padding-left: 0;
+						}
+					}
+				}
 				&__article {
 					font-size: 14px;
 					&-player {
