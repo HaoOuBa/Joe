@@ -1,16 +1,24 @@
 <?php
+
 $db = Typecho_Db::get();
 $options = Typecho_Widget::widget('Widget_Options');
-$pages = $db->fetchAll($db->select()->from('table.contents')
-    ->where('table.contents.status = ?', 'publish')
-    ->where('table.contents.created < ?', $options->gmtTime)
-    ->where('table.contents.type = ?', 'page')
-    ->order('table.contents.created', Typecho_Db::SORT_DESC));
-$articles = $db->fetchAll($db->select()->from('table.contents')
-    ->where('table.contents.status = ?', 'publish')
-    ->where('table.contents.created < ?', $options->gmtTime)
-    ->where('table.contents.type = ?', 'post')
-    ->order('table.contents.created', Typecho_Db::SORT_DESC));
+$limit = Helper::options()->JSiteMap;
+$pages = $db->fetchAll(
+    $db->select()->from('table.contents')
+        ->where('table.contents.status = ?', 'publish')
+        ->where('table.contents.created < ?', $options->gmtTime)
+        ->where('table.contents.type = ?', 'page')
+        ->limit($limit)
+        ->order('table.contents.created', Typecho_Db::SORT_DESC)
+);
+$articles = $db->fetchAll(
+    $db->select()->from('table.contents')
+        ->where('table.contents.status = ?', 'publish')
+        ->where('table.contents.created < ?', $options->gmtTime)
+        ->where('table.contents.type = ?', 'post')
+        ->limit($limit)
+        ->order('table.contents.created', Typecho_Db::SORT_DESC)
+);
 header("Content-Type: application/xml");
 echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n";
 echo "<urlset xmlns=\"http://www.sitemaps.org/schemas/sitemap/0.9\">\n";
@@ -22,7 +30,7 @@ foreach ($pages as $page) {
     echo "\t<url>\n";
     echo "\t\t<loc>" . $page['permalink'] . "</loc>\n";
     echo "\t\t<lastmod>" . date('Y-m-d\TH:i:s\Z', $page['modified']) . "</lastmod>\n";
-    echo "\t\t<changefreq>always</changefreq>\n";
+    echo "\t\t<changefreq>monthly</changefreq>\n";
     echo "\t\t<priority>0.8</priority>\n";
     echo "\t</url>\n";
 }
@@ -45,7 +53,7 @@ foreach ($articles as $article) {
     echo "\t<url>\n";
     echo "\t\t<loc>" . $article['permalink'] . "</loc>\n";
     echo "\t\t<lastmod>" . date('Y-m-d\TH:i:s\Z', $article['modified']) . "</lastmod>\n";
-    echo "\t\t<changefreq>always</changefreq>\n";
+    echo "\t\t<changefreq>monthly</changefreq>\n";
     echo "\t\t<priority>0.5</priority>\n";
     echo "\t</url>\n";
 }

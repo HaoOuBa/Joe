@@ -70,10 +70,12 @@ function themeInit($self)
         };
     }
 
-    /* 增加自定义sitemap功能 */
-    if ($self->request->getRequestUri() == "/sitemap.xml" || $self->request->getRequestUri() == "/index.php/sitemap.xml") {
-        $self->setThemeFile("library/sitemap.php");
-        $self->response->setStatus(200);
+    /* 增加自定义SiteMap功能 */
+    if (Helper::options()->JSiteMap && Helper::options()->JSiteMap !== 'off') {
+        if ($self->request->getRequestUri() == "/sitemap.xml" || $self->request->getRequestUri() == "/index.php/sitemap.xml") {
+            $self->setThemeFile("library/sitemap.php");
+            $self->response->setStatus(200);
+        }
     }
 }
 

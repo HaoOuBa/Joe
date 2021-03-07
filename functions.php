@@ -851,6 +851,34 @@ function themeConfig($form)
     $JPasteUpload->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JPasteUpload->multiMode());
 
+    $JSiteMap = new Typecho_Widget_Helper_Form_Element_Select(
+        'JSiteMap',
+        array(
+            'off' => '关闭（默认）',
+            '100' => '显示最新 100 条链接',
+            '200' => '显示最新 200 条链接',
+            '300' => '显示最新 300 条链接',
+            '400' => '显示最新 400 条链接',
+            '500' => '显示最新 500 条链接',
+            '600' => '显示最新 600 条链接',
+            '700' => '显示最新 700 条链接',
+            '800' => '显示最新 800 条链接',
+            '900' => '显示最新 900 条链接',
+            '1000' => '显示最新 1000 条链接',
+        ),
+        'off',
+        '是否开启主题自带SiteMap功能',
+        '介绍：开启后博客将享有SiteMap功能 <br />
+         其他：链接为博客最新实时链接 <br />
+         好处：无需手动生成，无需频繁提交，提交一次即可 <br />
+         开启后SiteMap访问地址：<br />
+         http(s)://域名/sitemap.xml （开启了伪静态）<br />  
+         http(s)://域名/index.php/sitemap.xml （未开启伪静态）
+         '
+    );
+    $JSiteMap->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JSiteMap->multiMode());
+
     $JBaiduToken = new Typecho_Widget_Helper_Form_Element_Text(
         'JBaiduToken',
         NULL,
