@@ -3,7 +3,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-	return "5.6.2";
+	return "5.6.3";
 };
 
 /* 判断是否是手机 */
@@ -248,26 +248,19 @@ function _getParentReply($parent)
 /* 获取侧边栏作者随机文章 */
 function _getAsideAuthorNav()
 {
-	if (Helper::options()->JAside_Author_Nav !== "off") {
+	if (Helper::options()->JAside_Author_Nav && Helper::options()->JAside_Author_Nav !== "off") {
 		$db = Typecho_Db::get();
-		$adapterName = $db->getAdapterName();
-		if ($adapterName == 'pgsql' || $adapterName == 'Pdo_Pgsql' || $adapterName == 'Pdo_SQLite' || $adapterName == 'SQLite') {
-			$order_by = 'RANDOM()';
-		} else {
-			$order_by = 'RAND()';
-		}
 		$result = $db->fetchAll(
 			$db->select()
 				->from('table.contents')
 				->where('table.contents.status = ?', 'publish')
 				->where('table.contents.type = ?', 'post')
 				->where("table.contents.password IS NULL OR table.contents.password = ''")
+				->where('table.contents.cid >= ?', '((SELECT MAX(cid) FROM table.contents)-(SELECT MIN(cid) FROM table.contents)) * RAND() + (SELECT MIN(cid) FROM table.contents)')
 				->limit(Helper::options()->JAside_Author_Nav)
-				->order($order_by)
 		);
 		foreach ($result as $item) {
-			$obj = Typecho_Widget::widget('Widget_Abstract_Contents');
-			$item = $obj->push($item);
+			$item = Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
 			$title = htmlspecialchars($item['title']);
 			$permalink = $item['permalink'];
 			echo "
@@ -289,6 +282,7 @@ function _curl($url)
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 	}
+	curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36');
 	curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 	$result = curl_exec($ch);
 	curl_close($ch);
