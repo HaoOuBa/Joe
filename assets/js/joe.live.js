@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderLiveType();
         function renderLiveType() {
             $.ajax({
-                url: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/json/joe.live.json',
+                url: '/usr/themes/Joe/assets/json/joe.live.json',
                 success(res) {
                     const item = res[queryData.index];
                     $('.joe_live__type-title .text').html(item.name);

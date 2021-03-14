@@ -41,7 +41,7 @@ function themeConfig($form)
     $JFavicon = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFavicon',
         NULL,
-        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/favicon.ico',
+        'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAMAAABg3Am1AAAAaVBMVEUAAAA2Jyc2Jyc2Jyc2JyfWngc2Jyc2Jyc2Jyc2Jyc2Jyc2JydGMiSSbhU2Jyc2JydvUhs3Jyc2KCg2JyeYchRWPyCmexE2Jyc2JyfurwOKZhfEkQs2Jyd4Who2KCg2KCg2Jyf9ugD3tgL5+sE2AAAAIHRSTlMA6gsW9vuGMcTQtEb9+JNp+6lQKPz7+55y/fv7OvrZXtrXQoIAAAGdSURBVEjHxdXrcoIwEAXgBSJXi4oXVLwcfP+HbAyRQzrtLE6n0+8XagjZsyHKr8VZwg/ZVjRZhKjx10kOk4qiBBD56yMs7RkFABOLU8O6yE84a+uvLwYoYlHc2+M4pmrTZFZQI5llZfBkjIlmzZ9EGLWi8Nns187SZaTJDJan3umAXFQlcOi9NbASRWMX9Oi9BaDVHd+Arh+dgfr7cXU+KIB1T6elLcO7B9GDFv3Ejt+bbRh95Bjg3NNj//rBjiiD6FPeOnnEwQ6Lh0UXQMXoGcbqWQRL4EKqyc4tGbebqWNI/skcxXtfKjYibMP2uQ6ujjbAdefsw0anvil3Vz8lBqPiyzY2ybCGm5D9TFwR1+SqOYrFqg8L58qNwaqZ6jRXpppxWzKbmjOFnTv48pgNq8nY9HOwMxqeP+V0GXnmNAboFqMPG8jF/VDZSbdBobo0iFIXvntNOmgBfNDVjku9TD0DeArop4zXqYcxc2WqGte5h8O+qf8QS8e9+JqwKbXMUW1e2kT+zKYo8remXzGgeeIIlbwlzeU9SSP/5RPis0lhQ1CXpwAAAABJRU5ErkJggg==',
         '网站 Favicon 设置',
         '介绍：用于设置网站 Favicon，一个好的 Favicon 可以给用户一种很专业的观感 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -53,7 +53,7 @@ function themeConfig($form)
     $JLogo = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JLogo',
         NULL,
-        'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/logo.png',
+        'data:image/png;base64,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',
         '网站 Logo 设置',
         '介绍：用于设置网站 Logo，一个好的 Logo 能为网站带来有效的流量 <br />
          格式：图片 URL地址 或 Base64 地址 <br />
@@ -371,7 +371,7 @@ function themeConfig($form)
     $JAside_Author_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JAside_Author_Image',
         NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/aside_author_image.jpg",
+        "https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/aside_author_image.jpg",
         '博主栏背景壁纸 - PC',
         '介绍：用于修改PC端博主栏的背景壁纸 <br/>
          格式：图片地址 或 Base64地址'
@@ -382,7 +382,7 @@ function themeConfig($form)
     $JAside_Wap_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JAside_Wap_Image',
         NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/wap_aside_image.jpg",
+        "https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/wap_aside_image.jpg",
         '博主栏背景壁纸 - WAP',
         '介绍：用于修改WAP端博主栏的背景壁纸 <br/>
          格式：图片地址 或 Base64地址'
@@ -609,7 +609,6 @@ function themeConfig($form)
         '侧边栏广告 - PC',
         '介绍：用于设置侧边栏广告 <br />
          格式：广告图片 || 跳转链接 （中间使用两个竖杠分隔）<br />
-         例如：https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/thumb/1.jpg || https://as.js.cn <br />
          注意：如果您只想显示图片不想跳转，可填写：广告图片 || javascript:void(0)'
     );
     $JADContent->setAttribute('class', 'joe_content joe_aside');
@@ -644,7 +643,7 @@ function themeConfig($form)
     $JLazyload = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JLazyload',
         NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/lazyload.jpg",
+        "https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/lazyload.jpg",
         '自定义懒加载图',
         '介绍：用于修改主题默认懒加载图 <br/>
          格式：图片地址'
@@ -697,7 +696,7 @@ function themeConfig($form)
     $JShare_QQ_Image = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JShare_QQ_Image',
         NULL,
-        "https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/link.png",
+        "data:image/png;base64,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",
         'QQ分享链接图片',
         '介绍：用于修改在QQ内分享时卡片链接显示的图片 <br/>
          格式：图片地址'
@@ -783,7 +782,7 @@ function themeConfig($form)
     $JFriends = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFriends',
         NULL,
-        'Joe的博客 || https://as.js.cn || https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/img/link.png || Eternity is not a distance but a decision',
+        'Joe的博客 || https://as.js.cn || https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/link.png || Eternity is not a distance but a decision',
         '友情链接（非必填）',
         '介绍：用于填写友情链接 <br />
          注意：您需要先增加友联链接页面（新增独立页面-右侧模板选择友联），该项才会生效 <br />
@@ -839,17 +838,6 @@ function themeConfig($form)
     );
     $JLimitOneChinese->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JLimitOneChinese->multiMode());
-
-    $JPasteUpload = new Typecho_Widget_Helper_Form_Element_Select(
-        'JPasteUpload',
-        array('off' => '关闭（默认）', 'on' => '开启'),
-        'off',
-        '是否开启编辑器粘贴上传图片功能',
-        '介绍：开启后文章编辑器将拥有图片上传功能 <br />
-         其他：Typecho开发版已实现粘贴上传，如果您使用的是开发版，请关闭此项'
-    );
-    $JPasteUpload->setAttribute('class', 'joe_content joe_other');
-    $form->addInput($JPasteUpload->multiMode());
 
     $JSiteMap = new Typecho_Widget_Helper_Form_Element_Select(
         'JSiteMap',

@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	/* 动态背景 */
 	{
 		if (!Joe.IS_MOBILE && Joe.DYNAMIC_BACKGROUND !== 'off' && Joe.DYNAMIC_BACKGROUND && !Joe.WALLPAPER_BACKGROUND_PC) {
-			$.getScript(`https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
+			$.getScript(`/usr/themes/Joe/assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
 		}
 	}
 
@@ -448,7 +448,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	{
 		if ($('.joe_owo__contain').length > 0 && $('.joe_owo__target').length > 0) {
 			$.ajax({
-				url: 'https://cdn.jsdelivr.net/gh/HaoOuBa/Joe@master/assets/json/joe.owo.json',
+				url: '/usr/themes/Joe/assets/json/joe.owo.json',
 				success(res) {
 					let barStr = '';
 					let scrollStr = '';
