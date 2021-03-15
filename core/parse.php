@@ -3,15 +3,34 @@
 /* 过滤短代码 */
 require_once('short.php');
 
+function _checkXSS($text)
+{
+    $isXss = false;
+    $list = array(
+        '([\x00-\x08,\x0b-\x0c,\x0e-\x19])', 'script', 'javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', 'link', 'style', 'embed', 'object', 'frame', 'layer', 'title', 'bgsound', 'onload', 'onunload', 'onchange', 'onsubmit', 'onreset', 'onselect', 'onblur', 'onfocus',
+        'onabort', 'onkeydown', 'onkeypress', 'onkeyup', 'onclick', 'ondblclick', 'onmousedown', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onunload'
+    );
+    if (strip_tags($text)) {
+        for ($i = 0; $i < count($list); $i++) {
+            if (strpos($text, $list[$i]) !== false) {
+                $isXss = true;
+                break;
+            }
+        }
+    } else {
+        $isXss = true;
+    };
+    return $isXss;
+}
+
 /* 过滤评论回复 */
 function _parseCommentReply($text)
 {
-    if (strip_tags($text)) {
-        $text = _parseReply($text);
-        $text = preg_replace('/\{!{(.*?)\}!}/', '<img class="lazyload draw_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="$1" onerror="javascript: this.src=\'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\';" alt="画图"/>', $text);
-        echo $text;
-    } else {
+    if (_checkXSS($text)) {
         echo "该回复疑似异常，已被系统拦截！";
+    } else {
+        $text = _parseReply($text);
+        echo preg_replace('/\{!{(.*?)\}!}/', '<img class="lazyload draw_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="$1" onerror="javascript: this.src=\'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\';" alt="画图"/>', $text);
     }
 }
 
@@ -38,26 +57,25 @@ function _parseReply($text)
 /* 格式化留言回复 */
 function _parseLeavingReply($text)
 {
-    if (strip_tags($text)) {
+    if (_checkXSS($text)) {
+        echo "该回复疑似异常，已被系统拦截！";
+    } else {
         $text = strip_tags($text);
         $text = _parseReply($text);
-        $text = preg_replace('/\{!\{(.*?)\}!\}/', '<img class="draw_image" src="$1" alt="画图"/>', $text);
-        echo $text;
-    } else {
-        echo "该回复疑似异常，已被系统拦截！";
+        echo preg_replace('/\{!\{(.*?)\}!\}/', '<img class="draw_image" src="$1" alt="画图"/>', $text);
     }
 }
 
 /* 格式化侧边栏回复 */
 function _parseAsideReply($text, $type = true)
 {
-    if (strip_tags($text)) {
+    if (_checkXSS($text)) {
+        echo "该回复疑似异常，已被系统拦截！";
+    } else {
         $text = strip_tags($text);
         $text = preg_replace('~{!{.*~', '# 图片回复', $text);
         if ($type) echo _parseReply($text);
         else echo $text;
-    } else {
-        echo "该回复疑似异常，已被系统拦截！";
     }
 }
 
