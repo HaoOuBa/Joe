@@ -1,6 +1,6 @@
 <?php
 
-/* 侧边栏热门排行榜 */
+/* 侧边栏热门排行榜 已测试 √ */
 function _getRanking($self)
 {
     header("HTTP/1.1 200 OK");
@@ -25,15 +25,29 @@ function _getRanking($self)
     }
 }
 
-/* 获取文章列表 */
+/* 获取文章列表 已测试 √  */
 function _getPost($self)
 {
     header("HTTP/1.1 200 OK");
     header('Access-Control-Allow-Origin:*');
     header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+
     $page = $self->request->page;
     $pageSize = $self->request->pageSize;
     $type = $self->request->type;
+
+    /* sql注入校验 */
+    if (!preg_match('/^\d+$/', $page)) {
+        return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
+    }
+    if (!preg_match('/^\d+$/', $pageSize)) {
+        return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
+    }
+    if (!preg_match('/^[created|views|commentsNum|agree]+$/', $type)) {
+        return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
+    }
+    /* 如果传入0，强制赋值1 */
+    if ($page == 0) $page = 1;
     $result = [];
     /* 增加置顶文章功能，通过JS判断（如果你想添加其他标签的话，请先看置顶如何实现的） */
     $sticky_text = Helper::options()->JIndexSticky;
@@ -79,13 +93,17 @@ function _getPost($self)
     $self->response->throwJson(array("data" => $result));
 }
 
-/* 增加浏览量 */
+/* 增加浏览量 已测试 √ */
 function _handleViews($self)
 {
     header("HTTP/1.1 200 OK");
     header('Access-Control-Allow-Origin:*');
     header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $cid     = $self->request->cid;
+    /* sql注入校验 */
+    if (!preg_match('/^\d+$/',  $cid)) {
+        return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
+    }
     $db = Typecho_Db::get();
     $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
     if (sizeof($row) > 0) {
@@ -99,7 +117,7 @@ function _handleViews($self)
     }
 }
 
-/* 点赞和取消点赞 */
+/* 点赞和取消点赞 已测试 √ */
 function _handleAgree($self)
 {
     header("HTTP/1.1 200 OK");
@@ -107,6 +125,14 @@ function _handleAgree($self)
     header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
     $cid = $self->request->cid;
     $type = $self->request->type;
+    /* sql注入校验 */
+    if (!preg_match('/^\d+$/',  $cid)) {
+        return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
+    }
+    /* sql注入校验 */
+    if (!preg_match('/^[agree|disagree]+$/', $type)) {
+        return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
+    }
     $db = Typecho_Db::get();
     $row = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid));
     if (sizeof($row) > 0) {
@@ -124,7 +150,7 @@ function _handleAgree($self)
     }
 }
 
-/* 查询是否收录 */
+/* 查询是否收录 已测试 √ */
 function _getRecord($self)
 {
     header("HTTP/1.1 200 OK");
@@ -158,7 +184,7 @@ function _getRecord($self)
     }
 }
 
-/* 主动推送到百度收录 */
+/* 主动推送到百度收录 已测试 √ */
 function _pushRecord($self)
 {
     header("HTTP/1.1 200 OK");
@@ -182,7 +208,7 @@ function _pushRecord($self)
     $self->response->throwJson(json_decode($result));
 }
 
-/* 获取壁纸分类 */
+/* 获取壁纸分类 已测试 √ */
 function _getWallpaperType($self)
 {
     header("HTTP/1.1 200 OK");
@@ -203,7 +229,7 @@ function _getWallpaperType($self)
     }
 }
 
-/* 获取壁纸列表 */
+/* 获取壁纸列表 已测试 √ */
 function _getWallpaperList($self)
 {
     header("HTTP/1.1 200 OK");
@@ -228,7 +254,7 @@ function _getWallpaperList($self)
     }
 }
 
-/* 抓取苹果CMS视频分类 */
+/* 抓取苹果CMS视频分类 已测试 √ */
 function _getMaccmsList($self)
 {
     header("HTTP/1.1 200 OK");
@@ -263,7 +289,7 @@ function _getMaccmsList($self)
     }
 }
 
-/* 获取虎牙视频列表 */
+/* 获取虎牙视频列表 已测试 √ */
 function _getHuyaList($self)
 {
     header("HTTP/1.1 200 OK");
