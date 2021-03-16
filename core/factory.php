@@ -5,18 +5,27 @@ class Intercept
 {
     public static function message($comment)
     {
-        /* 判断评论内容是否包含敏感词 */
-        if (Helper::options()->JSensitiveWords) {
-            if (_checkSensitiveWords(Helper::options()->JSensitiveWords, $comment['text'])) {
-                throw new Typecho_Widget_Exception("评论内容包含敏感词汇！", 403);
+        /* 如果用户输入内容画图模式 */
+        if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
+            /* 如果判断是否有双引号，如果有双引号，则禁止评论 */
+            if (strpos($matches[1], '"') !== false || _checkXSS($matches[1])) {
+                $comment['status'] = 'waiting';
+            }
+        } else {
+            /* 判断评论内容是否包含敏感词 */
+            if (Helper::options()->JSensitiveWords) {
+                if (_checkSensitiveWords(Helper::options()->JSensitiveWords, $comment['text'])) {
+                    $comment['status'] = 'waiting';
+                }
+            }
+            /* 判断评论是否至少包含一个中文 */
+            if (Helper::options()->JLimitOneChinese === "on") {
+                if (preg_match("/[\x{4e00}-\x{9fa5}]/u", $comment['text']) == 0) {
+                    $comment['status'] = 'waiting';
+                }
             }
         }
-        /* 判断评论是否至少包含一个中文 */
-        if (Helper::options()->JLimitOneChinese === "on") {
-            if (!preg_match("/\{!\{.{0,}/", $comment['text']) && preg_match("/[\x{4e00}-\x{9fa5}]/u", $comment['text']) == 0) {
-                throw new Typecho_Widget_Exception("评论至少包含一个中文！", 403);
-            }
-        }
+        Typecho_Cookie::delete('__typecho_remember_text');
         return $comment;
     }
 }

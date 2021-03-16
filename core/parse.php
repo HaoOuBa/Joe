@@ -7,12 +7,39 @@ function _checkXSS($text)
 {
     $isXss = false;
     $list = array(
-        '([\x00-\x08,\x0b-\x0c,\x0e-\x19])', 'script', 'javascript', 'vbscript', 'expression', 'applet', 'meta', 'xml', 'blink', 'link', 'style', 'embed', 'object', 'frame', 'layer', 'title', 'bgsound', 'onload', 'onunload', 'onchange', 'onsubmit', 'onreset', 'onselect', 'onblur', 'onfocus',
-        'onabort', 'onkeydown', 'onkeypress', 'onkeyup', 'onclick', 'ondblclick', 'onmousedown', 'onmousemove', 'onmouseout', 'onmouseover', 'onmouseup', 'onunload'
+        '/onabort/is',
+        '/onblur/is',
+        '/onchange/is',
+        '/onclick/is',
+        '/ondblclick/is',
+        '/onerror/is',
+        '/onfocus/is',
+        '/onkeydown/is',
+        '/onkeypress/is',
+        '/onkeyup/is',
+        '/onload/is',
+        '/onmousedown/is',
+        '/onmousemove/is',
+        '/onmouseout/is',
+        '/onmouseover/is',
+        '/onmouseup/is',
+        '/onreset/is',
+        '/onresize/is',
+        '/onselect/is',
+        '/onsubmit/is',
+        '/onunload/is',
+        '/eval/is',
+        '/ascript:/is',
+        '/style=/is',
+        '/width=/is',
+        '/width:/is',
+        '/height=/is',
+        '/height:/is',
+        '/src=/is',
     );
     if (strip_tags($text)) {
         for ($i = 0; $i < count($list); $i++) {
-            if (strpos($text, $list[$i]) !== false) {
+            if (preg_match($list[$i], $text) > 0) {
                 $isXss = true;
                 break;
             }
@@ -30,7 +57,7 @@ function _parseCommentReply($text)
         echo "该回复疑似异常，已被系统拦截！";
     } else {
         $text = _parseReply($text);
-        echo preg_replace('/\{!{(.*?)\}!}/', '<img class="lazyload draw_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="$1" onerror="javascript: this.src=\'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\';" alt="画图"/>', $text);
+        echo preg_replace('/\{!\{([^\"]*)\}!\}/', '<img class="lazyload draw_image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="$1" onerror="javascript: this.src=\'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==\';" alt="画图"/>', $text);
     }
 }
 
@@ -62,7 +89,7 @@ function _parseLeavingReply($text)
     } else {
         $text = strip_tags($text);
         $text = _parseReply($text);
-        echo preg_replace('/\{!\{(.*?)\}!\}/', '<img class="draw_image" src="$1" alt="画图"/>', $text);
+        echo preg_replace('/\{!\{([^\"]*)\}!\}/', '<img class="draw_image" src="$1" alt="画图"/>', $text);
     }
 }
 
@@ -73,7 +100,7 @@ function _parseAsideReply($text, $type = true)
         echo "该回复疑似异常，已被系统拦截！";
     } else {
         $text = strip_tags($text);
-        $text = preg_replace('~{!{.*~', '# 图片回复', $text);
+        $text = preg_replace('/\{!\{([^\"]*)\}!\}/', '# 图片回复', $text);
         if ($type) echo _parseReply($text);
         else echo $text;
     }

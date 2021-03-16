@@ -822,7 +822,7 @@ function themeConfig($form)
         NULL,
         '你妈死了 || 傻逼 || 操你妈 || 射你妈一脸',
         '评论敏感词（非必填）',
-        '介绍：用于设置评论敏感词汇，如果用户评论包含这些词汇，则将会禁止评论 <br />
+        '介绍：用于设置评论敏感词汇，如果用户评论包含这些词汇，则将会把评论置为审核状态 <br />
          例如：你妈死了 || 你妈炸了 || 我是你爹 || 你妈坟头冒烟 （多个使用 || 分隔开）'
     );
     $JSensitiveWords->setAttribute('class', 'joe_content joe_other');
@@ -833,7 +833,7 @@ function themeConfig($form)
         array('off' => '关闭（默认）', 'on' => '开启'),
         'off',
         '是否开启评论至少包含一个中文',
-        '介绍：开启后如果评论内容未包含一个中文，则将会禁止评论 <br />
+        '介绍：开启后如果评论内容未包含一个中文，则将会把评论置为审核状态 <br />
          其他：用于屏蔽国外机器人刷的全英文垃圾广告信息'
     );
     $JLimitOneChinese->setAttribute('class', 'joe_content joe_other');
