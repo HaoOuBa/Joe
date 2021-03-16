@@ -31,8 +31,10 @@ class Intercept
 }
 
 /* 加强后台编辑器功能 */
-Typecho_Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
-Typecho_Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
+if (Helper::options()->JEditor !== 'off') {
+    Typecho_Plugin::factory('admin/write-post.php')->richEditor  = array('Editor', 'Edit');
+    Typecho_Plugin::factory('admin/write-page.php')->richEditor  = array('Editor', 'Edit');
+}
 
 class Editor
 {
