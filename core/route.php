@@ -55,21 +55,23 @@ function _getPost($self)
         $sticky_arr = explode("||", $sticky_text);
         foreach ($sticky_arr as $cid) {
             $self->widget('Widget_Archive@' . $cid, 'pageSize=1&type=post', 'cid=' . $cid)->to($item);
-            $result[] = array(
-                "mode" => $item->fields->mode ? $item->fields->mode : 'default',
-                "image" => _getThumbnails($item),
-                "time" => date('Y-m-d', $item->created),
-                "created" => date('Y年m月d日', $item->created),
-                "title" => $item->title,
-                "abstract" => _getAbstract($item, false),
-                "category" => $item->categories,
-                "views" => _getViews($item, false),
-                "commentsNum" => number_format($item->commentsNum),
-                "agree" => _getAgree($item, false),
-                "permalink" => $item->permalink,
-                "lazyload" => _getLazyload(false),
-                "type" => "sticky",
-            );
+            if ($item->next()) {
+                $result[] = array(
+                    "mode" => $item->fields->mode ? $item->fields->mode : 'default',
+                    "image" => _getThumbnails($item),
+                    "time" => date('Y-m-d', $item->created),
+                    "created" => date('Y年m月d日', $item->created),
+                    "title" => $item->title,
+                    "abstract" => _getAbstract($item, false),
+                    "category" => $item->categories,
+                    "views" => _getViews($item, false),
+                    "commentsNum" => number_format($item->commentsNum),
+                    "agree" => _getAgree($item, false),
+                    "permalink" => $item->permalink,
+                    "lazyload" => _getLazyload(false),
+                    "type" => "sticky",
+                );
+            }
         }
     }
     $self->widget('Widget_Contents_Sort', 'page=' . $page . '&pageSize=' . $pageSize . '&type=' . $type)->to($item);
