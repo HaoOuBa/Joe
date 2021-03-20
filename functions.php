@@ -339,8 +339,8 @@ function themeConfig($form)
         NULL,
         '自定义网站字体（非必填）',
         '介绍：用于修改全站字体，填写则使用引入的字体，不填写使用默认字体 <br>
-         格式：字体URL链接 <br>
-         注意：由于体积文件较大，建议使用cdn链接方式进行引入'
+         格式：字体URL链接（推荐使用woff格式的字体，网页专用字体格式） <br>
+         注意：字体文件一般有几兆，建议使用cdn链接'
     );
     $JCustomFont->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomFont);

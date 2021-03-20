@@ -29,18 +29,12 @@
     detectIE() && (alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。'), (location.href = 'https://www.baidu.com'))
 </script>
 <?php
-$format = null;
-if (strpos($this->options->JCustomFont, 'woff2') !== false) {
-    $format = 'woff2';
-} elseif (strpos($this->options->JCustomFont, 'woff') !== false) {
-    $format = 'woff';
-} elseif (strpos($this->options->JCustomFont, 'ttf') !== false) {
-    $format = 'truetype';
-} elseif (strpos($this->options->JCustomFont, 'eot') !== false) {
-    $format = 'embedded-opentype';
-} elseif (strpos($this->options->JCustomFont, 'svg') !== false) {
-    $format = 'svg';
-}
+$fontUrl = $this->options->JCustomFont;
+if (strpos($fontUrl, 'woff2') !== false) $fontFormat = 'woff2';
+elseif (strpos($fontUrl, 'woff') !== false) $fontFormat = 'woff';
+elseif (strpos($fontUrl, 'ttf') !== false) $fontFormat = 'truetype';
+elseif (strpos($fontUrl, 'eot') !== false) $fontFormat = 'embedded-opentype';
+elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
 ?>
 <style>
     @font-face {
@@ -48,12 +42,13 @@ if (strpos($this->options->JCustomFont, 'woff2') !== false) {
         font-weight: 400;
         font-style: normal;
         font-display: swap;
-        src: url('<?php $this->options->JCustomFont() ?>');
-        <?php if ($format) echo "src: url('{$this->options->JCustomFont}') fromat('{$format}');" ?>
+        src: url('<?php echo $fontUrl ?>');
+        <?php if ($fontFormat) : ?>src: url('<?php echo $fontUrl ?>') format('<?php echo $fontFormat ?>');
+        <?php endif; ?>
     }
 
     body {
-        <?php if ($this->options->JCustomFont) : ?>font-family: 'Joe Font';
+        <?php if ($fontUrl) : ?>font-family: 'Joe Font';
         <?php else : ?>font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
         <?php endif; ?>
     }
