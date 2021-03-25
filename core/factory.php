@@ -39,55 +39,11 @@ if (Helper::options()->JEditor !== 'off') {
 class Editor
 {
     public static function Edit()
-    { ?>
-        <script>
-            var JoeUploadURL = '<?php Helper::security()->index('/action/upload'); ?>';
-        </script>
+    {
+?>
+        <link rel="stylesheet" href="<?php Helper::options()->themeUrl('typecho/write/css/joe.write.min.css') ?>">
+		<script src="https://cdn.jsdelivr.net/npm/hyperdown@2.4.10/Parser.min.js"></script>
+        <script api="<?php Helper::security()->index('/action/upload'); ?>" src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js') ?>"></script>
 <?php
-        /* 编辑器核心 */
-        echo '<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/lib/codemirror.min.css">';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/lib/codemirror.min.js"></script>';
-        /* 编辑器语法高亮 */
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/markdown/markdown.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/javascript/javascript.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/css/css.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/xml/xml.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/gfm/gfm.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/pug/pug.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/sass/sass.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/stylus/stylus.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/clike/clike.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/htmlmixed/htmlmixed.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/vue/vue.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/swift/swift.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/sql/sql.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/shell/shell.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/python/python.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/php/php.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/go/go.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/yaml/yaml.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/yaml-frontmatter/yaml-frontmatter.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/mode/meta.min.js"></script>';
-        /* 编辑器附加功能 */
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/edit/continuelist.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/selection/active-line.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/edit/matchbrackets.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/edit/closebrackets.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/selection/selection-pointer.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/display/fullscreen.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/edit/closetag.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/mode/overlay.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/edit/matchtags.min.js"></script>';
-        /* 代码折行 */
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/fold/foldcode.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/fold/foldgutter.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/fold/xml-fold.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/fold/markdown-fold.min.js"></script>';
-        echo '<script src="https://cdn.jsdelivr.net/npm/codemirror@5.59.4/addon/fold/brace-fold.min.js"></script>';
-        /* 引入本地文件 */
-        echo '<link rel="stylesheet" href="/usr/themes/Joe/typecho/editor/css/joe.editor.min.css?v=2021314">';
-        echo '<script src="/usr/themes/Joe/typecho/editor/js/joe.editor.min.js?v=2021314"></script>';
-        echo '<script src="/usr/themes/Joe/typecho/editor/js/joe.constructor.min.js?v=2021314"></script>';
-        echo '<script src="/usr/themes/Joe/typecho/editor/js/joe.instance.min.js?v=2021314"></script>';
     }
 }
