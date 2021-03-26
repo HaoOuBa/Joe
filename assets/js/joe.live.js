@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         function renderLiveType() {
             $.ajax({
                 url: '/usr/themes/Joe/assets/json/joe.live.json',
+                dataType: 'json',
                 success(res) {
                     const item = res[queryData.index];
                     $('.joe_live__type-title .text').html(item.name);
@@ -43,6 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
             $.ajax({
                 url: Joe.BASE_API,
                 type: 'POST',
+                dataType: 'json',
                 data: {
                     routeType: 'huya_list',
                     page: queryData.page,

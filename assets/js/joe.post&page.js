@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $.ajax({
             url: Joe.BASE_API,
             type: 'POST',
+            dataType: 'json',
             data: { routeType: 'baidu_record', site: window.location.href },
             success(res) {
                 if (res.data && res.data === '已收录') {
@@ -23,6 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             $.ajax({
                                 url: Joe.BASE_API,
                                 type: 'POST',
+                                dataType: 'json',
                                 data: {
                                     routeType: 'baidu_push',
                                     domain: encodeURI(window.location.hostname),
@@ -80,6 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             $.ajax({
                 url: Joe.BASE_API,
                 type: 'POST',
+                dataType: 'json',
                 data: { routeType: 'handle_views', cid },
                 success(res) {
                     if (res.code !== 1) return;
@@ -107,6 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
             $.ajax({
                 url: Joe.BASE_API,
                 type: 'POST',
+                dataType: 'json',
                 data: { routeType: 'handle_agree', cid, type: flag ? 'disagree' : 'agree' },
                 success(res) {
                     if (res.code !== 1) return;
@@ -161,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     cid,
                     protectPassword
                 },
-                datatype: 'text',
+                dataType: 'text',
                 success(res) {
                     let arr = [],
                         str = '';

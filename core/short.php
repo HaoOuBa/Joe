@@ -2,10 +2,31 @@
 
 function _parseContent($post, $login)
 {
-    /* 优先判断文章内是否有回复可见的内容 */
     $content = $post->content;
-    /* 过滤表情 */
     $content = _parseReply($content);
+
+    /* 已测试 √ */
+    if (strpos($content, '{x}') !== false || strpos($content, '{ }') !== false) {
+        $content = strtr($content, array(
+            "{x}" => '<input type="checkbox" class="joe_detail__article-checkbox" checked disabled></input>',
+            "{ }" => '<input type="checkbox" class="joe_detail__article-checkbox" disabled></input>'
+        ));
+    }
+
+
+
+
+
+
+    /* 过滤网易云音乐 -  */
+    if (strpos($content, '{music') !== false) {
+        $content = preg_replace('/{music-list(.*)\/}/SU', '<joe-mlist $1></joe-mlist>', $content);
+        $content = preg_replace('/{music(.*)\/}/SU', '<joe-music $1></joe-music>', $content);
+    }
+
+
+
+
     /* 过滤默认卡片 */
     if (strpos($content, '{card-default') !== false) {
         $content = preg_replace('/{card-default(.*)}/SU', '<joe-card $1>', $content);
@@ -21,18 +42,8 @@ function _parseContent($post, $login)
             $content = strtr($content, array("{hide}" => "<joe-hide>", "{/hide}" => "</joe-hide>"));
         }
     }
-    /* 过滤网易云音乐 */
-    if (strpos($content, '{music') !== false) {
-        $content = preg_replace('/{music-list(.*)\/}/SU', '<joe-mlist $1></joe-mlist>', $content);
-        $content = preg_replace('/{music(.*)\/}/SU', '<joe-music $1></joe-music>', $content);
-    }
-    /* 过滤完成任务勾选 */
-    if (strpos($content, '{x}') !== false || strpos($content, '{ }') !== false) {
-        $content = strtr($content, array(
-            "{x}" => '<input type="checkbox" class="joe_detail__article-checkbox" checked disabled></input>',
-            "{ }" => '<input type="checkbox" class="joe_detail__article-checkbox" disabled></input>'
-        ));
-    }
+
+
     /* 过滤dplayer播放器 */
     if (strpos($content, '{dplayer') !== false) {
         $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=';

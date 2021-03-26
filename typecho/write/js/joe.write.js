@@ -51,7 +51,7 @@ class JoeAction {
 		if (selection === '') this._setCursor(cm, cursor + str.length + 1);
 		cm.focus();
 	}
-	handleFullScreen(cm, el) {
+	handleFullScreen(el) {
 		el.toggleClass('active');
 		$('body').toggleClass('fullscreen');
 		$('.cm-container').toggleClass('fullscreen');
@@ -478,6 +478,7 @@ class Joe extends JoeAction {
 									data: formData,
 									contentType: false,
 									processData: false,
+									dataType: 'json',
 									xhr: () => {
 										const xhr = $.ajaxSettings.xhr();
 										if (!xhr.upload) return;
@@ -573,7 +574,7 @@ class Joe extends JoeAction {
 					e.preventDefault();
 					switch (item.type) {
 						case 'fullScreen':
-							super.handleFullScreen(this.cm, el);
+							super.handleFullScreen(el);
 							break;
 						case 'publish':
 							super.handlePublish();

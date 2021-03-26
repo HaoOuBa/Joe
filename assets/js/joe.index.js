@@ -1,29 +1,29 @@
 document.addEventListener('DOMContentLoaded', () => {
-    /* 激活轮播图功能 */
-    {
-        if ($('.joe_index__banner .swiper-container').length !== 0) {
-            let direction = 'horizontal';
-            if (!Joe.IS_MOBILE && $('.joe_index__banner-recommend .item').length === 2) direction = 'vertical';
-            new Swiper('.swiper-container', {
-                keyboard: false,
-                direction,
-                loop: true,
-                autoplay: true,
-                mousewheel: true,
-                pagination: { el: '.swiper-pagination' },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev'
-                }
-            });
-        }
-    }
+	/* 激活轮播图功能 */
+	{
+		if ($('.joe_index__banner .swiper-container').length !== 0) {
+			let direction = 'horizontal';
+			if (!Joe.IS_MOBILE && $('.joe_index__banner-recommend .item').length === 2) direction = 'vertical';
+			new Swiper('.swiper-container', {
+				keyboard: false,
+				direction,
+				loop: true,
+				autoplay: true,
+				mousewheel: true,
+				pagination: { el: '.swiper-pagination' },
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev'
+				}
+			});
+		}
+	}
 
-    /* 初始化首页列表功能 */
-    {
-        const getListMode = _ => {
-            if (_.mode === 'default') {
-                return `
+	/* 初始化首页列表功能 */
+	{
+		const getListMode = _ => {
+			if (_.mode === 'default') {
+				return `
                     <li class="joe_list__item wow default">
                         <div class="line"></div>
                         <a href="${_.permalink}" class="thumbnail" title="${_.title}">
@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </li>
                 `;
-            } else if (_.mode === 'single') {
-                return `
+			} else if (_.mode === 'single') {
+				return `
                     <li class="joe_list__item wow single">
                         <div class="line"></div>
                         <div class="information">
@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </li>
                 `;
-            } else if (_.mode === 'multiple') {
-                return `
+			} else if (_.mode === 'multiple') {
+				return `
                     <li class="joe_list__item wow multiple">
                         <div class="line"></div>
                         <div class="information">
@@ -94,12 +94,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                         <a href="${_.permalink}" class="thumbnail" title="${_.title}">
                             ${_.image
-                                .map((item, index) => {
-                                    if (index < 3) {
-                                        return `<img width="100%" height="100%" class="lazyload" src="${_.lazyload}" data-src="${item}" onerror="javascript: this.src='${_.lazyload}';" alt="${_.title}" />`;
-                                    }
-                                })
-                                .join('')}
+								.map((item, index) => {
+									if (index < 3) {
+										return `<img width="100%" height="100%" class="lazyload" src="${_.lazyload}" data-src="${item}" onerror="javascript: this.src='${_.lazyload}';" alt="${_.title}" />`;
+									}
+								})
+								.join('')}
                         </a>
                         <div class="meta">
                             <ul class="items">
@@ -115,8 +115,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </li>
                 `;
-            } else {
-                return `
+			} else {
+				return `
                     <li class="joe_list__item wow none">
                         <div class="line"></div>
                         <div class="information">
@@ -139,67 +139,68 @@ document.addEventListener('DOMContentLoaded', () => {
                         </div>
                     </li>
                 `;
-            }
-        };
-        let queryData = { page: 1, pageSize: 12, type: 'created' };
-        const initDom = () => {
-            $('.joe_index__list .joe_list').html('');
-            $('.joe_load').show();
-            let activeItem = $('.joe_index__title-title .item[data-type="' + queryData.type + '"]');
-            let activeLine = $('.joe_index__title-title .line');
-            activeItem.addClass('active').siblings().removeClass('active');
-            activeLine.css({ left: activeItem.position().left, width: activeItem.width() });
-        };
-        const pushDom = () => {
-            return new Promise((reslove, reject) => {
-                $('.joe_load').attr('loading', true);
-                $('.joe_load').html('loading...');
-                $('.joe_index__list .joe_list__loading').show();
-                $.ajax({
-                    url: Joe.BASE_API,
-                    type: 'POST',
-                    data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
-                    success(res) {
-                        if (res.data.length === 0) {
-                            $('.joe_load').removeAttr('loading');
-                            $('.joe_load').html('查看更多');
-                            $('.joe_load').hide();
-                            $('.joe_index__list .joe_list__loading').hide();
-                            return Qmsg.warning('没有更多内容了');
-                        }
-                        res.data.forEach(_ => $('.joe_index__list .joe_list').append(getListMode(_)));
-                        $('.joe_load').removeAttr('loading');
-                        $('.joe_load').html('查看更多');
-                        $('.joe_index__list .joe_list__loading').hide();
-                        reslove(res.data.length > 0 ? res.data.length - 1 : 0);
-                    }
-                });
-            });
-        };
-        initDom();
-        pushDom();
+			}
+		};
+		let queryData = { page: 1, pageSize: 12, type: 'created' };
+		const initDom = () => {
+			$('.joe_index__list .joe_list').html('');
+			$('.joe_load').show();
+			let activeItem = $('.joe_index__title-title .item[data-type="' + queryData.type + '"]');
+			let activeLine = $('.joe_index__title-title .line');
+			activeItem.addClass('active').siblings().removeClass('active');
+			activeLine.css({ left: activeItem.position().left, width: activeItem.width() });
+		};
+		const pushDom = () => {
+			return new Promise((reslove, reject) => {
+				$('.joe_load').attr('loading', true);
+				$('.joe_load').html('loading...');
+				$('.joe_index__list .joe_list__loading').show();
+				$.ajax({
+					url: Joe.BASE_API,
+					type: 'POST',
+					dataType: 'json',
+					data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
+					success(res) {
+						if (res.data.length === 0) {
+							$('.joe_load').removeAttr('loading');
+							$('.joe_load').html('查看更多');
+							$('.joe_load').hide();
+							$('.joe_index__list .joe_list__loading').hide();
+							return Qmsg.warning('没有更多内容了');
+						}
+						res.data.forEach(_ => $('.joe_index__list .joe_list').append(getListMode(_)));
+						$('.joe_load').removeAttr('loading');
+						$('.joe_load').html('查看更多');
+						$('.joe_index__list .joe_list__loading').hide();
+						reslove(res.data.length > 0 ? res.data.length - 1 : 0);
+					}
+				});
+			});
+		};
+		initDom();
+		pushDom();
 
-        $('.joe_index__title-title .item').on('click', async function () {
-            if ($(this).attr('data-type') === queryData.type) return;
-            queryData = { page: 1, pageSize: 12, type: $(this).attr('data-type') };
-            initDom();
-            pushDom();
-        });
+		$('.joe_index__title-title .item').on('click', async function () {
+			if ($(this).attr('data-type') === queryData.type) return;
+			queryData = { page: 1, pageSize: 12, type: $(this).attr('data-type') };
+			initDom();
+			pushDom();
+		});
 
-        $('.joe_load').on('click', async function () {
-            if ($(this).attr('loading')) return;
-            queryData.page++;
-            let length = await pushDom();
-            length = $('.joe_index__list .joe_list .joe_list__item').length - length;
-            const queryElement = `.joe_index__list .joe_list .joe_list__item:nth-child(${length})`;
-            const offset = $(queryElement).offset().top - $('.joe_header').height();
-            window.scrollTo({ top: offset - 15, behavior: 'smooth' });
-        });
-    }
+		$('.joe_load').on('click', async function () {
+			if ($(this).attr('loading')) return;
+			queryData.page++;
+			let length = await pushDom();
+			length = $('.joe_index__list .joe_list .joe_list__item').length - length;
+			const queryElement = `.joe_index__list .joe_list .joe_list__item:nth-child(${length})`;
+			const offset = $(queryElement).offset().top - $('.joe_header').height();
+			window.scrollTo({ top: offset - 15, behavior: 'smooth' });
+		});
+	}
 
-    /* 激活列表特效 */
-    {
-        const wow = $('.joe_index__list').attr('data-wow');
-        if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animated ${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init();
-    }
+	/* 激活列表特效 */
+	{
+		const wow = $('.joe_index__list').attr('data-wow');
+		if (wow !== 'off' && wow) new WOW({ boxClass: 'wow', animateClass: `animated ${wow}`, offset: 0, mobile: true, live: true, scrollContainer: null }).init();
+	}
 });

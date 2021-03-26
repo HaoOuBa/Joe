@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $.ajax({
             url: Joe.BASE_API,
             type: 'POST',
+            dataType: 'json',
             data: { routeType: 'maccms_list' },
             success(res) {
                 if (res.code !== 1) return $('.joe_video__type-list').html(`<li class="error">${res.data}</li>`);
@@ -42,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
             $.ajax({
                 url: Joe.BASE_API,
                 type: 'POST',
+                dataType: 'json',
                 data: { routeType: 'maccms_list', ac: 'videolist', t: queryData.t, pg: queryData.pg, wd: queryData.wd },
                 success(res) {
                     if (res.code !== 1) return $('.joe_video__list-item').css('display', 'block').html('<p class="error">数据加载失败！请检查！</p>');
@@ -115,6 +117,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $.ajax({
             url: Joe.BASE_API,
             type: 'POST',
+            dataType: 'json',
             data: {
                 routeType: 'maccms_list',
                 ac: 'detail',

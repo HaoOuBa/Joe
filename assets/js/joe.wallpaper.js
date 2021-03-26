@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     $.ajax({
         url: Joe.BASE_API,
         type: 'POST',
+        dataType: 'json',
         data: { routeType: 'wallpaper_type' },
         success(res) {
             if (res.code !== 1) return $('.joe_wallpaper__type-list').html('<li class="error">壁纸抓取失败！请联系作者！</li>');
@@ -30,6 +31,7 @@ document.addEventListener('DOMContentLoaded', () => {
         $.ajax({
             url: Joe.BASE_API,
             type: 'POST',
+            dataType: 'json',
             data: {
                 routeType: 'wallpaper_list',
                 cid: queryData.cid,

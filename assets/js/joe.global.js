@@ -170,6 +170,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			$.ajax({
 				url: Joe.BASE_API,
 				type: 'POST',
+				dataType: 'json',
 				data: { routeType: 'aside_ranking' },
 				success(res) {
 					$('.joe_aside__item.ranking .joe_aside__item-title .text').html(res.title);
@@ -322,7 +323,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				url,
 				type: 'POST',
 				data: { author, mail, text, parent },
-				datatype: 'text',
+				dataType: 'text',
 				success(res) {
 					let arr = [],
 						str = '';
@@ -449,6 +450,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		if ($('.joe_owo__contain').length > 0 && $('.joe_owo__target').length > 0) {
 			$.ajax({
 				url: '/usr/themes/Joe/assets/json/joe.owo.json',
+				dataType: 'json',
 				success(res) {
 					let barStr = '';
 					let scrollStr = '';
