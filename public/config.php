@@ -1,18 +1,4 @@
 <script>
-    localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
-    window.Joe = {
-        LIVE2D: '<?php $this->options->JLive2d() ?>',
-        BASE_API: '<?php echo $this->options->rewrite == 0 ? '/index.php/joe/api' : '/joe/api' ?>',
-        DYNAMIC_BACKGROUND: '<?php $this->options->JDynamic_Background() ?>',
-        WALLPAPER_BACKGROUND_PC: '<?php $this->options->JWallpaper_Background_PC() ?>',
-        IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
-        BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
-        DOCUMENT_TITLE: '<?php $this->options->JDocumentTitle() ?>',
-        LAZY_LOAD: '<?php _getLazyload() ?>',
-        BIRTHDAY: '<?php $this->options->JBirthDay() ?>',
-        MOTTO: '<?php _getAsideAuthorMotto() ?>'
-    }
-
     function detectIE() {
         var n = window.navigator.userAgent,
             e = n.indexOf("MSIE ");
@@ -27,6 +13,19 @@
         return i > 0 && parseInt(n.substring(i + 5, n.indexOf(".", i)), 10)
     };
     detectIE() && (alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。'), (location.href = 'https://www.baidu.com'))
+    localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
+    window.Joe = {
+        LIVE2D: `<?php $this->options->JLive2d() ?>`,
+        BASE_API: `<?php echo $this->options->rewrite == 0 ? '/index.php/joe/api' : '/joe/api' ?>`,
+        DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
+        WALLPAPER_BACKGROUND_PC: `<?php $this->options->JWallpaper_Background_PC() ?>`,
+        IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),
+        BAIDU_PUSH: <?php echo $this->options->JBaiduToken ? 'true' : 'false' ?>,
+        DOCUMENT_TITLE: `<?php $this->options->JDocumentTitle() ?>`,
+        LAZY_LOAD: `<?php _getLazyload() ?>`,
+        BIRTHDAY: `<?php $this->options->JBirthDay() ?>`,
+        MOTTO: `<?php _getAsideAuthorMotto() ?>`
+    }
 </script>
 <?php
 $fontUrl = $this->options->JCustomFont;

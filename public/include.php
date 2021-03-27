@@ -22,7 +22,7 @@
 <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.responsive.min.css'); ?>">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/plugin/qmsg/qmsg.css">
 <?php if ($this->options->JAside_Weather_Key) : ?>
-	<link rel="stylesheet" href="https://apip.weatherdt.com/standard/static/css/weather-standard.css">
+	<link rel="stylesheet" href="http://apip.weatherdt.com/standard/static/css/weather-standard.css">
 <?php endif; ?>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css" />
