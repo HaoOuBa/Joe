@@ -42,8 +42,15 @@ class Editor
     {
 ?>
         <link rel="stylesheet" href="<?php Helper::options()->themeUrl('typecho/write/css/joe.write.min.css?v=6.1.4') ?>">
-		<script src="https://cdn.jsdelivr.net/npm/hyperdown@2.4.10/Parser.min.js"></script>
-        <script api="<?php Helper::security()->index('/action/upload'); ?>" src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js?v=6.1.4') ?>"></script>
+        <script>
+            window.JoeConfig = {
+                uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
+                emojiAPI: '<?php Helper::options()->themeUrl('typecho/write/json/emoji.json') ?>',
+                characterAPI: '<?php Helper::options()->themeUrl('typecho/write/json/character.json') ?>',
+            }
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/hyperdown@2.4.10/Parser.min.js"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js?v=6.1.4') ?>"></script>
 <?php
     }
 }

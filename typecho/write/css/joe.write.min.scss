@@ -506,8 +506,10 @@ body.fullscreen {
                     white-space: nowrap;
                     margin-right: 15px;
                     cursor: pointer;
-                    padding: 5px;
                     user-select: none;
+                    &:last-child {
+                        margin-right: 0;
+                    }
                     &.active {
                         color: #409eff;
                     }
@@ -520,7 +522,7 @@ body.fullscreen {
                 border-left: 1px solid #e4e7ed;
                 border-top: 1px solid #e4e7ed;
                 font-family: 'Meiryo UI', 'Microsoft YaHei', 'Malgun Gothic', 'Segoe UI', 'Trebuchet MS', Helvetica, 'Monaco', monospace, Tahoma, STXihei, '华文细黑', STHeiti, 'Helvetica Neue', 'Droid Sans', 'wenquanyi micro hei', FreeSans, Arimo, Arial, SimSun, '宋体', Heiti, '黑体', sans-serif;
-                max-height: 400px;
+                max-height: 380px;
                 overflow-y: auto;
                 overscroll-behavior: none;
                 &::-webkit-scrollbar-track {

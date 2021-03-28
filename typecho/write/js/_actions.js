@@ -58,6 +58,46 @@ export default class JoeAction {
         if (selection === '') this._setCursor(cm, cursor + str.length + 1);
         cm.focus();
     }
+    _createTableLists(cm, url, activeTab = '', modalTitle) {
+        $.ajax({
+            url,
+            dataType: 'json',
+            success: res => {
+                let tabbarStr = '';
+                let listsStr = '';
+                for (let key in res) {
+                    const arr = res[key].split(' ');
+                    tabbarStr += `<div class="tabbar-item ${key === activeTab ? 'active' : ''}" data-show="${key}">${key}</div>`;
+                    listsStr += `<div class="lists ${key === activeTab ? 'active' : ''}" data-show="${key}">${arr.map(item => `<div class="lists-item" data-text="${item}">${item}</div>`).join(' ')}</div>`;
+                }
+                this._openModal({
+                    title: modalTitle,
+                    hasFooter: false,
+                    innerHtml: `<div class="tabbar">${tabbarStr}</div>${listsStr}`,
+                    handler: () => {
+                        $('.cm-modal__wrapper-bodyer .tabbar-item').on('click', function () {
+                            const activeTab = $(this);
+                            const show = activeTab.attr('data-show');
+                            const tabbar = $('.cm-modal__wrapper-bodyer .tabbar');
+                            activeTab.addClass('active').siblings().removeClass('active');
+                            tabbar.stop().animate({
+                                scrollLeft: activeTab[0].offsetLeft - tabbar[0].offsetWidth / 2 + activeTab[0].offsetWidth / 2 - 15
+                            });
+                            $('.cm-modal__wrapper-bodyer .lists').removeClass('active');
+                            $(".cm-modal__wrapper-bodyer .lists[data-show='" + show + "']").addClass('active');
+                        });
+                        const _this = this;
+                        $('.cm-modal__wrapper-bodyer .lists-item').on('click', function () {
+                            const text = $(this).attr('data-text');
+                            _this._replaceSelection(cm, ` ${text} `);
+                            $('.cm-modal').removeClass('active');
+                            cm.focus();
+                        });
+                    }
+                });
+            }
+        });
+    }
     handleFullScreen(el) {
         el.toggleClass('active');
         $('body').toggleClass('fullscreen');
@@ -288,102 +328,6 @@ export default class JoeAction {
                     <li>本编辑器仅供Joe主题使用，未经允许不得移植至其他主题！</li>
                 </ul>
             `
-        });
-    }
-    handleCharacter(cm) {
-        const _1 = '★ ✰ ☆ ✩ ✫ ✬ ✭ ✮ ✡'.split(' ');
-        const _2 = '─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┍ ┎ ┐ ┑ ┒ └ ┕ ┖ ┘ ┙ ┚ ├ ┝ ┞ ┟ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┩ ┪ ┫ ┬ ┭ ┮ ┰ ┱ ┲ ┴ ┵ ┶ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿ ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ║ ╒ ╕ ╖ ╘ ╙ ╛ ╜ ╞ ╟ ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╪ ╫ ╳ ╔ ╗ ╝ ╚ ╬ ═ ╓ ╩ ┠ ┨ ┯ ┷ ┏ ┓ ┗ ┛ ┳ ⊥ ﹃ ﹄ ┌ ╭ ╮ ╯ ╰'.split(' ');
-        const _3 = '№ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ㈠ ㈡ ㈢ ㈣ ㈤ ㈥ ㈦ ㈧ ㈨ ㈩ ⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇ ⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛ Ⅰ Ⅱ Ⅲ Ⅳ Ⅴ Ⅵ Ⅶ Ⅷ Ⅸ Ⅹ Ⅺ Ⅻ ⅰ ⅱ ⅲ ⅳ ⅴ ⅵ ⅶ ⅷ ⅸ ⅹ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ'.split(' ');
-        const _4 = 'Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω α β γ δ ε ζ ν ξ ο π ρ σ η θ ι κ λ μ τ υ φ χ ψ ω'.split(' ');
-        const _5 = 'А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я'.split(' ');
-        const _6 = 'ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た だ ち ぢ っ つ づ て で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ ろ ゎ わ ゐ ゑ を ん'.split(' ');
-        const _7 = 'ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヵ ヶ'.split(' ');
-        const _8 = '夬 丅 乛 丄 丩 乚 夊 亅 亇 厃 丂 零 壹 贰 叁 肆 伍 陆 柒 捌 玖 拾 佰 仟 万 亿 吉 太 拍 艾 分 厘 毫 微 卍 卐 卄 巜 弍 弎 弐 朤 氺 曱 甴 囍 兀 々 〆 の ぁ 〡 〢 〣 〤 〥 〦 〧 〨 〩 ㊊ ㊋ ㊌ ㊍ ㊎ ㊏ ㊛ ㊚ ㊐ ㊑ ㊒ ㊓ ㊔ ㊕ ㊖ ㊗ ㊘ ㊜ ㊝ ㊞ ㊟ ㊠ ㊡ ㊢ ㊣ ㊤ ㊥ ㊦ ㊧ ㊨ ㊩ ㊪ ㊫ ㊬ ㊭ ㊮ ㊯ ㊰'.split(' ');
-        const _9 = 'ā á ǎ à ō ó ǒ ò ē é ě è ī í ǐ ì ū ú ǔ ù ǖ ǘ ǚ ǜ ü ㄅ ㄆ ㄇ ㄈ ㄉ ㄊ ㄋ ㄌ ㄍ ㄎ ㄏ ㄐ ㄑ ㄒ ㄓ ㄔ ㄕ ㄖ ㄗ ㄘ ㄙ ㄚ ㄛ ㄜ ㄝ ㄞ ㄟ ㄠ ㄡ ㄢ ㄣ ㄤ ㄥ ㄦ ㄧ ㄨ ㄩ'.split(' ');
-        const _10 = '㎎ ㎏ ㎜ ㎝ ㎞ ㎡ ㏄ ㏎ ㏑ ㏒ ㏕ ℡ % ‰ ℃ ℉ ° ′ ″ $ ￡ ￥ ￠ ♂ ♀ ℅'.split(' ');
-        const _11 = `. 。 ， 、 ; ： ？ ! ˉ ˇ ¨ ~ 々 ‖ ∶ " ' \` | · … — ～ - 〃 ‘ ’ “ ” 〝 〞 〔 〕 〈 〉 《 》 「 」 『 』 〖 〗 【 】 ( ) [ ] { ｝ ︻ ︼ ﹄ ﹃`.split(' ');
-        const _12 = '+ - × ÷ ± / ≌ ∽ ≦ ≧ ≒ ﹤ ﹥ ≈ ≡ ≠ = ≤ ≥ < > ≮ ≯ ∷ ∶ ∫ ∮ ∝ ∞ ∧ ∨ ∑ ∏ ∪ ∩ ∈ ∵ ∴ ⊥ ∥ ∠ ⌒ ⊙ √ ∟ ⊿ ㏒ ㏑ % ‰'.split(' ');
-        const _13 = '↑ ↓ ← → ↖ ↗ ↙ ↘ ↔ ↕ ➼ ➽ ➸ ➳ ➺ ➻ ➴ ➵ ➶ ➷ ➹ ▶ ➩ ➪ ➫ ➬ ➭ ➮ ➯ ➱ ➲ ➾ ➔ ➘ ➙ ➚ ➛ ➜ ➝ ➞ ➟ ➠ ➡ ➢ ➣ ➤ ➥ ➦ ➧ ➨ ↚ ↛ ↜ ↝ ↞ ↟ ↠ ↡ ↢ ↣ ↤ ↥ ↦ ↧ ↨ ⇄ ⇅ ⇆ ⇇ ⇈ ⇉ ⇊ ⇋ ⇌ ⇍ ⇎ ⇏ ⇐ ⇑ ⇒ ⇓ ⇔ ⇖ ⇗ ⇘ ⇙ ⇜ ↩ ↪ ↫ ↬ ↭ ↮ ↯ ↰ ↱ ↲ ↳ ↴ ↵ ↶ ↷ ↸ ↹ ↺ ↻ ↼ ↽ ↾ ↿ ⇀ ⇁ ⇂ ⇃ ⇞ ⇟ ⇠ ⇡ ⇢ ⇣ ⇤ ⇥ ⇦ ⇧ ⇨ ⇩ ⇪'.split(' ');
-
-        this._openModal({
-            title: '符号大全',
-            hasFooter: false,
-            innerHtml: `
-                <div class="tabbar">
-                    <div class="tabbar-item active" data-show="1">星星符号</div>
-                    <div class="tabbar-item" data-show="2">绘表符号</div>
-                    <div class="tabbar-item" data-show="3">编号&序号</div>
-                    <div class="tabbar-item" data-show="4">希腊字母</div>
-                    <div class="tabbar-item" data-show="5">俄语字符</div>
-                    <div class="tabbar-item" data-show="6">日语字符</div>
-                    <div class="tabbar-item" data-show="7">注音码</div>
-                    <div class="tabbar-item" data-show="8">中文字符</div>
-                    <div class="tabbar-item" data-show="9">汉语拼音</div>
-                    <div class="tabbar-item" data-show="10">单位符号</div>
-                    <div class="tabbar-item" data-show="11">标点符号</div>
-                    <div class="tabbar-item" data-show="12">数学符号</div>
-                    <div class="tabbar-item" data-show="13">箭头符号</div>
-                </div>
-                <div class="lists active" data-show="1">
-                    ${_1.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="2">
-                    ${_2.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="3">
-                    ${_3.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="4">
-                    ${_4.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="5">
-                    ${_5.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="6">
-                    ${_6.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="7">
-                    ${_7.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="8">
-                    ${_8.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="9">
-                    ${_9.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="10">
-                    ${_10.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="11">
-                    ${_11.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="12">
-                    ${_12.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-                <div class="lists" data-show="13">
-                    ${_13.map(_ => `<div class="lists-item" data-text="${_}">${_}</div>`).join(' ')}
-                </div>
-            `,
-            handler: () => {
-                $('.cm-modal__wrapper-bodyer .tabbar-item').on('click', function () {
-                    const activeTab = $(this);
-                    const show = activeTab.attr('data-show');
-                    const tabbar = $('.cm-modal__wrapper-bodyer .tabbar');
-                    activeTab.addClass('active').siblings().removeClass('active');
-                    tabbar.stop().animate({
-                        scrollLeft: activeTab[0].offsetLeft - tabbar[0].offsetWidth / 2 + activeTab[0].offsetWidth / 2 - 15
-                    });
-                    $('.cm-modal__wrapper-bodyer .lists').removeClass('active');
-                    $(".cm-modal__wrapper-bodyer .lists[data-show='" + show + "']").addClass('active');
-                });
-                const _this = this;
-                $('.cm-modal__wrapper-bodyer .lists-item').on('click', function () {
-                    const text = $(this).attr('data-text');
-                    _this._replaceSelection(cm, ` ${text} `);
-                    $('.cm-modal').removeClass('active');
-                    cm.focus();
-                });
-            }
         });
     }
 }

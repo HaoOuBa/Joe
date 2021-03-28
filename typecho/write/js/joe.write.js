@@ -68,7 +68,7 @@ class Joe extends JoeAction {
                                 }
                             }
                             if (!blob) return;
-                            let api = $('script[api]').attr('api');
+                            let api = window.JoeConfig.uploadAPI;
                             if (!api) return;
                             const cid = $('input[name="cid"]').val();
                             cid && (api = api + '&cid=' + cid);
@@ -240,7 +240,10 @@ class Joe extends JoeAction {
                             super.handleAbout();
                             break;
                         case 'character':
-                            super.handleCharacter(this.cm);
+                            super._createTableLists(this.cm, JoeConfig.characterAPI, '星星符号', '字符大全') 
+                            break;
+                        case 'emoji':
+                            super._createTableLists(this.cm, JoeConfig.emojiAPI, '表情', '符号表情（需数据库支持）') 
                             break;
                     }
                 });
