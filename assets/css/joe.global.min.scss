@@ -1671,7 +1671,7 @@
                 transition: transform 0.35s, opacity 0.35s;
             }
         }
-        code {
+        p code {
             display: inline-block;
             min-height: 26px;
             line-height: 26px;
@@ -1682,17 +1682,6 @@
             color: #e6a23c;
             vertical-align: top;
         }
-        pre code {
-            display: unset;
-            vertical-align: unset;
-            min-height: unset;
-            line-height: unset;
-            border-radius: unset;
-            font-size: unset;
-            background: unset;
-            padding: unset;
-            color: unset;
-        }
         pre[class*='language-'] {
             position: relative;
             margin: 0 0 18px;
@@ -1702,9 +1691,7 @@
             overflow: hidden;
             code[class*='language-'] {
                 display: block;
-                white-space: pre-wrap;
-                word-break: break-all;
-                word-wrap: break-word;
+                overflow: auto;
                 padding: 0 15px 12px;
             }
             &::after {

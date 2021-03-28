@@ -137,12 +137,13 @@ body.fullscreen {
                     background-color: rgba(221, 240, 255, 0.2);
                 }
                 .cm-content {
+                    width: 100%;
                     white-space: pre-wrap;
-                    word-break: break-all;
-                    word-wrap: break-word;
+                    overflow-wrap: break-word;
                     color: #ccc;
                     caret-color: #ccc;
                     padding: 15px 13px 15px 11px;
+                    -webkit-user-modify: read-write-plaintext-only;
                 }
                 .cm-matchingBracket {
                     color: #8f938f;
@@ -198,8 +199,7 @@ body.fullscreen {
                 font-size: 14px;
                 font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
                 white-space: pre-wrap;
-                word-break: break-all;
-                word-wrap: break-word;
+                overflow-wrap: break-word;
                 color: #606266;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
@@ -380,14 +380,6 @@ body.fullscreen {
                         th {
                             font-weight: 500;
                             background: #ebeef5;
-                        }
-                    }
-                    tbody {
-                        tr {
-                            transition: background 0.35s;
-                            &:hover {
-                                background: #ebeef5;
-                            }
                         }
                     }
                 }

@@ -42,7 +42,7 @@ class Editor
     {
 ?>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.min.css">
-        <link rel="stylesheet" href="<?php Helper::options()->themeUrl('typecho/write/css/joe.write.min.css?v=6.1.6') ?>">
+        <link rel="stylesheet" href="<?php Helper::options()->themeUrl('typecho/write/css/joe.write.min.css?v=6.1.7') ?>">
         <script>
             window.JoeConfig = {
                 uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
@@ -51,8 +51,8 @@ class Editor
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/plugin/prism/prism.js"></script>
-        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.parse.min.js?v=6.1.6') ?>"></script>
-        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js?v=6.1.6') ?>"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.parse.min.js?v=6.1.7') ?>"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js?v=6.1.7') ?>"></script>
 <?php
     }
 }

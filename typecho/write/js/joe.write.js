@@ -11,7 +11,7 @@ import JoeAction from './_actions';
 class Joe extends JoeAction {
     constructor() {
         super();
-        this.plugins = [classHighlightStyle, history(), bracketMatching(), closeBrackets()];
+        this.plugins = [history(), classHighlightStyle, bracketMatching(), closeBrackets()];
         this.parser = new HyperDown();
         this._isPasting = false;
 
@@ -120,7 +120,8 @@ class Joe extends JoeAction {
                             });
                         }
                     })
-                ]
+                ],
+                tabSize: 4
             })
         });
         $('.cm-mainer').prepend(cm.dom);
