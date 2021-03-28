@@ -203,11 +203,6 @@ body.fullscreen {
                 color: #606266;
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
-                * {
-                    margin: 0;
-                    padding: 0;
-                    box-sizing: border-box;
-                }
                 h1,
                 h2,
                 h3,
@@ -217,6 +212,7 @@ body.fullscreen {
                     color: #303133;
                     font-size: 18px;
                     line-height: 24px;
+                    margin: 0;
                     margin-bottom: 15px;
                     position: relative;
                 }
@@ -299,6 +295,7 @@ body.fullscreen {
                     }
                 }
                 hr {
+                    margin: 0;
                     border: none;
                     height: 1px;
                     background-color: #e4e7ed;
@@ -306,9 +303,11 @@ body.fullscreen {
                 }
                 p {
                     line-height: 26px;
+                    margin: 0;
                     margin-bottom: 15px;
                 }
                 blockquote {
+                    margin: 0;
                     line-height: 26px;
                     margin-bottom: 15px;
                     background: #ecf8ff;
@@ -320,7 +319,22 @@ body.fullscreen {
                         margin: 0;
                     }
                 }
-                code {
+                pre {
+                    margin: 0;
+                    margin-bottom: 15px;
+                    &::-webkit-scrollbar-track {
+                        background: #fff;
+                    }
+                    &::-webkit-scrollbar {
+                        width: 6px;
+                        height: 6px;
+                    }
+                    &::-webkit-scrollbar-thumb {
+                        border-radius: 3px;
+                        background: #c0c4cc;
+                    }
+                }
+                p code {
                     display: inline-block;
                     min-height: 26px;
                     line-height: 26px;
@@ -331,24 +345,9 @@ body.fullscreen {
                     color: #e6a23c;
                     vertical-align: top;
                 }
-                pre {
-                    background: #f0f0ec;
-                    padding: 15px;
-                    margin-bottom: 15px;
-                }
-                pre code {
-                    display: unset;
-                    vertical-align: unset;
-                    min-height: unset;
-                    line-height: unset;
-                    border-radius: unset;
-                    font-size: unset;
-                    background: unset;
-                    padding: unset;
-                    color: unset;
-                }
                 ol,
                 ul {
+                    margin: 0;
                     margin-bottom: 15px;
                     padding-left: 36px;
                     li {
@@ -392,16 +391,12 @@ body.fullscreen {
                         }
                     }
                 }
-                img:not(.owo_image) {
+                img {
                     display: block;
                     max-width: 100%;
                     border-radius: 4px;
                     transition: transform 0.35s, box-shadow 0.35s;
                     margin: 0 auto;
-                }
-                .owo_image {
-                    max-height: 26px;
-                    vertical-align: top;
                 }
                 a {
                     display: inline-block;

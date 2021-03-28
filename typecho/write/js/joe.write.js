@@ -22,6 +22,12 @@ class Joe extends JoeAction {
         this.init_Insert();
     }
 
+    _createPreviewHtml(str) {
+        str = this.parser.makeHtml(str);
+        $('.cm-preview-content').html(str);
+        $('.cm-preview-content pre code').each((i, el) => Prism.highlightElement(el));
+    }
+
     /* 已测 √ */
     init_ViewPort() {
         if ($('meta[name="viewport"]').length > 0) $('meta[name="viewport"]').attr('content', 'width=device-width, user-scalable=no, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover');
@@ -35,14 +41,13 @@ class Joe extends JoeAction {
                 <div class="cm-tools"></div>
                 <div class="cm-mainer">
                     <div class="cm-resize"></div>
-                    <div class="cm-preview">
-                        <div class="cm-preview-content">${this.parser.makeHtml($('#text').val())}</div>
-                    </div>
+                    <div class="cm-preview"><div class="cm-preview-content"></div></div>
                 </div>
                 <div class="cm-progress-left"></div>
                 <div class="cm-progress-right"></div>
             </div>
         `);
+        this._createPreviewHtml($('#text').val());
         const cm = new EditorView({
             state: EditorState.create({
                 doc: $('#text').val(),
@@ -51,7 +56,7 @@ class Joe extends JoeAction {
                     keymap.of([defaultTabBinding, ...defaultKeymap, ...historyKeymap, ...closeBracketsKeymap]),
                     EditorView.updateListener.of(update => {
                         if (!update.docChanged) return;
-                        $('.cm-preview-content').html(this.parser.makeHtml(update.state.doc.toString()));
+                        this._createPreviewHtml(update.state.doc.toString());
                     }),
                     EditorView.domEventHandlers({
                         paste: e => {
@@ -240,10 +245,10 @@ class Joe extends JoeAction {
                             super.handleAbout();
                             break;
                         case 'character':
-                            super._createTableLists(this.cm, JoeConfig.characterAPI, '星星符号', '字符大全') 
+                            super._createTableLists(this.cm, JoeConfig.characterAPI, '星星符号', '字符大全');
                             break;
                         case 'emoji':
-                            super._createTableLists(this.cm, JoeConfig.emojiAPI, '表情', '符号表情（需数据库支持）') 
+                            super._createTableLists(this.cm, JoeConfig.emojiAPI, '表情', '符号表情（需数据库支持）');
                             break;
                     }
                 });

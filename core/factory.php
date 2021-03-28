@@ -41,7 +41,8 @@ class Editor
     public static function Edit()
     {
 ?>
-        <link rel="stylesheet" href="<?php Helper::options()->themeUrl('typecho/write/css/joe.write.min.css?v=6.1.4') ?>">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.min.css">
+        <link rel="stylesheet" href="<?php Helper::options()->themeUrl('typecho/write/css/joe.write.min.css?v=6.1.6') ?>">
         <script>
             window.JoeConfig = {
                 uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
@@ -49,8 +50,9 @@ class Editor
                 characterAPI: '<?php Helper::options()->themeUrl('typecho/write/json/character.json') ?>',
             }
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/hyperdown@2.4.10/Parser.min.js"></script>
-        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js?v=6.1.4') ?>"></script>
+        <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/plugin/prism/prism.js"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.parse.min.js?v=6.1.6') ?>"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js?v=6.1.6') ?>"></script>
 <?php
     }
 }

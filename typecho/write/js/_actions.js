@@ -306,11 +306,49 @@ export default class JoeAction {
             innerHtml: `
                 <div class="fitem">
                     <label>语言类型</label>
-                    <input autocomplete="off" name="type" placeholder="请输入语言类型（英文）"/>
+                    <select name="type">
+                        <option value="">- 请选择语言类型 -</option>
+                        <option value="html">HTML</option>
+                        <option value="php">PHP</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="css">Css</option>
+                        <option value="css-extras">Css-Extras</option>
+                        <option value="sass">Sass</option>
+                        <option value="scss">Scss</option>
+                        <option value="less">Less</option>
+                        <option value="go">GO</option>
+                        <option value="java">Java</option>
+                        <option value="json">Json</option>
+                        <option value="bash">Bash</option>
+                        <option value="git">Git</option>
+                        <option value="markup">Markup</option>
+                        <option value="clike">Clike</option>
+                        <option value="batch">Batch</option>
+                        <option value="c">C</option>
+                        <option value="csharp">Csharp</option>
+                        <option value="cpp">Cpp</option>
+                        <option value="diff">Diff</option>
+                        <option value="docker">Docker</option>
+                        <option value="latex">Latex</option>
+                        <option value="markdown">Markdown</option>
+                        <option value="markup-templating">Markup-Templating</option>
+                        <option value="mongodb">Mongodb</option>
+                        <option value="nginx">Nginx</option>
+                        <option value="objectivec">Objectivec</option>
+                        <option value="powershell">PowerShell</option>
+                        <option value="python">Python</option>
+                        <option value="jsx">Jsx</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="sql">SQL</option>
+                        <option value="stylus">Stylus</option>
+                        <option value="swift">Swift</option>
+                        <option value="velocity">Velocity</option>
+                    </select>
                 </div>
             `,
             confirm: () => {
-                const type = $(".cm-modal input[name='type']").val() || 'html';
+                const type = $(".cm-modal select[name='type']").val() || 'html';
                 const htmlStr = `\`\`\`${type}\ncode here...\n\`\`\``;
                 if (this._getLineCh(cm)) this._replaceSelection(cm, '\n\n' + htmlStr);
                 else this._replaceSelection(cm, htmlStr);
