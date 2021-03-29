@@ -345,7 +345,6 @@ function themeConfig($form)
     $JCustomFont->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomFont);
 
-
     $JAside_Author_Nick = new Typecho_Widget_Helper_Form_Element_Text(
         'JAside_Author_Nick',
         NULL,
