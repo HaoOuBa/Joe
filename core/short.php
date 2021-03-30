@@ -16,7 +16,7 @@ function _parseContent($post, $login)
     /* 过滤网易云音乐 - √ */
     if (strpos($content, '{music') !== false) {
         $content = preg_replace('/{music-list([^\/})]*)\/}/SU', '<joe-mlist $1></joe-mlist>', $content);
-        $content = preg_replace('/{music(.*)\/}/SU', '<joe-music $1></joe-music>', $content);
+        $content = preg_replace('/{music([^\/})]*)\/}/SU', '<joe-music $1></joe-music>', $content);
     }
 
 

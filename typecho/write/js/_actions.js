@@ -359,6 +359,7 @@ export default class JoeAction {
 	handleAbout() {
 		this._openModal({
 			title: '关于',
+			hasFooter: false,
 			innerHtml: `
                 <ul>
                     <li>短代码功能正在开发中...</li>
@@ -373,13 +374,13 @@ export default class JoeAction {
 		this._replaceSelection(cm, ` ${str} `);
 		cm.focus();
 	}
-	handleNeteaseList(cm) {
+	handleNetease(cm, type) {
 		this._openModal({
-			title: '网易云歌单',
+			title: type ? '网易云歌单' : '网抑云单首',
 			innerHtml: `
 				<div class="fitem">
-					<label>歌单　ID</label>
-					<input autocomplete="off" name="id" placeholder="请输入歌单ID"/>
+					<label>歌${type ? '单' : '曲'}　ID</label>
+					<input autocomplete="off" name="id" placeholder="请输入歌${type ? '单' : '曲'}ID"/>
 				</div>
 				<div class="fitem">
 					<label>显示宽度</label>
@@ -397,7 +398,7 @@ export default class JoeAction {
 				const id = $(".cm-modal input[name='id']").val();
 				const width = $(".cm-modal input[name='width']").val() || '100%';
 				const autoplay = $(".cm-modal select[name='autoplay']").val();
-				const str = `{music-list id="${id}" width="${width}" ${autoplay === '1' ? 'autoplay ' : ''}/}\n`;
+				const str = `{${type ? 'music-list' : 'music'} id="${id}" width="${width}" ${autoplay === '1' ? 'autoplay="autoplay"' : ''}/}\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();

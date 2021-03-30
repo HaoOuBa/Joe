@@ -256,7 +256,10 @@ class Joe extends JoeAction {
 							super.handleTask(this.cm, true);
 							break;
 						case 'netease-list':
-							super.handleNeteaseList(this.cm);
+							super.handleNetease(this.cm, true);
+							break;
+						case 'netease-single':
+							super.handleNetease(this.cm, false);
 							break;
 					}
 				});

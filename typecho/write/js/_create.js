@@ -10,7 +10,10 @@ export default function createPreviewHtml(str) {
 
 	/* 网易云 - 歌单 */
 	str = str.replace(/{music-list([^\/})]*)\/}/g, '<joe-mlist $1></joe-mlist>');
-	
+
+	/* 网易云 - 歌曲 */
+	str = str.replace(/{music([^\/})]*)\/}/g, '<joe-music $1></joe-music>');
+
 	$('.cm-preview-content').html(str);
 	$('.cm-preview-content pre code').each((i, el) => Prism.highlightElement(el));
 }
