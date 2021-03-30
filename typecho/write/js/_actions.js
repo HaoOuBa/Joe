@@ -423,4 +423,22 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleDplayer(cm) {
+		this._openModal({
+			title: 'M3U8/MP4视频',
+			innerHtml: `
+				<div class="fitem">
+					<label>视频地址</label>
+					<input autocomplete="off" name="src" placeholder="请输入视频地址"/>
+				</div>
+            `,
+			confirm: () => {
+				const src = $(".cm-modal input[name='src']").val();
+				const str = `{dplayer src="${src}"/}\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
 }

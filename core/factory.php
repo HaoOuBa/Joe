@@ -48,6 +48,7 @@ class Editor
                 uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
                 emojiAPI: '<?php Helper::options()->themeUrl('typecho/write/json/emoji.json') ?>',
                 characterAPI: '<?php Helper::options()->themeUrl('typecho/write/json/character.json') ?>',
+                playerAPI: '<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('library/player.php?url=') ?>'
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/plugin/prism/prism.js"></script>

@@ -18,6 +18,10 @@ function _parseContent($post, $login)
     if (strpos($content, '{bilibili') !== false) {
         $content = preg_replace('/{bilibili([^\/}]*)\/}/SU', '<joe-bilibili $1></joe-bilibili>', $content);
     }
+    if (strpos($content, '{dplayer') !== false) {
+        $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : Helper::options()->themeUrl . '/library/player.php?url=';
+        $content = preg_replace('/{dplayer([^}]*)\/}/SU', '<joe-dplayer player="' . $player . '" $1></joe-dplayer>', $content);
+    }
 
 
 
@@ -39,11 +43,7 @@ function _parseContent($post, $login)
     }
 
 
-    /* 过滤dplayer播放器 */
-    if (strpos($content, '{dplayer') !== false) {
-        $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=';
-        $content = preg_replace('/{dplayer(.*)\/}/SU', '<joe-dplayer player="' . $player . '" $1></joe-dplayer>', $content);
-    }
+
 
     /* 过滤复制粘贴功能 */
     if (strpos($content, '{copy') !== false) {

@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			this.render();
 		}
 		get template() {
-			return `<object style="display: block;margin: 0 auto;" width="${this.options.width}" height="450px" data="//music.163.com/outchain/player?type=0&id=${this.options.id}&auto=${this.options.autoplay}&height=430"></object>`;
+			return `<iframe allowfullscreen="true" style="display: block; margin: 0 auto; border: 0;" width="${this.options.width}" height="450px" src="//music.163.com/outchain/player?type=0&id=${this.options.id}&auto=${this.options.autoplay}&height=430"></iframe>`;
 		}
 		render() {
 			if (this.options.id) this.innerHTML = this.template;
@@ -30,15 +30,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			this.render();
 		}
 		get template() {
-			return `<object style="display: block;margin: 0 auto;" width="${this.options.width}" height="86px" data="//music.163.com/outchain/player?type=2&id=${this.options.id}&auto=${this.options.autoplay}&height=66"></object>`;
+			return `<iframe allowfullscreen="true" style="display: block; margin: 0 auto; border: 0;" width="${this.options.width}" height="86px" src="//music.163.com/outchain/player?type=2&id=${this.options.id}&auto=${this.options.autoplay}&height=66"></iframe>`;
 		}
 		render() {
 			if (this.options.id) this.innerHTML = this.template;
-			else this.innerHTML = '网易云歌单ID未填写！';
+			else this.innerHTML = '网易云歌曲ID未填写！';
 		}
 	}
 	window.customElements.define('joe-music', JoeMusic);
-	
+
 	class JoeBilibili extends HTMLElement {
 		constructor() {
 			super();
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			this.render();
 		}
 		get template() {
-			return `<object class="joe_detail__article-player" data="//player.bilibili.com/player.html?bvid=${this.options.bvid}"></object>`;
+			return `<iframe allowfullscreen="true" class="joe_detail__article-player" style="display: block; margin: 0 auto; border: 0;" width="100%" height="180px" src="//player.bilibili.com/player.html?bvid=${this.options.bvid}"></iframe>`;
 		}
 		render() {
 			if (this.options.bvid) this.innerHTML = this.template;
@@ -57,11 +57,30 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 	window.customElements.define('joe-bilibili', JoeBilibili);
 
+	class JoeDplayer extends HTMLElement {
+		constructor() {
+			super();
+			this.options = {
+				src: this.getAttribute('src'),
+				player: this.getAttribute('player')
+			};
+			this.render();
+		}
+		get template() {
+			return `<iframe allowfullscreen="true" class="joe_detail__article-player" style="display: block; margin: 0 auto; border: 0;" width="100%" height="180px" src="${this.options.player + this.options.src}"></iframe>`;
+		}
+		render() {
+			if (this.options.src) this.innerHTML = this.template;
+			else this.innerHTML = '播放地址未填写！';
+		}
+	}
+	window.customElements.define('joe-dplayer', JoeDplayer);
 
 
 
 
 	
+
 	/* 便条按钮 */
 	class JoeAnote extends HTMLElement {
 		constructor() {
@@ -111,27 +130,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-abtn', JoeAbtn);
-	/* Dplayer */
-	class JoeDplayer extends HTMLElement {
-		constructor() {
-			super();
-			this.options = {
-				src: this.getAttribute('src'),
-				player: this.getAttribute('player')
-			};
-			this.render();
-		}
-		get template() {
-			return `
-                <iframe class="joe_detail__article-player" allowfullscreen="true" src="${this.options.player + this.options.src}"></iframe>
-            `;
-		}
-		render() {
-			if (this.options.src) this.innerHTML = this.template;
-			else this.innerHTML = '播放地址未填写！';
-		}
-	}
-	window.customElements.define('joe-dplayer', JoeDplayer);
+
 	/* 居中标题 */
 	class JoeMtitle extends HTMLElement {
 		constructor() {

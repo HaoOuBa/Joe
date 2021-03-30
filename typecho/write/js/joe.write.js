@@ -264,6 +264,9 @@ class Joe extends JoeAction {
 						case 'bilibili':
 							super.handleBilibili(this.cm);
 							break;
+						case 'dplayer':
+							super.handleDplayer(this.cm);
+							break;
 					}
 				});
 				$('.cm-tools').append(el);
