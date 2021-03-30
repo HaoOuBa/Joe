@@ -12,11 +12,11 @@ function _parseContent($post, $login)
         ));
     }
     if (strpos($content, '{music') !== false) {
-        $content = preg_replace('/{music-list([^\/}]*)\/}/SU', '<joe-mlist $1></joe-mlist>', $content);
-        $content = preg_replace('/{music([^\/}]*)\/}/SU', '<joe-music $1></joe-music>', $content);
+        $content = preg_replace('/{music-list([^}]*)\/}/SU', '<joe-mlist $1></joe-mlist>', $content);
+        $content = preg_replace('/{music([^}]*)\/}/SU', '<joe-music $1></joe-music>', $content);
     }
     if (strpos($content, '{bilibili') !== false) {
-        $content = preg_replace('/{bilibili([^\/}]*)\/}/SU', '<joe-bilibili $1></joe-bilibili>', $content);
+        $content = preg_replace('/{bilibili([^}]*)\/}/SU', '<joe-bilibili $1></joe-bilibili>', $content);
     }
     if (strpos($content, '{dplayer') !== false) {
         $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : Helper::options()->themeUrl . '/library/player.php?url=';
