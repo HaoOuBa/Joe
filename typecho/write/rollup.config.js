@@ -6,5 +6,5 @@ export default {
 		file: './js/joe.write.chunk.js',
 		format: 'iife'
 	},
-	plugins: [nodeResolve(), uglify()]
+	plugins: [nodeResolve()]
 };

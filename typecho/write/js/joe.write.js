@@ -49,7 +49,8 @@ class Joe extends JoeAction {
 					keymap.of([defaultTabBinding, ...defaultKeymap, ...historyKeymap, ...closeBracketsKeymap]),
 					EditorView.updateListener.of(update => {
 						if (!update.docChanged) return;
-						createPreviewHtml(update.state.doc.toString());
+						if (window.requestAnimationFrame) window.requestAnimationFrame(() => createPreviewHtml(update.state.doc.toString()));
+						else createPreviewHtml(update.state.doc.toString());
 					}),
 					EditorView.domEventHandlers({
 						paste: e => {
@@ -137,6 +138,7 @@ class Joe extends JoeAction {
 				e.stopPropagation();
 				const nowWidth = $('.cm-preview').outerWidth();
 				const nowClientX = e.clientX;
+				$('.cm-preview').addClass('move');
 				document.onmousemove = _e => {
 					if (window.requestAnimationFrame) requestAnimationFrame(() => move(nowClientX, nowWidth, _e.clientX));
 					else move(nowClientX, nowWidth, _e.clientX);
@@ -144,6 +146,7 @@ class Joe extends JoeAction {
 				document.onmouseup = () => {
 					document.onmousemove = null;
 					document.onmouseup = null;
+					$('.cm-preview').removeClass('move');
 				};
 				return false;
 			},
@@ -152,6 +155,7 @@ class Joe extends JoeAction {
 				e.stopPropagation();
 				const nowWidth = $('.cm-preview').outerWidth();
 				const nowClientX = e.originalEvent.targetTouches[0].clientX;
+				$('.cm-preview').addClass('move');
 				document.ontouchmove = _e => {
 					if (window.requestAnimationFrame) requestAnimationFrame(() => move(nowClientX, nowWidth, _e.targetTouches[0].clientX));
 					else move(nowClientX, nowWidth, _e.targetTouches[0].clientX);
@@ -159,6 +163,7 @@ class Joe extends JoeAction {
 				document.ontouchend = () => {
 					document.ontouchmove = null;
 					document.ontouchend = null;
+					$('.cm-preview').removeClass('move');
 				};
 				return false;
 			}
@@ -249,6 +254,9 @@ class Joe extends JoeAction {
 							break;
 						case 'task-yes':
 							super.handleTask(this.cm, true);
+							break;
+						case 'netease-list':
+							super.handleNeteaseList(this.cm);
 							break;
 					}
 				});

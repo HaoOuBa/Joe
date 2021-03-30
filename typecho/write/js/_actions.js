@@ -373,4 +373,35 @@ export default class JoeAction {
 		this._replaceSelection(cm, ` ${str} `);
 		cm.focus();
 	}
+	handleNeteaseList(cm) {
+		this._openModal({
+			title: '网易云歌单',
+			innerHtml: `
+				<div class="fitem">
+					<label>歌单　ID</label>
+					<input autocomplete="off" name="id" placeholder="请输入歌单ID"/>
+				</div>
+				<div class="fitem">
+					<label>显示宽度</label>
+					<input autocomplete="off" value="100%" name="width" placeholder="请输入宽度（百分比/像素）"/>
+				</div>
+				<div class="fitem">
+					<label>自动播放</label>
+					<select name="autoplay">
+						<option value="1" selected>是</option>
+						<option value="0">否</option>
+					</select>
+				</div>
+            `,
+			confirm: () => {
+				const id = $(".cm-modal input[name='id']").val();
+				const width = $(".cm-modal input[name='width']").val() || '100%';
+				const autoplay = $(".cm-modal select[name='autoplay']").val();
+				const str = `{music-list id="${id}" width="${width}" ${autoplay === '1' ? 'autoplay ' : ''}/}\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
 }
