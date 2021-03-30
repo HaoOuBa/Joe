@@ -9,10 +9,13 @@ export default function createPreviewHtml(str) {
 	str = str.replace(/{ }/g, '<input type="checkbox" class="task" disabled></input>');
 
 	/* 网易云 - 歌单 */
-	str = str.replace(/{music-list([^\/})]*)\/}/g, '<joe-mlist $1></joe-mlist>');
+	str = str.replace(/{music-list([^/}]*)\/}/g, '<joe-mlist $1></joe-mlist>');
 
 	/* 网易云 - 歌曲 */
-	str = str.replace(/{music([^\/})]*)\/}/g, '<joe-music $1></joe-music>');
+	str = str.replace(/{music([^/}]*)\/}/g, '<joe-music $1></joe-music>');
+
+	/* BiliBili */
+	str = str.replace(/{bilibili([^/}]*)\/}/g, '<joe-bilibili $1></joe-bilibili>');
 
 	$('.cm-preview-content').html(str);
 	$('.cm-preview-content pre code').each((i, el) => Prism.highlightElement(el));

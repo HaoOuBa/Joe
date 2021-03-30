@@ -261,6 +261,9 @@ class Joe extends JoeAction {
 						case 'netease-single':
 							super.handleNetease(this.cm, false);
 							break;
+						case 'bilibili':
+							super.handleBilibili(this.cm);
+							break;
 					}
 				});
 				$('.cm-tools').append(el);

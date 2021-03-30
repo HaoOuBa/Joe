@@ -405,4 +405,22 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleBilibili(cm) {
+		this._openModal({
+			title: 'BiliBili视频',
+			innerHtml: `
+				<div class="fitem">
+					<label>视频Bvid</label>
+					<input autocomplete="off" name="bvid" placeholder="请输入视频Bvid"/>
+				</div>
+            `,
+			confirm: () => {
+				const bvid = $(".cm-modal input[name='bvid']").val();
+				const str = `{bilibili bvid="${bvid}"/}\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
 }

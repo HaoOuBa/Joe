@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-	/* 网易云音乐 - 歌单 √ */
 	class JoeMlist extends HTMLElement {
 		constructor() {
 			super();
@@ -11,21 +10,15 @@ document.addEventListener('DOMContentLoaded', () => {
 			this.render();
 		}
 		get template() {
-			return `
-				<style>iframe {display: block;margin: 0 auto;border: none;}</style>
-				<iframe src="//music.163.com/outchain/player?type=0&id=${this.options.id}&auto=${this.options.autoplay}&height=430" width="${this.options.width}" height="450px"></iframe>
-			`;
+			return `<object style="display: block;margin: 0 auto;" width="${this.options.width}" height="450px" data="//music.163.com/outchain/player?type=0&id=${this.options.id}&auto=${this.options.autoplay}&height=430"></object>`;
 		}
 		render() {
-			this.innerHTML = '';
-			this._shadowRoot = this.attachShadow({ mode: 'closed' });
-			if (this.options.id) this._shadowRoot.innerHTML = this.template;
-			else this._shadowRoot.innerHTML = '网易云歌单ID未填写！';
+			if (this.options.id) this.innerHTML = this.template;
+			else this.innerHTML = '网易云歌单ID未填写！';
 		}
 	}
 	window.customElements.define('joe-mlist', JoeMlist);
 
-	/* 网易云音乐 - 歌曲 √ */
 	class JoeMusic extends HTMLElement {
 		constructor() {
 			super();
@@ -37,20 +30,38 @@ document.addEventListener('DOMContentLoaded', () => {
 			this.render();
 		}
 		get template() {
-			return `
-            	<style>iframe {display: block;margin: 0 auto;border: none;}</style>
-            	<iframe src="//music.163.com/outchain/player?type=2&id=${this.options.id}&auto=${this.options.autoplay}&height=66" width="${this.options.width}" height="86px"></iframe>
-        	`;
+			return `<object style="display: block;margin: 0 auto;" width="${this.options.width}" height="86px" data="//music.163.com/outchain/player?type=2&id=${this.options.id}&auto=${this.options.autoplay}&height=66"></object>`;
 		}
 		render() {
-			this.innerHTML = '';
-			this._shadowRoot = this.attachShadow({ mode: 'closed' });
-			if (this.options.id) this._shadowRoot.innerHTML = this.template;
-			else this._shadowRoot.innerHTML = '网易云歌单ID未填写！';
+			if (this.options.id) this.innerHTML = this.template;
+			else this.innerHTML = '网易云歌单ID未填写！';
 		}
 	}
 	window.customElements.define('joe-music', JoeMusic);
+	
+	class JoeBilibili extends HTMLElement {
+		constructor() {
+			super();
+			this.options = {
+				bvid: this.getAttribute('bvid')
+			};
+			this.render();
+		}
+		get template() {
+			return `<object class="joe_detail__article-player" data="//player.bilibili.com/player.html?bvid=${this.options.bvid}"></object>`;
+		}
+		render() {
+			if (this.options.bvid) this.innerHTML = this.template;
+			else this.innerHTML = 'Bvid未填写！';
+		}
+	}
+	window.customElements.define('joe-bilibili', JoeBilibili);
 
+
+
+
+
+	
 	/* 便条按钮 */
 	class JoeAnote extends HTMLElement {
 		constructor() {
@@ -121,26 +132,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-dplayer', JoeDplayer);
-	/* BiliBili */
-	class JoeBilibili extends HTMLElement {
-		constructor() {
-			super();
-			this.options = {
-				bvid: this.getAttribute('bvid')
-			};
-			this.render();
-		}
-		get template() {
-			return `
-                <iframe class="joe_detail__article-player" allowfullscreen="true" src="//player.bilibili.com/player.html?bvid=${this.options.bvid}"></iframe>
-            `;
-		}
-		render() {
-			if (this.options.bvid) this.innerHTML = this.template;
-			else this.innerHTML = 'Bvid未填写！';
-		}
-	}
-	window.customElements.define('joe-bilibili', JoeBilibili);
 	/* 居中标题 */
 	class JoeMtitle extends HTMLElement {
 		constructor() {

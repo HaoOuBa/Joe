@@ -5,18 +5,18 @@ function _parseContent($post, $login)
     $content = $post->content;
     $content = _parseReply($content);
 
-    /* 已测试 √ */
     if (strpos($content, '{x}') !== false || strpos($content, '{ }') !== false) {
         $content = strtr($content, array(
             "{x}" => '<input type="checkbox" class="joe_detail__article-checkbox" checked disabled></input>',
             "{ }" => '<input type="checkbox" class="joe_detail__article-checkbox" disabled></input>'
         ));
     }
-    
-    /* 过滤网易云音乐 - √ */
     if (strpos($content, '{music') !== false) {
-        $content = preg_replace('/{music-list([^\/})]*)\/}/SU', '<joe-mlist $1></joe-mlist>', $content);
-        $content = preg_replace('/{music([^\/})]*)\/}/SU', '<joe-music $1></joe-music>', $content);
+        $content = preg_replace('/{music-list([^\/}]*)\/}/SU', '<joe-mlist $1></joe-mlist>', $content);
+        $content = preg_replace('/{music([^\/}]*)\/}/SU', '<joe-music $1></joe-music>', $content);
+    }
+    if (strpos($content, '{bilibili') !== false) {
+        $content = preg_replace('/{bilibili([^\/}]*)\/}/SU', '<joe-bilibili $1></joe-bilibili>', $content);
     }
 
 
@@ -44,10 +44,7 @@ function _parseContent($post, $login)
         $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=';
         $content = preg_replace('/{dplayer(.*)\/}/SU', '<joe-dplayer player="' . $player . '" $1></joe-dplayer>', $content);
     }
-    /* 过滤bilibili播放器 */
-    if (strpos($content, '{bilibili') !== false) {
-        $content = preg_replace('/{bilibili(.*)\/}/SU', '<joe-bilibili $1></joe-bilibili>', $content);
-    }
+
     /* 过滤复制粘贴功能 */
     if (strpos($content, '{copy') !== false) {
         $content = preg_replace('/{copy(.*)}/SU', '<joe-copy $1>', $content);
