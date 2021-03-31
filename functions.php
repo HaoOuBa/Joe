@@ -428,8 +428,7 @@ function themeConfig($form)
         ),
         'off',
         '博主栏下方随机文章条目 - PC',
-        '介绍：用于设置博主栏下方的随机文章显示数量 <br />
-         注意：由于此项是查询整个表，文章多时，请关闭此项'
+        '介绍：用于设置博主栏下方的随机文章显示数量'
     );
     $JAside_Author_Nav->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Author_Nav->multiMode());
@@ -624,6 +623,19 @@ function themeConfig($form)
     );
     $JCustomAside->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JCustomAside);
+    /* --------------------------------------- */
+    $JAside_3DTag = new Typecho_Widget_Helper_Form_Element_Select(
+        'JAside_3DTag',
+        array(
+            'off' => '关闭（默认）',
+            'on' => '开启'
+        ),
+        'off',
+        '是否开启3D云标签 - PC',
+        '介绍：用于设置侧边栏是否显示3D云标签'
+    );
+    $JAside_3DTag->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_3DTag->multiMode());
 
 
     $JThumbnail = new Typecho_Widget_Helper_Form_Element_Textarea(

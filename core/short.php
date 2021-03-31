@@ -41,10 +41,6 @@ function _parseContent($post, $login)
             $content = strtr($content, array("{hide}" => "<joe-hide>", "{/hide}" => "</joe-hide>"));
         }
     }
-
-
-
-
     /* 过滤复制粘贴功能 */
     if (strpos($content, '{copy') !== false) {
         $content = preg_replace('/{copy(.*)}/SU', '<joe-copy $1>', $content);
@@ -52,7 +48,10 @@ function _parseContent($post, $login)
     }
     /* 过滤居中标题 */
     if (strpos($content, '{mtitle') !== false) {
-        $content = strtr($content, array("{mtitle}" => '<joe-mtitle>', "{/mtitle}" => '</joe-mtitle>'));
+        $content = strtr($content, array(
+            "{mtitle}" => '<joe-mtitle>',
+            "{/mtitle}" => '</joe-mtitle>'
+        ));
     }
     /* 过滤消息提示 */
     if (strpos($content, '{message') !== false) {
