@@ -415,4 +415,7 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleDraft() {
+		$('#btn-save').click();
+	}
 }
