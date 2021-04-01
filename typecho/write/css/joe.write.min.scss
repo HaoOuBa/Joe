@@ -116,6 +116,7 @@ body.fullscreen {
 		}
 	}
 	.cm-mainer {
+		position: relative;
 		flex: 1;
 		min-height: 0;
 		display: flex;
@@ -429,6 +430,38 @@ body.fullscreen {
 							transform: rotate(45deg);
 						}
 					}
+				}
+			}
+		}
+		.cm-autosave {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			z-index: 999;
+			&::before,
+			&::after {
+				content: '';
+				position: absolute;
+				top: 0;
+				width: 0;
+				height: 2px;
+				transition: width 0.5s;
+			}
+			&::before {
+				border-radius: 1px 0 0 1px;
+				left: 50%;
+				background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff);
+			}
+			&::after {
+				border-radius: 0 1px 1px 0;
+				right: 50%;
+				background: linear-gradient(to left, #4cd964, #5ac8fa, #007aff);
+			}
+			&.active {
+				&::before,
+				&::after {
+					width: 50%;
 				}
 			}
 		}

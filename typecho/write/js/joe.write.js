@@ -19,6 +19,7 @@ class Joe extends JoeAction {
 		this.init_Preview();
 		this.init_Tools();
 		this.init_Insert();
+		this.init_AutoSave();
 	}
 
 	/* 已测 √ */
@@ -35,6 +36,7 @@ class Joe extends JoeAction {
                 <div class="cm-mainer">
                     <div class="cm-resize"></div>
                     <div class="cm-preview"><div class="cm-preview-content"></div></div>
+					<div class="cm-autosave"></div>
                 </div>
                 <div class="cm-progress-left"></div>
                 <div class="cm-progress-right"></div>
@@ -284,6 +286,36 @@ class Joe extends JoeAction {
 			super._replaceSelection(this.cm, str);
 			this.cm.focus();
 		};
+	}
+
+	init_AutoSave() {
+		if (window.JoeConfig.autoSave !== 1) return;
+		const formEl = $('#text')[0].form;
+		let cid = $('input[name="cid"]').val();
+		let temp = null;
+		const saveFn = () => {
+			$('input[name="cid"]').val(cid);
+			$('#text').val(this.cm.state.doc.toString());
+			let data = $(formEl).serialize();
+			if (data !== temp) {
+				$('.cm-autosave').addClass('active');
+				$.ajax({
+					url: formEl.action,
+					type: 'POST',
+					data: data + '&do=save',
+					dataType: 'json',
+					success: res => {
+						cid = res.cid;
+						temp = data;
+						let timer = setTimeout(() => {
+							$('.cm-autosave').removeClass('active');
+							clearTimeout(timer);
+						}, 1000);
+					}
+				});
+			}
+		};
+		setInterval(saveFn, 5000);
 	}
 }
 

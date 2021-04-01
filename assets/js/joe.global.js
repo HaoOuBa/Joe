@@ -209,7 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					url: $(item).attr('data-url'),
 					target: '_blank',
 					fontColor: colors[random(0, colors.length - 1)],
-					fontSize: random(15, 20)
+					fontSize: 15
 				});
 			});
 			$('.joe_aside__item-contain .tag').svg3DTagCloud({
