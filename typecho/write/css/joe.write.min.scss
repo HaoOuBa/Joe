@@ -387,12 +387,16 @@ body.fullscreen {
 						}
 					}
 				}
-				img {
+				img:not(.owo) {
 					display: block;
 					max-width: 100%;
 					border-radius: 4px;
 					transition: transform 0.35s, box-shadow 0.35s;
 					margin: 0 auto;
+				}
+				.owo {
+					max-height: 26px;
+					vertical-align: top;
 				}
 				a {
 					display: inline-block;
@@ -579,6 +583,10 @@ body.fullscreen {
 				max-height: 350px;
 				overflow-y: auto;
 				overscroll-behavior: none;
+				&[data-show='颜文字'] {
+					grid-template-columns: repeat(2, 1fr);
+					font-size: 12px;
+				}
 				&::-webkit-scrollbar-track {
 					background: #fff;
 				}
@@ -604,6 +612,9 @@ body.fullscreen {
 					user-select: none;
 					color: #888;
 					padding: 5px 0;
+					img {
+						max-width: 70%;
+					}
 					&:hover,
 					.active {
 						background: #e4e7ed;

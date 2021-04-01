@@ -50,7 +50,8 @@ class Editor
                 expressionAPI: '<?php Helper::options()->themeUrl('typecho/write/json/expression.json') ?>',
                 characterAPI: '<?php Helper::options()->themeUrl('typecho/write/json/character.json') ?>',
                 playerAPI: '<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('library/player.php?url=') ?>',
-                autoSave: <?php Helper::options()->autoSave(); ?>
+                autoSave: <?php Helper::options()->autoSave(); ?>,
+                themeURL: '<?php Helper::options()->themeUrl(); ?>'
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>

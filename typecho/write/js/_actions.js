@@ -423,7 +423,33 @@ export default class JoeAction {
 			url: window.JoeConfig.expressionAPI,
 			dataType: 'json',
 			success: res => {
-				console.log(res);
+				let tabbarStr = '';
+				let listsStr = '';
+				for (let key in res) {
+					const arr = res[key];
+					tabbarStr += `<div class="tabbar-item ${key === '泡泡' ? 'active' : ''}" data-show="${key}">${key}</div>`;
+					listsStr += `<div class="lists ${key === '泡泡' ? 'active' : ''}" data-show="${key}">${arr.map(item => `<div class="lists-item" data-text="${item.data}">${key === '颜文字' ? item.icon : `<img src="${window.JoeConfig.themeURL + item.icon}">`}</div>`).join(' ')}</div>`;
+				}
+				this._openModal({
+					title: '普通表情',
+					hasFooter: false,
+					innerHtml: `<div class="tabbar">${tabbarStr}</div>${listsStr}`,
+					handler: () => {
+						$('.cm-modal__wrapper-bodyer .tabbar-item').on('click', function () {
+							const show = $(this).attr('data-show');
+							$(this).addClass('active').siblings().removeClass('active');
+							$('.cm-modal__wrapper-bodyer .lists').removeClass('active');
+							$(".cm-modal__wrapper-bodyer .lists[data-show='" + show + "']").addClass('active');
+						});
+						const _this = this;
+						$('.cm-modal__wrapper-bodyer .lists-item').on('click', function () {
+							const text = $(this).attr('data-text');
+							_this._replaceSelection(cm, ` ${text} `);
+							$('.cm-modal').removeClass('active');
+							cm.focus();
+						});
+					}
+				});
 			}
 		});
 	}
