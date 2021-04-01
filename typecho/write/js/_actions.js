@@ -301,6 +301,13 @@ export default class JoeAction {
 		});
 	}
 	handleCodeBlock(cm) {
+		const language = 'markup+css+clike+javascript+abap+abnf+actionscript+ada+agda+al+antlr4+apacheconf+apex+apl+applescript+aql+arduino+arff+asciidoc+aspnet+asm6502+autohotkey+autoit+bash+basic+batch+bbcode+birb+bison+bnf+brainfuck+brightscript+bro+bsl+c+csharp+cpp+cfscript+chaiscript+cil+clojure+cmake+cobol+coffeescript+concurnas+csp+coq+crystal+css-extras+csv+cypher+d+dart+dataweave+dax+dhall+diff+django+dns-zone-file+docker+dot+ebnf+editorconfig+eiffel+ejs+elixir+elm+etlua+erb+erlang+excel-formula+fsharp+factor+false+firestore-security-rules+flow+fortran+ftl+gml+gcode+gdscript+gedcom+gherkin+git+glsl+go+graphql+groovy+haml+handlebars+haskell+haxe+hcl+hlsl+http+hpkp+hsts+ichigojam+icon+icu-message-format+idris+ignore+inform7+ini+io+j+java+javadoc+javadoclike+javastacktrace+jexl+jolie+jq+jsdoc+js-extras+json+json5+jsonp+jsstacktrace+js-templates+julia+keyman+kotlin+kumir+latex+latte+less+lilypond+liquid+lisp+livescript+llvm+log+lolcode+lua+makefile+markdown+markup-templating+matlab+mel+mizar+mongodb+monkey+moonscript+n1ql+n4js+nand2tetris-hdl+naniscript+nasm+neon+nevod+nginx+nim+nix+nsis+objectivec+ocaml+opencl+openqasm+oz+parigp+parser+pascal+pascaligo+psl+pcaxis+peoplecode+perl+php+phpdoc+php-extras+plsql+powerquery+powershell+processing+prolog+promql+properties+protobuf+pug+puppet+pure+purebasic+purescript+python+qsharp+q+qml+qore+r+racket+jsx+tsx+reason+regex+rego+renpy+rest+rip+roboconf+robotframework+ruby+rust+sas+sass+scss+scala+scheme+shell-session+smali+smalltalk+smarty+sml+solidity+solution-file+soy+sparql+splunk-spl+sqf+sql+squirrel+stan+iecst+stylus+swift+t4-templating+t4-cs+t4-vb+tap+tcl+tt2+textile+toml+turtle+twig+typescript+typoscript+unrealscript+uri+v+vala+vbnet+velocity+verilog+vhdl+vim+visual-basic+warpscript+wasm+wiki+xeora+xml-doc+xojo+xquery+yaml+yang+zig';
+		const languageArr = language.split('+').sort((a, b) => a.localeCompare(b));
+		const sessionStorageType = sessionStorage.getItem('selectType') || '';
+		let htmlStr = '';
+		languageArr.forEach(item => {
+			htmlStr += `<option ${sessionStorageType === item ? 'selected' : ''} value="${item}">${item.toUpperCase()}</option>`;
+		});
 		this._openModal({
 			title: '插入代码块',
 			innerHtml: `
@@ -308,51 +315,18 @@ export default class JoeAction {
                     <label>语言类型</label>
                     <select name="type">
                         <option value="">- 请选择语言类型 -</option>
-                        <option value="html">HTML</option>
-                        <option value="php">PHP</option>
-                        <option value="javascript">JavaScript</option>
-                        <option value="typescript">TypeScript</option>
-                        <option value="css">Css</option>
-                        <option value="css-extras">Css-Extras</option>
-                        <option value="sass">Sass</option>
-                        <option value="scss">Scss</option>
-                        <option value="less">Less</option>
-                        <option value="go">GO</option>
-                        <option value="java">Java</option>
-                        <option value="json">Json</option>
-                        <option value="bash">Bash</option>
-                        <option value="git">Git</option>
-                        <option value="markup">Markup</option>
-                        <option value="clike">Clike</option>
-                        <option value="batch">Batch</option>
-                        <option value="c">C</option>
-                        <option value="csharp">Csharp</option>
-                        <option value="cpp">Cpp</option>
-                        <option value="diff">Diff</option>
-                        <option value="docker">Docker</option>
-                        <option value="latex">Latex</option>
-                        <option value="markdown">Markdown</option>
-                        <option value="markup-templating">Markup-Templating</option>
-                        <option value="mongodb">Mongodb</option>
-                        <option value="nginx">Nginx</option>
-                        <option value="objectivec">Objectivec</option>
-                        <option value="powershell">PowerShell</option>
-                        <option value="python">Python</option>
-                        <option value="jsx">Jsx</option>
-                        <option value="ruby">Ruby</option>
-                        <option value="sql">SQL</option>
-                        <option value="stylus">Stylus</option>
-                        <option value="swift">Swift</option>
-                        <option value="velocity">Velocity</option>
+                        ${htmlStr}
                     </select>
                 </div>
             `,
 			confirm: () => {
-				const type = $(".cm-modal select[name='type']").val() || 'html';
+				const type = $(".cm-modal select[name='type']").val();
+				if (!type) return;
 				const htmlStr = `\`\`\`${type}\ncode here...\n\`\`\``;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n\n' + htmlStr);
 				else this._replaceSelection(cm, htmlStr);
 				cm.focus();
+				sessionStorage.setItem('selectType', type);
 			}
 		});
 	}

@@ -51,7 +51,7 @@ class Editor
                 playerAPI: '<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('library/player.php?url=') ?>'
             }
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/plugin/prism/prism.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
         <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.short.min.js') ?>"></script>
         <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.parse.min.js') ?>"></script>
         <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js') ?>"></script>
