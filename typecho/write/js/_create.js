@@ -1,6 +1,8 @@
 const parser = new HyperDown();
 const player = window.JoeConfig.playerAPI;
 export default function createPreviewHtml(str) {
+	str = str.replace(/　/g, '&emsp;');
+	
 	str = parser.makeHtml(str);
 
 	/* 任务 - 完成 */

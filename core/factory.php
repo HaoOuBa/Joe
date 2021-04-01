@@ -47,6 +47,7 @@ class Editor
             window.JoeConfig = {
                 uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
                 emojiAPI: '<?php Helper::options()->themeUrl('typecho/write/json/emoji.json') ?>',
+                expressionAPI: '<?php Helper::options()->themeUrl('typecho/write/json/expression.json') ?>',
                 characterAPI: '<?php Helper::options()->themeUrl('typecho/write/json/character.json') ?>',
                 playerAPI: '<?php Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer() : Helper::options()->themeUrl('library/player.php?url=') ?>',
                 autoSave: <?php Helper::options()->autoSave(); ?>

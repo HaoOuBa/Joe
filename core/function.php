@@ -2,7 +2,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-	return "6.2.8";
+	return "6.2.9";
 };
 
 /* 判断是否是手机 */

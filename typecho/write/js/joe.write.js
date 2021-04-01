@@ -272,6 +272,9 @@ class Joe extends JoeAction {
 						case 'draft':
 							super.handleDraft();
 							break;
+						case 'expression':
+							super.handleExpression(this.cm);
+							break;
 					}
 				});
 				$('.cm-tools').append(el);
@@ -288,6 +291,7 @@ class Joe extends JoeAction {
 		};
 	}
 
+	/* 已测 √ */
 	init_AutoSave() {
 		if (window.JoeConfig.autoSave !== 1) return;
 		const formEl = $('#text')[0].form;

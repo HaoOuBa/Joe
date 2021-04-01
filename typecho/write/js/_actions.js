@@ -418,4 +418,13 @@ export default class JoeAction {
 	handleDraft() {
 		$('#btn-save').click();
 	}
+	handleExpression(cm) {
+		$.ajax({
+			url: window.JoeConfig.expressionAPI,
+			dataType: 'json',
+			success: res => {
+				console.log(res);
+			}
+		});
+	}
 }
