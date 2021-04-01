@@ -2,7 +2,7 @@
     <section class="joe_aside__item author">
         <img width="100%" height="120" class="image lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php $this->options->JAside_Author_Image() ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="博主栏壁纸" />
         <div class="user">
-            <img width="75" height="75" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : _getAvatarByMail($this->author->mail) ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="博主头像" />
+            <img width="75" height="75" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : _getAvatarByMail($this->author->mail) ?>" onerror="javascript: this.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='" alt="博主头像" />
             <a class="link" href="<?php $this->options->JAside_Author_Link() ?>" target="_blank" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : $this->author->screenName(); ?></a>
             <p class="motto joe_motto"></p>
         </div>
@@ -55,7 +55,7 @@
                         <li class="item">
                             <a class="link" href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>">
                                 <i class="sort"><?php echo $index; ?></i>
-                                <img width="100%" height="130" class="image lazyload" src="<?php _getLazyload(); ?>" data-src="<?php echo _getThumbnails($item)[0]; ?>" onerror="javascript: this.src='<?php _getLazyload() ?>';" alt="<?php $item->title() ?>" />
+                                <img width="100%" height="130" class="image lazyload" src="<?php _getLazyload(); ?>" data-src="<?php echo _getThumbnails($item)[0]; ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="<?php $item->title() ?>" />
                                 <div class="describe">
                                     <h6><?php $item->title(); ?></h6>
                                     <span><?php $item->views(); ?> 阅读 - <?php $item->date('m/d'); ?></span>
@@ -86,7 +86,7 @@
                     <?php while ($item->next()) : ?>
                         <li class="item">
                             <div class="user">
-                                <img width="40" height="40" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($item->mail) ?>" onerror="javascript: this.src = '<?php _getAvatarLazyload(); ?>'" alt="<?php $item->author(false) ?>" />
+                                <img width="40" height="40" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($item->mail) ?>" onerror="javascript: this.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='" alt="<?php $item->author(false) ?>" />
                                 <div class="info">
                                     <div class="author"><?php $item->author(false) ?></div>
                                     <span class="date"><?php $item->date('Y-m-d'); ?></span>
@@ -161,7 +161,7 @@
     <?php endif; ?>
     <?php if ($this->options->JADContent) : ?>
         <a class="joe_aside__item advert" target="_blank" rel="noopener noreferrer nofollow" href="<?php echo explode("||", $this->options->JADContent)[1]; ?>" title="广告">
-            <img class="lazyload" width="100%" src="<?php _getLazyload() ?>" data-src="<?php echo explode("||", $this->options->JADContent)[0]; ?>" onerror="javascript: this.src='<?php _getLazyload() ?>';" alt="广告" />
+            <img class="lazyload" width="100%" src="<?php _getLazyload() ?>" data-src="<?php echo explode("||", $this->options->JADContent)[0]; ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="广告" />
             <span class="icon">广告</span>
         </a>
     <?php endif; ?>

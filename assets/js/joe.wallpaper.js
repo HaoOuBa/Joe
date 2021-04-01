@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 res.data.forEach(_ => {
                     htmlStr += `
                         <a class="item animated bounceIn" data-fancybox="gallery" href="${_.url}">
-                            <img width="100%" height="100%" class="lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.img_1024_768 || _.url}" onerror="javascript: this.src = '${Joe.LAZY_LOAD}'" alt="壁纸">
+                            <img width="100%" height="100%" class="lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.img_1024_768 || _.url}" onerror="javascript: this.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='" alt="壁纸">
                         </a>`;
                 });
                 $('.joe_wallpaper__list').html(htmlStr);
