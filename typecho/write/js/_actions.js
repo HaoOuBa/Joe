@@ -372,7 +372,7 @@ export default class JoeAction {
 				const id = $(".cm-modal input[name='id']").val();
 				const width = $(".cm-modal input[name='width']").val() || '100%';
 				const autoplay = $(".cm-modal select[name='autoplay']").val();
-				const str = `{${type ? 'music-list' : 'music'} id="${id}" width="${width}" ${autoplay === '1' ? 'autoplay="autoplay"' : ''}/}\n`;
+				const str = `\n{${type ? 'music-list' : 'music'} id="${id}" width="${width}" ${autoplay === '1' ? 'autoplay="autoplay"' : ''}/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
@@ -390,7 +390,7 @@ export default class JoeAction {
             `,
 			confirm: () => {
 				const bvid = $(".cm-modal input[name='bvid']").val();
-				const str = `{bilibili bvid="${bvid}"/}\n`;
+				const str = `\n{bilibili bvid="${bvid}"/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
@@ -408,7 +408,7 @@ export default class JoeAction {
             `,
 			confirm: () => {
 				const src = $(".cm-modal input[name='src']").val();
-				const str = `{dplayer src="${src}"/}\n`;
+				const str = `\n{dplayer src="${src}"/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
@@ -450,6 +450,24 @@ export default class JoeAction {
 						});
 					}
 				});
+			}
+		});
+	}
+	handleMtitle(cm) {
+		this._openModal({
+			title: '居中标题',
+			innerHtml: `
+				<div class="fitem">
+					<label>标题内容</label>
+					<input autocomplete="off" maxlength="10" name="text" placeholder="请输入标题内容（10字以内）"/>
+				</div>
+            `,
+			confirm: () => {
+				const text = $(".cm-modal input[name='text']").val();
+				const str = `\n{mtitle title="${text}"/}\n\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus();
 			}
 		});
 	}

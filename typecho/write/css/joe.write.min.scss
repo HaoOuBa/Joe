@@ -653,6 +653,32 @@ body.fullscreen {
 	}
 }
 
+.joe_detail__article-mtitle {
+	display: flex;
+	justify-content: center;
+	.text {
+		position: relative;
+		color: #909399;
+		padding: 0 12px;
+		transition: padding 0.35s;
+		&::before,
+		&::after {
+			content: '';
+			position: absolute;
+			top: 50%;
+			width: 20px;
+			height: 1px;
+			background: #409eff;
+		}
+		&::before {
+			left: -35px;
+		}
+		&::after {
+			right: -35px;
+		}
+	}
+}
+
 @media (max-width: 768px) {
 	.cm-modal__wrapper {
 		width: 90%;

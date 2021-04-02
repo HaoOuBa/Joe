@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-mlist', JoeMlist);
-
 	class JoeMusic extends HTMLElement {
 		constructor() {
 			super();
@@ -38,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-music', JoeMusic);
-
 	class JoeBilibili extends HTMLElement {
 		constructor() {
 			super();
@@ -56,7 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-bilibili', JoeBilibili);
-
 	class JoeDplayer extends HTMLElement {
 		constructor() {
 			super();
@@ -75,11 +72,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-dplayer', JoeDplayer);
+	class JoeMtitle extends HTMLElement {
+		constructor() {
+			super();
+			this.options = {
+				title: this.getAttribute('title') || '默认标题'
+			};
+			this.innerHTML = this.template;
+		}
+		get template() {
+			return `<div class="joe_detail__article-mtitle"><span class="text">${this.options.title}</span></div>`;
+		}
+	}
+	window.customElements.define('joe-mtitle', JoeMtitle);
 
 
-
-
-	
 
 	/* 便条按钮 */
 	class JoeAnote extends HTMLElement {
@@ -130,28 +137,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-abtn', JoeAbtn);
-
-	/* 居中标题 */
-	class JoeMtitle extends HTMLElement {
-		constructor() {
-			super();
-			this.options = {
-				content: this.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '居中标题'
-			};
-			this.render();
-		}
-		get template() {
-			return `
-                <div class="joe_detail__article-mtitle">
-                    <span class="text">${this.options.content}</span> 
-                </div>
-            `;
-		}
-		render() {
-			this.innerHTML = this.template;
-		}
-	}
-	window.customElements.define('joe-mtitle', JoeMtitle);
 	/* 点击复制 */
 	class JoeCopy extends HTMLElement {
 		constructor() {

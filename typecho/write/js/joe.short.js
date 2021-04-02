@@ -67,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			this.render();
 		}
 		get template() {
-			return `<iframe allowfullscreen="true" class="joe_detail__article-player" style="display: block; margin: 0 auto; border: 0;" width="100%" height="180px" src="${this.options.player + this.options.src}"></iframe>`
+			return `<iframe allowfullscreen="true" class="joe_detail__article-player" style="display: block; margin: 0 auto; border: 0;" width="100%" height="180px" src="${this.options.player + this.options.src}"></iframe>`;
 		}
 		render() {
 			if (this.options.src) this.innerHTML = this.template;
@@ -75,4 +75,18 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-dplayer', JoeDplayer);
+
+	class JoeMtitle extends HTMLElement {
+		constructor() {
+			super();
+			this.options = {
+				title: this.getAttribute('title') || '默认标题'
+			};
+			this.innerHTML = this.template;
+		}
+		get template() {
+			return `<div class="joe_detail__article-mtitle"><span class="text">${this.options.title}</span></div>`;
+		}
+	}
+	window.customElements.define('joe-mtitle', JoeMtitle);
 });

@@ -55,9 +55,9 @@ class Editor
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
-        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.short.min.js') ?>"></script>
-        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.parse.min.js') ?>"></script>
-        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js') ?>"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.short.min.js?v=20210402') ?>"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.parse.min.js?v=20210402') ?>"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js?v=20210402') ?>"></script>
 <?php
     }
 }

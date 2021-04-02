@@ -22,6 +22,9 @@ function _parseContent($post, $login)
         $player = Helper::options()->JCustomPlayer ? Helper::options()->JCustomPlayer : Helper::options()->themeUrl . '/library/player.php?url=';
         $content = preg_replace('/{dplayer([^}]*)\/}/SU', '<joe-dplayer player="' . $player . '" $1></joe-dplayer>', $content);
     }
+    if (strpos($content, '{mtitle') !== false) {
+        $content = preg_replace('/{mtitle([^}]*)\/}/SU', '<joe-mtitle $1></joe-mtitle>', $content);
+    }
 
 
 
@@ -46,13 +49,7 @@ function _parseContent($post, $login)
         $content = preg_replace('/{copy(.*)}/SU', '<joe-copy $1>', $content);
         $content = preg_replace('/{\/copy}/SU', '</joe-copy>', $content);
     }
-    /* 过滤居中标题 */
-    if (strpos($content, '{mtitle') !== false) {
-        $content = strtr($content, array(
-            "{mtitle}" => '<joe-mtitle>',
-            "{/mtitle}" => '</joe-mtitle>'
-        ));
-    }
+
     /* 过滤消息提示 */
     if (strpos($content, '{message') !== false) {
         $content = preg_replace('/{message(.*)}/SU', '<joe-message $1>', $content);
