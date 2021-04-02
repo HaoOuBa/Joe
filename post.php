@@ -55,6 +55,7 @@
                     <?php $this->need('public/article.php'); ?>
                     <?php $this->need('public/handle.php'); ?>
                     <?php $this->need('public/copyright.php'); ?>
+                    <?php $this->need('public/related.php'); ?>
                 </div>
                 <ul class="joe_post__pagination">
                     <?php $this->theNext('<li class="joe_post__pagination-item prev">%s</li>', '', ['title' => '上一篇']); ?>
