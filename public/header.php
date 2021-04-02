@@ -6,7 +6,7 @@
                 <path d="M76.032 872a59.968 59.968 0 1 0 0 120h999.936a59.968 59.968 0 1 0 0-120H76.032zm16-420.032a59.968 59.968 0 1 0 0 120h599.936a59.968 59.968 0 1 0 0-119.936H92.032zM76.032 32a59.968 59.968 0 1 0 0 120h999.936a60.032 60.032 0 0 0 0-120H76.032z" />
             </svg>
             <a title="<?php $this->options->title(); ?>" class="joe_header__above-logo" href="<?php $this->options->siteUrl(); ?>">
-                <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php $this->options->JLogo() ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="<?php $this->options->title(); ?>" />
+                <img class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="<?php $this->options->JLogo() ?>" alt="<?php $this->options->title(); ?>" />
                 <svg class="profile-color-modes" height="45" viewBox="0 0 106 60" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
                     <g class="profile-color-modes-illu-group profile-color-modes-illu-red">
                         <path d="M37.5 58.5V57.5C37.5 49.768 43.768 43.5 51.5 43.5V43.5C59.232 43.5 65.5 49.768 65.5 57.5V58.5"></path>
@@ -146,7 +146,7 @@
                         <a href="<?php $item->permalink(); ?>" title="<?php $item->title(); ?>" class="item">
                             <span class="sort"><?php echo $index; ?></span>
                             <span class="text"><?php $item->title(); ?></span>
-                            <span class="views"><?php $item->views(); ?> 阅读</span>
+                            <span class="views"><?php echo number_format($item->views); ?> 阅读</span>
                         </a>
                         <?php $index++; ?>
                     <?php endwhile; ?>
@@ -257,9 +257,9 @@
     </div>
 
     <div class="joe_header__slideout">
-        <img width="100%" height="150" class="joe_header__slideout-image" src="<?php $this->options->JAside_Wap_Image() ?>" onerror="javascript: this.src='data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="侧边栏壁纸" />
+        <img width="100%" height="150" class="joe_header__slideout-image" src="<?php $this->options->JAside_Wap_Image() ?>" alt="侧边栏壁纸" />
         <div class="joe_header__slideout-author">
-            <img width="50" height="50" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : _getAvatarByMail($this->author->mail) ?>" onerror="javascript: this.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='" alt="博主昵称" />
+            <img width="50" height="50" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : _getAvatarByMail($this->author->mail) ?>" alt="博主昵称" />
             <div class="info">
                 <a class="link" href="<?php $this->options->JAside_Author_Link() ?>" target="_blank" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : $this->author->screenName(); ?></a>
                 <p class="motto joe_motto"></p>

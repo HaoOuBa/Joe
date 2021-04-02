@@ -58,12 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
                             <a target="_blank" rel="noopener noreferrer nofollow" class="joe_live__list-item animated bounceIn" href="${window.location.href + '?profileRoom=' + _.profileRoom + '&title=' + _.nick}">
                                 <div class="thumb">
                                     <i class="recommendTagName" style="display: ${_.recommendTagName ? '' : 'none'}">${_.recommendTagName}</i>
-                                    <img width="100%" height="100%" class="screenshot lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.screenshot}" onerror="javascript: this.src = '${Joe.LAZY_LOAD}';" alt="${_.introduction}" />
+                                    <img width="100%" height="100%" class="screenshot lazyload" src="${Joe.LAZY_LOAD}" data-src="${_.screenshot}" alt="${_.introduction}" />
                                 </div>
                                 <div class="description">
                                     <div class="avatar">
                                         <svg class="icon" viewBox="0 0 76 31" xmlns="http://www.w3.org/2000/svg"><path d="M57.7 11.4C56.3 10 55 8.5 53.6 7c-.2-.3-.5-.5-.8-.8l-.5-.5C48.6 2.2 43.5 0 38 0S27.4 2.2 23.6 5.7l-.5.5-.8.8c-1.4 1.5-2.7 3-4.1 4.4-5 5.1-11.7 6.1-18.3 6.3V31H76V17.6c-6.6-.2-13.3-1.1-18.3-6.2z"/></svg>
-                                        <img width="25" height="25" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${_.avatar180}" onerror="javascript: this.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';" alt="${_.nick}"/>
+                                        <img width="25" height="25" class="lazyload" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="${_.avatar180}" alt="${_.nick}"/>
                                     </div>
                                     <div class="nick">${_.nick}</div>
                                     <p class="introduction">${_.introduction}</p>

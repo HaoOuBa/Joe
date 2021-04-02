@@ -84,9 +84,9 @@ function _getPost($self)
             "title" => $item->title,
             "abstract" => _getAbstract($item, false),
             "category" => $item->categories,
-            "views" => $item->views,
+            "views" => number_format($item->views),
             "commentsNum" => number_format($item->commentsNum),
-            "agree" => $item->agree,
+            "agree" => number_format($item->agree),
             "permalink" => $item->permalink,
             "lazyload" => _getLazyload(false),
             "type" => "normal"
@@ -112,7 +112,7 @@ function _handleViews($self)
         $db->query($db->update('table.contents')->rows(array('views' => (int)$row['views'] + 1))->where('cid = ?', $cid));
         $self->response->throwJson(array(
             "code" => 1,
-            "data" => $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid))
+            "data" => array('views' => number_format($db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid))['views']))
         ));
     } else {
         $self->response->throwJson(array("code" => 0, "data" => null));
@@ -145,7 +145,7 @@ function _handleAgree($self)
         }
         $self->response->throwJson(array(
             "code" => 1,
-            "data" => $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid))
+            "data" => array('agree' => number_format($db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid))['agree']))
         ));
     } else {
         $self->response->throwJson(array("code" => 0, "data" => null));

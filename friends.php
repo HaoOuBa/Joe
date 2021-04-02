@@ -94,7 +94,7 @@
                                         <span class="title"><?php echo $item['name']; ?></span>
                                         <div class="content">
                                             <div class="desc"><?php echo $item['desc']; ?></div>
-                                            <img width="40" height="40" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php echo $item['avatar']; ?>" onerror="javascript: this.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='; " alt="<?php echo $item['name']; ?>" />
+                                            <img width="40" height="40" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php echo $item['avatar']; ?>" alt="<?php echo $item['name']; ?>" />
                                         </div>
                                     </a>
                                 </li>

@@ -32,7 +32,7 @@
                                 <?php while ($comments->next()) : ?>
                                     <li class="item">
                                         <div class="user">
-                                            <img class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($comments->mail) ?>" onerror="javascript: this.src = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=='" alt="用户头像" />
+                                            <img class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php _getAvatarByMail($comments->mail) ?>" alt="用户头像" />
                                             <div class="nickname"><?php $comments->author(); ?></div>
                                             <div class="date"><?php $comments->date('Y/m/d'); ?></div>
                                         </div>

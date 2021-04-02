@@ -449,16 +449,16 @@ body.fullscreen {
 				position: absolute;
 				top: 0;
 				width: 0;
-				height: 2px;
+				height: 3px;
 				transition: width 0.5s;
 			}
 			&::before {
-				border-radius: 1px 0 0 1px;
+				border-radius: 0 1.5px 1.5px 0;
 				left: 50%;
 				background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff);
 			}
 			&::after {
-				border-radius: 0 1px 1px 0;
+				border-radius: 1.5px 0 0 1.5px;
 				right: 50%;
 				background: linear-gradient(to left, #4cd964, #5ac8fa, #007aff);
 			}
@@ -470,25 +470,23 @@ body.fullscreen {
 			}
 		}
 	}
-	.cm-progress-left {
+	.cm-progress-left,
+	.cm-progress-right {
 		position: absolute;
 		top: 0;
-		right: 50%;
 		width: 0;
 		height: 3px;
 		background-color: #ff5627;
 		transition: width 0.5s;
 		z-index: 1;
 	}
+	.cm-progress-left {
+		right: 50%;
+		border-radius: 1.5px 0 0 1.5px;
+	}
 	.cm-progress-right {
-		position: absolute;
-		top: 0;
 		left: 50%;
-		width: 0;
-		height: 3px;
-		background-color: #ff5627;
-		transition: width 0.5s;
-		z-index: 1;
+		border-radius: 0 1.5px 1.5px 0;
 	}
 }
 
