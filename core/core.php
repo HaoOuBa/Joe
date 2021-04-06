@@ -21,11 +21,11 @@ _startCountTime();
 /* 主题初始化 */
 function themeInit($self)
 {
-    /* 强奸用户关闭反垃圾保护 */
+    /* 强制用户关闭反垃圾保护 */
     Helper::options()->commentsAntiSpam = false;
-    /* 强奸用户要求填写邮箱 */
+    /* 强制用户要求填写邮箱 */
     Helper::options()->commentsRequireMail = true;
-    /* 强奸用户要求无需填写url */
+    /* 强制用户要求无需填写url */
     Helper::options()->commentsRequireURL = false;
     /* 强制用户开启评论回复 */
     Helper::options()->commentsThreaded = true;
