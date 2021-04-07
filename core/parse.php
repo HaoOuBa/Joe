@@ -61,7 +61,7 @@ function _parseCommentReply($text)
     }
 }
 
-/* 过滤表情 */
+/* 过滤表情45455665455645645 */
 function _parseReply($text)
 {
     $text = preg_replace_callback(
