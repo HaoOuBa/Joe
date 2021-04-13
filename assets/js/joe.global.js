@@ -159,8 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
 			const key = $('.joe_aside__item.weather').attr('data-key');
 			const style = $('.joe_aside__item.weather').attr('data-style');
 			const aqiColor = { 1: 'FFFFFF', 2: '4A4A4A', 3: 'FFFFFF' };
-			window.WIDGET = { CONFIG: { layout: 2, width: '220', height: '270', background: style, dataColor: aqiColor[style], language: 'zh', key: key } };
-			$.getScript('http://apip.weatherdt.com/standard/static/js/weather-standard.js?v=2.0');
+			window.WIDGET = { CONFIG: { layout: 2, width: '220', height: '270', background: style, dataColor: aqiColor[style], language: 'zh', key } };
+			$.getScript('https://widget.qweather.net/standard/static/js/he-standard-common.js?v=2.0');
 		}
 	}
 

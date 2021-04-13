@@ -131,7 +131,7 @@
                 <span class="line"></span>
             </div>
             <div class="joe_aside__item-contain">
-                <div id="weather-v2-plugin-standard"></div>
+                <div id="he-plugin-standard"></div>
             </div>
         </section>
     <?php endif; ?>

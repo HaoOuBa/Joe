@@ -580,7 +580,8 @@ function themeConfig($form)
         '天气栏KEY值 - PC',
         '介绍：用于初始化天气栏 <br/>
          注意：填写时务必填写正确！不填写则不会显示<br />
-         其他：免费申请地址：<a href="//cj.weather.com.cn">cj.weather.com.cn</a> '
+         其他：免费申请地址：<a href="//widget.qweather.com/create-standard">widget.qweather.com/create-standard</a><br />
+         简要：在网页生成时，配置项随便选择，只需要生成代码后的Token即可'
     );
     $JAside_Weather_Key->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Weather_Key);
