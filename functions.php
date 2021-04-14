@@ -637,6 +637,19 @@ function themeConfig($form)
     );
     $JAside_3DTag->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_3DTag->multiMode());
+    /* --------------------------------------- */
+    $JAside_Flatterer = new Typecho_Widget_Helper_Form_Element_Select(
+        'JAside_Flatterer',
+        array(
+            'off' => '关闭（默认）',
+            'on' => '开启'
+        ),
+        'off',
+        '是否开启舔狗日记 - PC',
+        '介绍：用于设置侧边栏是否显示舔狗日记'
+    );
+    $JAside_Flatterer->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Flatterer->multiMode());
 
 
     $JThumbnail = new Typecho_Widget_Helper_Form_Element_Textarea(
