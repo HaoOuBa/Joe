@@ -141,7 +141,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
 			}
 		};
-		let queryData = { page: 1, pageSize: 12, type: 'created' };
+		let queryData = { page: 1, pageSize: window.Joe.PAGE_SIZE, type: 'created' };
 		const initDom = () => {
 			$('.joe_index__list .joe_list').html('');
 			$('.joe_load').show();
@@ -179,14 +179,12 @@ document.addEventListener('DOMContentLoaded', () => {
 		};
 		initDom();
 		pushDom();
-
 		$('.joe_index__title-title .item').on('click', async function () {
 			if ($(this).attr('data-type') === queryData.type) return;
-			queryData = { page: 1, pageSize: 12, type: $(this).attr('data-type') };
+			queryData = { page: 1, pageSize: window.Joe.PAGE_SIZE, type: $(this).attr('data-type') };
 			initDom();
 			pushDom();
 		});
-
 		$('.joe_load').on('click', async function () {
 			if ($(this).attr('loading')) return;
 			queryData.page++;

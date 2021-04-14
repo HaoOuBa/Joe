@@ -29,9 +29,6 @@ function themeInit($self)
     Helper::options()->commentsRequireURL = false;
     /* 强制用户开启评论回复 */
     Helper::options()->commentsThreaded = true;
-    /* 强制显示一页12篇文章 */
-    $self->parameter->pageSize = 12;
-
     /* 主题开放API 路由规则 */
     $path_info = $self->request->getPathinfo();
 

@@ -24,7 +24,8 @@
         DOCUMENT_TITLE: `<?php $this->options->JDocumentTitle() ?>`,
         LAZY_LOAD: `<?php _getLazyload() ?>`,
         BIRTHDAY: `<?php $this->options->JBirthDay() ?>`,
-        MOTTO: `<?php _getAsideAuthorMotto() ?>`
+        MOTTO: `<?php _getAsideAuthorMotto() ?>`,
+        PAGE_SIZE: `<?php $this->parameter->pageSize() ?>`
     }
 </script>
 <?php
