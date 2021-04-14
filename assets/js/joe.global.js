@@ -241,7 +241,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				return Math.floor(Math.random() * (max - min + 1)) + min;
 			};
 			const toggle = () => {
-				$('.joe_aside__item.flatterer .content').html(arr[Math.floor(Math.random() * arr.length)].replace(/\*\*(.*?)\*\*/g, '<mark>$1</mark>'));
+				$('.joe_aside__item.flatterer .content').html(arr[random(0, arr.length - 1)].replace(/\*\*(.*?)\*\*/g, '<mark>$1</mark>'));
 				$('.joe_aside__item.flatterer .content').attr('class', 'content type' + random(1, 6));
 			};
 			toggle();
