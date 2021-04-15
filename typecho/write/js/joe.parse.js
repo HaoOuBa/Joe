@@ -652,18 +652,16 @@
 
 		Parser.prototype.parseBlockShtml = function (block, key, line, state) {
 			var matches;
-			if (this.html) {
-				if (!!(matches = line.match(/^(\s*)!!!(\s*)$/))) {
-					if (this.isBlock('shtml')) {
-						this.setBlock(key).endBlock();
-					} else {
-						this.startBlock('shtml', key);
-					}
-					return false;
-				} else if (this.isBlock('shtml')) {
-					this.setBlock(key);
-					return false;
+			if (!!(matches = line.match(/^(\s*)!!!(\s*)$/))) {
+				if (this.isBlock('shtml')) {
+					this.setBlock(key).endBlock();
+				} else {
+					this.startBlock('shtml', key);
 				}
+				return false;
+			} else if (this.isBlock('shtml')) {
+				this.setBlock(key);
+				return false;
 			}
 			return true;
 		};

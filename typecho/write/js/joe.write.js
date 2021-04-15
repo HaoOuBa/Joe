@@ -277,6 +277,9 @@ class Joe extends JoeAction {
 						case 'mtitle':
 							super.handleMtitle(this.cm);
 							break;
+						case 'html':
+							super.handleHtml(this.cm);
+							break;
 					}
 				});
 				$('.cm-tools').append(el);

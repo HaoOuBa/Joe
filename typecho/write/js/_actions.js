@@ -471,4 +471,9 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleHtml(cm) {
+		const str = `${this._getLineCh(cm) ? '\n' : ''}!!!\n<p align="center">居中</p>\n<p align="right">居右</p>\n<font size="5" color="red">颜色大小</font>\n!!!\n`;
+		this._replaceSelection(cm, str);
+		cm.focus();
+	}
 }
