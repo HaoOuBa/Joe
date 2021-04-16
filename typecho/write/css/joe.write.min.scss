@@ -398,7 +398,7 @@ body.fullscreen {
 					max-height: 26px;
 					vertical-align: top;
 				}
-				a {
+				a:not(.joe_detail__article-anote):not(.joe_detail__article-abtn) {
 					display: inline-block;
 					line-height: 26px;
 					color: #409eff;
@@ -677,6 +677,42 @@ body.fullscreen {
 		&::after {
 			right: -35px;
 		}
+	}
+}
+
+.joe_detail__article-player {
+	width: 100%;
+	height: 180px;
+	border: none;
+}
+
+.joe_detail__article-abtn {
+	display: inline-block;
+	color: #fff;
+	height: 35px;
+	line-height: 35px;
+	padding: 0 15px;
+	.icon {
+		display: inline-block;
+		vertical-align: top;
+		text-align: center;
+		.fa {
+			color: #fff;
+		}
+		[class^='fa-'] {
+			margin-right: 8px;
+		}
+	}
+	.content {
+		display: inline-block;
+		vertical-align: top;
+		max-width: 200px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	&:hover {
+		color: #fff;
 	}
 }
 

@@ -16,21 +16,12 @@ export default function createPreviewHtml(str) {
 		$1 = encodeURI($1).replace(/%/g, '');
 		return `<img class="owo" src="${window.JoeConfig.themeURL}assets/owo/aru/${$1}_2x.png" />`;
 	});
-	
-	/* 网易云 - 歌单 */
-	str = str.replace(/{music-list([^}]*)\/}/g, '<joe-mlist $1></joe-mlist>');
-
-	/* 网易云 - 歌曲 */
-	str = str.replace(/{music([^}]*)\/}/g, '<joe-music $1></joe-music>');
-
-	/* BiliBili */
-	str = str.replace(/{bilibili([^}]*)\/}/g, '<joe-bilibili $1></joe-bilibili>');
-
-	/* dplayer */
-	str = str.replace(/{dplayer([^}]*)\/}/g, '<joe-dplayer player="' + player + '" $1></joe-dplayer>');
-
-	/* mtitle */
 	str = str.replace(/{mtitle([^}]*)\/}/g, '<joe-mtitle $1></joe-mtitle>');
+	str = str.replace(/{dplayer([^}]*)\/}/g, '<joe-dplayer player="' + player + '" $1></joe-dplayer>');
+	str = str.replace(/{bilibili([^}]*)\/}/g, '<joe-bilibili $1></joe-bilibili>');
+	str = str.replace(/{music-list([^}]*)\/}/g, '<joe-mlist $1></joe-mlist>');
+	str = str.replace(/{music([^}]*)\/}/g, '<joe-music $1></joe-music>');
+	str = str.replace(/{abtn([^}]*)\/}/g, '<joe-abtn $1></joe-abtn>');
 
 	$('.cm-preview-content').html(str);
 	$('.cm-preview-content pre code').each((i, el) => Prism.highlightElement(el));

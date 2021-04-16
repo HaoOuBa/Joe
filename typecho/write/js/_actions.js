@@ -476,4 +476,41 @@ export default class JoeAction {
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
+	handleAbtn(cm) {
+		this._openModal({
+			title: '多彩按钮',
+			innerHtml: `
+				<div class="fitem">
+					<label>按钮图标</label>
+					<input autocomplete="off" name="icon" placeholder="请输入fa图标，例：fa-download"/>
+				</div>
+				<div class="fitem">
+					<label>按钮颜色</label>
+					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#ff6800" name="color" type="color"/>
+				</div>
+				<div class="fitem">
+					<label>跳转链接</label>
+					<input autocomplete="off" name="href" placeholder="请输入跳转链接"/>
+				</div>
+				<div class="fitem">
+					<label>按钮圆角</label>
+					<input autocomplete="off" name="radius" placeholder="请输入按钮圆角，例：17.5px"/>
+				</div>
+				<div class="fitem">
+					<label>按钮内容</label>
+					<input autocomplete="off" name="content" placeholder="请输入按钮内容"/>
+				</div>
+            `,
+			confirm: () => {
+				const icon = $(".cm-modal input[name='icon']").val();
+				const color = $(".cm-modal input[name='color']").val();
+				const href = $(".cm-modal input[name='href']").val();
+				const radius = $(".cm-modal input[name='radius']").val();
+				const content = $(".cm-modal input[name='content']").val();
+				const str = ` {abtn icon="${icon}" color="${color}" href="${href}" radius="${radius}" content="${content}"/} `;
+				this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
 }

@@ -1,4 +1,59 @@
 document.addEventListener('DOMContentLoaded', () => {
+	class JoeMtitle extends HTMLElement {
+		constructor() {
+			super();
+			this.innerHTML = `
+				<div class="joe_detail__article-mtitle">
+					<span class="text">
+						${this.getAttribute('title') || '默认标题'}
+					</span>
+				</div>`;
+		}
+	}
+	window.customElements.define('joe-mtitle', JoeMtitle);
+	class JoeDplayer extends HTMLElement {
+		constructor() {
+			super();
+			this.options = {
+				src: this.getAttribute('src'),
+				player: this.getAttribute('player')
+			};
+			this.render();
+		}
+		render() {
+			if (this.options.src) this.innerHTML = `<iframe allowfullscreen="true" class="joe_detail__article-player" src="${this.options.player + this.options.src}"></iframe>`;
+			else this.innerHTML = '播放地址未填写！';
+		}
+	}
+	window.customElements.define('joe-dplayer', JoeDplayer);
+	class JoeBilibili extends HTMLElement {
+		constructor() {
+			super();
+			this.bvid = this.getAttribute('bvid');
+			this.render();
+		}
+		render() {
+			if (this.bvid) this.innerHTML = `<iframe allowfullscreen="true" class="joe_detail__article-player" src="//player.bilibili.com/player.html?bvid=${this.bvid}"></iframe>`;
+			else this.innerHTML = 'Bvid未填写！';
+		}
+	}
+	window.customElements.define('joe-bilibili', JoeBilibili);
+	class JoeMusic extends HTMLElement {
+		constructor() {
+			super();
+			this.options = {
+				id: this.getAttribute('id'),
+				width: this.getAttribute('width') || '100%',
+				autoplay: this.getAttribute('autoplay') ? 1 : 0
+			};
+			this.render();
+		}
+		render() {
+			if (this.options.id) this.innerHTML = `<iframe style="display: block; margin: 0 auto; border: 0;" width="${this.options.width}" height="86px" src="//music.163.com/outchain/player?type=2&id=${this.options.id}&auto=${this.options.autoplay}&height=66"></iframe>`;
+			else this.innerHTML = '网易云歌曲ID未填写！';
+		}
+	}
+	window.customElements.define('joe-music', JoeMusic);
 	class JoeMlist extends HTMLElement {
 		constructor() {
 			super();
@@ -10,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			this.render();
 		}
 		get template() {
-			return `<iframe allowfullscreen="true" style="display: block; margin: 0 auto; border: 0;" width="${this.options.width}" height="450px" src="//music.163.com/outchain/player?type=0&id=${this.options.id}&auto=${this.options.autoplay}&height=430"></iframe>`;
+			return `<iframe style="display: block; margin: 0 auto; border: 0;" width="${this.options.width}" height="450px" src="//music.163.com/outchain/player?type=0&id=${this.options.id}&auto=${this.options.autoplay}&height=430"></iframe>`;
 		}
 		render() {
 			if (this.options.id) this.innerHTML = this.template;
@@ -18,75 +73,28 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-mlist', JoeMlist);
-	class JoeMusic extends HTMLElement {
+	class JoeAbtn extends HTMLElement {
 		constructor() {
 			super();
 			this.options = {
-				id: this.getAttribute('id'),
-				width: this.getAttribute('width') || '100%',
-				autoplay: this.getAttribute('autoplay') ? 1 : 0
+				icon: this.getAttribute('icon') || '',
+				color: this.getAttribute('color') || '#ff6800',
+				href: this.getAttribute('href') || '#',
+				radius: this.getAttribute('radius') || '17.5px',
+				content: this.getAttribute('content') || '多彩按钮'
 			};
-			this.render();
-		}
-		get template() {
-			return `<iframe allowfullscreen="true" style="display: block; margin: 0 auto; border: 0;" width="${this.options.width}" height="86px" src="//music.163.com/outchain/player?type=2&id=${this.options.id}&auto=${this.options.autoplay}&height=66"></iframe>`;
-		}
-		render() {
-			if (this.options.id) this.innerHTML = this.template;
-			else this.innerHTML = '网易云歌曲ID未填写！';
+			this.innerHTML = `
+				<a class="joe_detail__article-abtn" style="background: ${this.options.color}; border-radius: ${this.options.radius}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
+					<span class="icon"><i class="${this.options.icon} fa"></i></span><span class="content">${this.options.content}</span>
+				</a>
+			`;
 		}
 	}
-	window.customElements.define('joe-music', JoeMusic);
-	class JoeBilibili extends HTMLElement {
-		constructor() {
-			super();
-			this.options = {
-				bvid: this.getAttribute('bvid')
-			};
-			this.render();
-		}
-		get template() {
-			return `<iframe allowfullscreen="true" class="joe_detail__article-player" style="display: block; margin: 0 auto; border: 0;" width="100%" height="180px" src="//player.bilibili.com/player.html?bvid=${this.options.bvid}"></iframe>`;
-		}
-		render() {
-			if (this.options.bvid) this.innerHTML = this.template;
-			else this.innerHTML = 'Bvid未填写！';
-		}
-	}
-	window.customElements.define('joe-bilibili', JoeBilibili);
-	class JoeDplayer extends HTMLElement {
-		constructor() {
-			super();
-			this.options = {
-				src: this.getAttribute('src'),
-				player: this.getAttribute('player')
-			};
-			this.render();
-		}
-		get template() {
-			return `<iframe allowfullscreen="true" class="joe_detail__article-player" style="display: block; margin: 0 auto; border: 0;" width="100%" height="180px" src="${this.options.player + this.options.src}"></iframe>`;
-		}
-		render() {
-			if (this.options.src) this.innerHTML = this.template;
-			else this.innerHTML = '播放地址未填写！';
-		}
-	}
-	window.customElements.define('joe-dplayer', JoeDplayer);
-	class JoeMtitle extends HTMLElement {
-		constructor() {
-			super();
-			this.options = {
-				title: this.getAttribute('title') || '默认标题'
-			};
-			this.innerHTML = this.template;
-		}
-		get template() {
-			return `<div class="joe_detail__article-mtitle"><span class="text">${this.options.title}</span></div>`;
-		}
-	}
-	window.customElements.define('joe-mtitle', JoeMtitle);
+	window.customElements.define('joe-abtn', JoeAbtn);
 
-
+	/* 
+	------------------------以下未测试------------------------------------------
+	*/
 
 	/* 便条按钮 */
 	class JoeAnote extends HTMLElement {
@@ -112,31 +120,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-anote', JoeAnote);
-	/* 多彩按钮 */
-	class JoeAbtn extends HTMLElement {
-		constructor() {
-			super();
-			this.options = {
-				icon: this.getAttribute('icon') || '',
-				color: this.getAttribute('color') || '#ff6800',
-				href: this.getAttribute('href') || '#',
-				radius: this.getAttribute('radius') || '17.5px',
-				content: this.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '多彩按钮'
-			};
-			this.render();
-		}
-		get template() {
-			return `
-                <a class="joe_detail__article-abtn" style="background: ${this.options.color}; border-radius: ${this.options.radius}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
-                    <span class="icon"><i class="${this.options.icon} fa"></i></span><span class="content">${this.options.content}</span>
-                </a>
-            `;
-		}
-		render() {
-			this.innerHTML = this.template;
-		}
-	}
-	window.customElements.define('joe-abtn', JoeAbtn);
 	/* 点击复制 */
 	class JoeCopy extends HTMLElement {
 		constructor() {
@@ -221,18 +204,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-show', JoeShow);
-	/* 时间轴 */
-	class JoeTimeline extends HTMLElement {}
-	/*
-	 *
-	 *
-	 * *
-	 * 私有化组件
-	 * *
-	 *
-	 *
-	 */
-
 	/* 回复可见 - 隐藏状态 */
 	class JoeHide extends HTMLElement {
 		constructor() {

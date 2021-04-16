@@ -25,6 +25,9 @@ function _parseContent($post, $login)
     if (strpos($content, '{mtitle') !== false) {
         $content = preg_replace('/{mtitle([^}]*)\/}/SU', '<joe-mtitle $1></joe-mtitle>', $content);
     }
+    if (strpos($content, '{abtn') !== false) {
+        $content = preg_replace('/{abtn([^}]*)\/}/SU', '<joe-abtn $1></joe-abtn>', $content);
+    }
 
 
 
@@ -60,11 +63,7 @@ function _parseContent($post, $login)
         $content = preg_replace('/{anote(.*)}/SU', '<joe-anote $1>', $content);
         $content = preg_replace('/{\/anote}/SU', '</joe-anote>', $content);
     }
-    /* 多彩按钮 */
-    if (strpos($content, '{abtn') !== false) {
-        $content = preg_replace('/{abtn(.*)}/SU', '<joe-abtn $1>', $content);
-        $content = preg_replace('/{\/abtn}/SU', '</joe-abtn>', $content);
-    }
+
     /* 多彩按钮 */
     if (strpos($content, '{timeline') !== false) {
         $content = strtr($content, array("{timeline}" => '<joe-timeline>', "{/timeline}" => '</joe-timeline>'));

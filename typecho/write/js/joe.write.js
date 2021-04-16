@@ -280,6 +280,9 @@ class Joe extends JoeAction {
 						case 'html':
 							super.handleHtml(this.cm);
 							break;
+						case 'abtn':
+							super.handleAbtn(this.cm);
+							break;
 					}
 				});
 				$('.cm-tools').append(el);
