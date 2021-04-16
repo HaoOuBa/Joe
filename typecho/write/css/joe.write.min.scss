@@ -716,6 +716,52 @@ body.fullscreen {
 	}
 }
 
+.joe_detail__article-anote {
+	position: relative;
+	display: inline-block;
+	color: #fff;
+	height: 35px;
+	line-height: 35px;
+	.icon {
+		display: inline-block;
+		vertical-align: top;
+		width: 35px;
+		height: 35px;
+		text-align: center;
+		background: rgba(0, 0, 0, 0.2);
+		.fa {
+			color: #fff;
+		}
+	}
+	.content {
+		display: inline-block;
+		vertical-align: top;
+		padding: 0 12px;
+		max-width: 200px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+	&.secondary {
+		background: #34495e;
+	}
+	&.success {
+		background: #27ae60;
+	}
+	&.warning {
+		background: #f39c12;
+	}
+	&.error {
+		background: #e74c3c;
+	}
+	&.info {
+		background: #3498db;
+	}
+	&:hover {
+		color: #fff;
+	}
+}
+
 @media (max-width: 768px) {
 	.cm-modal__wrapper {
 		width: 90%;

@@ -91,12 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-abtn', JoeAbtn);
-
-	/* 
-	------------------------以下未测试------------------------------------------
-	*/
-
-	/* 便条按钮 */
 	class JoeAnote extends HTMLElement {
 		constructor() {
 			super();
@@ -104,22 +98,21 @@ document.addEventListener('DOMContentLoaded', () => {
 				icon: this.getAttribute('icon') || 'fa-download',
 				href: this.getAttribute('href') || '#',
 				type: /^secondary$|^success$|^warning$|^error$|^info$/.test(this.getAttribute('type')) ? this.getAttribute('type') : 'secondary',
-				content: this.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '标签按钮'
+				content: this.getAttribute('content') || '标签按钮'
 			};
-			this.render();
-		}
-		get template() {
-			return `
-                <a class="joe_detail__article-anote ${this.options.type}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
-                    <span class="icon"><i class="fa ${this.options.icon}"></i></span><span class="content">${this.options.content}</span>
-                </a>
-            `;
-		}
-		render() {
-			this.innerHTML = this.template;
+			this.innerHTML =  `
+				<a class="joe_detail__article-anote ${this.options.type}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
+					<span class="icon"><i class="fa ${this.options.icon}"></i></span><span class="content">${this.options.content}</span>
+				</a>
+			`;
 		}
 	}
 	window.customElements.define('joe-anote', JoeAnote);
+
+	/* 
+	------------------------以下未测试------------------------------------------
+	*/
+
 	/* 点击复制 */
 	class JoeCopy extends HTMLElement {
 		constructor() {

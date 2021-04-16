@@ -28,6 +28,9 @@ function _parseContent($post, $login)
     if (strpos($content, '{abtn') !== false) {
         $content = preg_replace('/{abtn([^}]*)\/}/SU', '<joe-abtn $1></joe-abtn>', $content);
     }
+    if (strpos($content, '{anote') !== false) {
+        $content = preg_replace('/{anote([^}]*)\/}/SU', '<joe-anote $1></joe-anote>', $content);
+    }
 
 
 
@@ -52,19 +55,12 @@ function _parseContent($post, $login)
         $content = preg_replace('/{copy(.*)}/SU', '<joe-copy $1>', $content);
         $content = preg_replace('/{\/copy}/SU', '</joe-copy>', $content);
     }
-
     /* 过滤消息提示 */
     if (strpos($content, '{message') !== false) {
         $content = preg_replace('/{message(.*)}/SU', '<joe-message $1>', $content);
         $content = preg_replace('/{\/message}/SU', '</joe-message>', $content);
     }
-    /* 标签按钮 */
-    if (strpos($content, '{anote') !== false) {
-        $content = preg_replace('/{anote(.*)}/SU', '<joe-anote $1>', $content);
-        $content = preg_replace('/{\/anote}/SU', '</joe-anote>', $content);
-    }
-
-    /* 多彩按钮 */
+    /* 时间线 */
     if (strpos($content, '{timeline') !== false) {
         $content = strtr($content, array("{timeline}" => '<joe-timeline>', "{/timeline}" => '</joe-timeline>'));
         $content = strtr($content, array("{timeline-item}" => '<joe-timeline-item>', "{/timeline-item}" => '</joe-timeline-item>'));

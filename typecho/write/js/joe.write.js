@@ -283,6 +283,9 @@ class Joe extends JoeAction {
 						case 'abtn':
 							super.handleAbtn(this.cm);
 							break;
+						case 'anote':
+							super.handleAnote(this.cm);
+							break;
 					}
 				});
 				$('.cm-tools').append(el);

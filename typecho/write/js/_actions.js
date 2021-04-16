@@ -513,4 +513,42 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleAnote(cm) {
+		this._openModal({
+			title: '便条按钮',
+			innerHtml: `
+				<div class="fitem">
+					<label>按钮图标</label>
+					<input autocomplete="off" name="icon" placeholder="请输入fa图标，例：fa-download"/>
+				</div>
+				<div class="fitem">
+					<label>跳转链接</label>
+					<input autocomplete="off" name="href" placeholder="请输入跳转链接"/>
+				</div>
+				<div class="fitem">
+					<label>按钮类型</label>
+					<select name="type">
+						<option value="secondary" selected>secondary</option>
+						<option value="success">success</option>
+						<option value="warning">warning</option>
+						<option value="error">error</option>
+						<option value="info">info</option>
+					</select>
+				</div>
+				<div class="fitem">
+					<label>按钮内容</label>
+					<input autocomplete="off" name="content" placeholder="请输入按钮内容"/>
+				</div>
+            `,
+			confirm: () => {
+				const icon = $(".cm-modal input[name='icon']").val();
+				const href = $(".cm-modal input[name='href']").val();
+				const type = $(".cm-modal select[name='type']").val();
+				const content = $(".cm-modal input[name='content']").val();
+				const str = ` {anote icon="${icon}" href="${href}" type="${type}" content="${content}"/} `;
+				this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
 }
