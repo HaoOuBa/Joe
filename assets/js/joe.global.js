@@ -388,6 +388,7 @@ document.addEventListener('DOMContentLoaded', () => {
 						$('.joe_comment__respond-form .foot .submit button').html('发表评论');
 					} else {
 						window.location.href = changeURLArg(location.href, 'scroll', 'joe_comment');
+						window.location.reload();
 					}
 				}
 			});
