@@ -1,7 +1,7 @@
 import { undo, redo } from '@codemirror/history';
 export default class JoeAction {
-	constructor() {
-		$('body').append(`
+    constructor() {
+        $('body').append(`
             <div class="cm-modal">
                 <div class="cm-modal__wrapper">
                     <div class="cm-modal__wrapper-header">
@@ -16,186 +16,186 @@ export default class JoeAction {
                 </div>
             </div>
         `);
-		$('.cm-modal__wrapper-footer--cancle, .cm-modal__wrapper-header--close').on('click', () => $('.cm-modal').removeClass('active'));
-		$('.cm-modal__wrapper-footer--confirm').on('click', () => {
-			this.options.confirm();
-			$('.cm-modal').removeClass('active');
-		});
-	}
-	_openModal(options = {}) {
-		const _options = {
-			title: '提示',
-			innerHtml: '内容',
-			hasFooter: true,
-			confirm: () => {},
-			handler: () => {}
-		};
-		this.options = Object.assign(_options, options);
-		$('.cm-modal__wrapper-header--text').html(this.options.title);
-		$('.cm-modal__wrapper-bodyer').html(this.options.innerHtml);
-		this.options.hasFooter ? $('.cm-modal__wrapper-footer').show() : $('.cm-modal__wrapper-footer').hide();
-		$('.cm-modal').addClass('active');
-		this.options.handler();
-	}
-	_getLineCh(cm) {
-		const head = cm.state.selection.main.head;
-		const line = cm.state.doc.lineAt(head);
-		return head - line.from;
-	}
-	_replaceSelection(cm, str) {
-		cm.dispatch(cm.state.replaceSelection(str));
-	}
-	_setCursor(cm, pos) {
-		cm.dispatch({ selection: { anchor: pos } });
-	}
-	_getSelection(cm) {
-		return cm.state.sliceDoc(cm.state.selection.main.from, cm.state.selection.main.to);
-	}
-	_insetAmboText(cm, str) {
-		const cursor = cm.state.selection.main.head;
-		const selection = this._getSelection(cm);
-		this._replaceSelection(cm, ` ${str + selection + str} `);
-		if (selection === '') this._setCursor(cm, cursor + str.length + 1);
-		cm.focus();
-	}
-	_createTableLists(cm, url, activeTab = '', modalTitle) {
-		$.ajax({
-			url,
-			dataType: 'json',
-			success: res => {
-				let tabbarStr = '';
-				let listsStr = '';
-				for (let key in res) {
-					const arr = res[key].split(' ');
-					tabbarStr += `<div class="tabbar-item ${key === activeTab ? 'active' : ''}" data-show="${key}">${key}</div>`;
-					listsStr += `<div class="lists ${key === activeTab ? 'active' : ''}" data-show="${key}">${arr.map(item => `<div class="lists-item" data-text="${item}">${item}</div>`).join(' ')}</div>`;
-				}
-				this._openModal({
-					title: modalTitle,
-					hasFooter: false,
-					innerHtml: `<div class="tabbar">${tabbarStr}</div>${listsStr}`,
-					handler: () => {
-						$('.cm-modal__wrapper-bodyer .tabbar-item').on('click', function () {
-							const activeTab = $(this);
-							const show = activeTab.attr('data-show');
-							const tabbar = $('.cm-modal__wrapper-bodyer .tabbar');
-							activeTab.addClass('active').siblings().removeClass('active');
-							tabbar.stop().animate({
-								scrollLeft: activeTab[0].offsetLeft - tabbar[0].offsetWidth / 2 + activeTab[0].offsetWidth / 2 - 15
-							});
-							$('.cm-modal__wrapper-bodyer .lists').removeClass('active');
-							$(".cm-modal__wrapper-bodyer .lists[data-show='" + show + "']").addClass('active');
-						});
-						const _this = this;
-						$('.cm-modal__wrapper-bodyer .lists-item').on('click', function () {
-							const text = $(this).attr('data-text');
-							_this._replaceSelection(cm, ` ${text} `);
-							$('.cm-modal').removeClass('active');
-							cm.focus();
-						});
-					}
-				});
-			}
-		});
-	}
-	handleFullScreen(el) {
-		el.toggleClass('active');
-		$('body').toggleClass('fullscreen');
-		$('.cm-container').toggleClass('fullscreen');
-		$('.cm-preview').width(0);
-	}
-	handlePublish() {
-		$('#btn-submit').click();
-	}
-	handleUndo(cm) {
-		undo(cm);
-		cm.focus();
-	}
-	handleRedo(cm) {
-		redo(cm);
-		cm.focus();
-	}
-	handleIndent(cm) {
-		this._replaceSelection(cm, '　');
-		cm.focus();
-	}
-	handleTime(cm) {
-		const time = new Date();
-		const _Year = time.getFullYear();
-		const _Month = String(time.getMonth() + 1).padStart(2, 0);
-		const _Date = String(time.getDate()).padStart(2, 0);
-		const _Hours = String(time.getHours()).padStart(2, 0);
-		const _Minutes = String(time.getMinutes()).padStart(2, 0);
-		const _Seconds = String(time.getSeconds()).padStart(2, 0);
-		const _Day = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][time.getDay()];
-		const _time = `${this._getLineCh(cm) ? '\n' : ''}${_Year}-${_Month}-${_Date} ${_Hours}:${_Minutes}:${_Seconds} ${_Day}\n`;
-		this._replaceSelection(cm, _time);
-		cm.focus();
-	}
-	handleHr(cm) {
-		const str = `${this._getLineCh(cm) ? '\n' : ''}\n------------\n\n`;
-		this._replaceSelection(cm, str);
-		cm.focus();
-	}
-	handleClean(cm) {
-		cm.dispatch({ changes: { from: 0, to: cm.state.doc.length, insert: '' } });
-		cm.focus();
-	}
-	handleOrdered(cm) {
-		const selection = this._getSelection(cm);
-		if (selection === '') {
-			const str = (this._getLineCh(cm) ? '\n\n' : '') + '1. ';
-			this._replaceSelection(cm, str);
-		} else {
-			const selectionText = selection.split('\n');
-			for (let i = 0, len = selectionText.length; i < len; i++) {
-				selectionText[i] = selectionText[i] === '' ? '' : i + 1 + '. ' + selectionText[i];
-			}
-			const str = (this._getLineCh(cm) ? '\n' : '') + selectionText.join('\n');
-			this._replaceSelection(cm, str);
-		}
-		cm.focus();
-	}
-	handleUnordered(cm) {
-		const selection = this._getSelection(cm);
-		if (selection === '') {
-			const str = (this._getLineCh(cm) ? '\n' : '') + '- ';
-			this._replaceSelection(cm, str);
-		} else {
-			const selectionText = selection.split('\n');
-			for (let i = 0, len = selectionText.length; i < len; i++) {
-				selectionText[i] = selectionText[i] === '' ? '' : '- ' + selectionText[i];
-			}
-			const str = (this._getLineCh(cm) ? '\n' : '') + selectionText.join('\n');
-			this._replaceSelection(cm, str);
-		}
-		cm.focus();
-	}
-	handleQuote(cm) {
-		const selection = this._getSelection(cm);
-		if (selection === '') {
-			this._replaceSelection(cm, `${this._getLineCh(cm) ? '\n' : ''}> `);
-		} else {
-			const selectionText = selection.split('\n');
-			for (let i = 0, len = selectionText.length; i < len; i++) {
-				selectionText[i] = selectionText[i] === '' ? '' : '> ' + selectionText[i];
-			}
-			const str = (this._getLineCh(cm) ? '\n' : '') + selectionText.join('\n');
-			this._replaceSelection(cm, str);
-		}
-		cm.focus();
-	}
-	handleDownload(cm) {
-		const title = $('#title').val() || '新文章';
-		const aTag = document.createElement('a');
-		let blob = new Blob([cm.state.doc.toString()]);
-		aTag.download = title + '.md';
-		aTag.href = URL.createObjectURL(blob);
-		aTag.click();
-		URL.revokeObjectURL(blob);
-	}
-	handleTitle(cm, tool) {
-		const item = $(`
+        $('.cm-modal__wrapper-footer--cancle, .cm-modal__wrapper-header--close').on('click', () => $('.cm-modal').removeClass('active'));
+        $('.cm-modal__wrapper-footer--confirm').on('click', () => {
+            this.options.confirm();
+            $('.cm-modal').removeClass('active');
+        });
+    }
+    _openModal(options = {}) {
+        const _options = {
+            title: '提示',
+            innerHtml: '内容',
+            hasFooter: true,
+            confirm: () => {},
+            handler: () => {}
+        };
+        this.options = Object.assign(_options, options);
+        $('.cm-modal__wrapper-header--text').html(this.options.title);
+        $('.cm-modal__wrapper-bodyer').html(this.options.innerHtml);
+        this.options.hasFooter ? $('.cm-modal__wrapper-footer').show() : $('.cm-modal__wrapper-footer').hide();
+        $('.cm-modal').addClass('active');
+        this.options.handler();
+    }
+    _getLineCh(cm) {
+        const head = cm.state.selection.main.head;
+        const line = cm.state.doc.lineAt(head);
+        return head - line.from;
+    }
+    _replaceSelection(cm, str) {
+        cm.dispatch(cm.state.replaceSelection(str));
+    }
+    _setCursor(cm, pos) {
+        cm.dispatch({ selection: { anchor: pos } });
+    }
+    _getSelection(cm) {
+        return cm.state.sliceDoc(cm.state.selection.main.from, cm.state.selection.main.to);
+    }
+    _insetAmboText(cm, str) {
+        const cursor = cm.state.selection.main.head;
+        const selection = this._getSelection(cm);
+        this._replaceSelection(cm, ` ${str + selection + str} `);
+        if (selection === '') this._setCursor(cm, cursor + str.length + 1);
+        cm.focus();
+    }
+    _createTableLists(cm, url, activeTab = '', modalTitle) {
+        $.ajax({
+            url,
+            dataType: 'json',
+            success: res => {
+                let tabbarStr = '';
+                let listsStr = '';
+                for (let key in res) {
+                    const arr = res[key].split(' ');
+                    tabbarStr += `<div class="tabbar-item ${key === activeTab ? 'active' : ''}" data-show="${key}">${key}</div>`;
+                    listsStr += `<div class="lists ${key === activeTab ? 'active' : ''}" data-show="${key}">${arr.map(item => `<div class="lists-item" data-text="${item}">${item}</div>`).join(' ')}</div>`;
+                }
+                this._openModal({
+                    title: modalTitle,
+                    hasFooter: false,
+                    innerHtml: `<div class="tabbar">${tabbarStr}</div>${listsStr}`,
+                    handler: () => {
+                        $('.cm-modal__wrapper-bodyer .tabbar-item').on('click', function () {
+                            const activeTab = $(this);
+                            const show = activeTab.attr('data-show');
+                            const tabbar = $('.cm-modal__wrapper-bodyer .tabbar');
+                            activeTab.addClass('active').siblings().removeClass('active');
+                            tabbar.stop().animate({
+                                scrollLeft: activeTab[0].offsetLeft - tabbar[0].offsetWidth / 2 + activeTab[0].offsetWidth / 2 - 15
+                            });
+                            $('.cm-modal__wrapper-bodyer .lists').removeClass('active');
+                            $(".cm-modal__wrapper-bodyer .lists[data-show='" + show + "']").addClass('active');
+                        });
+                        const _this = this;
+                        $('.cm-modal__wrapper-bodyer .lists-item').on('click', function () {
+                            const text = $(this).attr('data-text');
+                            _this._replaceSelection(cm, ` ${text} `);
+                            $('.cm-modal').removeClass('active');
+                            cm.focus();
+                        });
+                    }
+                });
+            }
+        });
+    }
+    handleFullScreen(el) {
+        el.toggleClass('active');
+        $('body').toggleClass('fullscreen');
+        $('.cm-container').toggleClass('fullscreen');
+        $('.cm-preview').width(0);
+    }
+    handlePublish() {
+        $('#btn-submit').click();
+    }
+    handleUndo(cm) {
+        undo(cm);
+        cm.focus();
+    }
+    handleRedo(cm) {
+        redo(cm);
+        cm.focus();
+    }
+    handleIndent(cm) {
+        this._replaceSelection(cm, '　');
+        cm.focus();
+    }
+    handleTime(cm) {
+        const time = new Date();
+        const _Year = time.getFullYear();
+        const _Month = String(time.getMonth() + 1).padStart(2, 0);
+        const _Date = String(time.getDate()).padStart(2, 0);
+        const _Hours = String(time.getHours()).padStart(2, 0);
+        const _Minutes = String(time.getMinutes()).padStart(2, 0);
+        const _Seconds = String(time.getSeconds()).padStart(2, 0);
+        const _Day = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'][time.getDay()];
+        const _time = `${this._getLineCh(cm) ? '\n' : ''}${_Year}-${_Month}-${_Date} ${_Hours}:${_Minutes}:${_Seconds} ${_Day}\n`;
+        this._replaceSelection(cm, _time);
+        cm.focus();
+    }
+    handleHr(cm) {
+        const str = `${this._getLineCh(cm) ? '\n' : ''}\n------------\n\n`;
+        this._replaceSelection(cm, str);
+        cm.focus();
+    }
+    handleClean(cm) {
+        cm.dispatch({ changes: { from: 0, to: cm.state.doc.length, insert: '' } });
+        cm.focus();
+    }
+    handleOrdered(cm) {
+        const selection = this._getSelection(cm);
+        if (selection === '') {
+            const str = (this._getLineCh(cm) ? '\n\n' : '') + '1. ';
+            this._replaceSelection(cm, str);
+        } else {
+            const selectionText = selection.split('\n');
+            for (let i = 0, len = selectionText.length; i < len; i++) {
+                selectionText[i] = selectionText[i] === '' ? '' : i + 1 + '. ' + selectionText[i];
+            }
+            const str = (this._getLineCh(cm) ? '\n' : '') + selectionText.join('\n');
+            this._replaceSelection(cm, str);
+        }
+        cm.focus();
+    }
+    handleUnordered(cm) {
+        const selection = this._getSelection(cm);
+        if (selection === '') {
+            const str = (this._getLineCh(cm) ? '\n' : '') + '- ';
+            this._replaceSelection(cm, str);
+        } else {
+            const selectionText = selection.split('\n');
+            for (let i = 0, len = selectionText.length; i < len; i++) {
+                selectionText[i] = selectionText[i] === '' ? '' : '- ' + selectionText[i];
+            }
+            const str = (this._getLineCh(cm) ? '\n' : '') + selectionText.join('\n');
+            this._replaceSelection(cm, str);
+        }
+        cm.focus();
+    }
+    handleQuote(cm) {
+        const selection = this._getSelection(cm);
+        if (selection === '') {
+            this._replaceSelection(cm, `${this._getLineCh(cm) ? '\n' : ''}> `);
+        } else {
+            const selectionText = selection.split('\n');
+            for (let i = 0, len = selectionText.length; i < len; i++) {
+                selectionText[i] = selectionText[i] === '' ? '' : '> ' + selectionText[i];
+            }
+            const str = (this._getLineCh(cm) ? '\n' : '') + selectionText.join('\n');
+            this._replaceSelection(cm, str);
+        }
+        cm.focus();
+    }
+    handleDownload(cm) {
+        const title = $('#title').val() || '新文章';
+        const aTag = document.createElement('a');
+        let blob = new Blob([cm.state.doc.toString()]);
+        aTag.download = title + '.md';
+        aTag.href = URL.createObjectURL(blob);
+        aTag.click();
+        URL.revokeObjectURL(blob);
+    }
+    handleTitle(cm, tool) {
+        const item = $(`
 			<div class="cm-tools-item" title="${tool.title}">
 				${tool.innerHTML}
 				<div class="cm-tools__dropdown">
@@ -208,26 +208,26 @@ export default class JoeAction {
 				</div>
 			</div>
 		`);
-		item.on('click', function (e) {
-			e.stopPropagation();
-			$(this).toggleClass('active');
-		});
-		const _this = this;
-		item.on('click', '.cm-tools__dropdown-item', function (e) {
-			e.stopPropagation();
-			const text = $(this).attr('data-text');
-			if (_this._getLineCh(cm)) _this._replaceSelection(cm, '\n\n' + text);
-			else _this._replaceSelection(cm, text);
-			item.removeClass('active');
-			cm.focus();
-		});
-		$(document).on('click', () => item.removeClass('active'));
-		$('.cm-tools').append(item);
-	}
-	handleLink(cm) {
-		this._openModal({
-			title: '插入链接',
-			innerHtml: `
+        item.on('click', function (e) {
+            e.stopPropagation();
+            $(this).toggleClass('active');
+        });
+        const _this = this;
+        item.on('click', '.cm-tools__dropdown-item', function (e) {
+            e.stopPropagation();
+            const text = $(this).attr('data-text');
+            if (_this._getLineCh(cm)) _this._replaceSelection(cm, '\n\n' + text);
+            else _this._replaceSelection(cm, text);
+            item.removeClass('active');
+            cm.focus();
+        });
+        $(document).on('click', () => item.removeClass('active'));
+        $('.cm-tools').append(item);
+    }
+    handleLink(cm) {
+        this._openModal({
+            title: '插入链接',
+            innerHtml: `
                 <div class="fitem">
                     <label>链接标题</label>
                     <input autocomplete="off" name="title" placeholder="请输入链接标题"/>
@@ -237,18 +237,18 @@ export default class JoeAction {
                     <input autocomplete="off" name="url" placeholder="请输入链接地址"/>
                 </div>
             `,
-			confirm: () => {
-				const title = $(".cm-modal input[name='title']").val() || 'Test';
-				const url = $(".cm-modal input[name='url']").val() || 'http://';
-				this._replaceSelection(cm, ` [${title}](${url}) `);
-				cm.focus();
-			}
-		});
-	}
-	handleImage(cm) {
-		this._openModal({
-			title: '插入图片',
-			innerHtml: `
+            confirm: () => {
+                const title = $(".cm-modal input[name='title']").val() || 'Test';
+                const url = $(".cm-modal input[name='url']").val() || 'http://';
+                this._replaceSelection(cm, ` [${title}](${url}) `);
+                cm.focus();
+            }
+        });
+    }
+    handleImage(cm) {
+        this._openModal({
+            title: '插入图片',
+            innerHtml: `
                 <div class="fitem">
                     <label>图片名称</label>
                     <input autocomplete="off" name="title" placeholder="请输入图片名称"/>
@@ -258,18 +258,18 @@ export default class JoeAction {
                     <input autocomplete="off" name="url" placeholder="请输入图片地址"/>
                 </div>
             `,
-			confirm: () => {
-				const title = $(".cm-modal input[name='title']").val() || 'Test';
-				const url = $(".cm-modal input[name='url']").val() || 'http://';
-				this._replaceSelection(cm, ` ![${title}](${url}) `);
-				cm.focus();
-			}
-		});
-	}
-	handleTable(cm) {
-		this._openModal({
-			title: '插入表格',
-			innerHtml: `
+            confirm: () => {
+                const title = $(".cm-modal input[name='title']").val() || 'Test';
+                const url = $(".cm-modal input[name='url']").val() || 'http://';
+                this._replaceSelection(cm, ` ![${title}](${url}) `);
+                cm.focus();
+            }
+        });
+    }
+    handleTable(cm) {
+        this._openModal({
+            title: '插入表格',
+            innerHtml: `
                 <div class="fitem">
                     <label>表格行</label>
                     <input style="width: 50px; flex: none; margin-right: 10px;" value="3" autocomplete="off" name="row"/>
@@ -277,40 +277,40 @@ export default class JoeAction {
                     <input style="width: 50px; flex: none;" value="3" autocomplete="off" name="column"/>
                 </div>
             `,
-			confirm: () => {
-				let row = $(".cm-modal input[name='row']").val();
-				let column = $(".cm-modal input[name='column']").val();
-				if (isNaN(row)) row = 3;
-				if (isNaN(column)) column = 3;
-				let rowStr = '';
-				let rangeStr = '';
-				let columnlStr = '';
-				for (let i = 0; i < column; i++) {
-					rowStr += '| 表头 ';
-					rangeStr += '| :--: ';
-				}
-				for (let i = 0; i < row; i++) {
-					for (let j = 0; j < column; j++) columnlStr += '| 表格 ';
-					columnlStr += '|\n';
-				}
-				const htmlStr = `${rowStr}|\n${rangeStr}|\n${columnlStr}\n`;
-				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n\n' + htmlStr);
-				else this._replaceSelection(cm, htmlStr);
-				cm.focus();
-			}
-		});
-	}
-	handleCodeBlock(cm) {
-		const language = 'rss+atom+ssml+mathml+svg+html+markup+css+clike+javascript+abap+abnf+actionscript+ada+agda+al+antlr4+apacheconf+apex+apl+applescript+aql+arduino+arff+asciidoc+aspnet+asm6502+autohotkey+autoit+bash+basic+batch+bbcode+birb+bison+bnf+brainfuck+brightscript+bro+bsl+c+csharp+cpp+cfscript+chaiscript+cil+clojure+cmake+cobol+coffeescript+concurnas+csp+coq+crystal+css-extras+csv+cypher+d+dart+dataweave+dax+dhall+diff+django+dns-zone-file+docker+dot+ebnf+editorconfig+eiffel+ejs+elixir+elm+etlua+erb+erlang+excel-formula+fsharp+factor+false+firestore-security-rules+flow+fortran+ftl+gml+gcode+gdscript+gedcom+gherkin+git+glsl+go+graphql+groovy+haml+handlebars+haskell+haxe+hcl+hlsl+http+hpkp+hsts+ichigojam+icon+icu-message-format+idris+ignore+inform7+ini+io+j+java+javadoc+javadoclike+javastacktrace+jexl+jolie+jq+jsdoc+js-extras+json+json5+jsonp+jsstacktrace+js-templates+julia+keyman+kotlin+kumir+latex+latte+less+lilypond+liquid+lisp+livescript+llvm+log+lolcode+lua+makefile+markdown+markup-templating+matlab+mel+mizar+mongodb+monkey+moonscript+n1ql+n4js+nand2tetris-hdl+naniscript+nasm+neon+nevod+nginx+nim+nix+nsis+objectivec+ocaml+opencl+openqasm+oz+parigp+parser+pascal+pascaligo+psl+pcaxis+peoplecode+perl+php+phpdoc+php-extras+plsql+powerquery+powershell+processing+prolog+promql+properties+protobuf+pug+puppet+pure+purebasic+purescript+python+qsharp+q+qml+qore+r+racket+jsx+tsx+reason+regex+rego+renpy+rest+rip+roboconf+robotframework+ruby+rust+sas+sass+scss+scala+scheme+shell-session+smali+smalltalk+smarty+sml+solidity+solution-file+soy+sparql+splunk-spl+sqf+sql+squirrel+stan+iecst+stylus+swift+t4-templating+t4-cs+t4-vb+tap+tcl+tt2+textile+toml+turtle+twig+typescript+typoscript+unrealscript+uri+v+vala+vbnet+velocity+verilog+vhdl+vim+visual-basic+warpscript+wasm+wiki+xeora+xml-doc+xojo+xquery+yaml+yang+zig';
-		const languageArr = language.split('+').sort((a, b) => a.localeCompare(b));
-		const sessionStorageType = sessionStorage.getItem('selectType') || '';
-		let htmlStr = '';
-		languageArr.forEach(item => {
-			htmlStr += `<option ${sessionStorageType === item ? 'selected' : ''} value="${item}">${item.toUpperCase()}</option>`;
-		});
-		this._openModal({
-			title: '插入代码块',
-			innerHtml: `
+            confirm: () => {
+                let row = $(".cm-modal input[name='row']").val();
+                let column = $(".cm-modal input[name='column']").val();
+                if (isNaN(row)) row = 3;
+                if (isNaN(column)) column = 3;
+                let rowStr = '';
+                let rangeStr = '';
+                let columnlStr = '';
+                for (let i = 0; i < column; i++) {
+                    rowStr += '| 表头 ';
+                    rangeStr += '| :--: ';
+                }
+                for (let i = 0; i < row; i++) {
+                    for (let j = 0; j < column; j++) columnlStr += '| 表格 ';
+                    columnlStr += '|\n';
+                }
+                const htmlStr = `${rowStr}|\n${rangeStr}|\n${columnlStr}\n`;
+                if (this._getLineCh(cm)) this._replaceSelection(cm, '\n\n' + htmlStr);
+                else this._replaceSelection(cm, htmlStr);
+                cm.focus();
+            }
+        });
+    }
+    handleCodeBlock(cm) {
+        const language = 'rss+atom+ssml+mathml+svg+html+markup+css+clike+javascript+abap+abnf+actionscript+ada+agda+al+antlr4+apacheconf+apex+apl+applescript+aql+arduino+arff+asciidoc+aspnet+asm6502+autohotkey+autoit+bash+basic+batch+bbcode+birb+bison+bnf+brainfuck+brightscript+bro+bsl+c+csharp+cpp+cfscript+chaiscript+cil+clojure+cmake+cobol+coffeescript+concurnas+csp+coq+crystal+css-extras+csv+cypher+d+dart+dataweave+dax+dhall+diff+django+dns-zone-file+docker+dot+ebnf+editorconfig+eiffel+ejs+elixir+elm+etlua+erb+erlang+excel-formula+fsharp+factor+false+firestore-security-rules+flow+fortran+ftl+gml+gcode+gdscript+gedcom+gherkin+git+glsl+go+graphql+groovy+haml+handlebars+haskell+haxe+hcl+hlsl+http+hpkp+hsts+ichigojam+icon+icu-message-format+idris+ignore+inform7+ini+io+j+java+javadoc+javadoclike+javastacktrace+jexl+jolie+jq+jsdoc+js-extras+json+json5+jsonp+jsstacktrace+js-templates+julia+keyman+kotlin+kumir+latex+latte+less+lilypond+liquid+lisp+livescript+llvm+log+lolcode+lua+makefile+markdown+markup-templating+matlab+mel+mizar+mongodb+monkey+moonscript+n1ql+n4js+nand2tetris-hdl+naniscript+nasm+neon+nevod+nginx+nim+nix+nsis+objectivec+ocaml+opencl+openqasm+oz+parigp+parser+pascal+pascaligo+psl+pcaxis+peoplecode+perl+php+phpdoc+php-extras+plsql+powerquery+powershell+processing+prolog+promql+properties+protobuf+pug+puppet+pure+purebasic+purescript+python+qsharp+q+qml+qore+r+racket+jsx+tsx+reason+regex+rego+renpy+rest+rip+roboconf+robotframework+ruby+rust+sas+sass+scss+scala+scheme+shell-session+smali+smalltalk+smarty+sml+solidity+solution-file+soy+sparql+splunk-spl+sqf+sql+squirrel+stan+iecst+stylus+swift+t4-templating+t4-cs+t4-vb+tap+tcl+tt2+textile+toml+turtle+twig+typescript+typoscript+unrealscript+uri+v+vala+vbnet+velocity+verilog+vhdl+vim+visual-basic+warpscript+wasm+wiki+xeora+xml-doc+xojo+xquery+yaml+yang+zig';
+        const languageArr = language.split('+').sort((a, b) => a.localeCompare(b));
+        const sessionStorageType = sessionStorage.getItem('selectType') || '';
+        let htmlStr = '';
+        languageArr.forEach(item => {
+            htmlStr += `<option ${sessionStorageType === item ? 'selected' : ''} value="${item}">${item.toUpperCase()}</option>`;
+        });
+        this._openModal({
+            title: '插入代码块',
+            innerHtml: `
                 <div class="fitem">
                     <label>语言类型</label>
                     <select name="type">
@@ -319,39 +319,39 @@ export default class JoeAction {
                     </select>
                 </div>
             `,
-			confirm: () => {
-				const type = $(".cm-modal select[name='type']").val();
-				if (!type) return;
-				const htmlStr = `\`\`\`${type}\ncode here...\n\`\`\``;
-				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n\n' + htmlStr);
-				else this._replaceSelection(cm, htmlStr);
-				cm.focus();
-				sessionStorage.setItem('selectType', type);
-			}
-		});
-	}
-	handleAbout() {
-		this._openModal({
-			title: '关于',
-			hasFooter: false,
-			innerHtml: `
+            confirm: () => {
+                const type = $(".cm-modal select[name='type']").val();
+                if (!type) return;
+                const htmlStr = `\`\`\`${type}\ncode here...\n\`\`\``;
+                if (this._getLineCh(cm)) this._replaceSelection(cm, '\n\n' + htmlStr);
+                else this._replaceSelection(cm, htmlStr);
+                cm.focus();
+                sessionStorage.setItem('selectType', type);
+            }
+        });
+    }
+    handleAbout() {
+        this._openModal({
+            title: '关于',
+            hasFooter: false,
+            innerHtml: `
                 <ul>
                     <li>短代码功能正在开发中...</li>
                     <li>仅支持网络图片粘贴上传（截图等）</li>
                     <li>本编辑器仅供Joe主题使用，未经允许不得移植至其他主题！</li>
                 </ul>
             `
-		});
-	}
-	handleTask(cm, type) {
-		const str = type ? '{x}' : '{ }';
-		this._replaceSelection(cm, ` ${str} `);
-		cm.focus();
-	}
-	handleNetease(cm, type) {
-		this._openModal({
-			title: type ? '网易云歌单' : '网抑云单首',
-			innerHtml: `
+        });
+    }
+    handleTask(cm, type) {
+        const str = type ? '{x}' : '{ }';
+        this._replaceSelection(cm, ` ${str} `);
+        cm.focus();
+    }
+    handleNetease(cm, type) {
+        this._openModal({
+            title: type ? '网易云歌单' : '网抑云单首',
+            innerHtml: `
 				<div class="fitem">
 					<label>歌${type ? '单' : '曲'}　ID</label>
 					<input autocomplete="off" name="id" placeholder="请输入歌${type ? '单' : '曲'}ID"/>
@@ -368,121 +368,125 @@ export default class JoeAction {
 					</select>
 				</div>
             `,
-			confirm: () => {
-				const id = $(".cm-modal input[name='id']").val();
-				const width = $(".cm-modal input[name='width']").val() || '100%';
-				const autoplay = $(".cm-modal select[name='autoplay']").val();
-				const str = `\n{${type ? 'music-list' : 'music'} id="${id}" width="${width}" ${autoplay === '1' ? 'autoplay="autoplay"' : ''}/}\n\n`;
-				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
-				else this._replaceSelection(cm, str);
-				cm.focus();
-			}
-		});
-	}
-	handleBilibili(cm) {
-		this._openModal({
-			title: 'BiliBili视频',
-			innerHtml: `
+            confirm: () => {
+                const id = $(".cm-modal input[name='id']").val();
+                const width = $(".cm-modal input[name='width']").val() || '100%';
+                const autoplay = $(".cm-modal select[name='autoplay']").val();
+                const str = `\n{${type ? 'music-list' : 'music'} id="${id}" width="${width}" ${autoplay === '1' ? 'autoplay="autoplay"' : ''}/}\n\n`;
+                if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+                else this._replaceSelection(cm, str);
+                cm.focus();
+            }
+        });
+    }
+    handleBilibili(cm) {
+        this._openModal({
+            title: 'BiliBili视频',
+            innerHtml: `
 				<div class="fitem">
 					<label>视频Bvid</label>
 					<input autocomplete="off" name="bvid" placeholder="请输入视频Bvid"/>
 				</div>
             `,
-			confirm: () => {
-				const bvid = $(".cm-modal input[name='bvid']").val();
-				const str = `\n{bilibili bvid="${bvid}"/}\n\n`;
-				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
-				else this._replaceSelection(cm, str);
-				cm.focus();
-			}
-		});
-	}
-	handleDplayer(cm) {
-		this._openModal({
-			title: 'M3U8/MP4视频',
-			innerHtml: `
+            confirm: () => {
+                const bvid = $(".cm-modal input[name='bvid']").val();
+                const str = `\n{bilibili bvid="${bvid}"/}\n\n`;
+                if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+                else this._replaceSelection(cm, str);
+                cm.focus();
+            }
+        });
+    }
+    handleDplayer(cm) {
+        this._openModal({
+            title: 'M3U8/MP4视频',
+            innerHtml: `
 				<div class="fitem">
 					<label>视频地址</label>
 					<input autocomplete="off" name="src" placeholder="请输入视频地址"/>
 				</div>
             `,
-			confirm: () => {
-				const src = $(".cm-modal input[name='src']").val();
-				const str = `\n{dplayer src="${src}"/}\n\n`;
-				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
-				else this._replaceSelection(cm, str);
-				cm.focus();
-			}
-		});
-	}
-	handleDraft() {
-		$('#btn-save').click();
-	}
-	handleExpression(cm) {
-		$.ajax({
-			url: window.JoeConfig.expressionAPI,
-			dataType: 'json',
-			success: res => {
-				let tabbarStr = '';
-				let listsStr = '';
-				for (let key in res) {
-					const arr = res[key];
-					tabbarStr += `<div class="tabbar-item ${key === '泡泡' ? 'active' : ''}" data-show="${key}">${key}</div>`;
-					listsStr += `<div class="lists ${key === '泡泡' ? 'active' : ''}" data-show="${key}">${arr.map(item => `<div class="lists-item" data-text="${item.data}">${key === '颜文字' ? item.icon : `<img src="${window.JoeConfig.themeURL + item.icon}">`}</div>`).join(' ')}</div>`;
-				}
-				this._openModal({
-					title: '普通表情',
-					hasFooter: false,
-					innerHtml: `<div class="tabbar">${tabbarStr}</div>${listsStr}`,
-					handler: () => {
-						$('.cm-modal__wrapper-bodyer .tabbar-item').on('click', function () {
-							const show = $(this).attr('data-show');
-							$(this).addClass('active').siblings().removeClass('active');
-							$('.cm-modal__wrapper-bodyer .lists').removeClass('active');
-							$(".cm-modal__wrapper-bodyer .lists[data-show='" + show + "']").addClass('active');
-						});
-						const _this = this;
-						$('.cm-modal__wrapper-bodyer .lists-item').on('click', function () {
-							const text = $(this).attr('data-text');
-							_this._replaceSelection(cm, ` ${text} `);
-							$('.cm-modal').removeClass('active');
-							cm.focus();
-						});
-					}
-				});
-			}
-		});
-	}
-	handleMtitle(cm) {
-		this._openModal({
-			title: '居中标题',
-			innerHtml: `
+            confirm: () => {
+                const src = $(".cm-modal input[name='src']").val();
+                const str = `\n{dplayer src="${src}"/}\n\n`;
+                if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+                else this._replaceSelection(cm, str);
+                cm.focus();
+            }
+        });
+    }
+    handleDraft() {
+        $('#btn-save').click();
+    }
+    handleExpression(cm) {
+        $.ajax({
+            url: window.JoeConfig.expressionAPI,
+            dataType: 'json',
+            success: res => {
+                let tabbarStr = '';
+                let listsStr = '';
+                for (let key in res) {
+                    const arr = res[key];
+                    tabbarStr += `<div class="tabbar-item ${key === '泡泡' ? 'active' : ''}" data-show="${key}">${key}</div>`;
+                    listsStr += `<div class="lists ${key === '泡泡' ? 'active' : ''}" data-show="${key}">${arr.map(item => `<div class="lists-item" data-text="${item.data}">${key === '颜文字' ? item.icon : `<img src="${window.JoeConfig.themeURL + item.icon}">`}</div>`).join(' ')}</div>`;
+                }
+                this._openModal({
+                    title: '普通表情',
+                    hasFooter: false,
+                    innerHtml: `<div class="tabbar">${tabbarStr}</div>${listsStr}`,
+                    handler: () => {
+                        $('.cm-modal__wrapper-bodyer .tabbar-item').on('click', function () {
+                            const show = $(this).attr('data-show');
+                            $(this).addClass('active').siblings().removeClass('active');
+                            $('.cm-modal__wrapper-bodyer .lists').removeClass('active');
+                            $(".cm-modal__wrapper-bodyer .lists[data-show='" + show + "']").addClass('active');
+                        });
+                        const _this = this;
+                        $('.cm-modal__wrapper-bodyer .lists-item').on('click', function () {
+                            const text = $(this).attr('data-text');
+                            _this._replaceSelection(cm, ` ${text} `);
+                            $('.cm-modal').removeClass('active');
+                            cm.focus();
+                        });
+                    }
+                });
+            }
+        });
+    }
+    handleMtitle(cm) {
+        this._openModal({
+            title: '居中标题',
+            innerHtml: `
 				<div class="fitem">
 					<label>标题内容</label>
 					<input autocomplete="off" maxlength="10" name="text" placeholder="请输入标题内容（10字以内）"/>
 				</div>
             `,
-			confirm: () => {
-				const text = $(".cm-modal input[name='text']").val();
-				const str = `\n{mtitle title="${text}"/}\n\n`;
-				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
-				else this._replaceSelection(cm, str);
-				cm.focus();
-			}
-		});
-	}
-	handleHtml(cm) {
-		const str = `${this._getLineCh(cm) ? '\n' : ''}!!!\n<p align="center">居中</p>\n<p align="right">居右</p>\n<font size="5" color="red">颜色大小</font>\n!!!\n`;
-		this._replaceSelection(cm, str);
-		cm.focus();
-	}
-	handleAbtn(cm) {
-		this._openModal({
-			title: '多彩按钮',
-			innerHtml: `
+            confirm: () => {
+                const text = $(".cm-modal input[name='text']").val();
+                const str = `\n{mtitle title="${text}"/}\n\n`;
+                if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+                else this._replaceSelection(cm, str);
+                cm.focus();
+            }
+        });
+    }
+    handleHtml(cm) {
+        const str = `${this._getLineCh(cm) ? '\n' : ''}!!!\n<p align="center">居中</p>\n<p align="right">居右</p>\n<font size="5" color="red">颜色大小</font>\n!!!\n`;
+        this._replaceSelection(cm, str);
+        cm.focus();
+    }
+    handleAbtn(cm) {
+        this._openModal({
+            title: '多彩按钮',
+            innerHtml: `
 				<div class="fitem">
 					<label>按钮图标</label>
 					<input autocomplete="off" name="icon" placeholder="请输入fa图标，例：fa-download"/>
+				</div>
+				<div class="fitem">
+					<label>图标大全</label>
+					<a href="https://fontawesome.dashgame.com" target="_blank">fontawesome.dashgame.com</a>
 				</div>
 				<div class="fitem">
 					<label>按钮颜色</label>
@@ -501,25 +505,29 @@ export default class JoeAction {
 					<input autocomplete="off" name="content" placeholder="请输入按钮内容"/>
 				</div>
             `,
-			confirm: () => {
-				const icon = $(".cm-modal input[name='icon']").val();
-				const color = $(".cm-modal input[name='color']").val();
-				const href = $(".cm-modal input[name='href']").val();
-				const radius = $(".cm-modal input[name='radius']").val();
-				const content = $(".cm-modal input[name='content']").val();
-				const str = ` {abtn icon="${icon}" color="${color}" href="${href}" radius="${radius}" content="${content}"/} `;
-				this._replaceSelection(cm, str);
-				cm.focus();
-			}
-		});
-	}
-	handleAnote(cm) {
-		this._openModal({
-			title: '便条按钮',
-			innerHtml: `
+            confirm: () => {
+                const icon = $(".cm-modal input[name='icon']").val();
+                const color = $(".cm-modal input[name='color']").val();
+                const href = $(".cm-modal input[name='href']").val();
+                const radius = $(".cm-modal input[name='radius']").val();
+                const content = $(".cm-modal input[name='content']").val();
+                const str = ` {abtn icon="${icon}" color="${color}" href="${href}" radius="${radius}" content="${content}"/} `;
+                this._replaceSelection(cm, str);
+                cm.focus();
+            }
+        });
+    }
+    handleAnote(cm) {
+        this._openModal({
+            title: '便条按钮',
+            innerHtml: `
 				<div class="fitem">
 					<label>按钮图标</label>
 					<input autocomplete="off" name="icon" placeholder="请输入fa图标，例：fa-download"/>
+				</div>
+				<div class="fitem">
+					<label>图标大全</label>
+					<a href="https://fontawesome.dashgame.com" target="_blank">fontawesome.dashgame.com</a>
 				</div>
 				<div class="fitem">
 					<label>跳转链接</label>
@@ -540,15 +548,38 @@ export default class JoeAction {
 					<input autocomplete="off" name="content" placeholder="请输入按钮内容"/>
 				</div>
             `,
-			confirm: () => {
-				const icon = $(".cm-modal input[name='icon']").val();
-				const href = $(".cm-modal input[name='href']").val();
-				const type = $(".cm-modal select[name='type']").val();
-				const content = $(".cm-modal input[name='content']").val();
-				const str = ` {anote icon="${icon}" href="${href}" type="${type}" content="${content}"/} `;
-				this._replaceSelection(cm, str);
-				cm.focus();
-			}
-		});
-	}
+            confirm: () => {
+                const icon = $(".cm-modal input[name='icon']").val();
+                const href = $(".cm-modal input[name='href']").val();
+                const type = $(".cm-modal select[name='type']").val();
+                const content = $(".cm-modal input[name='content']").val();
+                const str = ` {anote icon="${icon}" href="${href}" type="${type}" content="${content}"/} `;
+                this._replaceSelection(cm, str);
+                cm.focus();
+            }
+        });
+    }
+    handleDotted(cm) {
+        this._openModal({
+            title: '彩色虚线',
+            innerHtml: `
+				<div class="fitem">
+					<label>开始颜色</label>
+					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#ff6c6c" name="startColor" type="color"/>
+				</div>
+				<div class="fitem">
+					<label>结束颜色</label>
+					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#1989fa" name="endColor" type="color"/>
+				</div>
+            `,
+            confirm: () => {
+                const startColor = $(".cm-modal input[name='startColor']").val();
+                const endColor = $(".cm-modal input[name='endColor']").val();
+                const str = `\n{dotted startColor="${startColor}" endColor="${endColor}"/}\n\n`;
+                if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+                else this._replaceSelection(cm, str);
+                cm.focus();
+            }
+        });
+    }
 }

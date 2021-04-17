@@ -31,6 +31,9 @@ function _parseContent($post, $login)
     if (strpos($content, '{anote') !== false) {
         $content = preg_replace('/{anote([^}]*)\/}/SU', '<joe-anote $1></joe-anote>', $content);
     }
+    if (strpos($content, '{dotted') !== false) {
+        $content = preg_replace('/{dotted([^}]*)\/}/SU', '<joe-dotted $1></joe-dotted>', $content);
+    }
 
 
 

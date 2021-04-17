@@ -2220,6 +2220,11 @@
 				}
 			}
 		}
+		&-dotted {
+			width: 100%;
+			height: 2px;
+			background-size: 80px;
+		}
 	}
 	&__agree {
 		display: flex;
