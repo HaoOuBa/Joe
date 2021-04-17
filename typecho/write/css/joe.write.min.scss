@@ -704,6 +704,7 @@ body.fullscreen {
         }
     }
     .content {
+        color: #fff;
         display: inline-block;
         vertical-align: top;
         max-width: 200px;
@@ -741,6 +742,7 @@ body.fullscreen {
         overflow: hidden;
         text-overflow: ellipsis;
         white-space: nowrap;
+        color: #fff;
     }
     &.secondary {
         background: #34495e;
