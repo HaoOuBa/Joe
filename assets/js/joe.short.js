@@ -163,9 +163,26 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-card-default', JoeCardDefault);
+	class JoeMessage extends HTMLElement {
+		constructor() {
+			super();
+			this.options = {
+				type: /^success$|^info$|^warning$|^error$/.test(this.getAttribute('type')) ? this.getAttribute('type') : 'info',
+				content: this.getAttribute('content') || '消息内容'
+			};
+			this.innerHTML = `
+				<span class="joe_detail__article-message ${this.options.type}">
+					<span class="icon"></span>
+					<span class="content">${this.options.content}</span>
+				</span>
+			`;
+		}
+	}
+	window.customElements.define('joe-message', JoeMessage);
 
 	const article = document.querySelector('.joe_detail__article');
 	if (article) article.innerHTML = article.innerHTML.replace(/<p><\/p>/g, '');
+
 
 	/* 
 	------------------------以下未测试------------------------------------------
@@ -193,27 +210,4 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-copy', JoeCopy);
-	/* 消息提示 */
-	class JoeMessage extends HTMLElement {
-		constructor() {
-			super();
-			this.options = {
-				type: /^success$|^info$|^warning$|^error$/.test(this.getAttribute('type')) ? this.getAttribute('type') : 'info',
-				content: this.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '提示内容'
-			};
-			this.render();
-		}
-		get template() {
-			return `
-				<div class="joe_detail__article-message ${this.options.type}">
-					<div class="icon"></div>
-					<div class="content">${this.options.content}</div>
-				</div>
-			`;
-		}
-		render() {
-			this.innerHTML = this.template;
-		}
-	}
-	window.customElements.define('joe-message', JoeMessage);
 });

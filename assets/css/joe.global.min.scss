@@ -2054,45 +2054,8 @@
 			height: 2px;
 			background-size: 80px;
 		}
-
-		/* 以下未测试 */
-		&-protected {
-			display: flex;
-			justify-content: center;
-			background: repeating-linear-gradient(145deg, var(--classB), var(--classB) 15px, var(--background) 0, var(--background) 30px);
-			padding: 20px 0;
-			margin-bottom: 18px;
-			.contain {
-				position: relative;
-				box-shadow: var(--box-shadow);
-				border-radius: 20px;
-				overflow: hidden;
-				.icon {
-					position: absolute;
-					top: 50%;
-					transform: translateY(-50%);
-					left: 15px;
-				}
-				.password {
-					width: 250px;
-					height: 40px;
-					border: none;
-					color: var(--routine);
-					padding-left: 50px;
-					background: var(--background);
-				}
-				.submit {
-					position: absolute;
-					top: 50%;
-					right: 15px;
-					transform: translateY(-50%);
-					color: var(--main);
-					border: none;
-					background: none;
-				}
-			}
-		}
 		&-message {
+			display: block;
 			position: relative;
 			border-left-width: 4px;
 			border-left-style: solid;
@@ -2168,10 +2131,9 @@
 					}
 				}
 			}
-		}
-		&-copy {
-			cursor: pointer;
-			user-select: none;
+			.content {
+				display: block;
+			}
 		}
 		&-video {
 			margin-bottom: 18px;
@@ -2251,6 +2213,48 @@
 					}
 				}
 			}
+		}
+
+		/* 以下未测试 */
+		&-protected {
+			display: flex;
+			justify-content: center;
+			background: repeating-linear-gradient(145deg, var(--classB), var(--classB) 15px, var(--background) 0, var(--background) 30px);
+			padding: 20px 0;
+			margin-bottom: 18px;
+			.contain {
+				position: relative;
+				box-shadow: var(--box-shadow);
+				border-radius: 20px;
+				overflow: hidden;
+				.icon {
+					position: absolute;
+					top: 50%;
+					transform: translateY(-50%);
+					left: 15px;
+				}
+				.password {
+					width: 250px;
+					height: 40px;
+					border: none;
+					color: var(--routine);
+					padding-left: 50px;
+					background: var(--background);
+				}
+				.submit {
+					position: absolute;
+					top: 50%;
+					right: 15px;
+					transform: translateY(-50%);
+					color: var(--main);
+					border: none;
+					background: none;
+				}
+			}
+		}
+		&-copy {
+			cursor: pointer;
+			user-select: none;
 		}
 	}
 	&__agree {

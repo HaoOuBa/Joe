@@ -610,4 +610,32 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleMessage(cm) {
+		this._openModal({
+			title: '消息提示',
+			innerHtml: `
+				<div class="fitem">
+					<label>消息类型</label>
+					<select name="type">
+						<option value="success" selected>success</option>
+						<option value="info">info</option>
+						<option value="warning">warning</option>
+						<option value="error">error</option>
+					</select>
+				</div>
+				<div class="fitem" style="align-items: flex-start">
+					<label>消息内容</label>
+					<textarea autocomplete="off" name="content" placeholder="请输入消息内容"></textarea>
+				</div>
+            `,
+			confirm: () => {
+				const type = $(".cm-modal select[name='type']").val();
+				const content = $(".cm-modal textarea[name='content']").val();
+				const str = `\n{message type="${type}" content="${content}"/}\n\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
 }

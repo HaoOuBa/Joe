@@ -295,6 +295,9 @@ class Joe extends JoeAction {
 						case 'card-default':
 							super.handleCardDefault(this.cm);
 							break;
+						case 'message':
+							super.handleMessage(this.cm);
+							break;
 					}
 				});
 				$('.cm-tools').append(el);
