@@ -24,6 +24,7 @@ export default function createPreviewHtml(str) {
 	str = str.replace(/{abtn([^}]*)\/}/g, '<joe-abtn $1></joe-abtn>');
 	str = str.replace(/{anote([^}]*)\/}/g, '<joe-anote $1></joe-anote>');
 	str = str.replace(/{dotted([^}]*)\/}/g, '<joe-dotted $1></joe-dotted>');
+	str = str.replace(/{hide[^}]*}(.*?){\/hide}/g, '<joe-hide></joe-hide>');
 
 	$('.cm-preview-content').html(str);
 	$('.cm-preview-content pre code').each((i, el) => Prism.highlightElement(el));

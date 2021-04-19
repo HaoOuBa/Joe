@@ -34,6 +34,15 @@ function _parseContent($post, $login)
     if (strpos($content, '{dotted') !== false) {
         $content = preg_replace('/{dotted([^}]*)\/}/SU', '<joe-dotted $1></joe-dotted>', $content);
     }
+    if (strpos($content, '{hide') !== false) {
+        $db = Typecho_Db::get();
+        $hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
+        if ($hasComment || $login) {
+            $content = strtr($content, array("{hide}" => "", "{/hide}" => ""));
+        } else {
+            $content = preg_replace('/{hide[^}]*}(.*?){\/hide}/', '<joe-hide></joe-hide>', $content);
+        }
+    }
 
 
 
@@ -43,16 +52,7 @@ function _parseContent($post, $login)
         $content = preg_replace('/{card-default(.*)}/SU', '<joe-card $1>', $content);
         $content = preg_replace('/{\/card-default}/SU', '</joe-card>', $content);
     }
-    /* 过滤回复可见 */
-    if (strpos($content, '{hide') !== false) {
-        $db = Typecho_Db::get();
-        $hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
-        if ($hasComment || $login) {
-            $content = strtr($content, array("{hide}" => "<joe-show>", "{/hide}" => "</joe-show>"));
-        } else {
-            $content = strtr($content, array("{hide}" => "<joe-hide>", "{/hide}" => "</joe-hide>"));
-        }
-    }
+    
     /* 过滤复制粘贴功能 */
     if (strpos($content, '{copy') !== false) {
         $content = preg_replace('/{copy(.*)}/SU', '<joe-copy $1>', $content);

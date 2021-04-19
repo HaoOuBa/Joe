@@ -1952,6 +1952,20 @@
 				color: var(--routine);
 			}
 		}
+		&-hide {
+			background: repeating-linear-gradient(145deg, var(--classD), var(--classD) 15px, var(--background) 0, var(--background) 25px);
+			padding: 15px 0;
+			text-align: center;
+			position: relative;
+			user-select: none;
+			line-height: normal;
+			i {
+				position: relative;
+				font-style: normal;
+				cursor: pointer;
+				color: var(--theme);
+			}
+		}
 		&-message {
 			position: relative;
 			border-left-width: 4px;

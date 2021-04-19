@@ -289,6 +289,9 @@ class Joe extends JoeAction {
 						case 'dotted':
 							super.handleDotted(this.cm);
 							break;
+						case 'hide':
+							super.handleHide(this.cm);
+							break;
 					}
 				});
 				$('.cm-tools').append(el);
