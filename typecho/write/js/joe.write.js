@@ -292,6 +292,9 @@ class Joe extends JoeAction {
 						case 'hide':
 							super.handleHide(this.cm);
 							break;
+						case 'card-default':
+							super.handleCardDefault(this.cm);
+							break;
 					}
 				});
 				$('.cm-tools').append(el);

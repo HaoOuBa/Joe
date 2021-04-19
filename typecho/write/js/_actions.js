@@ -477,10 +477,10 @@ export default class JoeAction {
 		cm.focus();
 	}
 	handleHide(cm) {
-        const str = `${this._getLineCh(cm) ? '\n' : ''}{hide}\n需要隐藏的内容\n{/hide}\n`;
+		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{hide}\n需要隐藏的内容\n{/hide}\n\n`;
 		this._replaceSelection(cm, str);
 		cm.focus();
-    }
+	}
 	handleAbtn(cm) {
 		this._openModal({
 			title: '多彩按钮',
@@ -581,6 +581,29 @@ export default class JoeAction {
 				const startColor = $(".cm-modal input[name='startColor']").val();
 				const endColor = $(".cm-modal input[name='endColor']").val();
 				const str = `\n{dotted startColor="${startColor}" endColor="${endColor}"/}\n\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
+	handleCardDefault(cm) {
+		this._openModal({
+			title: '默认卡片',
+			innerHtml: `
+				<div class="fitem">
+					<label>卡片标题</label>
+					<input autocomplete="off" name="label" placeholder="请输入卡片标题"/>
+				</div>
+				<div class="fitem">
+					<label>卡片宽度</label>
+					<input autocomplete="off" name="width" placeholder="请输入卡片宽度，例如：100%"/>
+				</div>
+            `,
+			confirm: () => {
+				const label = $(".cm-modal input[name='label']").val();
+				const width = $(".cm-modal input[name='width']").val();
+				const str = `\n{card-default label="${label}" width="${width}"}\n卡片内容\n{/card-default}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();

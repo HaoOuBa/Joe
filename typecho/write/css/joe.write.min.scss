@@ -653,11 +653,33 @@ body.fullscreen {
 		}
 	}
 }
-
+.joe_detail__article-card_default {
+	display: block;
+	margin: 0 auto;
+	box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+	border-radius: 4px;
+	border: 1px solid #ebeef5;
+	background: #fff;
+	> .title {
+		display: block;
+		padding: 8px 10px;
+		border-bottom: 1px solid #ebeef5;
+		color: #303133;
+		user-select: none;
+	}
+	> .content {
+		display: block;
+		padding: 10px;
+		color: #606266;
+		*:last-child {
+			margin-bottom: 0 !important;
+		}
+	}
+}
 .joe_detail__article-mtitle {
 	display: flex;
 	justify-content: center;
-	.text {
+	> .text {
 		position: relative;
 		color: #909399;
 		padding: 0 12px;
@@ -679,20 +701,33 @@ body.fullscreen {
 		}
 	}
 }
-
 .joe_detail__article-player {
 	width: 100%;
 	height: 180px;
 	border: none;
 }
-
+.joe_detail__article-hide {
+	display: block;
+	background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);
+	padding: 15px 0;
+	text-align: center;
+	position: relative;
+	user-select: none;
+	line-height: normal;
+	> i {
+		position: relative;
+		font-style: normal;
+		cursor: pointer;
+		color: #409eff;
+	}
+}
 .joe_detail__article-abtn {
 	display: inline-block;
 	color: #fff;
 	height: 35px;
 	line-height: 35px;
 	padding: 0 15px;
-	.icon {
+	> .icon {
 		display: inline-block;
 		vertical-align: top;
 		text-align: center;
@@ -703,7 +738,7 @@ body.fullscreen {
 			margin-right: 8px;
 		}
 	}
-	.content {
+	> .content {
 		color: #fff;
 		display: inline-block;
 		vertical-align: top;
@@ -716,14 +751,13 @@ body.fullscreen {
 		color: #fff;
 	}
 }
-
 .joe_detail__article-anote {
 	position: relative;
 	display: inline-block;
 	color: #fff;
 	height: 35px;
 	line-height: 35px;
-	.icon {
+	> .icon {
 		display: inline-block;
 		vertical-align: top;
 		width: 35px;
@@ -734,7 +768,7 @@ body.fullscreen {
 			color: #fff;
 		}
 	}
-	.content {
+	> .content {
 		display: inline-block;
 		vertical-align: top;
 		padding: 0 12px;
@@ -763,27 +797,15 @@ body.fullscreen {
 		color: #fff;
 	}
 }
-
 .joe_detail__article-dotted {
+	display: block;
 	width: 100%;
 	height: 2px;
 	background-size: 80px;
 }
 
-.joe_detail__article-hide {
-	background: repeating-linear-gradient(145deg, #f2f6fc, #f2f6fc 15px, #fff 0, #fff 25px);
-	padding: 15px 0;
-	text-align: center;
-	position: relative;
-	user-select: none;
-	line-height: normal;
-    i {
-        position: relative;
-        font-style: normal;
-        cursor: pointer;
-        color: #409eff;
-    }
-}
+
+
 
 @media (max-width: 768px) {
 	.cm-modal__wrapper {

@@ -43,16 +43,13 @@ function _parseContent($post, $login)
             $content = preg_replace('/{hide[^}]*}(.*?){\/hide}/', '<joe-hide></joe-hide>', $content);
         }
     }
-
-
-
-
-    /* 过滤默认卡片 */
     if (strpos($content, '{card-default') !== false) {
-        $content = preg_replace('/{card-default(.*)}/SU', '<joe-card $1>', $content);
-        $content = preg_replace('/{\/card-default}/SU', '</joe-card>', $content);
+        $content = preg_replace('/{card-default([^}]*)}(.*?){\/card-default}/', '<section style="margin-bottom: 15px"><joe-card-default $1><span class="_temp" style="display: none">$2</span></joe-card-default></section>', $content);
     }
-    
+
+
+
+
     /* 过滤复制粘贴功能 */
     if (strpos($content, '{copy') !== false) {
         $content = preg_replace('/{copy(.*)}/SU', '<joe-copy $1>', $content);

@@ -25,7 +25,12 @@ export default function createPreviewHtml(str) {
 	str = str.replace(/{anote([^}]*)\/}/g, '<joe-anote $1></joe-anote>');
 	str = str.replace(/{dotted([^}]*)\/}/g, '<joe-dotted $1></joe-dotted>');
 	str = str.replace(/{hide[^}]*}(.*?){\/hide}/g, '<joe-hide></joe-hide>');
+	str = str.replace(/{card-default([^}]*)}(.*?){\/card-default}/g, '<section style="margin-bottom: 15px"><joe-card-default $1><span class="_temp" style="display: none">$2</span></joe-card-default></section>');
 
-	$('.cm-preview-content').html(str);
+	const div = document.createElement('div');
+	div.innerHTML = str;
+	div.innerHTML = div.innerHTML.replace(/<p><\/p>/g, '');
+	const _ = div.innerHTML;
+	$('.cm-preview-content').html(_);
 	$('.cm-preview-content pre code').each((i, el) => Prism.highlightElement(el));
 }

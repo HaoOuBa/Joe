@@ -3,11 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
 		constructor() {
 			super();
 			this.innerHTML = `
-				<div class="joe_detail__article-mtitle">
+				<span class="joe_detail__article-mtitle">
 					<span class="text">
 						${this.getAttribute('title') || '默认标题'}
 					</span>
-				</div>`;
+				</span>`;
 		}
 	}
 	window.customElements.define('joe-mtitle', JoeMtitle);
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			this.startColor = this.getAttribute('startColor') || '#ff6c6c';
 			this.endColor = this.getAttribute('endColor') || '#1989fa';
 			this.innerHTML = `
-				<div class="joe_detail__article-dotted" style="background-image: repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></div>
+				<span class="joe_detail__article-dotted" style="background-image: repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></span>
 			`;
 		}
 	}
@@ -125,7 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			this.render();
 		}
 		render() {
-			this.innerHTML = '<div class="joe_detail__article-hide">此处内容作者设置了 <i>回复</i> 可见</div>';
+			this.innerHTML = '<span class="joe_detail__article-hide">此处内容作者设置了 <i>回复</i> 可见</span>';
 			this.$button = this.querySelector('i');
 			const $comment = document.querySelector('.joe_comment');
 			const $header = document.querySelector('.joe_header');
@@ -137,11 +137,39 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-hide', JoeHide);
+	class JoeCardDefault extends HTMLElement {
+		constructor() {
+			super();
+			const _temp = this.querySelector('._temp');
+			this.options = {
+				width: this.getAttribute('width') || '100%',
+				label: this.getAttribute('label') || '卡片标题',
+				content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '卡片内容'
+			};
+			const htmlStr = `
+				<span class="joe_detail__article-card_default" style="width: ${this.options.width}">
+					<span class="title">${this.options.label}</span>
+					<span class="content">${this.options.content}</span>
+				</span>
+			`;
+			if (this.querySelector('._content')) {
+				this.querySelector('._content').innerHTML = htmlStr;
+			} else {
+				const div = document.createElement('div');
+				div.className = '_content';
+				div.innerHTML = htmlStr;
+				this.appendChild(div);
+			}
+		}
+	}
+	window.customElements.define('joe-card-default', JoeCardDefault);
+
+	const article = document.querySelector('.joe_detail__article');
+	if (article) article.innerHTML = article.innerHTML.replace(/<p><\/p>/g, '');
 
 	/* 
 	------------------------以下未测试------------------------------------------
 	*/
-
 	/* 点击复制 */
 	class JoeCopy extends HTMLElement {
 		constructor() {
@@ -188,28 +216,4 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-message', JoeMessage);
-	/* 默认卡片 */
-	class JoeCard extends HTMLElement {
-		constructor() {
-			super();
-			this.options = {
-				width: this.getAttribute('width') || '100%',
-				label: this.getAttribute('label') || '默认标题',
-				content: this.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '默认内容'
-			};
-			this.render();
-		}
-		get template() {
-			return `
-                <div class="joe_detail__article-card" style="width: ${this.options.width}">
-                    <div class="title">${this.options.label}</div>
-                    <div class="content">${this.options.content}</div>
-                </div>
-            `;
-		}
-		render() {
-			this.innerHTML = this.template;
-		}
-	}
-	window.customElements.define('joe-card', JoeCard);
 });
