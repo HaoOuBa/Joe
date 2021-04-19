@@ -5,23 +5,29 @@ class Intercept
 {
     public static function message($comment)
     {
-        /* 如果用户输入内容画图模式 */
+        /* 用户输入内容画图模式 */
         if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
             /* 如果判断是否有双引号，如果有双引号，则禁止评论 */
             if (strpos($matches[1], '"') !== false || _checkXSS($matches[1])) {
                 $comment['status'] = 'waiting';
             }
+            /* 普通评论 */
         } else {
-            /* 判断评论内容是否包含敏感词 */
-            if (Helper::options()->JSensitiveWords) {
-                if (_checkSensitiveWords(Helper::options()->JSensitiveWords, $comment['text'])) {
-                    $comment['status'] = 'waiting';
+            /* 判断用户输入是否大于字符 */
+            if (Helper::options()->JTextLimit && strlen($comment['text']) > Helper::options()->JTextLimit) {
+                $comment['status'] = 'waiting';
+            } else {
+                /* 判断评论内容是否包含敏感词 */
+                if (Helper::options()->JSensitiveWords) {
+                    if (_checkSensitiveWords(Helper::options()->JSensitiveWords, $comment['text'])) {
+                        $comment['status'] = 'waiting';
+                    }
                 }
-            }
-            /* 判断评论是否至少包含一个中文 */
-            if (Helper::options()->JLimitOneChinese === "on") {
-                if (preg_match("/[\x{4e00}-\x{9fa5}]/u", $comment['text']) == 0) {
-                    $comment['status'] = 'waiting';
+                /* 判断评论是否至少包含一个中文 */
+                if (Helper::options()->JLimitOneChinese === "on") {
+                    if (preg_match("/[\x{4e00}-\x{9fa5}]/u", $comment['text']) == 0) {
+                        $comment['status'] = 'waiting';
+                    }
                 }
             }
         }
@@ -55,7 +61,7 @@ class Editor
                 themeURL: '<?php Helper::options()->themeUrl(); ?>'
             }
         </script>
-       
+
         <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
         <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.parse.min.js?v=202104191518') ?>"></script>
         <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js?v=202104191518') ?>"></script>

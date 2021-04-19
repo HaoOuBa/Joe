@@ -864,6 +864,17 @@ function themeConfig($form)
     $JLimitOneChinese->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JLimitOneChinese->multiMode());
 
+    $JTextLimit = new Typecho_Widget_Helper_Form_Element_Text(
+        'JTextLimit',
+        NULL,
+        NULL,
+        '限制用户评论最大字符',
+        '介绍：如果用户评论的内容超出字符限制，则将会把评论置为审核状态 <br />
+         其他：请输入数字格式，不填写则不限制'
+    );
+    $JTextLimit->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JTextLimit->multiMode());
+
     $JSiteMap = new Typecho_Widget_Helper_Form_Element_Select(
         'JSiteMap',
         array(
