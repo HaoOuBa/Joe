@@ -131,8 +131,16 @@ body.fullscreen {
 				line-height: 1.5;
 				font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 				overscroll-behavior: none;
+				&::-webkit-scrollbar-track {
+					background: #222;
+				}
 				&::-webkit-scrollbar {
-					display: none;
+					width: 6px;
+					height: 6px;
+				}
+				&::-webkit-scrollbar-thumb {
+					border-radius: 3px;
+					background: rgba(255, 255, 255, 0.25);
 				}
 				::selection {
 					background-color: rgba(221, 240, 255, 0.2);
