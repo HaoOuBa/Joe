@@ -40,11 +40,11 @@ function _parseContent($post, $login)
         if ($hasComment || $login) {
             $content = strtr($content, array("{hide}" => "", "{/hide}" => ""));
         } else {
-            $content = preg_replace('/{hide[^}]*}(.*?){\/hide}/', '<joe-hide></joe-hide>', $content);
+            $content = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '<joe-hide></joe-hide>', $content);
         }
     }
     if (strpos($content, '{card-default') !== false) {
-        $content = preg_replace('/{card-default([^}]*)}(.*?){\/card-default}/', '<section style="margin-bottom: 15px"><joe-card-default $1><span class="_temp" style="display: none">$2</span></joe-card-default></section>', $content);
+        $content = preg_replace('/{card-default([^}]*)}([\s\S]*?){\/card-default}/', '<section style="margin-bottom: 15px"><joe-card-default $1><span class="_temp" style="display: none">$2</span></joe-card-default></section>', $content);
     }
 
 
