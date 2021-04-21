@@ -34,6 +34,12 @@ function _parseContent($post, $login)
     if (strpos($content, '{dotted') !== false) {
         $content = preg_replace('/{dotted([^}]*)\/}/SU', '<joe-dotted $1></joe-dotted>', $content);
     }
+    if (strpos($content, '{message') !== false) {
+        $content = preg_replace('/{message([^}]*)\/}/SU', '<joe-message $1></joe-message>', $content);
+    }
+    if (strpos($content, '{progress') !== false) {
+        $content = preg_replace('/{progress([^}]*)\/}/SU', '<joe-progress $1></joe-progress>', $content);
+    }
     if (strpos($content, '{hide') !== false) {
         $db = Typecho_Db::get();
         $hasComment = $db->fetchAll($db->select()->from('table.comments')->where('cid = ?', $post->cid)->where('mail = ?', $post->remember('mail', true))->limit(1));
@@ -54,16 +60,6 @@ function _parseContent($post, $login)
     if (strpos($content, '{copy') !== false) {
         $content = preg_replace('/{copy(.*)}/SU', '<joe-copy $1>', $content);
         $content = preg_replace('/{\/copy}/SU', '</joe-copy>', $content);
-    }
-    /* 过滤消息提示 */
-    if (strpos($content, '{message') !== false) {
-        $content = preg_replace('/{message(.*)}/SU', '<joe-message $1>', $content);
-        $content = preg_replace('/{\/message}/SU', '</joe-message>', $content);
-    }
-    /* 时间线 */
-    if (strpos($content, '{timeline') !== false) {
-        $content = strtr($content, array("{timeline}" => '<joe-timeline>', "{/timeline}" => '</joe-timeline>'));
-        $content = strtr($content, array("{timeline-item}" => '<joe-timeline-item>', "{/timeline-item}" => '</joe-timeline-item>'));
     }
     echo $content;
 }

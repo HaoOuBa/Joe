@@ -892,9 +892,56 @@ body.fullscreen {
 		display: block;
 	}
 }
+.joe_detail__article-progress {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	.strip {
+		height: 12px;
+		border-radius: 6px;
+		overflow: hidden;
+		background: #ebeef5;
+		min-width: 0;
+		flex: 1;
+		margin-right: 10px;
+		.percent {
+			position: relative;
+			display: block;
+			height: 100%;
+			border-radius: 6px;
+			transition: width 0.35s;
+			&::before{
+				content: "";
+				opacity: 0;
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background: #fff;
+				border-radius: 6px;
+				animation: progress-active 3s ease-in-out infinite;
+			}
+		}
+	}
+	.percentage {
+		color: #909399;
+	}
+}
 
 @media (max-width: 768px) {
 	.cm-modal__wrapper {
 		width: 90%;
 	}
+}
+
+@keyframes progress-active {
+    0% {
+        opacity: .3;
+        width: 0
+    }
+    to {
+        opacity: 0;
+        width: 100%
+    }
 }

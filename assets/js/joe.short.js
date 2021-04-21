@@ -179,10 +179,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-message', JoeMessage);
+	class JoeProgress extends HTMLElement {
+		constructor() {
+			super();
+			this.options = {
+				percentage: /^\d{1,3}%$/.test(this.getAttribute('percentage')) ? this.getAttribute('percentage') : '50%',
+				color: this.getAttribute('color') || '#ff6c6c'
+			};
+			this.innerHTML = `
+				<span class="joe_detail__article-progress">
+					<span class="strip">
+						<span class="percent" style="width: ${this.options.percentage}; background: ${this.options.color};"></span>
+					</span>
+					<span class="percentage">${this.options.percentage}</span>
+				</span>
+			`;
+		}
+	}
+	window.customElements.define('joe-progress', JoeProgress);
 
 	const article = document.querySelector('.joe_detail__article');
 	if (article) article.innerHTML = article.innerHTML.replace(/<p><\/p>/g, '');
-
 
 	/* 
 	------------------------以下未测试------------------------------------------

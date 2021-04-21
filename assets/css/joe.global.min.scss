@@ -2214,6 +2214,42 @@
 				}
 			}
 		}
+		&-progress {
+			width: 100%;
+			display: flex;
+			align-items: center;
+			.strip {
+				height: 12px;
+				border-radius: 6px;
+				overflow: hidden;
+				background: var(--classC);;
+				min-width: 0;
+				flex: 1;
+				margin-right: 10px;
+				.percent {
+					position: relative;
+					display: block;
+					height: 100%;
+					border-radius: 6px;
+					transition: width 0.35s;
+					&::before{
+						content: "";
+						opacity: 0;
+						position: absolute;
+						top: 0;
+						left: 0;
+						right: 0;
+						bottom: 0;
+						background: #fff;
+						border-radius: 6px;
+						animation: progress-active 3s ease-in-out infinite;
+					}
+				}
+			}
+			.percentage {
+				color: var(--minor);
+			}
+		}
 
 		/* 以下未测试 */
 		&-protected {
@@ -3361,4 +3397,14 @@
 	100% {
 		clip-path: circle(100%);
 	}
+}
+@keyframes progress-active {
+    0% {
+        opacity: .3;
+        width: 0
+    }
+    to {
+        opacity: 0;
+        width: 100%
+    }
 }

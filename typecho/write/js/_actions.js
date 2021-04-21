@@ -638,4 +638,27 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleProgress(cm) {
+		this._openModal({
+			title: '进度条',
+			innerHtml: `
+				<div class="fitem">
+					<label>百分比数</label>
+					<input autocomplete="off" name="percentage" placeholder="请输入百分比（最大100%）"/>
+				</div>
+				<div class="fitem">
+					<label>自定义色</label>
+					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#ff6c6c" name="color" type="color"/>
+				</div>
+            `,
+			confirm: () => {
+				const percentage = $(".cm-modal input[name='percentage']").val();
+				const color = $(".cm-modal input[name='color']").val();
+				const str = `\n{progress percentage="${percentage}" color="${color}"/}\n\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
 }
