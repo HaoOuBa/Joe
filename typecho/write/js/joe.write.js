@@ -8,6 +8,7 @@ import { classHighlightStyle } from '@codemirror/highlight';
 import tools from './_tools';
 import JoeAction from './_actions';
 import createPreviewHtml from './_create';
+
 class Joe extends JoeAction {
 	constructor() {
 		super();
