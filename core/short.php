@@ -15,6 +15,9 @@ function _parseContent($post, $login)
         $content = preg_replace('/{music-list([^}]*)\/}/SU', '<joe-mlist $1></joe-mlist>', $content);
         $content = preg_replace('/{music([^}]*)\/}/SU', '<joe-music $1></joe-music>', $content);
     }
+    if (strpos($content, '{mp3') !== false) {
+        $content = preg_replace('/{mp3([^}]*)\/}/SU', '<joe-mp3 $1></joe-mp3>', $content);
+    }
     if (strpos($content, '{bilibili') !== false) {
         $content = preg_replace('/{bilibili([^}]*)\/}/SU', '<joe-bilibili $1></joe-bilibili>', $content);
     }

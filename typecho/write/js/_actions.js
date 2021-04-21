@@ -350,15 +350,15 @@ export default class JoeAction {
 	}
 	handleNetease(cm, type) {
 		this._openModal({
-			title: type ? '网易云歌单' : '网抑云单首',
+			title: type ? '网易云歌单' : '网易云单首',
 			innerHtml: `
 				<div class="fitem">
 					<label>歌${type ? '单' : '曲'}　ID</label>
 					<input autocomplete="off" name="id" placeholder="请输入歌${type ? '单' : '曲'}ID"/>
 				</div>
 				<div class="fitem">
-					<label>显示宽度</label>
-					<input autocomplete="off" value="100%" name="width" placeholder="请输入宽度（百分比/像素）"/>
+					<label>主题色彩</label>
+					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#1989fa" name="color" type="color"/>
 				</div>
 				<div class="fitem">
 					<label>自动播放</label>
@@ -370,9 +370,9 @@ export default class JoeAction {
             `,
 			confirm: () => {
 				const id = $(".cm-modal input[name='id']").val();
-				const width = $(".cm-modal input[name='width']").val() || '100%';
+				const color = $(".cm-modal input[name='color']").val();
 				const autoplay = $(".cm-modal select[name='autoplay']").val();
-				const str = `\n{${type ? 'music-list' : 'music'} id="${id}" width="${width}" ${autoplay === '1' ? 'autoplay="autoplay"' : ''}/}\n\n`;
+				const str = `\n{${type ? 'music-list' : 'music'} id="${id}" color="${color}" ${autoplay === '1' ? 'autoplay="autoplay"' : ''}/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
@@ -673,6 +673,47 @@ export default class JoeAction {
 			confirm: () => {
 				const color = $(".cm-modal input[name='color']").val();
 				const str = `\n{callout color="${color}"}\n标注内容\n{/callout}\n\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
+	handleMp3(cm) {
+		this._openModal({
+			title: '插入音乐',
+			innerHtml: `
+				<div class="fitem">
+					<label>音频名称</label>
+					<input autocomplete="off" name="name" placeholder="请输入音频名称"/>
+				</div>
+				<div class="fitem">
+					<label>音频地址</label>
+					<input autocomplete="off" name="url" placeholder="请输入音频地址"/>
+				</div>
+				<div class="fitem">
+					<label>音频封面</label>
+					<input autocomplete="off" name="cover" placeholder="请输入图片地址"/>
+				</div>
+				<div class="fitem">
+					<label>主题色彩</label>
+					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#f0ad4e" name="theme" type="color"/>
+				</div>
+				<div class="fitem">
+					<label>自动播放</label>
+					<select name="autoplay">
+						<option value="1" selected>是</option>
+						<option value="0">否</option>
+					</select>
+				</div>
+            `,
+			confirm: () => {
+				const name = $(".cm-modal input[name='name']").val();
+				const url = $(".cm-modal input[name='url']").val();
+				const cover = $(".cm-modal input[name='cover']").val();
+				const theme = $(".cm-modal input[name='theme']").val();
+				const autoplay = $(".cm-modal select[name='autoplay']").val();
+				const str = `\n{mp3 name="${name}" url="${url}" cover="${cover}" theme="${theme}" ${autoplay === '1' ? 'autoplay="autoplay"' : ''}/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
