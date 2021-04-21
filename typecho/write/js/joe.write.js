@@ -301,6 +301,9 @@ class Joe extends JoeAction {
 						case 'progress':
 							super.handleProgress(this.cm);
 							break;
+						case 'callout':
+							super.handleCallout(this.cm);
+							break;
 					}
 				});
 				$('.cm-tools').append(el);

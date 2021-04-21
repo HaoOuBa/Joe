@@ -2222,7 +2222,7 @@
 				height: 12px;
 				border-radius: 6px;
 				overflow: hidden;
-				background: var(--classC);;
+				background: var(--classC);
 				min-width: 0;
 				flex: 1;
 				margin-right: 10px;
@@ -2232,8 +2232,8 @@
 					height: 100%;
 					border-radius: 6px;
 					transition: width 0.35s;
-					&::before{
-						content: "";
+					&::before {
+						content: '';
 						opacity: 0;
 						position: absolute;
 						top: 0;
@@ -2248,6 +2248,17 @@
 			}
 			.percentage {
 				color: var(--minor);
+			}
+		}
+		&-callout {
+			display: block;
+			padding: 12px;
+			border: 1px solid var(--classB);
+			border-left-width: 4px;
+			border-radius: 4px;
+			color: var(--routine);
+			*:last-child {
+				margin-bottom: 0 !important;
 			}
 		}
 
@@ -3399,12 +3410,12 @@
 	}
 }
 @keyframes progress-active {
-    0% {
-        opacity: .3;
-        width: 0
-    }
-    to {
-        opacity: 0;
-        width: 100%
-    }
+	0% {
+		opacity: 0.3;
+		width: 0;
+	}
+	to {
+		opacity: 0;
+		width: 100%;
+	}
 }

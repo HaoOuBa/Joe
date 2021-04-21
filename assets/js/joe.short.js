@@ -197,6 +197,30 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-progress', JoeProgress);
+	class JoeCallout extends HTMLElement {
+		constructor() {
+			super();
+			const _temp = this.querySelector('._temp');
+			this.options = {
+				color: this.getAttribute('color') || '#f0ad4e',
+				content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '标注内容'
+			};
+			const htmlStr = `
+				<span class="joe_detail__article-callout" style="border-left-color: ${this.options.color};">
+					${this.options.content}
+				</span>
+			`;
+			if (this.querySelector('._content')) {
+				this.querySelector('._content').innerHTML = htmlStr;
+			} else {
+				const div = document.createElement('div');
+				div.className = '_content';
+				div.innerHTML = htmlStr;
+				this.appendChild(div);
+			}
+		}
+	}
+	window.customElements.define('joe-callout', JoeCallout);
 
 	const article = document.querySelector('.joe_detail__article');
 	if (article) article.innerHTML = article.innerHTML.replace(/<p><\/p>/g, '');

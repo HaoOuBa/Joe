@@ -28,6 +28,7 @@ export default function createPreviewHtml(str) {
 	str = str.replace(/{progress([^}]*)\/}/g, '<joe-progress $1></joe-progress>');
 	str = str.replace(/{hide[^}]*}([\s\S]*?){\/hide}/g, '<joe-hide></joe-hide>');
 	str = str.replace(/{card-default([^}]*)}([\s\S]*?){\/card-default}/g, '<section style="margin-bottom: 15px"><joe-card-default $1><span class="_temp" style="display: none">$2</span></joe-card-default></section>');
+	str = str.replace(/{callout([^}]*)}([\s\S]*?){\/callout}/g, '<section style="margin-bottom: 15px"><joe-callout $1><span class="_temp" style="display: none">$2</span></joe-callout></section>');
 
 	const div = document.createElement('div');
 	div.innerHTML = str;

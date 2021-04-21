@@ -52,6 +52,9 @@ function _parseContent($post, $login)
     if (strpos($content, '{card-default') !== false) {
         $content = preg_replace('/{card-default([^}]*)}([\s\S]*?){\/card-default}/', '<section style="margin-bottom: 15px"><joe-card-default $1><span class="_temp" style="display: none">$2</span></joe-card-default></section>', $content);
     }
+    if (strpos($content, '{callout') !== false) {
+        $content = preg_replace('/{callout([^}]*)}([\s\S]*?){\/callout}/', '<section style="margin-bottom: 15px"><joe-callout $1><span class="_temp" style="display: none">$2</span></joe-callout></section>', $content);
+    }
 
 
 

@@ -661,4 +661,22 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleCallout(cm) {
+		this._openModal({
+			title: '插入标注',
+			innerHtml: `
+				<div class="fitem">
+					<label>边框颜色</label>
+					<input style="width: 44px;padding: 0 2px;flex: none" autocomplete="off" value="#f0ad4e" name="color" type="color"/>
+				</div>
+            `,
+			confirm: () => {
+				const color = $(".cm-modal input[name='color']").val();
+				const str = `\n{callout color="${color}"}\n标注内容\n{/callout}\n\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
 }
