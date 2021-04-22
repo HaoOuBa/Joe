@@ -58,6 +58,9 @@ function _parseContent($post, $login)
     if (strpos($content, '{callout') !== false) {
         $content = preg_replace('/{callout([^}]*)}([\s\S]*?){\/callout}/', '<section style="margin-bottom: 15px"><joe-callout $1><span class="_temp" style="display: none">$2</span></joe-callout></section>', $content);
     }
+    if (strpos($content, '{tabs') !== false) {
+        $content = preg_replace('/{tabs}([\s\S]*?){\/tabs}/', '<section style="margin-bottom: 15px"><joe-tabs><span class="_temp" style="display: none">$1</span></joe-tabs></section>', $content);
+    }
 
 
 

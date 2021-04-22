@@ -312,6 +312,9 @@ class Joe extends JoeAction {
 						case 'mp3':
 							super.handleMp3(this.cm);
 							break;
+						case 'tabs':
+							super.handleTabs(this.cm);
+							break;
 						case 'preview':
 							el.toggleClass('active');
 							if (el.hasClass('active')) window.JoeConfig.canPreview = true;

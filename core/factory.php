@@ -50,7 +50,7 @@ class Editor
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism-tomorrow.min.css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="<?php Helper::options()->themeUrl('typecho/write/css/joe.write.min.css?v=2021042210') ?>">
+        <link rel="stylesheet" href="<?php Helper::options()->themeUrl('typecho/write/css/joe.write.min.css?v=2021042215') ?>">
         <script>
             window.JoeConfig = {
                 uploadAPI: '<?php Helper::security()->index('/action/upload'); ?>',
@@ -65,9 +65,9 @@ class Editor
         </script>
         <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
-        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.parse.min.js?v=2021042210') ?>"></script>
-        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js?v=2021042210') ?>"></script>
-        <script src="<?php Helper::options()->themeUrl('assets/js/joe.short.min.js?v=2021042210') ?>"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.parse.min.js?v=2021042215') ?>"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/js/joe.write.chunk.js?v=2021042215') ?>"></script>
+        <script src="<?php Helper::options()->themeUrl('assets/js/joe.short.min.js?v=2021042215') ?>"></script>
 <?php
     }
 }

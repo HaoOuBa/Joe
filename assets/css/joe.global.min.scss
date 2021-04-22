@@ -2261,6 +2261,61 @@
 				margin-bottom: 0 !important;
 			}
 		}
+		&-tabs {
+			display: block;
+			width: 100%;
+			overflow: hidden;
+			background: var(--background);
+			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+			border: 1px solid var(--classC);
+			border-radius: 4px;
+			.heads {
+				width: 100%;
+				overflow-x: auto;
+				overflow-y: hidden;
+				display: flex;
+				background: var(--classD);
+				.item {
+					position: relative;
+					padding: 0 15px;
+					line-height: 40px;
+					height: 40px;
+					color: var(--minor);
+					cursor: pointer;
+					transition: color 0.5s;
+					white-space: nowrap;
+					font-size: 14px;
+					&::after {
+						content: '';
+						position: absolute;
+						background: var(--theme);
+						bottom: 0;
+						left: 15px;
+						right: 15px;
+						height: 2px;
+						opacity: 0;
+						border-radius: 2px;
+						transform: scaleX(0.5);
+						transition: opacity 0.25s, transform 0.25s;
+					}
+					&.active {
+						color: var(--theme);
+						&::after {
+							opacity: 1;
+							transform: scaleX(1);
+						}
+					}
+				}
+			}
+			.bodys {
+				.item {
+					padding: 15px;
+					*:last-child {
+						margin-bottom: 0 !important;
+					}
+				}
+			}
+		}
 
 		/* 以下未测试 */
 		&-protected {

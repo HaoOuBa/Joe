@@ -720,4 +720,9 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleTabs(cm) {
+		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{tabs}\n{tabs-pane label="标签一"}\n 标签一内容\n{/tabs-pane}\n{tabs-pane label="标签二"}\n 标签二内容\n{/tabs-pane}\n{/tabs}\n\n`;
+		this._replaceSelection(cm, str);
+		cm.focus();
+	}
 }
