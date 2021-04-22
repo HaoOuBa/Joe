@@ -2255,7 +2255,7 @@
 			padding: 12px;
 			border: 1px solid var(--classB);
 			border-left-width: 4px;
-			border-radius: 4px;
+			border-radius: var(--radius-inner);
 			color: var(--routine);
 			*:last-child {
 				margin-bottom: 0 !important;
@@ -2268,7 +2268,7 @@
 			background: var(--background);
 			box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 			border: 1px solid var(--classC);
-			border-radius: 4px;
+			border-radius: var(--radius-inner);
 			.heads {
 				width: 100%;
 				overflow-x: auto;
@@ -2316,6 +2316,23 @@
 				}
 			}
 		}
+		&-card_list {
+			display: block;
+			border: 1px solid var(--classC);
+			border-radius: var(--radius-inner);
+			overflow: hidden;
+			.item {
+				padding: 12px 15px;
+				border-bottom: 1px solid var(--classC);
+				&:last-child {
+					border-bottom: none;
+				}
+				*:last-child {
+					margin-bottom: 0 !important;
+				}
+			}
+		}
+
 
 		/* 以下未测试 */
 		&-protected {

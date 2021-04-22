@@ -315,6 +315,9 @@ class Joe extends JoeAction {
 						case 'tabs':
 							super.handleTabs(this.cm);
 							break;
+						case 'card-list':
+							super.handleCardList(this.cm);
+							break;
 						case 'preview':
 							el.toggleClass('active');
 							if (el.hasClass('active')) window.JoeConfig.canPreview = true;

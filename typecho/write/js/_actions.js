@@ -725,4 +725,9 @@ export default class JoeAction {
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
+	handleCardList(cm) {
+		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{card-list}\n{card-list-item}\n 列表一内容\n{/card-list-item}\n{card-list-item}\n 列表二内容\n{/card-list-item}\n{/card-list}\n\n`;
+		this._replaceSelection(cm, str);
+		cm.focus();
+	}
 }

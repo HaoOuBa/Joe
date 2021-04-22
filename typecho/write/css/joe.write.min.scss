@@ -994,6 +994,22 @@ body.fullscreen {
 		}
 	}
 }
+.joe_detail__article-card_list {
+	display: block;
+	border: 1px solid #ebeef5;
+	border-radius: 4px;
+	overflow: hidden;
+	.item {
+		padding: 12px 15px;
+		border-bottom: 1px solid #ebeef5;
+		&:last-child {
+			border-bottom: none;
+		}
+		*:last-child {
+			margin-bottom: 0 !important;
+		}
+	}
+}
 
 @media (max-width: 768px) {
 	.cm-modal__wrapper {

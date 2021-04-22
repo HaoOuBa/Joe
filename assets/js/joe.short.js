@@ -315,6 +315,28 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-tabs', JoeTabs);
+	class JoeCardList extends HTMLElement {
+		constructor() {
+			super();
+			const _temp = this.querySelector('._temp');
+			let _innerHTML = _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '');
+			let content = '';
+			_innerHTML.replace(/{card-list-item}([\s\S]*?){\/card-list-item}/g, function ($0, $1) {
+				content += `<div class="item">${$1.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
+			});
+			let htmlStr = `<span class="joe_detail__article-card_list">${content}</span>`;
+			if (this.querySelector('._content')) {
+				this.querySelector('._content').innerHTML = htmlStr;
+			} else {
+				const span = document.createElement('span');
+				span.className = '_content';
+				span.style.display = 'block';
+				span.innerHTML = htmlStr;
+				this.appendChild(span);
+			}
+		}
+	}
+	window.customElements.define('joe-card-list', JoeCardList);
 
 	$('.joe_detail__article p:empty').remove();
 	/* 
