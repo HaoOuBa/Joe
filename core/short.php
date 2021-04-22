@@ -64,6 +64,9 @@ function _parseContent($post, $login)
     if (strpos($content, '{card-list') !== false) {
         $content = preg_replace('/{card-list}([\s\S]*?){\/card-list}/', '<section style="margin-bottom: 15px"><joe-card-list><span class="_temp" style="display: none">$1</span></joe-card-list></section>', $content);
     }
+    if (strpos($content, '{timeline') !== false) {
+        $content = preg_replace('/{timeline}([\s\S]*?){\/timeline}/', '<section><joe-timeline><span class="_temp" style="display: none">$1</span></joe-timeline></section>', $content);
+    }
 
 
 

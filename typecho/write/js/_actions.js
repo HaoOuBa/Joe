@@ -730,4 +730,9 @@ export default class JoeAction {
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
+	handleTimeline(cm) {
+		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{timeline}\n{timeline-item color="#19be6b"}\n 正式上线\n{/timeline-item}\n{timeline-item color="#ed4014"}\n 删库跑路\n{/timeline-item}\n{/timeline}\n\n`;
+		this._replaceSelection(cm, str);
+		cm.focus();
+	}
 }

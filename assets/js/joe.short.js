@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
 	$('.joe_detail__article p:empty').remove();
 
+	/* OK */
 	class JoeMtitle extends HTMLElement {
 		constructor() {
 			super();
@@ -14,6 +15,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-mtitle', JoeMtitle);
+
+	/* OK */
 	class JoeDplayer extends HTMLElement {
 		constructor() {
 			super();
@@ -29,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-dplayer', JoeDplayer);
+
+	/* OK */
 	class JoeBilibili extends HTMLElement {
 		constructor() {
 			super();
@@ -41,6 +46,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-bilibili', JoeBilibili);
+
+	/* OK */
 	class JoeMp3 extends HTMLElement {
 		constructor() {
 			super();
@@ -71,6 +78,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-mp3', JoeMp3);
+
+	/* OK */
 	class JoeMusic extends HTMLElement {
 		constructor() {
 			super();
@@ -97,6 +106,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-music', JoeMusic);
+
+	/* OK */
 	class JoeMlist extends HTMLElement {
 		constructor() {
 			super();
@@ -123,6 +134,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-mlist', JoeMlist);
+
+	/* OK */
 	class JoeAbtn extends HTMLElement {
 		constructor() {
 			super();
@@ -141,6 +154,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-abtn', JoeAbtn);
+
+	/* OK */
 	class JoeAnote extends HTMLElement {
 		constructor() {
 			super();
@@ -158,6 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-anote', JoeAnote);
+
+	/* OK */
 	class JoeDotted extends HTMLElement {
 		constructor() {
 			super();
@@ -169,6 +186,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-dotted', JoeDotted);
+
+	/* OK */
 	class JoeHide extends HTMLElement {
 		constructor() {
 			super();
@@ -187,6 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-hide', JoeHide);
+
+	/* OK */
 	class JoeCardDefault extends HTMLElement {
 		constructor() {
 			super();
@@ -197,10 +218,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '卡片内容'
 			};
 			const htmlStr = `
-				<span class="joe_detail__article-card_default" style="width: ${this.options.width}">
-					<span class="title">${this.options.label}</span>
-					<span class="content">${this.options.content}</span>
-				</span>
+				<div class="joe_detail__article-card_default" style="width: ${this.options.width}">
+					<div class="title">${this.options.label}</div>
+					<div class="content">${this.options.content}</div>
+				</div>
 			`;
 			if (this.querySelector('._content')) {
 				this.querySelector('._content').innerHTML = htmlStr;
@@ -214,6 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-card-default', JoeCardDefault);
+
+	/* OK */
 	class JoeMessage extends HTMLElement {
 		constructor() {
 			super();
@@ -230,6 +253,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-message', JoeMessage);
+
+	/* OK */
 	class JoeProgress extends HTMLElement {
 		constructor() {
 			super();
@@ -248,6 +273,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-progress', JoeProgress);
+
+	/* OK */
 	class JoeCallout extends HTMLElement {
 		constructor() {
 			super();
@@ -257,9 +284,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '标注内容'
 			};
 			const htmlStr = `
-				<span class="joe_detail__article-callout" style="border-left-color: ${this.options.color};">
+				<div class="joe_detail__article-callout" style="border-left-color: ${this.options.color};">
 					${this.options.content}
-				</span>
+				</div>
 			`;
 			if (this.querySelector('._content')) {
 				this.querySelector('._content').innerHTML = htmlStr;
@@ -273,6 +300,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-callout', JoeCallout);
+
+	/* OK */
 	class JoeTabs extends HTMLElement {
 		constructor() {
 			super();
@@ -285,10 +314,10 @@ document.addEventListener('DOMContentLoaded', () => {
 				contents += `<div style="display: none" class="item" ${$1}>${$2.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
 			});
 			let htmlStr = `
-                <span class="joe_detail__article-tabs">
+                <div class="joe_detail__article-tabs">
                     <div class="heads">${navs}</div>
                     <div class="bodys">${contents}</div>
-                </span>
+                </div>
             `;
 			if (this.querySelector('._content')) {
 				this.querySelector('._content').innerHTML = htmlStr;
@@ -315,6 +344,8 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-tabs', JoeTabs);
+
+	/* OK */
 	class JoeCardList extends HTMLElement {
 		constructor() {
 			super();
@@ -324,7 +355,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			_innerHTML.replace(/{card-list-item}([\s\S]*?){\/card-list-item}/g, function ($0, $1) {
 				content += `<div class="item">${$1.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
 			});
-			let htmlStr = `<span class="joe_detail__article-card_list">${content}</span>`;
+			let htmlStr = `<div class="joe_detail__article-card_list">${content}</div>`;
 			if (this.querySelector('._content')) {
 				this.querySelector('._content').innerHTML = htmlStr;
 			} else {
@@ -337,6 +368,40 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-card-list', JoeCardList);
+
+	/* OK */
+	class JoeTimeline extends HTMLElement {
+		constructor() {
+			super();
+			const _temp = this.querySelector('._temp');
+			let _innerHTML = _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '');
+			let content = '';
+			_innerHTML.replace(/{timeline-item([^}]*)}([\s\S]*?){\/timeline-item}/g, function ($0, $1, $2) {
+				content += `
+					<div class="item">
+						<div class="tail"></div>
+						<div class="circle" ${$1}></div>
+						<div class="content">${$2.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>
+					</div>
+				`;
+			});
+			let htmlStr = `<div class="joe_detail__article-timeline">${content}</div>`;
+			if (this.querySelector('._content')) {
+				this.querySelector('._content').innerHTML = htmlStr;
+			} else {
+				const span = document.createElement('span');
+				span.className = '_content';
+				span.style.display = 'block';
+				span.innerHTML = htmlStr;
+				this.appendChild(span);
+			}
+			this.querySelectorAll('.joe_detail__article-timeline .item .circle').forEach((item, index) => {
+				const color = item.getAttribute('color') || '#19be6b';
+				item.style.borderColor = color;
+			});
+		}
+	}
+	window.customElements.define('joe-timeline', JoeTimeline);
 
 	$('.joe_detail__article p:empty').remove();
 	/* 
