@@ -6,18 +6,12 @@ function getChildren(el, className) {
 
 document.addEventListener('DOMContentLoaded', () => {
     $('.joe_detail__article p:empty').remove();
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeMtitle extends HTMLElement {
         constructor() {
             super();
             this.innerHTML = `
-				<span class="joe_detail__article-mtitle">
-					<span class="text">
+				<span class="joe_mtitle">
+					<span class="joe_mtitle__text">
 						${this.getAttribute('title') || '默认标题'}
 					</span>
 				</span>
@@ -25,51 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.customElements.define('joe-mtitle', JoeMtitle);
-
-    /*
-     *
-     * OK
-     *
-     */
-    class JoeDplayer extends HTMLElement {
-        constructor() {
-            super();
-            this.options = {
-                src: this.getAttribute('src'),
-                player: this.getAttribute('player')
-            };
-            this.render();
-        }
-        render() {
-            if (this.options.src) this.innerHTML = `<iframe allowfullscreen="true" class="joe_detail__article-player" src="${this.options.player + this.options.src}"></iframe>`;
-            else this.innerHTML = '播放地址未填写！';
-        }
-    }
-    window.customElements.define('joe-dplayer', JoeDplayer);
-
-    /*
-     *
-     * OK
-     *
-     */
-    class JoeBilibili extends HTMLElement {
-        constructor() {
-            super();
-            this.bvid = this.getAttribute('bvid');
-            this.render();
-        }
-        render() {
-            if (this.bvid) this.innerHTML = `<iframe allowfullscreen="true" class="joe_detail__article-player" src="//player.bilibili.com/player.html?bvid=${this.bvid}"></iframe>`;
-            else this.innerHTML = 'Bvid未填写！';
-        }
-    }
-    window.customElements.define('joe-bilibili', JoeBilibili);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeMp3 extends HTMLElement {
         constructor() {
             super();
@@ -100,12 +49,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.customElements.define('joe-mp3', JoeMp3);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeMusic extends HTMLElement {
         constructor() {
             super();
@@ -132,12 +75,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.customElements.define('joe-music', JoeMusic);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeMlist extends HTMLElement {
         constructor() {
             super();
@@ -164,12 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.customElements.define('joe-mlist', JoeMlist);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeAbtn extends HTMLElement {
         constructor() {
             super();
@@ -181,19 +112,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 content: this.getAttribute('content') || '多彩按钮'
             };
             this.innerHTML = `
-				<a class="joe_detail__article-abtn" style="background: ${this.options.color}; border-radius: ${this.options.radius}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
-					<span class="icon"><i class="${this.options.icon} fa"></i></span><span class="content">${this.options.content}</span>
-				</a>
-			`;
+                    <a class="joe_abtn" style="background: ${this.options.color}; border-radius: ${this.options.radius}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
+                        <span class="joe_abtn__icon">
+                            <i class="${this.options.icon} fa"></i>
+                        </span>
+                        <span class="joe_abtn__content">
+                            ${this.options.content}
+                        </span>
+                    </a>
+                `;
         }
     }
     window.customElements.define('joe-abtn', JoeAbtn);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeAnote extends HTMLElement {
         constructor() {
             super();
@@ -204,44 +134,37 @@ document.addEventListener('DOMContentLoaded', () => {
                 content: this.getAttribute('content') || '标签按钮'
             };
             this.innerHTML = `
-				<a class="joe_detail__article-anote ${this.options.type}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
-					<span class="icon"><i class="fa ${this.options.icon}"></i></span><span class="content">${this.options.content}</span>
+				<a class="joe_anote ${this.options.type}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
+					<span class="joe_anote__icon">
+                        <i class="fa ${this.options.icon}"></i>
+                    </span>
+                    <span class="joe_anote__content">
+                        ${this.options.content}
+                    </span>
 				</a>
 			`;
         }
     }
     window.customElements.define('joe-anote', JoeAnote);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeDotted extends HTMLElement {
         constructor() {
             super();
             this.startColor = this.getAttribute('startColor') || '#ff6c6c';
             this.endColor = this.getAttribute('endColor') || '#1989fa';
             this.innerHTML = `
-				<span class="joe_detail__article-dotted" style="background-image: repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></span>
+				<span class="joe_dotted" style="background-image: repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></span>
 			`;
         }
     }
     window.customElements.define('joe-dotted', JoeDotted);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeHide extends HTMLElement {
         constructor() {
             super();
             this.render();
         }
         render() {
-            this.innerHTML = '<span class="joe_detail__article-hide">此处内容作者设置了 <i>回复</i> 可见</span>';
-            this.$button = this.querySelector('.joe_detail__article-hide > i');
+            this.innerHTML = '<span class="joe_hide">此处内容作者设置了 <i class="joe_hide__button">回复</i> 可见</span>';
+            this.$button = this.querySelector('.joe_hide__button');
             const $comment = document.querySelector('.joe_comment');
             const $header = document.querySelector('.joe_header');
             if (!$comment || !$header) return;
@@ -252,12 +175,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.customElements.define('joe-hide', JoeHide);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeCardDefault extends HTMLElement {
         constructor() {
             super();
@@ -268,9 +185,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '卡片内容'
             };
             const htmlStr = `
-				<div class="joe_detail__article-card_default" style="width: ${this.options.width}">
-					<div class="title">${this.options.label}</div>
-					<div class="content">${this.options.content}</div>
+				<div class="joe_card__default" style="width: ${this.options.width}">
+					<div class="joe_card__default-title">${this.options.label}</div>
+					<div class="joe_card__default-content">${this.options.content}</div>
 				</div>
 			`;
             if (getChildren(this, '_content')) {
@@ -285,12 +202,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.customElements.define('joe-card-default', JoeCardDefault);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeMessage extends HTMLElement {
         constructor() {
             super();
@@ -299,20 +210,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 content: this.getAttribute('content') || '消息内容'
             };
             this.innerHTML = `
-				<span class="joe_detail__article-message ${this.options.type}">
-					<span class="icon"></span>
-					<span class="content">${this.options.content}</span>
+				<span class="joe_message ${this.options.type}">
+					<span class="joe_message__icon"></span>
+					<span class="joe_message__content">${this.options.content}</span>
 				</span>
 			`;
         }
     }
     window.customElements.define('joe-message', JoeMessage);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeProgress extends HTMLElement {
         constructor() {
             super();
@@ -321,22 +226,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 color: this.getAttribute('color') || '#ff6c6c'
             };
             this.innerHTML = `
-				<span class="joe_detail__article-progress">
-					<span class="strip">
-						<span class="percent" style="width: ${this.options.percentage}; background: ${this.options.color};"></span>
-					</span>
-					<span class="percentage">${this.options.percentage}</span>
+				<span class="joe_progress">
+					<div class="joe_progress__strip">
+						<div class="joe_progress__strip-percent" style="width: ${this.options.percentage}; background: ${this.options.color};"></div>
+					</div>
+					<div class="joe_progress__percentage">${this.options.percentage}</div>
 				</span>
 			`;
         }
     }
     window.customElements.define('joe-progress', JoeProgress);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeCallout extends HTMLElement {
         constructor() {
             super();
@@ -346,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '标注内容'
             };
             const htmlStr = `
-				<div class="joe_detail__article-callout" style="border-left-color: ${this.options.color};">
+				<div class="joe_callout" style="border-left-color: ${this.options.color};">
 					${this.options.content}
 				</div>
 			`;
@@ -362,60 +261,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.customElements.define('joe-callout', JoeCallout);
-
-    /*
-     *
-     * OK
-     *
-     */
-    class JoeTabs extends HTMLElement {
-        constructor() {
-            super();
-            const _temp = getChildren(this, '_temp');
-            let _innerHTML = _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '');
-            let navs = '';
-            let contents = '';
-            _innerHTML.replace(/{tabs-pane([^}]*)}([\s\S]*?){\/tabs-pane}/g, function ($0, $1, $2) {
-                navs += `<div class="item" ${$1}></div>`;
-                contents += `<div style="display: none" class="item" ${$1}>${$2.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
-            });
-            let htmlStr = `
-                <div class="joe_detail__article-tabs">
-                    <div class="heads">${navs}</div>
-                    <div class="bodys">${contents}</div>
-                </div>
-            `;
-            if (getChildren(this, '_content')) {
-                getChildren(this, '_content').innerHTML = htmlStr;
-            } else {
-                const span = document.createElement('span');
-                span.className = '_content';
-                span.style.display = 'block';
-                span.innerHTML = htmlStr;
-                this.appendChild(span);
-            }
-            this.querySelectorAll('.heads > .item').forEach((item, index) => {
-                const label = item.getAttribute('label');
-                item.innerHTML = label;
-                item.addEventListener('click', () => {
-                    this.querySelectorAll('.heads > .item').forEach(_item => _item.classList.remove('active'));
-                    this.querySelectorAll('.bodys > .item').forEach(_item => (_item.style.display = 'none'));
-                    if (this.querySelector(`.bodys > .item[label="${label}"]`)) {
-                        this.querySelector(`.bodys > .item[label="${label}"]`).style.display = 'block';
-                    }
-                    item.classList.add('active');
-                });
-                if (index === 0) item.click();
-            });
-        }
-    }
-    window.customElements.define('joe-tabs', JoeTabs);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeCardList extends HTMLElement {
         constructor() {
             super();
@@ -423,9 +268,9 @@ document.addEventListener('DOMContentLoaded', () => {
             let _innerHTML = _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '');
             let content = '';
             _innerHTML.replace(/{card-list-item}([\s\S]*?){\/card-list-item}/g, function ($0, $1) {
-                content += `<div class="item">${$1.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
+                content += `<div class="joe_card__list-item">${$1.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
             });
-            let htmlStr = `<div class="joe_detail__article-card_list">${content}</div>`;
+            let htmlStr = `<div class="joe_card__list">${content}</div>`;
             if (getChildren(this, '_content')) {
                 getChildren(this, '_content').innerHTML = htmlStr;
             } else {
@@ -438,12 +283,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     window.customElements.define('joe-card-list', JoeCardList);
-
-    /*
-     *
-     * OK
-     *
-     */
     class JoeTimeline extends HTMLElement {
         constructor() {
             super();
@@ -452,14 +291,14 @@ document.addEventListener('DOMContentLoaded', () => {
             let content = '';
             _innerHTML.replace(/{timeline-item([^}]*)}([\s\S]*?){\/timeline-item}/g, function ($0, $1, $2) {
                 content += `
-					<div class="item">
-						<div class="tail"></div>
-						<div class="circle" ${$1}></div>
-						<div class="content">${$2.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>
+					<div class="joe_timeline__item">
+						<div class="joe_timeline__item-tail"></div>
+						<div class="joe_timeline__item-circle" ${$1}></div>
+						<div class="joe_timeline__item-content">${$2.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>
 					</div>
 				`;
             });
-            let htmlStr = `<div class="joe_detail__article-timeline">${content}</div>`;
+            let htmlStr = `<div class="joe_timeline">${content}</div>`;
             if (getChildren(this, '_content')) {
                 getChildren(this, '_content').innerHTML = htmlStr;
             } else {
@@ -469,13 +308,82 @@ document.addEventListener('DOMContentLoaded', () => {
                 span.innerHTML = htmlStr;
                 this.appendChild(span);
             }
-            this.querySelectorAll('.joe_detail__article-timeline > .item > .circle').forEach((item, index) => {
+            this.querySelectorAll('.joe_timeline__item-circle').forEach((item, index) => {
                 const color = item.getAttribute('color') || '#19be6b';
                 item.style.borderColor = color;
             });
         }
     }
     window.customElements.define('joe-timeline', JoeTimeline);
+    class JoeDplayer extends HTMLElement {
+        constructor() {
+            super();
+            this.options = {
+                src: this.getAttribute('src'),
+                player: this.getAttribute('player')
+            };
+            this.render();
+        }
+        render() {
+            if (this.options.src) this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="${this.options.player + this.options.src}"></iframe>`;
+            else this.innerHTML = '播放地址未填写！';
+        }
+    }
+    window.customElements.define('joe-dplayer', JoeDplayer);
+    class JoeBilibili extends HTMLElement {
+        constructor() {
+            super();
+            this.bvid = this.getAttribute('bvid');
+            this.render();
+        }
+        render() {
+            if (this.bvid) this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="//player.bilibili.com/player.html?bvid=${this.bvid}"></iframe>`;
+            else this.innerHTML = 'Bvid未填写！';
+        }
+    }
+    window.customElements.define('joe-bilibili', JoeBilibili);
+    class JoeTabs extends HTMLElement {
+        constructor() {
+            super();
+            const _temp = getChildren(this, '_temp');
+            let _innerHTML = _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '');
+            let navs = '';
+            let contents = '';
+            _innerHTML.replace(/{tabs-pane([^}]*)}([\s\S]*?){\/tabs-pane}/g, function ($0, $1, $2) {
+                navs += `<div class="joe_tabs__head-item" ${$1}></div>`;
+                contents += `<div style="display: none" class="joe_tabs__body-item" ${$1}>${$2.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
+            });
+            let htmlStr = `
+                <div class="joe_tabs">
+                    <div class="joe_tabs__head">${navs}</div>
+                    <div class="joe_tabs__body">${contents}</div>
+                </div>
+            `;
+            if (getChildren(this, '_content')) {
+                getChildren(this, '_content').innerHTML = htmlStr;
+            } else {
+                const span = document.createElement('span');
+                span.className = '_content';
+                span.style.display = 'block';
+                span.innerHTML = htmlStr;
+                this.appendChild(span);
+            }
+            this.querySelectorAll('.joe_tabs__head-item').forEach((item, index) => {
+                const label = item.getAttribute('label');
+                item.innerHTML = label;
+                item.addEventListener('click', () => {
+                    this.querySelectorAll('.joe_tabs__head-item').forEach(_item => _item.classList.remove('active'));
+                    this.querySelectorAll('.joe_tabs__body-item').forEach(_item => (_item.style.display = 'none'));
+                    if (this.querySelector(`.joe_tabs__body-item[label="${label}"]`)) {
+                        this.querySelector(`.joe_tabs__body-item[label="${label}"]`).style.display = 'block';
+                    }
+                    item.classList.add('active');
+                });
+                if (index === 0) item.click();
+            });
+        }
+    }
+    window.customElements.define('joe-tabs', JoeTabs);
 
     $('.joe_detail__article p:empty').remove();
 

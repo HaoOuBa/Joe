@@ -9,6 +9,9 @@ html {
 
 	@media (max-width: 1400px) {
 		.joe {
+			&_vplayer{
+				height: 450px;
+			}
 			&_wallpaper {
 				&__list {
 					grid-template-columns: repeat(3, 1fr);
@@ -47,9 +50,6 @@ html {
 			}
 			&_detail {
 				&__article {
-					&-player {
-						height: 450px;
-					}
 					&-video {
 						.play .box iframe {
 							height: 500px;
@@ -97,14 +97,14 @@ html {
 
 	@media (max-width: 1200px) {
 		.joe {
+			&_vplayer{
+				height: 430px;
+			}
 			&_detail {
 				&__friends {
 					grid-template-columns: repeat(2, 1fr);
 				}
 				&__article {
-					&-player {
-						height: 430px;
-					}
 					&-video {
 						.play .box iframe {
 							height: 430px;
@@ -243,6 +243,9 @@ html {
 
 	@media (max-width: 992px) {
 		.joe {
+			&_vplayer{
+				height: 400px;
+			}
 			&_aside {
 				display: none;
 			}
@@ -262,9 +265,6 @@ html {
 			}
 			&_detail {
 				&__article {
-					&-player {
-						height: 400px;
-					}
 					&-video {
 						.play .box iframe {
 							height: 400px;
@@ -333,6 +333,9 @@ html {
 
 	@media (max-width: 768px) {
 		.joe {
+			&_vplayer{
+				height: 225px;
+			}
 			&_header {
 				&__above {
 					.joe_container {
@@ -558,9 +561,6 @@ html {
 				}
 				&__article {
 					font-size: 14px;
-					&-player {
-						height: 225px;
-					}
 					pre[class*='language-'] {
 						font-size: 13px;
 					}

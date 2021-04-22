@@ -7,8 +7,8 @@ function _parseContent($post, $login)
 
     if (strpos($content, '{x}') !== false || strpos($content, '{ }') !== false) {
         $content = strtr($content, array(
-            "{x}" => '<input type="checkbox" class="joe_detail__article-checkbox" checked disabled></input>',
-            "{ }" => '<input type="checkbox" class="joe_detail__article-checkbox" disabled></input>'
+            "{x}" => '<input type="checkbox" class="joe_checkbox" checked disabled></input>',
+            "{ }" => '<input type="checkbox" class="joe_checkbox" disabled></input>'
         ));
     }
     if (strpos($content, '{music') !== false) {
