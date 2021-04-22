@@ -114,7 +114,8 @@
                         for ($i = 0; $i < count($custom_arr); $i++) {
                             $title = explode("||", $custom_arr[$i])[0];
                             $url = explode("||", $custom_arr[$i])[1];
-                            $custom[] = array("title" => trim($title), "url" => trim($url));
+                            $isAdmin = explode("||", $custom_arr[$i])[2];
+                            $custom[] = array("title" => trim($title), "url" => trim($url), 'isAdmin' => trim($isAdmin));
                         };
                     }
                 }
@@ -129,7 +130,13 @@
                         </div>
                         <nav class="joe_dropdown__menu">
                             <?php foreach ($custom as $item) : ?>
-                                <a href="<?php echo $item['url'] ?>" target="_blank" rel="noopener noreferrer nofollow"><?php echo $item['title'] ?></a>
+                                <?php if ($item['isAdmin'] === 'admin') : ?>
+                                    <?php if ($this->user->hasLogin()) : ?>
+                                        <a class="link" href="<?php echo $item['url'] ?>" target="_blank" rel="noopener noreferrer nofollow"><?php echo $item['title'] ?></a>
+                                    <?php endif; ?>
+                                <?php else : ?>
+                                    <a class="link" href="<?php echo $item['url'] ?>" target="_blank" rel="noopener noreferrer nofollow"><?php echo $item['title'] ?></a>
+                                <?php endif; ?>
                             <?php endforeach; ?>
                         </nav>
                     </div>
@@ -352,9 +359,17 @@
                     </a>
                     <ul class="slides panel-body">
                         <?php foreach ($custom as $item) : ?>
-                            <li>
-                                <a class="link" href="<?php echo $item['url'] ?>" target="_blank" rel="noopener noreferrer nofollow"><?php echo $item['title'] ?></a>
-                            </li>
+                            <?php if ($item['isAdmin'] === 'admin') : ?>
+                                <?php if ($this->user->hasLogin()) : ?>
+                                    <li>
+                                        <a class="link" href="<?php echo $item['url'] ?>" target="_blank" rel="noopener noreferrer nofollow"><?php echo $item['title'] ?></a>
+                                    </li>
+                                <?php endif; ?>
+                            <?php else : ?>
+                                <li>
+                                    <a class="link" href="<?php echo $item['url'] ?>" target="_blank" rel="noopener noreferrer nofollow"><?php echo $item['title'] ?></a>
+                                </li>
+                            <?php endif; ?>
                         <?php endforeach; ?>
                     </ul>
                 </li>

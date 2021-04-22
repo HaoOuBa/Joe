@@ -84,11 +84,12 @@ function themeConfig($form)
         NULL,
         '导航栏自定义链接（非必填）',
         '介绍：用于自定义导航栏链接 <br />
-         格式：跳转文字 || 跳转链接（中间使用两个竖杠分隔）<br />
+         格式：跳转文字 || 跳转链接（中间使用两个竖杠分隔）|| 仅管理员可见（可忽略）<br />
          其他：一行一个，一行代表一个超链接 <br />
          例如：<br />
             百度一下 || https://baidu.com <br />
-            腾讯视频 || https://v.qq.com
+            腾讯视频 || https://v.qq.com <br />
+            管理后台 || https://as.js.cn/admin || admin
          '
     );
     $JCustomNavs->setAttribute('class', 'joe_content joe_global');
