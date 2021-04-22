@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    $('.joe_detail__article p:empty').remove();
+    
     class JoeMtitle extends HTMLElement {
         constructor() {
             super();
@@ -52,9 +55,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         render() {
             if (!this.options.url) return (this.innerHTML = '音频地址未填写！');
-            this.innerHTML = '<div></div>';
+            this.innerHTML = '<span style="display: block"></span>';
             new APlayer({
-                container: this.querySelector('div'),
+                container: this.querySelector('span'),
                 theme: this.options.theme,
                 autoplay: this.options.autoplay,
                 audio: [
@@ -80,11 +83,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         render() {
             if (!this.options.id) return (this.innerHTML = '网易云歌曲ID未填写！');
-            this.innerHTML = '<div></div>';
+            this.innerHTML = '<span style="display: block"></span>';
             fetch('https://api.i-meto.com/meting/api?server=netease&type=song&id=' + this.options.id).then(async response => {
                 const audio = await response.json();
                 new APlayer({
-                    container: this.querySelector('div'),
+                    container: this.querySelector('span'),
                     lrcType: 3,
                     theme: this.options.color,
                     autoplay: this.options.autoplay,
@@ -106,11 +109,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         render() {
             if (!this.options.id) return (this.innerHTML = '网易云歌单ID未填写！');
-            this.innerHTML = '<div></div>';
+            this.innerHTML = '<span style="display: block"></span>';
             fetch('https://api.i-meto.com/meting/api?server=netease&type=playlist&id=' + this.options.id).then(async response => {
                 const audio = await response.json();
                 new APlayer({
-                    container: this.querySelector('div'),
+                    container: this.querySelector('span'),
                     lrcType: 3,
                     theme: this.options.color,
                     autoplay: this.options.autoplay,
@@ -269,7 +272,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     window.customElements.define('joe-callout', JoeCallout);
 
-    $('.joe_detail__article p:empty').remove();
+    
 
     /* 
 	------------------------以下未测试------------------------------------------

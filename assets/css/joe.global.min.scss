@@ -2899,12 +2899,16 @@
 							line-height: 20px;
 							color: var(--main);
 							.author {
+								overflow: hidden;
+								white-space: nowrap;
+								text-overflow: ellipsis;
 								margin-right: 10px;
 								a {
 									color: #409eff;
 								}
 							}
 							.owner {
+								flex-shrink: 0;
 								background: var(--theme);
 								color: #fff;
 								padding: 0 5px;
