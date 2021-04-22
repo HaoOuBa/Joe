@@ -41,5 +41,5 @@
 	<script src="<?php $this->options->themeUrl('assets/cursor/' . $this->options->JCursorEffects); ?>" async></script>
 <?php endif; ?>
 <script src="<?php $this->options->themeUrl('assets/js/joe.global.min.js?v=2021042217'); ?>"></script>
-<script src="<?php $this->options->themeUrl('assets/js/joe.short.min.js?v=2021042217'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/js/joe.short.min.js?v=2021042220'); ?>"></script>
 <?php $this->options->JCustomHeadEnd() ?>
