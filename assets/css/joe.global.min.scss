@@ -1870,7 +1870,7 @@
 }
 .joe_card__describe {
 	position: relative;
-	border: 1px dashed var(--classB);
+	border: 1px dashed var(--classA);
 	&-title {
 		position: absolute;
 		top: 0;
@@ -1880,10 +1880,10 @@
 		padding: 0 5px;
 		color: var(--main);
 		font-weight: 500;
-        max-width: 200px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+		max-width: 200px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
 	}
 	&-content {
 		color: var(--routine);
@@ -1893,8 +1893,33 @@
 		}
 	}
 }
-
-
+.joe_lamp {
+	display: block;
+	position: relative;
+	width: 100%;
+	height: 3px;
+	border-radius: 1.5px;
+	overflow: hidden;
+	animation: lamp-background linear 4s infinite;
+	&::before,
+	&::after {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		z-index: 1;
+		animation: lamp-front linear 4s infinite;
+	}
+	&::before {
+		right: 50%;
+		transform-origin: right;
+	}
+	&::after {
+		left: 50%;
+		transform-origin: left;
+	}
+}
 
 .joe_detail {
 	background: var(--background);
@@ -3542,5 +3567,68 @@
 	to {
 		opacity: 0;
 		width: 100%;
+	}
+}
+@keyframes lamp-background {
+	0%,
+	24.9% {
+		background-color: #54b5db;
+	}
+
+	25%,
+	49.9% {
+		background-color: #da4733;
+	}
+
+	50%,
+	74.9% {
+		background-color: #3b78e7;
+	}
+
+	75%,
+	to {
+		background-color: #fdba2c;
+	}
+}
+
+@keyframes lamp-front {
+	0% {
+		transform: scaleX(0);
+		background-color: #da4733;
+	}
+
+	24.9% {
+		transform: scaleX(0.5);
+		background-color: #da4733;
+	}
+
+	25% {
+		transform: scaleX(0);
+		background-color: #3b78e7;
+	}
+
+	49.9% {
+		transform: scaleX(0.5);
+		background-color: #3b78e7;
+	}
+
+	50% {
+		transform: scaleX(0);
+		background-color: #fdba2c;
+	}
+
+	74.9% {
+		transform: scaleX(0.5);
+		background-color: #fdba2c;
+	}
+
+	75% {
+		transform: scaleX(0);
+		background-color: #409eff;
+	}
+
+	to {
+		transform: scaleX(0.5);
+		background-color: #409eff;
 	}
 }

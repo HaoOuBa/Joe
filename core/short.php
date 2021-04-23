@@ -5,6 +5,11 @@ function _parseContent($post, $login)
     $content = $post->content;
     $content = _parseReply($content);
 
+    if (strpos($content, '{lamp/}') !== false) {
+        $content = strtr($content, array(
+            "{lamp/}" => '<span class="joe_lamp"></span>',
+        ));
+    }
     if (strpos($content, '{x}') !== false || strpos($content, '{ }') !== false) {
         $content = strtr($content, array(
             "{x}" => '<input type="checkbox" class="joe_checkbox" checked disabled></input>',

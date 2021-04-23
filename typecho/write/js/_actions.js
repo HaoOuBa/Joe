@@ -763,4 +763,9 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleLamp(cm) {
+		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{lamp/}\n\n`;
+		this._replaceSelection(cm, str);
+		cm.focus();
+	}
 }

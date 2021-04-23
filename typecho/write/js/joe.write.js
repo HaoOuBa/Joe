@@ -327,6 +327,9 @@ class Joe extends JoeAction {
 						case 'card-describe':
 							super.handleCardDescribe(this.cm);
 							break;
+						case 'lamp':
+							super.handleLamp(this.cm);
+							break;
 						case 'preview':
 							el.toggleClass('active');
 							if (el.hasClass('active')) window.JoeConfig.canPreview = true;
