@@ -75,6 +75,9 @@ function _parseContent($post, $login)
     if (strpos($content, '{timeline') !== false) {
         $content = preg_replace('/{timeline}([\s\S]*?){\/timeline}/', '<section style="margin-bottom: 15px"><joe-timeline><span class="_temp" style="display: none">$1</span></joe-timeline></section>', $content);
     }
+    if (strpos($content, '{collapse') !== false) {
+        $content = preg_replace('/{collapse}([\s\S]*?){\/collapse}/', '<section style="margin-bottom: 15px"><joe-collapse><span class="_temp" style="display: none">$1</span></joe-collapse></section>', $content);
+    }
     if (strpos($content, '{copy') !== false) {
         $content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
     }

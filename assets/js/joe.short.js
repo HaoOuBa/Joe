@@ -341,6 +341,62 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-timeline', JoeTimeline);
+	class JoeCollapse extends HTMLElement {
+		constructor() {
+			super();
+			const _temp = getChildren(this, '_temp');
+			let _innerHTML = _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '');
+			let content = '';
+			_innerHTML.replace(/{collapse-item([^}]*)}([\s\S]*?){\/collapse-item}/g, function ($0, $1, $2) {
+				content += `
+					<div class="joe_collapse__item" ${$1}>
+						<div class="joe_collapse__item-head">
+							<div class="joe_collapse__item-head--label"></div>
+							<svg class="joe_collapse__item-head--icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24"><path d="M7.406 7.828L12 12.422l4.594-4.594L18 9.234l-6 6-6-6z"/></svg>
+						</div>
+						<div class="joe_collapse__item-wrapper">
+							<div class="joe_collapse__item-wrapper--content">${$2.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>
+						</div>
+					</div>
+				`;
+			});
+			let htmlStr = `<div class="joe_collapse">${content}</div>`;
+			if (getChildren(this, '_content')) {
+				getChildren(this, '_content').innerHTML = htmlStr;
+			} else {
+				const span = document.createElement('span');
+				span.className = '_content';
+				span.style.display = 'block';
+				span.innerHTML = htmlStr;
+				this.appendChild(span);
+			}
+			this.querySelectorAll('.joe_collapse__item-head--label').forEach(item => {
+				const label = item.getAttribute('label') || '折叠标题';
+				item.innerHTML = label;
+			});
+			this.querySelectorAll('.joe_collapse__item').forEach(item => {
+				const head = getChildren(item, 'joe_collapse__item-head');
+				const wrapper = getChildren(item, 'joe_collapse__item-wrapper');
+				const content = getChildren(wrapper, 'joe_collapse__item-wrapper--content');
+				const open = item.getAttribute('open');
+				if (open !== null) {
+					item.classList.add('active');
+					wrapper.style.maxHeight = content.offsetHeight + 'px';
+				}
+				head.addEventListener('click', () => {
+					if (item.classList.contains('active')) {
+						item.classList.remove('active');
+						wrapper.style.maxHeight = 0;
+					} else {
+						item.classList.add('active');
+						wrapper.style.maxHeight = content.offsetHeight + 'px';
+					}
+				});
+			});
+		}
+	}
+	window.customElements.define('joe-collapse', JoeCollapse);
+
 	class JoeDplayer extends HTMLElement {
 		constructor() {
 			super();

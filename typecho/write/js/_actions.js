@@ -768,4 +768,9 @@ export default class JoeAction {
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
+	handleCollapse(cm) {
+		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{collapse}\n{collapse-item label="折叠标题一" open}\n 折叠内容一\n{/collapse-item}\n{collapse-item label="折叠标题二"}\n 折叠内容二\n{/collapse-item}\n{/collapse}\n\n`;
+		this._replaceSelection(cm, str);
+		cm.focus();
+	}
 }
