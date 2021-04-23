@@ -370,27 +370,30 @@ document.addEventListener('DOMContentLoaded', () => {
 				span.innerHTML = htmlStr;
 				this.appendChild(span);
 			}
-			this.querySelectorAll('.joe_collapse__item-head--label').forEach(item => {
-				const label = item.getAttribute('label') || '折叠标题';
-				item.innerHTML = label;
-			});
 			this.querySelectorAll('.joe_collapse__item').forEach(item => {
+				const label = item.getAttribute('label') || '折叠标题';
 				const head = getChildren(item, 'joe_collapse__item-head');
+				const headLabel = getChildren(head, 'joe_collapse__item-head--label');
+				headLabel.innerHTML = label;
 				const wrapper = getChildren(item, 'joe_collapse__item-wrapper');
 				const content = getChildren(wrapper, 'joe_collapse__item-wrapper--content');
 				const open = item.getAttribute('open');
 				if (open !== null) {
 					item.classList.add('active');
-					wrapper.style.maxHeight = content.offsetHeight + 'px';
+					wrapper.style.maxHeight = 'none';
 				}
 				head.addEventListener('click', () => {
-					if (item.classList.contains('active')) {
-						item.classList.remove('active');
-						wrapper.style.maxHeight = 0;
-					} else {
-						item.classList.add('active');
-						wrapper.style.maxHeight = content.offsetHeight + 'px';
-					}
+					wrapper.style.maxHeight = content.offsetHeight + 'px';
+					let timer = setTimeout(() => {
+						if (item.classList.contains('active')) {
+							item.classList.remove('active');
+							wrapper.style.maxHeight = 0;
+						} else {
+							item.classList.add('active');
+							wrapper.style.maxHeight = content.offsetHeight + 'px';
+						}
+						clearTimeout(timer);
+					}, 30);
 				});
 			});
 		}

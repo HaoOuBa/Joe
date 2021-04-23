@@ -742,7 +742,7 @@ export default class JoeAction {
 	}
 	handleCopy(cm) {
 		this._openModal({
-			title: '插入音乐',
+			title: '复制文本',
 			innerHtml: `
 				<div class="fitem">
 					<label>显示文案</label>
@@ -772,5 +772,22 @@ export default class JoeAction {
 		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{collapse}\n{collapse-item label="折叠标题一" open}\n 折叠内容一\n{/collapse-item}\n{collapse-item label="折叠标题二"}\n 折叠内容二\n{/collapse-item}\n{/collapse}\n\n`;
 		this._replaceSelection(cm, str);
 		cm.focus();
+	}
+	handleCloud(cm) {
+		this._openModal({
+			title: '网盘下载',
+			innerHtml: `
+				<div class="fitem">
+					<label>网盘类型</label>
+					<select name="type">
+						<option value="默认网盘" selected>默认网盘</option>
+						<option value="百度网盘">百度网盘</option>
+					</select>
+				</div>
+            `,
+			confirm: () => {
+				
+			}
+		});
 	}
 }

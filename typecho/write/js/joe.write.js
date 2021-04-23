@@ -333,6 +333,9 @@ class Joe extends JoeAction {
 						case 'collapse':
 							super.handleCollapse(this.cm);
 							break;
+						case 'cloud':
+							super.handleCloud(this.cm);
+							break;
 						case 'preview':
 							el.toggleClass('active');
 							if (el.hasClass('active')) window.JoeConfig.canPreview = true;
