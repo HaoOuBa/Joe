@@ -65,16 +65,15 @@ function _parseContent($post, $login)
         $content = preg_replace('/{card-list}([\s\S]*?){\/card-list}/', '<section style="margin-bottom: 15px"><joe-card-list><span class="_temp" style="display: none">$1</span></joe-card-list></section>', $content);
     }
     if (strpos($content, '{timeline') !== false) {
-        $content = preg_replace('/{timeline}([\s\S]*?){\/timeline}/', '<section><joe-timeline><span class="_temp" style="display: none">$1</span></joe-timeline></section>', $content);
+        $content = preg_replace('/{timeline}([\s\S]*?){\/timeline}/', '<section style="margin-bottom: 15px"><joe-timeline><span class="_temp" style="display: none">$1</span></joe-timeline></section>', $content);
     }
-
-
-
-
-    /* 过滤复制粘贴功能 */
     if (strpos($content, '{copy') !== false) {
-        $content = preg_replace('/{copy(.*)}/SU', '<joe-copy $1>', $content);
-        $content = preg_replace('/{\/copy}/SU', '</joe-copy>', $content);
+        $content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
     }
+
+
+
+
+    
     echo $content;
 }

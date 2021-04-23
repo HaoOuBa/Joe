@@ -735,4 +735,27 @@ export default class JoeAction {
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
+	handleCopy(cm) {
+		this._openModal({
+			title: '插入音乐',
+			innerHtml: `
+				<div class="fitem">
+					<label>显示文案</label>
+					<input autocomplete="off" name="showText" placeholder="请输入显示文案"/>
+				</div>
+				<div class="fitem" style="align-items: flex-start">
+					<label>复制内容</label>
+					<textarea autocomplete="off" name="copyText" placeholder="请输入需要复制的内容"></textarea>
+				</div>
+            `,
+			confirm: () => {
+				const showText = $(".cm-modal input[name='showText']").val();
+				const copyText = $(".cm-modal textarea[name='copyText']").val();
+				const str = `\n{copy showText="${showText}" copyText="${copyText}"/}\n\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus()
+			}
+		});
+	}
 }

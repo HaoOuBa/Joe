@@ -26,6 +26,7 @@ export default function createPreviewHtml(str) {
 	str = str.replace(/{mp3([^}]*)\/}/g, '<joe-mp3 $1></joe-mp3>');
 	str = str.replace(/{abtn([^}]*)\/}/g, '<joe-abtn $1></joe-abtn>');
 	str = str.replace(/{anote([^}]*)\/}/g, '<joe-anote $1></joe-anote>');
+	str = str.replace(/{copy([^}]*)\/}/g, '<joe-copy $1></joe-copy>');
 	str = str.replace(/{dotted([^}]*)\/}/g, '<joe-dotted $1></joe-dotted>');
 	str = str.replace(/{message([^}]*)\/}/g, '<joe-message $1></joe-message>');
 	str = str.replace(/{progress([^}]*)\/}/g, '<joe-progress $1></joe-progress>');
@@ -34,7 +35,7 @@ export default function createPreviewHtml(str) {
 	str = str.replace(/{callout([^}]*)}([\s\S]*?){\/callout}/g, '<section style="margin-bottom: 15px"><joe-callout $1><span class="_temp" style="display: none">$2</span></joe-callout></section>');
 	str = str.replace(/{tabs}([\s\S]*?){\/tabs}/g, '<section style="margin-bottom: 15px"><joe-tabs><span class="_temp" style="display: none">$1</span></joe-tabs></section>');
 	str = str.replace(/{card-list}([\s\S]*?){\/card-list}/g, '<section style="margin-bottom: 15px"><joe-card-list><span class="_temp" style="display: none">$1</span></joe-card-list></section>');
-	str = str.replace(/{timeline}([\s\S]*?){\/timeline}/g, '<section><joe-timeline><span class="_temp" style="display: none">$1</span></joe-timeline></section>');
+	str = str.replace(/{timeline}([\s\S]*?){\/timeline}/g, '<section style="margin-bottom: 15px"><joe-timeline><span class="_temp" style="display: none">$1</span></joe-timeline></section>');
 
 	$('.cm-preview-content').html(str);
 	$('.cm-preview-content p:empty').remove();

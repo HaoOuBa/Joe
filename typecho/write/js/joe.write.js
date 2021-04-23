@@ -321,6 +321,9 @@ class Joe extends JoeAction {
 						case 'timeline':
 							super.handleTimeline(this.cm);
 							break;
+						case 'copy':
+							super.handleCopy(this.cm);
+							break;
 						case 'preview':
 							el.toggleClass('active');
 							if (el.hasClass('active')) window.JoeConfig.canPreview = true;
