@@ -735,6 +735,11 @@ export default class JoeAction {
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
+	handleCardDescribe(cm) {
+		const str = `${this._getLineCh(cm) ? '\n\n' : '\n'}{card-describe title="卡片描述"}\n卡片内容\n{/card-describe}\n\n`;
+		this._replaceSelection(cm, str);
+		cm.focus();
+	}
 	handleCopy(cm) {
 		this._openModal({
 			title: '插入音乐',

@@ -261,6 +261,32 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 	window.customElements.define('joe-callout', JoeCallout);
+	class JoeCardDescribe extends HTMLElement {
+		constructor() {
+			super();
+			const _temp = getChildren(this, '_temp');
+			this.options = {
+				title: this.getAttribute('title') || '卡片描述',
+				content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '卡片内容'
+			};
+			const htmlStr = `
+				<div class="joe_card__describe">
+					<div class="joe_card__describe-title">${this.options.title}</div>
+					<div class="joe_card__describe-content">${this.options.content}</div>
+				</div>
+			`;
+			if (getChildren(this, '_content')) {
+				getChildren(this, '_content').innerHTML = htmlStr;
+			} else {
+				const span = document.createElement('span');
+				span.style.display = 'block';
+				span.className = '_content';
+				span.innerHTML = htmlStr;
+				this.appendChild(span);
+			}
+		}
+	}
+	window.customElements.define('joe-card-describe', JoeCardDescribe);
 	class JoeCardList extends HTMLElement {
 		constructor() {
 			super();

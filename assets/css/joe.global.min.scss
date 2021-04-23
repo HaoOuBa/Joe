@@ -1765,7 +1765,7 @@
 	border-radius: var(--radius-inner);
 	overflow: hidden;
 	&-item {
-		padding: 12px 15px;
+		padding: 12px;
 		border-bottom: 1px solid var(--classC);
 		&:last-child {
 			border-bottom: none;
@@ -1868,6 +1868,33 @@
 	width: 100%;
 	height: 500px;
 }
+.joe_card__describe {
+	position: relative;
+	border: 1px dashed var(--classB);
+	&-title {
+		position: absolute;
+		top: 0;
+		left: 8px;
+		transform: translateY(-50%);
+		background: var(--background);
+		padding: 0 5px;
+		color: var(--main);
+		font-weight: 500;
+        max-width: 100px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+	}
+	&-content {
+		color: var(--routine);
+		padding: 18px 15px 15px;
+		*:last-child {
+			margin-bottom: 0 !important;
+		}
+	}
+}
+
+
 
 .joe_detail {
 	background: var(--background);
