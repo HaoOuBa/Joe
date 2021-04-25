@@ -2339,10 +2339,8 @@
 				transition: transform 0.35s, opacity 0.35s;
 			}
 		}
-		p code {
+		code:not([class]) {
 			display: inline-block;
-			min-height: 26px;
-			line-height: 26px;
 			border-radius: var(--radius-inner);
 			font-size: 12px;
 			background: #fdf6ec;

@@ -385,7 +385,7 @@ body.fullscreen {
 			margin: 0;
 		}
 	}
-	pre {
+	pre[class*='language-'] {
 		margin: 0;
 		margin-bottom: 15px;
 		&::-webkit-scrollbar-track {
@@ -400,10 +400,8 @@ body.fullscreen {
 			background: #c0c4cc;
 		}
 	}
-	p code {
+	code:not([class]) {
 		display: inline-block;
-		min-height: 26px;
-		line-height: 26px;
 		border-radius: 4px;
 		font-size: 12px;
 		background: #fdf6ec;
