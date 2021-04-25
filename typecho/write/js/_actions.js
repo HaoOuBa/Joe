@@ -780,13 +780,38 @@ export default class JoeAction {
 				<div class="fitem">
 					<label>网盘类型</label>
 					<select name="type">
-						<option value="默认网盘" selected>默认网盘</option>
-						<option value="百度网盘">百度网盘</option>
+						<option value="default" selected>默认网盘</option>
+						<option value="360">360网盘</option>
+						<option value="bd">百度网盘</option>
+						<option value="ty">天翼网盘</option>
+						<option value="ct">城通网盘</option>
+						<option value="wy">微云网盘</option>
+						<option value="github">Github仓库</option>
+						<option value="lz">蓝奏云网盘</option>
 					</select>
+				</div>
+				<div class="fitem">
+					<label>显示标题</label>
+					<input autocomplete="off" name="title" placeholder="请输入显示标题"/>
+				</div>
+				<div class="fitem">
+					<label>下载地址</label>
+					<input autocomplete="off" name="url" placeholder="请输入网盘地址"/>
+				</div>
+				<div class="fitem">
+					<label>提取密码</label>
+					<input autocomplete="off" name="password" placeholder="请输入提取码（非必填）"/>
 				</div>
             `,
 			confirm: () => {
-				
+				const type = $(".cm-modal select[name='type']").val();
+				const title = $(".cm-modal input[name='title']").val();
+				const url = $(".cm-modal input[name='url']").val();
+				const password = $(".cm-modal input[name='password']").val();
+				const str = `\n{cloud title="${title}" type="${type}" url="${url}" password="${password}"/}\n\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus()
 			}
 		});
 	}

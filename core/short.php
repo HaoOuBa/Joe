@@ -36,6 +36,9 @@ function _parseContent($post, $login)
     if (strpos($content, '{abtn') !== false) {
         $content = preg_replace('/{abtn([^}]*)\/}/SU', '<joe-abtn $1></joe-abtn>', $content);
     }
+    if (strpos($content, '{cloud') !== false) {
+        $content = preg_replace('/{cloud([^}]*)\/}/SU', '<joe-cloud $1></joe-cloud>', $content);
+    }
     if (strpos($content, '{anote') !== false) {
         $content = preg_replace('/{anote([^}]*)\/}/SU', '<joe-anote $1></joe-anote>', $content);
     }
