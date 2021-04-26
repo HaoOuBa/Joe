@@ -300,6 +300,29 @@ export default class JoeAction {
 			}
 		});
 	}
+	handleGird(cm) {
+		this._openModal({
+			title: '插入宫格',
+			innerHtml: `
+                <div class="fitem">
+                    <label>宫格列数</label>
+                    <input value="3" autocomplete="off" name="column" placeholder="请输入宫格列数"/>
+                </div>
+                <div class="fitem">
+                    <label>宫格间隔</label>
+                    <input value="15" autocomplete="off" name="gap" placeholder="请输入宫格间隔"/>
+                </div>
+            `,
+			confirm: () => {
+				const column = $(".cm-modal input[name='column']").val();
+				const gap = $(".cm-modal input[name='gap']").val();
+				const htmlStr = `{gird column="${column}" gap="${gap}"}\n{gird-item}\n 宫格内容一\n{/gird-item}\n{gird-item}\n 宫格内容二\n{/gird-item}\n{gird-item}\n 宫格内容三\n{/gird-item}\n{/gird}`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n\n' + htmlStr);
+				else this._replaceSelection(cm, htmlStr);
+				cm.focus();
+			}
+		});
+	}
 	handleCodeBlock(cm) {
 		const language = 'rss+atom+ssml+mathml+svg+html+markup+css+clike+javascript+abap+abnf+actionscript+ada+agda+al+antlr4+apacheconf+apex+apl+applescript+aql+arduino+arff+asciidoc+aspnet+asm6502+autohotkey+autoit+bash+basic+batch+bbcode+birb+bison+bnf+brainfuck+brightscript+bro+bsl+c+csharp+cpp+cfscript+chaiscript+cil+clojure+cmake+cobol+coffeescript+concurnas+csp+coq+crystal+css-extras+csv+cypher+d+dart+dataweave+dax+dhall+diff+django+dns-zone-file+docker+dot+ebnf+editorconfig+eiffel+ejs+elixir+elm+etlua+erb+erlang+excel-formula+fsharp+factor+false+firestore-security-rules+flow+fortran+ftl+gml+gcode+gdscript+gedcom+gherkin+git+glsl+go+graphql+groovy+haml+handlebars+haskell+haxe+hcl+hlsl+http+hpkp+hsts+ichigojam+icon+icu-message-format+idris+ignore+inform7+ini+io+j+java+javadoc+javadoclike+javastacktrace+jexl+jolie+jq+jsdoc+js-extras+json+json5+jsonp+jsstacktrace+js-templates+julia+keyman+kotlin+kumir+latex+latte+less+lilypond+liquid+lisp+livescript+llvm+log+lolcode+lua+makefile+markdown+markup-templating+matlab+mel+mizar+mongodb+monkey+moonscript+n1ql+n4js+nand2tetris-hdl+naniscript+nasm+neon+nevod+nginx+nim+nix+nsis+objectivec+ocaml+opencl+openqasm+oz+parigp+parser+pascal+pascaligo+psl+pcaxis+peoplecode+perl+php+phpdoc+php-extras+plsql+powerquery+powershell+processing+prolog+promql+properties+protobuf+pug+puppet+pure+purebasic+purescript+python+qsharp+q+qml+qore+r+racket+jsx+tsx+reason+regex+rego+renpy+rest+rip+roboconf+robotframework+ruby+rust+sas+sass+scss+scala+scheme+shell-session+smali+smalltalk+smarty+sml+solidity+solution-file+soy+sparql+splunk-spl+sqf+sql+squirrel+stan+iecst+stylus+swift+t4-templating+t4-cs+t4-vb+tap+tcl+tt2+textile+toml+turtle+twig+typescript+typoscript+unrealscript+uri+v+vala+vbnet+velocity+verilog+vhdl+vim+visual-basic+warpscript+wasm+wiki+xeora+xml-doc+xojo+xquery+yaml+yang+zig';
 		const languageArr = language.split('+').sort((a, b) => a.localeCompare(b));
@@ -759,7 +782,7 @@ export default class JoeAction {
 				const str = `\n{copy showText="${showText}" copyText="${copyText}"/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
-				cm.focus()
+				cm.focus();
 			}
 		});
 	}
@@ -811,7 +834,7 @@ export default class JoeAction {
 				const str = `\n{cloud title="${title}" type="${type}" url="${url}" password="${password}"/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
-				cm.focus()
+				cm.focus();
 			}
 		});
 	}

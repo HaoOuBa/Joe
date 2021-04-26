@@ -1454,6 +1454,14 @@
 	}
 }
 
+.joe_gird {
+	display: grid;
+	&__item {
+		*:last-child {
+			margin-bottom: 0 !important;
+		}
+	}
+}
 .joe_checkbox {
 	-webkit-appearance: none;
 	position: relative;

@@ -81,6 +81,9 @@ function _parseContent($post, $login)
     if (strpos($content, '{collapse') !== false) {
         $content = preg_replace('/{collapse}([\s\S]*?){\/collapse}/', '<section style="margin-bottom: 15px"><joe-collapse><span class="_temp" style="display: none">$1</span></joe-collapse></section>', $content);
     }
+    if (strpos($content, '{gird') !== false) {
+        $content = preg_replace('/{gird([^}]*)}([\s\S]*?){\/gird}/', '<section style="margin-bottom: 15px"><joe-gird $1><span class="_temp" style="display: none">$2</span></joe-gird></section>', $content);
+    }
     if (strpos($content, '{copy') !== false) {
         $content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
     }

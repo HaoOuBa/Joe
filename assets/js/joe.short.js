@@ -564,6 +564,35 @@ document.addEventListener('DOMContentLoaded', () => {
 	);
 
 	customElements.define(
+		'joe-gird',
+		class JoeGird extends HTMLElement {
+			constructor() {
+				super();
+				this.options = {
+					column: isNaN(this.getAttribute('column')) || !this.getAttribute('column') ? 3 : this.getAttribute('column'),
+					gap: isNaN(this.getAttribute('gap')) || !this.getAttribute('gap') ? 15 : this.getAttribute('gap')
+				};
+				const _temp = getChildren(this, '_temp');
+				let _innerHTML = _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '');
+				let contents = '';
+				_innerHTML.replace(/{gird-item}([\s\S]*?){\/gird-item}/g, function ($0, $1) {
+					contents += `<div class="joe_gird__item">${$1.trim().replace(/^(<br>)|(<br>)$/g, '')}</div>`;
+				});
+				let htmlStr = `<div class="joe_gird" style="gap: ${this.options.gap}px; grid-template-columns: repeat(${this.options.column}, 1fr);">${contents}</div>`;
+				if (getChildren(this, '_content')) {
+					getChildren(this, '_content').innerHTML = htmlStr;
+				} else {
+					const span = document.createElement('span');
+					span.className = '_content';
+					span.style.display = 'block';
+					span.innerHTML = htmlStr;
+					this.appendChild(span);
+				}
+			}
+		}
+	);
+
+	customElements.define(
 		'joe-copy',
 		class JoeCopy extends HTMLElement {
 			constructor() {

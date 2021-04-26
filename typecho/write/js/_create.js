@@ -93,6 +93,9 @@ export default function createPreviewHtml(str) {
 	if (str.indexOf('{collapse') !== -1) {
 		str = str.replace(/{collapse}([\s\S]*?){\/collapse}/g, '<section style="margin-bottom: 15px"><joe-collapse><span class="_temp" style="display: none">$1</span></joe-collapse></section>');
 	}
+	if (str.indexOf('{gird') !== -1) {
+		str = str.replace(/{gird([^}]*)}([\s\S]*?){\/gird}/g, '<section style="margin-bottom: 15px"><joe-gird $1><span class="_temp" style="display: none">$2</span></joe-gird></section>');
+	}
 
 	$('.cm-preview-content').html(str);
 	$('.cm-preview-content p:empty').remove();
