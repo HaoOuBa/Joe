@@ -93,7 +93,7 @@
                                 </div>
                             </div>
                             <div class="reply">
-                                <a class="link" title="<?php _parseAsideReply($item->content, false); ?>" href="<?php _parseAsideLink($item->permalink); ?>">
+                                <a class="link" href="<?php _parseAsideLink($item->permalink); ?>">
                                     <?php _parseAsideReply($item->content); ?>
                                 </a>
                             </div>
