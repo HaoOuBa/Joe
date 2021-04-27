@@ -32,6 +32,7 @@ class Widget_Contents_Sort extends Widget_Abstract_Contents
                 ->from('table.contents')
                 ->where('table.contents.type = ?', 'post')
                 ->where('table.contents.status = ?', 'publish')
+                ->where('table.contents.created < ?', time())
                 ->limit($this->parameter->pageSize)
                 ->offset($offset)
                 ->order($this->parameter->type, Typecho_Db::SORT_DESC),
