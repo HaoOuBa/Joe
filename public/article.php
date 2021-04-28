@@ -1,4 +1,4 @@
-<div class="joe_detail__article">
+<article class="joe_detail__article">
     <?php if (!$this->hidden && $this->fields->video) : ?>
         <div class="joe_detail__article-video">
             <div class="play">
@@ -37,4 +37,4 @@
     <?php else : ?>
         <?php _parseContent($this, $this->user->hasLogin()) ?>
     <?php endif; ?>
-</div>
+</article>
