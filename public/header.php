@@ -198,11 +198,14 @@
                             <span><?php $this->user->screenName(); ?></span>
                         </div>
                         <nav class="joe_dropdown__menu list">
-                            <?php if ($this->user->group == 'administrator') : ?>
-                                <a rel="noopener noreferrer nofollow" target="_balnk" href="<?php $this->options->adminUrl("options-theme.php"); ?>">修改外观</a>
-                            <?php endif; ?>
                             <?php if ($this->user->group == 'administrator' || $this->user->group == 'editor' || $this->user->group == 'contributor') : ?>
                                 <a rel="noopener noreferrer nofollow" target="_balnk" href="<?php $this->options->adminUrl("manage-posts.php"); ?>">管理文章</a>
+                            <?php endif; ?>
+                            <?php if ($this->user->group == 'administrator' || $this->user->group == 'editor') : ?>
+                                <a rel="noopener noreferrer nofollow" target="_balnk" href="<?php $this->options->adminUrl("manage-comments.php"); ?>">管理评论</a>
+                            <?php endif; ?>
+                            <?php if ($this->user->group == 'administrator') : ?>
+                                <a rel="noopener noreferrer nofollow" target="_balnk" href="<?php $this->options->adminUrl("options-theme.php"); ?>">修改外观</a>
                             <?php endif; ?>
                             <a rel="noopener noreferrer nofollow" target="_balnk" href="<?php $this->options->adminUrl(); ?>">进入后台</a>
                             <a rel="noopener noreferrer nofollow" href="<?php $this->options->logoutUrl(); ?>">退出登录</a>
