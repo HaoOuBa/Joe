@@ -330,6 +330,92 @@
 				}
 			}
 		}
+		&-sign {
+			margin-left: auto;
+			.joe_dropdown {
+				&__link {
+					display: flex;
+					align-items: center;
+					height: 45px;
+					color: var(--minor);
+					cursor: pointer;
+					user-select: none;
+					transition: color 0.35s;
+					.icon {
+						fill: var(--minor);
+						margin-right: 3px;
+						transition: fill 0.35s;
+					}
+					&:hover {
+						color: var(--theme);
+						.icon {
+							fill: var(--theme);
+						}
+					}
+				}
+				&__menu {
+					&.list {
+						width: 110px;
+						text-align: center;
+						a {
+							display: block;
+							height: 34px;
+							line-height: 34px;
+							white-space: nowrap;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							color: var(--minor);
+							transition: color 0.35s, background 0.35s;
+							&:hover,
+							&.active {
+								color: var(--theme);
+								background: var(--classD);
+							}
+						}
+					}
+					&.form {
+						padding: 15px;
+						.item {
+							margin-bottom: 15px;
+							.label {
+								color: var(--routine);
+								margin-bottom: 8px;
+								font-size: 12px;
+							}
+							input[type='text'],
+							input[type='password'] {
+								width: 220px;
+								height: 34px;
+								border: 1px solid var(--classB);
+								padding: 0 10px;
+								border-radius: 3px;
+								transition: border 0.35s;
+								color: var(--routine);
+								background: var(--background);
+								&:focus {
+									border-color: var(--theme);
+								}
+							}
+						}
+						button[type='button'] {
+							width: 220px;
+							height: 34px;
+							border: none;
+							background: var(--theme);
+							color: #fff;
+							border-radius: 3px;
+							transition: opacity 0.35s;
+							&:hover {
+								opacity: 0.85;
+							}
+							&:disabled {
+								cursor: not-allowed;
+							}
+						}
+					}
+				}
+			}
+		}
 		&-progress {
 			position: absolute;
 			z-index: 1;
@@ -1963,9 +2049,8 @@
 		&-wrapper {
 			max-height: 0;
 			overflow: hidden;
-			transition: max-height .3s ease;
+			transition: max-height 0.3s ease;
 			&--content {
-				
 				padding: 12px;
 				*:last-child {
 					margin-bottom: 0 !important;
@@ -2051,7 +2136,6 @@
 		text-align: center;
 	}
 }
-
 
 .joe_detail {
 	background: var(--background);
