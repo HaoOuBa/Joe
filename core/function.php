@@ -2,7 +2,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-	return "6.7.4";
+	return "6.7.5";
 };
 
 /* 判断是否是手机 */
@@ -186,6 +186,9 @@ function _getAbstract($item, $type = true)
 			$abstract = $item->fields->abstract;
 		} else {
 			$abstract = strip_tags($item->excerpt);
+			if (strpos($abstract, '{hide') !== false) {
+				$abstract = preg_replace('/{hide[^}]*}([\s\S]*?){\/hide}/', '隐藏内容，请前往内页查看详情', $abstract);
+			}
 		}
 	}
 	if ($abstract === '') $abstract = "暂无简介";

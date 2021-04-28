@@ -1,4 +1,5 @@
 <?php
+
 /* 加强评论拦截功能 */
 Typecho_Plugin::factory('Widget_Feedback')->comment = array('Intercept', 'message');
 class Intercept
