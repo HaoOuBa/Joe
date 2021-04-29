@@ -123,7 +123,6 @@ body.fullscreen {
 		width: 100%;
 		.cm-wrap {
 			flex-shrink: 0;
-			height: 100%;
 			flex: 1;
 			min-width: 0;
 			font-size: 14px;
@@ -131,6 +130,7 @@ body.fullscreen {
 				line-height: 1.5;
 				font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 				overscroll-behavior: none;
+				height: 100%;
 				&::-webkit-scrollbar-track {
 					background: #222;
 				}
@@ -166,7 +166,6 @@ body.fullscreen {
 		}
 		.cm-resize {
 			flex-shrink: 0;
-			height: 100%;
 			position: relative;
 			width: 16px;
 			background: #303133;
@@ -187,7 +186,6 @@ body.fullscreen {
 			position: relative;
 			flex-shrink: 0;
 			width: 0;
-			height: 100%;
 			background: #fff;
 			overflow: auto;
 			box-sizing: border-box;
