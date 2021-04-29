@@ -1540,6 +1540,26 @@
 	}
 }
 
+.joe_alert {
+	padding: 12px;
+	border-radius: var(--radius-inner);
+	line-height: 26px;
+	&.info {
+		border: 1px solid #abdcff;
+	}
+	&.success {
+		border: 1px solid #8ce6b0;
+	}
+	&.warning {
+		border: 1px solid #ffd77a;
+	}
+	&.error {
+		border: 1px solid #ffb08f;
+	}
+	*:last-child {
+		margin-bottom: 0 !important;
+	}
+}
 .joe_gird {
 	display: grid;
 	&__item {

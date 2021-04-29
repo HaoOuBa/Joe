@@ -796,6 +796,29 @@ export default class JoeAction {
 		this._replaceSelection(cm, str);
 		cm.focus();
 	}
+	handleAlert(cm) {
+		this._openModal({
+			title: '警告提示',
+			innerHtml: `
+				<div class="fitem">
+					<label>提示类型</label>
+					<select name="type">
+						<option value="info" selected>info</option>
+						<option value="success">success</option>
+						<option value="warning">warning</option>
+						<option value="error">error</option>
+					</select>
+				</div>
+            `,
+			confirm: () => {
+				const type = $(".cm-modal select[name='type']").val();
+				const str = `\n{alert type="${type}"}\n警告提示\n{/alert}\n\n`;
+				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
+				else this._replaceSelection(cm, str);
+				cm.focus();
+			}
+		});
+	}
 	handleCloud(cm) {
 		this._openModal({
 			title: '网盘下载',

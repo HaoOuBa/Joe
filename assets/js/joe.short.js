@@ -152,15 +152,15 @@ document.addEventListener('DOMContentLoaded', () => {
 					content: this.getAttribute('content') || '标签按钮'
 				};
 				this.innerHTML = `
-				<a class="joe_anote ${this.options.type}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
-					<span class="joe_anote__icon">
-                        <i class="fa ${this.options.icon}"></i>
-                    </span>
-                    <span class="joe_anote__content">
-                        ${this.options.content}
-                    </span>
-				</a>
-			`;
+					<a class="joe_anote ${this.options.type}" href="${this.options.href}" target="_blank" rel="noopener noreferrer nofollow">
+						<span class="joe_anote__icon">
+							<i class="fa ${this.options.icon}"></i>
+						</span>
+						<span class="joe_anote__content">
+							${this.options.content}
+						</span>
+					</a>
+				`;
 			}
 		}
 	);
@@ -173,8 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.startColor = this.getAttribute('startColor') || '#ff6c6c';
 				this.endColor = this.getAttribute('endColor') || '#1989fa';
 				this.innerHTML = `
-				<span class="joe_dotted" style="background-image: repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></span>
-			`;
+					<span class="joe_dotted" style="background-image: repeating-linear-gradient(-45deg, ${this.startColor} 0, ${this.startColor} 20%, transparent 0, transparent 25%, ${this.endColor} 0, ${this.endColor} 45%, transparent 0, transparent 50%)"></span>
+				`;
 			}
 		}
 	);
@@ -277,11 +277,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					content: this.getAttribute('content') || '消息内容'
 				};
 				this.innerHTML = `
-				<span class="joe_message ${this.options.type}">
-					<span class="joe_message__icon"></span>
-					<span class="joe_message__content">${this.options.content}</span>
-				</span>
-			`;
+					<span class="joe_message ${this.options.type}">
+						<span class="joe_message__icon"></span>
+						<span class="joe_message__content">${this.options.content}</span>
+					</span>
+				`;
 			}
 		}
 	);
@@ -318,10 +318,10 @@ document.addEventListener('DOMContentLoaded', () => {
 					content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '标注内容'
 				};
 				const htmlStr = `
-				<div class="joe_callout" style="border-left-color: ${this.options.color};">
-					${this.options.content}
-				</div>
-			`;
+					<div class="joe_callout" style="border-left-color: ${this.options.color};">
+						${this.options.content}
+					</div>
+				`;
 				if (getChildren(this, '_content')) {
 					getChildren(this, '_content').innerHTML = htmlStr;
 				} else {
@@ -346,11 +346,11 @@ document.addEventListener('DOMContentLoaded', () => {
 					content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '卡片内容'
 				};
 				const htmlStr = `
-				<div class="joe_card__describe">
-					<div class="joe_card__describe-title">${this.options.title}</div>
-					<div class="joe_card__describe-content">${this.options.content}</div>
-				</div>
-			`;
+					<div class="joe_card__describe">
+						<div class="joe_card__describe-title">${this.options.title}</div>
+						<div class="joe_card__describe-content">${this.options.content}</div>
+					</div>
+				`;
 				if (getChildren(this, '_content')) {
 					getChildren(this, '_content').innerHTML = htmlStr;
 				} else {
@@ -382,6 +382,34 @@ document.addEventListener('DOMContentLoaded', () => {
 					const span = document.createElement('span');
 					span.className = '_content';
 					span.style.display = 'block';
+					span.innerHTML = htmlStr;
+					this.appendChild(span);
+				}
+			}
+		}
+	);
+
+	customElements.define(
+		'joe-alert',
+		class JoeAlert extends HTMLElement {
+			constructor() {
+				super();
+				const _temp = getChildren(this, '_temp');
+				this.options = {
+					type: /^success$|^info$|^warning$|^error$/.test(this.getAttribute('type')) ? this.getAttribute('type') : 'info',
+					content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '警告提示'
+				}
+				const htmlStr = `
+					<div class="joe_alert ${this.options.type}">
+						${this.options.content}
+					</div>
+				`;
+				if (getChildren(this, '_content')) {
+					getChildren(this, '_content').innerHTML = htmlStr;
+				} else {
+					const span = document.createElement('span');
+					span.style.display = 'block';
+					span.className = '_content';
 					span.innerHTML = htmlStr;
 					this.appendChild(span);
 				}
