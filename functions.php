@@ -184,7 +184,7 @@ function themeConfig($form)
     $JFooter_Left = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFooter_Left',
         NULL,
-        '2019 - 2020 © Reach - <a href="https://as.js.cn" target="_blank" rel="noopener noreferrer">Joe</a>',
+        '2019 - 2020 © Reach - <a href="https://78.al" target="_blank" rel="noopener noreferrer">Joe</a>',
         '自定义底部栏左侧内容（非必填）',
         '介绍：用于修改全站底部左侧内容（wap端上方） <br>
          例如：2019 - 2020 © Reach - Joe             '
@@ -195,8 +195,8 @@ function themeConfig($form)
     $JFooter_Right = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFooter_Right',
         NULL,
-        '<a href="https://as.js.cn/feed/" target="_blank" rel="noopener noreferrer">RSS</a>
-         <a href="https://as.js.cn/sitemap.xml" target="_blank" rel="noopener noreferrer" style="margin-left: 15px">MAP</a>',
+        '<a href="https://78.al/feed/" target="_blank" rel="noopener noreferrer">RSS</a>
+         <a href="https://78.al/sitemap.xml" target="_blank" rel="noopener noreferrer" style="margin-left: 15px">MAP</a>',
         '自定义底部栏右侧内容（非必填）',
         '介绍：用于修改全站底部右侧内容（wap端下方） <br>
          例如：&lt;a href="/"&gt;首页&lt;/a&gt; &lt;a href="/"&gt;关于&lt;/a&gt;'
@@ -392,7 +392,7 @@ function themeConfig($form)
     $JAside_Author_Link = new Typecho_Widget_Helper_Form_Element_Text(
         'JAside_Author_Link',
         NULL,
-        "https://as.js.cn",
+        "https://78.al",
         '博主栏昵称跳转地址 - PC/WAP',
         '介绍：用于修改博主栏点击博主昵称后的跳转地址'
     );
@@ -807,7 +807,7 @@ function themeConfig($form)
     $JFriends = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFriends',
         NULL,
-        'Joe的博客 || https://as.js.cn || https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/link.png || Eternity is not a distance but a decision',
+        'Joe的博客 || https://78.al || https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/link.png || Eternity is not a distance but a decision',
         '友情链接（非必填）',
         '介绍：用于填写友情链接 <br />
          注意：您需要先增加友联链接页面（新增独立页面-右侧模板选择友联），该项才会生效 <br />
