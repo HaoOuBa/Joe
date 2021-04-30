@@ -192,11 +192,11 @@ function _pushRecord($self)
     header("HTTP/1.1 200 OK");
     header('Access-Control-Allow-Origin:*');
     header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+    $token = Helper::options()->JBaiduToken;
     $domain = $self->request->domain;
     $url = $self->request->url;
-    $token = Helper::options()->JBaiduToken;
     $urls = explode(",", $url);
-    $api = 'http://data.zz.baidu.com/urls?site=' . $domain . '&token=' . $token;
+    $api = "http://data.zz.baidu.com/urls?site={$domain}&token={$token}";
     $ch = curl_init();
     $options =  array(
         CURLOPT_URL => $api,
@@ -207,7 +207,12 @@ function _pushRecord($self)
     );
     curl_setopt_array($ch, $options);
     $result = curl_exec($ch);
-    $self->response->throwJson(json_decode($result));
+    curl_close($ch);
+    $self->response->throwJson(array(
+        'domain' => $domain,
+        'url' => $url,
+        'data' => json_decode($result, TRUE)
+    ));
 }
 
 /* 获取壁纸分类 已测试 √ */
