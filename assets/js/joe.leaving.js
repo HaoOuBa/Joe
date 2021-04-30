@@ -28,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								data: {
 									routeType: 'baidu_push',
 									domain: window.location.protocol + '//' + window.location.hostname,
-									url: encodeURI(window.location.protocol + '//' + window.location.hostname + window.location.pathname)
+									url: encodeURI(window.location.href)
 								},
 								success(res) {
 									if (res.data.error) {
