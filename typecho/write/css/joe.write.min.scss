@@ -24,7 +24,7 @@ body.fullscreen {
 	flex-direction: column;
 	position: relative;
 	width: 100%;
-	height: 550px;
+	height: 700px;
 	box-sizing: border-box;
 	z-index: 6666;
 	content-visibility: auto;
@@ -127,10 +127,11 @@ body.fullscreen {
 			min-width: 0;
 			font-size: 14px;
 			.cm-scroller {
-				line-height: 1.5;
+				line-height: 1.8;
 				font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 				overscroll-behavior: none;
 				height: 100%;
+				padding: 10px;
 				&::-webkit-scrollbar-track {
 					background: #222;
 				}
@@ -147,12 +148,13 @@ body.fullscreen {
 				}
 				.cm-content {
 					width: 100%;
-					white-space: normal;
-					overflow-wrap: break-word;
 					color: #ccc;
 					caret-color: #ccc;
-					padding: 15px 13px 15px 11px;
+					padding: 0;
 					-webkit-user-modify: read-write-plaintext-only;
+					word-wrap: break-word;
+					white-space: normal;
+					word-break: break-all;
 				}
 				.cm-matchingBracket {
 					color: #8f938f;
