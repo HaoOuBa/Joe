@@ -24,7 +24,7 @@ body.fullscreen {
 	flex-direction: column;
 	position: relative;
 	width: 100%;
-	height: 700px;
+	height: 650px;
 	box-sizing: border-box;
 	z-index: 6666;
 	content-visibility: auto;
@@ -40,10 +40,11 @@ body.fullscreen {
 		outline: none !important;
 	}
 	.cm-tools {
-		display: flex;
-		flex-wrap: wrap;
+		display: grid;
+		grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+		gap: 5px;
+		padding: 5px;
 		background-color: #303133;
-		padding: 5px 0 0 5px;
 		.cm-tools-item {
 			position: relative;
 			cursor: pointer;
@@ -51,9 +52,8 @@ body.fullscreen {
 			align-items: center;
 			justify-content: center;
 			border-radius: 2px;
-			padding: 5px;
-			margin: 0 5px 5px 0;
 			transition: background 0.25s;
+			padding: 5px;
 			&:hover {
 				background: #393939;
 				svg {
