@@ -161,8 +161,32 @@ body.fullscreen {
 					border: 1px solid rgba(255, 255, 255, 0.25);
 					margin: -1px;
 				}
+				.cmt-strong {
+					color: #61afef;
+					font-weight: 500;
+				}
 				.cm-nonmatchingBracket {
 					color: #ff5627;
+				}
+				.cmt-emphasis {
+					color: #b294bb;
+					font-style: italic;
+					font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+				}
+				.cmt-deleted {
+					color: #ed6a43;
+					text-decoration: line-through;
+				}
+				.cmt-heading {
+					font-size: 18px;
+					color: #61afef;
+					font-weight: 700;
+				}
+				.cmt-link {
+					color: #e26666;
+				}
+				.cmt-url {
+					color: #5fa76f;
 				}
 			}
 		}
@@ -283,16 +307,14 @@ body.fullscreen {
 		position: relative;
 	}
 	h1 {
-		padding: 0 15px;
+		padding: 0 15px 0 20px;
 		&::before {
-			content: '';
+			content: '¶';
+			color: #409eff;
 			position: absolute;
-			top: 8.5px;
+			top: 0;
 			left: 0;
-			height: 7px;
-			width: 7px;
-			border-radius: 50%;
-			background: #409eff;
+			font-size: 22px;
 		}
 	}
 	h2 {
@@ -309,15 +331,16 @@ body.fullscreen {
 		}
 	}
 	h3 {
-		padding: 0 15px 0 20px;
+		padding: 0 15px;
 		&::before {
-			content: '#';
-			color: #409eff;
-			font-weight: 700;
+			content: '';
 			position: absolute;
 			top: 0;
+			bottom: 0;
 			left: 0;
-			line-height: 24px;
+			width: 4px;
+			background: #409eff;
+			border-radius: 0 4px 4px 0;
 		}
 	}
 	h4 {
@@ -404,10 +427,11 @@ body.fullscreen {
 		display: inline-block;
 		border-radius: 4px;
 		font-size: 12px;
-		background: #fdf6ec;
+		background: #ecf5ff;
+		color: #409eff;
 		padding: 0 8px;
-		color: #e6a23c;
 		vertical-align: top;
+		word-break: break-all;
 	}
 	ol,
 	ul {

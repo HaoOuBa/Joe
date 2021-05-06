@@ -33,7 +33,7 @@
                                 <?php if ($this->fields->mode === "default" || !$this->fields->mode) : ?>
                                     <li class="joe_list__item wow default">
                                         <div class="line"></div>
-                                        <a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>">
+                                        <a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
                                             <img width="100%" height="100%" class="lazyload" src="<?php _getLazyload() ?>" data-src="<?php echo _getThumbnails($this)[0] ?>" alt="<?php $this->title() ?>" />
                                             <time datetime="<?php $this->date('Y-m-d'); ?>"><?php $this->date('Y-m-d'); ?></time>
                                             <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -42,10 +42,10 @@
                                             </svg>
                                         </a>
                                         <div class="information">
-                                            <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>">
+                                            <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
                                                 <?php $this->title() ?>
                                             </a>
-                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要"><?php _getAbstract($this) ?></a>
+                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php _getAbstract($this) ?></a>
                                             <div class="meta">
                                                 <ul class="items">
                                                     <li><?php $this->date('Y年m月d日'); ?></li>
@@ -60,7 +60,7 @@
                                     <li class="joe_list__item wow single">
                                         <div class="line"></div>
                                         <div class="information">
-                                            <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>">
+                                            <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
                                                 <?php $this->title() ?>
                                             </a>
                                             <div class="meta">
@@ -72,7 +72,7 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        <a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>">
+                                        <a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
                                             <img width="100%" height="100%" class="lazyload" src="<?php _getLazyload() ?>" data-src="<?php echo _getThumbnails($this)[0] ?>" alt="<?php $this->title() ?>" />
                                             <time datetime="<?php $this->date('Y-m-d'); ?>"><?php $this->date('Y-m-d'); ?></time>
                                             <svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="20" height="20">
@@ -81,19 +81,19 @@
                                             </svg>
                                         </a>
                                         <div class="information" style="margin-bottom: 0;">
-                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要"><?php _getAbstract($this) ?></a>
+                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php _getAbstract($this) ?></a>
                                         </div>
                                     </li>
                                 <?php elseif ($this->fields->mode === "multiple") : ?>
                                     <li class="joe_list__item wow multiple">
                                         <div class="line"></div>
                                         <div class="information">
-                                            <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>">
+                                            <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
                                                 <?php $this->title() ?>
                                             </a>
-                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要"><?php _getAbstract($this) ?></a>
+                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php _getAbstract($this) ?></a>
                                         </div>
-                                        <a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>">
+                                        <a href="<?php $this->permalink() ?>" class="thumbnail" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
                                             <?php $image = _getThumbnails($this) ?>
                                             <?php for ($x = 0; $x < 3; $x++) : ?>
                                                 <img width="100%" height="100%" class="lazyload" src="<?php _getLazyload() ?>" data-src="<?php echo $image[$x]; ?>" alt="<?php $this->title() ?>" />
@@ -112,10 +112,10 @@
                                     <li class="joe_list__item wow none">
                                         <div class="line"></div>
                                         <div class="information">
-                                            <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>">
+                                            <a href="<?php $this->permalink() ?>" class="title" title="<?php $this->title() ?>" target="_blank" rel="noopener noreferrer">
                                                 <?php $this->title() ?>
                                             </a>
-                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要"><?php _getAbstract($this) ?></a>
+                                            <a class="abstract" href="<?php $this->permalink() ?>" title="文章摘要" target="_blank" rel="noopener noreferrer"><?php _getAbstract($this) ?></a>
                                             <div class="meta">
                                                 <ul class="items">
                                                     <li><?php $this->date('Y年m月d日'); ?></li>

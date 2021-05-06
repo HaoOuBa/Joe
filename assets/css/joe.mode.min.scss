@@ -55,13 +55,9 @@ html[data-night='night'] {
         color: var(--routine);
         border-color: var(--classA);
     }
-    .joe_detail__article code {
+    .joe_detail__article code:not([class]) {
         background: #fdf0ec38;
         color: #a6aba8;
-    }
-    .joe_detail__article pre code {
-        background: none;
-        color: unset;
     }
     .joe_detail__article-anote {
         color: #ffffff9c;

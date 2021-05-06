@@ -5,6 +5,7 @@ import { closeBrackets, closeBracketsKeymap } from '@codemirror/closebrackets';
 import { defaultKeymap, defaultTabBinding } from '@codemirror/commands';
 import { history, historyKeymap } from '@codemirror/history';
 import { classHighlightStyle } from '@codemirror/highlight';
+import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import tools from './_tools';
 import JoeAction from './_actions';
 import createPreviewHtml from './_create';
@@ -49,6 +50,9 @@ class Joe extends JoeAction {
 				doc: $('#text').val(),
 				extensions: [
 					...this.plugins,
+					markdown({
+						base: markdownLanguage,
+					}),
 					keymap.of([defaultTabBinding, ...defaultKeymap, ...historyKeymap, ...closeBracketsKeymap]),
 					EditorView.updateListener.of(update => {
 						if (!update.docChanged) return;

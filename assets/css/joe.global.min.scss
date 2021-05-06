@@ -2330,16 +2330,14 @@
 			position: relative;
 		}
 		h1 {
-			padding: 0 15px;
+			padding: 0 15px 0 20px;
 			&::before {
-				content: '';
+				content: '¶';
+				color: var(--theme);
 				position: absolute;
-				top: 8.5px;
+				top: 0;
 				left: 0;
-				height: 7px;
-				width: 7px;
-				border-radius: 50%;
-				background: var(--theme);
+				font-size: 22px;
 			}
 		}
 		h2 {
@@ -2356,15 +2354,16 @@
 			}
 		}
 		h3 {
-			padding: 0 15px 0 20px;
+			padding: 0 15px;
 			&::before {
-				content: '#';
-				color: var(--theme);
-				font-weight: 700;
+				content: '';
 				position: absolute;
 				top: 0;
+				bottom: 0;
 				left: 0;
-				line-height: 24px;
+				width: 4px;
+				background: var(--theme);
+				border-radius: 0 4px 4px 0;
 			}
 		}
 		h4 {
@@ -2455,10 +2454,11 @@
 			display: inline-block;
 			border-radius: var(--radius-inner);
 			font-size: 12px;
-			background: #fdf6ec;
+			background: #ecf5ff;
+			color: #409eff;
 			padding: 0 8px;
-			color: #e6a23c;
 			vertical-align: top;
+			word-break: break-all;
 		}
 		pre[class*='language-'] {
 			position: relative;
