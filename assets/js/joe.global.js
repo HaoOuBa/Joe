@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	/* 动态背景 */
 	{
 		if (!Joe.IS_MOBILE && Joe.DYNAMIC_BACKGROUND !== 'off' && Joe.DYNAMIC_BACKGROUND && !Joe.WALLPAPER_BACKGROUND_PC) {
-			$.getScript(`/usr/themes/Joe/assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
+			$.getScript(window.Joe.THEME_URL + `assets/backdrop/${Joe.DYNAMIC_BACKGROUND}`);
 		}
 	}
 
@@ -500,16 +500,17 @@ document.addEventListener('DOMContentLoaded', () => {
 	{
 		if ($('.joe_owo__contain').length > 0 && $('.joe_owo__target').length > 0) {
 			$.ajax({
-				url: '/usr/themes/Joe/assets/json/joe.owo.json',
+				url: window.Joe.THEME_URL + 'assets/json/joe.owo.json',
 				dataType: 'json',
 				success(res) {
 					let barStr = '';
 					let scrollStr = '';
 					for (let key in res) {
-						barStr += `<div class="item" data-index="${res[key].index}">${key}</div>`;
+						const item = res[key];
+						barStr += `<div class="item" data-type="${key}">${key}</div>`;
 						scrollStr += `
-                            <ul class="scroll" data-index="${res[key].index}">
-                                ${res[key].container.map(_ => `<li class="item" data-text="${_.data}">${_.icon}</li>`).join('')} 
+                            <ul class="scroll" data-type="${key}">
+								${item.map(_ => `<li class="item" data-text="${_.data}">${key === '颜文字' ? `${_.icon}` : `<img src="${window.Joe.THEME_URL + _.icon}" alt="${_.data}"/>`}</li>`).join('')}
                             </ul>
                         `;
 					}
@@ -530,15 +531,13 @@ document.addEventListener('DOMContentLoaded', () => {
 					$('.joe_owo__contain .box .bar .item').on('click', function (e) {
 						e.stopPropagation();
 						$(this).addClass('active').siblings().removeClass('active');
-						const scrollIndx = '.joe_owo__contain .box .scroll[data-index="' + $(this).attr('data-index') + '"]';
+						const scrollIndx = '.joe_owo__contain .box .scroll[data-type="' + $(this).attr('data-type') + '"]';
 						$(scrollIndx).show().siblings('.scroll').hide();
 					});
-					/* 点击表情，向文本框插入内容 */
 					$('.joe_owo__contain .scroll .item').on('click', function () {
 						const text = $(this).attr('data-text');
 						$('.joe_owo__target').insertContent(text);
 					});
-					/* 默认激活第一个 */
 					$('.joe_owo__contain .box .bar .item').first().click();
 				}
 			});

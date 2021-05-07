@@ -4,7 +4,7 @@
             <div class="play">
                 <div class="title">播放预览</div>
                 <div class="box">
-                    <iframe allowfullscreen="true" data-player="<?php echo $this->options->JCustomPlayer ? $this->options->JCustomPlayer : '/usr/themes/Joe/library/player.php?url=' ?>"></iframe>
+                    <iframe allowfullscreen="true" data-player="<?php $this->options->JCustomPlayer ? $this->options->JCustomPlayer() : Helper::options()->themeUrl('library/player.php?url=') ?>"></iframe>
                 </div>
             </div>
             <div class="episodes">

@@ -15,8 +15,9 @@
     detectIE() && (alert('当前站点不支持IE浏览器或您开启了兼容模式，请使用其他浏览器访问或关闭兼容模式。'), (location.href = 'https://www.baidu.com'))
     localStorage.getItem("data-night") && document.querySelector("html").setAttribute("data-night", "night");
     window.Joe = {
+        THEME_URL: `<?php Helper::options()->themeUrl() ?>`,
         LIVE2D: `<?php $this->options->JLive2d() ?>`,
-        BASE_API: `<?php echo $this->options->rewrite == 0 ? '/index.php/joe/api' : '/joe/api' ?>`,
+        BASE_API: `<?php echo $this->options->rewrite == 0 ? Helper::options()->rootUrl . '/index.php/joe/api' : Helper::options()->rootUrl . '/joe/api' ?>`,
         DYNAMIC_BACKGROUND: `<?php $this->options->JDynamic_Background() ?>`,
         WALLPAPER_BACKGROUND_PC: `<?php $this->options->JWallpaper_Background_PC() ?>`,
         IS_MOBILE: /windows phone|iphone|android/gi.test(window.navigator.userAgent),

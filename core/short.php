@@ -91,9 +91,5 @@ function _parseContent($post, $login)
         $content = preg_replace('/{copy([^}]*)\/}/SU', '<joe-copy $1></joe-copy>', $content);
     }
 
-
-
-
-    
     echo $content;
 }

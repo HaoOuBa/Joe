@@ -63,7 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	/* 激活图片预览功能 */
 	{
 		$('.joe_detail__article img:not(img.owo_image)').each(function () {
-			$(this).wrap($(`<span data-fancybox="Joe" href="${$(this).attr('src')}"></span>`));
+			$(this).wrap($(`<span style="display: block;" data-fancybox="Joe" href="${$(this).attr('src')}"></span>`));
 		});
 	}
 
