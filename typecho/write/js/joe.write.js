@@ -51,9 +51,9 @@ class Joe extends JoeAction {
 				extensions: [
 					...this.plugins,
 					markdown({
-						base: markdownLanguage,
+						base: markdownLanguage
 					}),
-					keymap.of([defaultTabBinding, ...defaultKeymap, ...historyKeymap, ...closeBracketsKeymap]),
+					keymap.of([defaultTabBinding, ...closeBracketsKeymap, ...defaultKeymap, ...historyKeymap]),
 					EditorView.updateListener.of(update => {
 						if (!update.docChanged) return;
 						if (_temp !== update.state.doc.toString()) {
