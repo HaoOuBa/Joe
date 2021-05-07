@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.post.min.css'); ?>">
-    <script src="<?php $this->options->themeUrl('assets/js/joe.post_page.min.js?v=20210430'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('assets/js/joe.post_page.min.js?v=20210507'); ?>"></script>
 </head>
 
 <body>
@@ -54,6 +54,7 @@
                     <?php endif; ?>
                     <?php $this->need('public/article.php'); ?>
                     <?php $this->need('public/handle.php'); ?>
+                    <?php $this->need('public/operate.php'); ?>
                     <?php $this->need('public/copyright.php'); ?>
                     <?php $this->need('public/related.php'); ?>
                 </div>

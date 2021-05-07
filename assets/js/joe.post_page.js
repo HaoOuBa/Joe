@@ -197,6 +197,17 @@ document.addEventListener('DOMContentLoaded', () => {
 			$('.joe_detail__article-video .episodes .item').first().click();
 		}
 	}
+
+	/* 分享 */
+	{
+		if ($('.joe_detail__operate-share').length) {
+			$('.joe_detail__operate-share > svg').on('click', e => {
+				e.stopPropagation();
+				$('.joe_detail__operate-share').toggleClass('active');
+			});
+			$(document).on('click', () => $('.joe_detail__operate-share').removeClass('active'));
+		}
+	}
 });
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */
