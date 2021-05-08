@@ -6,6 +6,12 @@ class Intercept
 {
     public static function message($comment)
     {
+        /* 校验验证码是否正确 */
+        $num1 = (int)Typecho_Request::getInstance()->num1;
+        $num2 = (int)Typecho_Request::getInstance()->num2;
+        $sum = (int)Typecho_Request::getInstance()->sum;
+        if ($num1 + $num2 !== $sum) throw new Typecho_Widget_Exception('计算结果有误，请检查！', 403);
+
         /* 用户输入内容画图模式 */
         if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
             /* 如果判断是否有双引号，如果有双引号，则禁止评论 */

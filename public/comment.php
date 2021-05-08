@@ -26,7 +26,13 @@
                             <input type="text" value="<?php $this->user->hasLogin() ? $this->user->mail() : $this->remember('mail') ?>" autocomplete="off" name="mail" placeholder="请输入邮箱..." />
                         </div>
                         <div class="list">
-                            <input type="text" value="<?php $this->remember('url'); ?>" autocomplete="off" name="url" placeholder="（选填）请输入网址..." />
+                            <?php
+                            $num1 = rand(1, 10);
+                            $num2 = rand(1, 10);
+                            ?>
+                            <input type="hidden" name="num1" value="<?php echo $num1 ?>">
+                            <input type="hidden" name="num2" value="<?php echo $num2 ?>">
+                            <input type="text" autocomplete="off" name="sum" placeholder="计算：<?php echo $num1 ?> + <?php echo $num2 ?> = ?" />
                         </div>
                     </div>
                     <div class="body">
