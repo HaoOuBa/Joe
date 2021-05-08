@@ -248,6 +248,28 @@ function _getParentReply($parent)
 	}
 }
 
+function _getHistoryToday($created)
+{
+	$date = date('m/d', $created);
+	$time = time();
+	$db = Typecho_Db::get();
+	$prefix = $db->getPrefix();
+	$sql = "SELECT * FROM `{$prefix}contents` WHERE DATE_FORMAT(FROM_UNIXTIME(created), '%m/%d') = '{$date}' and created <= {$time} and created != {$created} and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 5";
+	$result = $db->query($sql);
+	if ($result instanceof Traversable) {
+		foreach ($result as $item) {
+			$item = Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
+			$title = htmlspecialchars($item['title']);
+			$permalink = $item['permalink'];
+			echo "
+					<li class='item'>
+						<a class='link' href='{$permalink}' title='{$title}'>{$title}</a>
+					</li>
+				";
+		}
+	}
+}
+
 /* 获取侧边栏作者随机文章 */
 function _getAsideAuthorNav()
 {
