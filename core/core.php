@@ -29,6 +29,8 @@ function themeInit($self)
     Helper::options()->commentsRequireURL = false;
     /* 强制用户开启评论回复 */
     Helper::options()->commentsThreaded = true;
+    /* 强制回复楼层最高999层 */
+    Helper::options()->commentsMaxNestingLevels = 999;
     /* 主题开放API 路由规则 */
     $path_info = $self->request->getPathinfo();
 
