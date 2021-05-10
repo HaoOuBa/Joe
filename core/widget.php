@@ -40,3 +40,20 @@ class Widget_Contents_Sort extends Widget_Abstract_Contents
         );
     }
 }
+
+class Widget_Contents_Post extends Widget_Abstract_Contents
+{
+    public function execute()
+    {
+        $select = $this->select();
+        $select->cleanAttribute('fields');
+        $this->db->fetchAll(
+            $select
+                ->from('table.contents')
+                ->where('table.contents.type = ?', 'post')
+                ->where('table.contents.cid = ?', $this->parameter->cid)
+                ->limit(1),
+            array($this, 'push')
+        );
+    }
+}

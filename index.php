@@ -72,7 +72,7 @@
 							<?php if (sizeof($recommend) === 2) : ?>
 								<div class="joe_index__banner-recommend <?php echo sizeof($carousel) === 0 ? 'noswiper' : '' ?>">
 									<?php foreach ($recommend as $cid) : ?>
-										<?php $this->widget('Widget_Archive@' . $cid, 'pageSize=1&type=post', 'cid=' . $cid)->to($item); ?>
+										<?php $this->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item); ?>
 										<figure class="item">
 											<a class="thumbnail" href="<?php $item->permalink() ?>" title="<?php $item->title() ?>">
 												<img width="100%" height="100%" class="lazyload" src="<?php _getLazyload(); ?>" data-src="<?php echo _getThumbnails($item)[0]; ?>" alt="<?php $item->title() ?>" />

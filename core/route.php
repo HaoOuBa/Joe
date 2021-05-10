@@ -28,7 +28,7 @@ function _getRanking($self)
 /* 获取文章列表 已测试 √  */
 function _getPost($self)
 {
-    header("HTTP/1.1 200 OK");
+    header("HTTP/1.1 200 OK");  
     header('Access-Control-Allow-Origin:*');
     header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
 
@@ -54,7 +54,7 @@ function _getPost($self)
     if ($sticky_text && $page == 1) {
         $sticky_arr = explode("||", $sticky_text);
         foreach ($sticky_arr as $cid) {
-            $self->widget('Widget_Archive@' . $cid, 'pageSize=1&type=post', 'cid=' . $cid)->to($item);
+            $self->widget('Widget_Contents_Post@' . $cid, 'cid=' . $cid)->to($item);
             if ($item->next()) {
                 $result[] = array(
                     "mode" => $item->fields->mode ? $item->fields->mode : 'default',
@@ -101,7 +101,7 @@ function _handleViews($self)
     header("HTTP/1.1 200 OK");
     header('Access-Control-Allow-Origin:*');
     header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
-    $cid     = $self->request->cid;
+    $cid = $self->request->cid;
     /* sql注入校验 */
     if (!preg_match('/^\d+$/',  $cid)) {
         return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
