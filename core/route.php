@@ -1,30 +1,5 @@
 <?php
 
-/* 侧边栏热门排行榜 已测试 √ */
-function _getRanking($self)
-{
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
-    $ranking_txt = Helper::options()->JAside_Ranking;
-    $ranking_arr = explode("$", $ranking_txt);
-    $json = _curl("https://rank.the.top/v1/{$ranking_arr[1]}/1/9");
-    $res = json_decode($json, TRUE);
-    if ($res['code'] === 0) {
-        $self->response->throwJson([
-            "code" => 1,
-            "title" => $ranking_arr[0],
-            "data" => $res["data"]
-        ]);
-    } else {
-        $self->response->throwJson([
-            "code" => 0,
-            "title" => $ranking_arr[0],
-            "data" => null
-        ]);
-    }
-}
-
 /* 获取文章列表 已测试 √  */
 function _getPost($self)
 {

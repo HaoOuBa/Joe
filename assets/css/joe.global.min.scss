@@ -988,57 +988,70 @@
 				}
 			}
 		}
-		&.ranking {
+		&.today {
 			background: var(--background);
-			.item {
-				display: flex;
-				align-items: center;
-				line-height: 32px;
-				overflow: hidden;
-				&:nth-child(1) .sort {
-					color: #fe2d46;
-				}
-				&:nth-child(2) .sort {
-					color: #f60;
-				}
-				&:nth-child(3) .sort {
-					color: #faa90e;
-				}
-				.sort {
-					color: var(--minor);
-					font-weight: 700;
-					font-size: 18px;
-					width: 18px;
-					min-width: 18px;
-					max-width: 18px;
-				}
-				.link {
+			.joe_aside__item-contain {
+				.item {
 					position: relative;
-					color: var(--routine);
-					white-space: nowrap;
-					overflow: hidden;
-					text-overflow: ellipsis;
-					&::after {
+					.tail {
 						position: absolute;
-						content: '';
-						bottom: 0;
-						left: 0;
-						width: 0;
-						height: 1px;
-						background: var(--theme);
-						transition: width 0.5s;
+						left: 6px;
+						top: 0;
+						height: 100%;
+						border-left: 1px solid var(--classC);
 					}
-					&:hover {
-						color: var(--theme);
-						&::after {
-							width: 100%;
+					.head {
+						position: absolute;
+						width: 13px;
+						height: 13px;
+						border-radius: 50%;
+						background: var(--background);
+					}
+					.desc {
+						position: relative;
+						top: -2px;
+						padding-left: 24px;
+						padding-bottom: 15px;
+						time {
+							display: block;
+							font-weight: 600;
+							margin-bottom: 7px;
+						}
+						a {
+							display: block;
+							color: var(--routine);
+							white-space: nowrap;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							transition: color 0.25s;
+							font-size: 13px;
+							&:hover {
+								color: var(--theme);
+							}
+						}
+					}
+					&:nth-child(even) {
+						.head {
+							border: 1px solid #f48b29;
+						}
+						.desc {
+							color: #f48b29;
+						}
+					}
+					&:nth-child(odd) {
+						.head {
+							border: 1px solid #f05454;
+						}
+						.desc {
+							color: #f05454;
+						}
+					}
+					&:last-child {
+						.desc {
+							padding-bottom: 0;
 						}
 					}
 				}
-			}
-			.error {
-				text-align: center;
-				color: var(--routine);
 			}
 		}
 		&.newreply {

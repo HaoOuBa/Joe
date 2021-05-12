@@ -36,9 +36,6 @@ function themeInit($self)
 
     if ($path_info == "/joe/api") {
         switch ($self->request->routeType) {
-            case 'aside_ranking':
-                _getRanking($self);
-                break;
             case 'publish_list':
                 _getPost($self);
                 break;

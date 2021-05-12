@@ -154,35 +154,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
-	/* 激活侧边栏排行榜功能 */
-	{
-		if ($('.joe_aside__item.ranking').length) {
-			$.ajax({
-				url: Joe.BASE_API,
-				type: 'POST',
-				dataType: 'json',
-				data: { routeType: 'aside_ranking' },
-				success(res) {
-					$('.joe_aside__item.ranking .joe_aside__item-title .text').html(res.title);
-					let htmlStr = '';
-					if (res.code === 1) {
-						res.data.forEach((item, index) => {
-							htmlStr += `
-									<li class="item">
-										<span class="sort">${index + 1}</span>
-										<a class="link" href="${item.url}" title="${item.title}" target="_blank" rel="noopener noreferrer nofollow">${item.title}</a>
-									</li>
-								`;
-						});
-					} else {
-						htmlStr += `<li class="error">数据抓取异常！</li>`;
-					}
-					$('.joe_aside__item.ranking .joe_aside__item-contain').html(htmlStr);
-				}
-			});
-		}
-	}
-
 	/* 3d云标签 */
 	{
 		if ($('.joe_aside__item.tags').length) {

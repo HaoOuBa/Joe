@@ -37,6 +37,55 @@
     <?php if ($this->options->JCustomAside) : ?>
         <section class="joe_aside__item"><?php $this->options->JCustomAside() ?></section>
     <?php endif; ?>
+
+    <?php if ($this->options->JAside_History_Today === 'on') : ?>
+        <?php
+        $time = time();
+        $todayDate = date('m/d', $time);
+        $db = Typecho_Db::get();
+        $prefix = $db->getPrefix();
+        $sql = "SELECT * FROM `{$prefix}contents` WHERE DATE_FORMAT(FROM_UNIXTIME(created), '%m/%d') = '{$todayDate}' and created < {$time} and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 10";
+        $result = $db->query($sql);
+        $historyTodaylist = [];
+        if ($result instanceof Traversable) {
+            foreach ($result as $item) {
+                $item = Typecho_Widget::widget('Widget_Abstract_Contents')->push($item);
+                $historyTodaylist[] = array(
+                    "title" => htmlspecialchars($item['title']),
+                    "permalink" => $item['permalink'],
+                    "date" => $item['year'] . ' ' . $item['month'] . '/' . $item['day']
+                );
+            }
+        }
+        ?>
+        <?php if (count($historyTodaylist) > 0) : ?>
+            <section class="joe_aside__item today">
+                <div class="joe_aside__item-title">
+                    <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
+                        <path d="M701.217 207.026H304.974v26.713c0 17.809-13.357 33.391-33.391 33.391-17.81 0-33.392-13.356-33.392-33.39v-26.714h-91.27c-33.39 0-60.104 26.713-60.104 60.104v601.044c0 33.391 26.713 60.104 60.105 60.104h739.06a60.817 60.817 0 0 0 60.105-60.104V267.13c0-33.39-26.713-60.104-60.104-60.104h-120.21v26.713c0 17.809-13.356 33.391-33.39 33.391-17.81 0-33.392-13.356-33.392-33.39v-26.714zm64.557-64.556h120.209c69.008 0 124.66 55.652 124.66 124.66v601.044c0 33.391-13.356 64.556-35.617 89.043-22.26 22.261-55.652 35.618-89.043 35.618H146.922c-33.392 0-64.557-13.357-89.044-35.618-22.26-22.26-35.617-55.652-35.617-89.043V267.13c0-69.008 55.652-124.66 124.66-124.66h91.27V53.426c0-17.809 13.357-33.391 33.392-33.391 17.808 0 33.39 13.356 33.39 33.391v89.044h396.244V53.426c0-17.809 15.583-31.165 33.392-31.165S768 35.617 768 55.652v86.818zm0 0" />
+                        <path d="M471.93 460.8c46.748 20.035 91.27 44.522 129.113 73.46l-26.713 44.523c-42.295-31.166-86.817-57.879-129.113-75.687L471.93 460.8zm-153.6 129.113h396.244v40.07c-33.391 89.043-106.852 155.826-215.93 202.574l-35.618-46.748c91.27-35.618 153.6-84.592 189.217-149.148H318.33v-46.748zm180.313-269.356h37.844c66.783 75.686 149.148 135.79 240.417 180.313l-26.713 48.973c-91.27-46.747-166.956-106.852-231.513-180.313-57.878 69.01-135.791 129.113-231.513 180.313l-26.713-48.973c93.496-46.748 173.635-109.079 238.191-180.313zm0 0" />
+                    </svg>
+                    <span class="text">那年今日</span>
+                    <span class="line"></span>
+                </div>
+                <ul class="joe_aside__item-contain">
+                    <?php foreach ($historyTodaylist as $item) : ?>
+                        <li class="item">
+                            <div class="tail"></div>
+                            <div class="head"></div>
+                            <div class="desc">
+                                <time datetime="<?php echo $item['date'] ?>"><?php echo $item['date'] ?></time>
+                                <a href="<?php echo $item['permalink'] ?>" title="<?php echo $item['title'] ?>">
+                                    <?php echo $item['title'] ?>
+                                </a>
+                            </div>
+                        </li>
+                    <?php endforeach; ?>
+                </ul>
+            </section>
+        <?php endif; ?>
+    <?php endif; ?>
+
     <?php if ($this->options->JAside_Hot_Num && $this->options->JAside_Hot_Num !== 'off') : ?>
         <section class="joe_aside__item hot">
             <div class="joe_aside__item-title">
@@ -102,21 +151,6 @@
                 <?php else : ?>
                     <li class="empty">人气很差！一条回复没有！</li>
                 <?php endif; ?>
-            </ul>
-        </section>
-    <?php endif; ?>
-    <?php if ($this->options->JAside_Ranking && $this->options->JAside_Ranking !== 'off') : ?>
-        <section class="joe_aside__item ranking">
-            <div class="joe_aside__item-title">
-                <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
-                    <path d="M939.855 202.778H832.418V124.41A124.32 124.32 0 0 0 708.368 0H315.27a124.411 124.411 0 0 0-124.05 124.411v78.367H83.874A84.145 84.145 0 0 0 0 286.922C0 410.07 82.249 486.36 194.562 519.403a321.862 321.862 0 0 0 281.415 273.47v158.9H308.68a36.114 36.114 0 0 0 0 72.227h406.277a36.114 36.114 0 0 0 0-72.227H547.662v-158.9a321.682 321.682 0 0 0 281.415-273.47C941.39 486.36 1023.73 410.07 1023.73 286.923a84.145 84.145 0 0 0-83.874-84.145zM67.442 286.922a16.612 16.612 0 0 1 16.432-16.07H191.22v175.602c-72.678-31.148-123.779-75.477-123.779-159.532zM511.82 727.237a254.15 254.15 0 0 1-252.794-253.969V124.411a56.698 56.698 0 0 1 56.246-56.698h393.096a56.698 56.698 0 0 1 56.608 56.698v348.857a254.15 254.15 0 0 1-252.794 253.969zm320.599-280.783V270.852h107.437a16.612 16.612 0 0 1 16.342 16.431c0 83.694-51.1 128.023-123.78 159.17z" />
-                    <path d="M696.54 469.476a33.676 33.676 0 0 0-43.426 19.772 153.483 153.483 0 0 1-92.541 90.284 33.856 33.856 0 0 0 11.014 65.817 32.954 32.954 0 0 0 10.925-1.805 218.938 218.938 0 0 0 133.71-130.641 33.856 33.856 0 0 0-19.682-43.427zm-179.123-311.57l-2.438 2.71a163.956 163.956 0 0 1-33.856 27.084 183.999 183.999 0 0 1-39.815 16.342l-6.41 1.625v64.914l10.743-3.07a180.568 180.568 0 0 0 55.254-25.911v223.272h64.282V157.907z" />
-                </svg>
-                <span class="text">loading...</span>
-                <span class="line"></span>
-            </div>
-            <ul class="joe_aside__item-contain">
-                <li class="error">数据获取中...</li>
             </ul>
         </section>
     <?php endif; ?>

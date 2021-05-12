@@ -479,100 +479,6 @@ function themeConfig($form)
     $JAside_Newreply_Status->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Newreply_Status->multiMode());
     /* --------------------------------------- */
-    $JAside_Ranking = new Typecho_Widget_Helper_Form_Element_Select(
-        'JAside_Ranking',
-        array(
-            'off' => '关闭（默认）',
-            '知乎全站排行榜$zhihu_total' => '知乎全站排行榜',
-            '知乎科学排行榜$zhihu_science' => '知乎科学排行榜',
-            '知乎数码排行榜$zhihu_digital' => '知乎数码排行榜',
-            '知乎体育排行榜$zhihu_sport' => '知乎体育排行榜',
-            '知乎时尚排行榜$zhihu_fashion' => '知乎时尚排行榜',
-            '微博热搜榜$weibo' => '微博热搜榜',
-            '微博新闻榜$weibo_news' => '微博新闻榜',
-            '360实时热点$so_hotnews' => '360实时热点',
-            '百度实时热点$baidu_ssrd' => '百度实时热点',
-            '百度今日热点$baidu_today' => '百度今日热点',
-            '百度七日热点$baidu_week' => '百度七日热点',
-            '百度体育热点$baidu_sport' => '百度体育热点',
-            '百度娱乐热点$baidu_yule' => '百度娱乐热点',
-            '百度民生热点$baidu_minsheng' => '百度民生热点',
-            '历史今天$lssdjt' => '历史今天',
-            '网易24H新闻点击榜$t_en_dianji' => '网易24H新闻点击榜',
-            '网易今日跟贴榜$t_en_today' => '网易今日跟贴榜',
-            '网易1小时前点击榜$t_en_hour' => '网易1小时前点击榜',
-            '网易娱乐跟贴榜$t_en_yule' => '网易娱乐跟贴榜',
-            'CNBA点击榜$cnbeta_hot' => 'CNBA点击榜',
-            'CNBA评论榜$cnbeta_comment' => 'CNBA评论榜',
-            '虎嗅热文榜$huxiu' => '虎嗅热文榜',
-            'IT之家24H最热榜$ithome_day' => 'IT之家24H最热榜',
-            'IT之家一周最热榜$ithome_week' => 'IT之家一周最热榜',
-            'IT之家月度热文榜$ithome_month' => 'IT之家月度热文榜',
-            '36KR人气榜$kr_renqi' => '36KR人气榜',
-            '36KR收藏榜$kr_shoucang' => '36KR收藏榜',
-            '36KR综合榜$kr_zonghe' => '36KR综合榜',
-            '少数派热文榜$sspai' => '少数派热文榜',
-            '豆瓣新片榜$douban_day' => '豆瓣新片榜',
-            '豆瓣口碑榜$douban_week' => '豆瓣口碑榜',
-            '豆瓣北美榜$douban_na' => '豆瓣北美榜',
-            '豆瓣京东畅销榜$douban_jd' => '豆瓣京东畅销榜',
-            '豆瓣当当畅销榜$douban_dd' => '豆瓣当当畅销榜',
-            '观察者24H最热榜$guancha_day' => '观察者24H最热榜',
-            '观察者3天最热榜$guancha_three' => '观察者3天最热榜',
-            '观察者一周最热榜$guancha_week' => '观察者一周最热榜',
-            '晋江文学月排行榜$jjwxc_month' => '晋江文学月排行榜',
-            '晋江文学季度榜$jjwxc_quater' => '晋江文学季度榜',
-            '晋江文学总分榜$jjwxc_rank' => '晋江文学总分榜',
-            '澎湃热门新闻榜$ppnews_day' => '澎湃热门新闻榜',
-            '澎湃3天最热新闻榜$ppnews_three' => '澎湃3天最热新闻榜',
-            '澎湃一周最热新闻榜$ppnews_week' => '澎湃一周最热新闻榜',
-            '起点24小时畅销榜$qidian_day' => '起点24小时畅销榜',
-            '起点周阅读指数榜$qidian_week' => '起点周阅读指数榜',
-            '起点风云榜$qidian_fy' => '起点风云榜',
-            '爱范儿热文排行榜$ifanr' => '爱范儿热文排行榜',
-            'ACFun日榜$acfun_day' => 'ACFun日榜',
-            'ACFun三日榜$acfun_three_days' => 'ACFun三日榜',
-            'ACFun三日榜$acfun_three_days' => 'ACFun三日榜',
-            'ACFun七日榜$acfun_week' => 'ACFun七日榜',
-            'ACFun七日榜$acfun_week' => 'ACFun七日榜',
-            '腾讯视频热门榜$qq_v' => '腾讯视频热门榜',
-            'bilibili排行榜$bsite' => 'bilibili排行榜',
-            'V2EX热门榜$vsite' => 'V2EX热门榜',
-            '52破解热门榜$t_pj_hot' => '52破解热门榜',
-            '52破解人气榜$t_pj_renqi' => '52破解人气榜',
-            '52破解精品榜$t_pj_soft' => '52破解精品榜',
-            '抖音视频榜$t_dy_hot' => '抖音视频榜',
-            '抖音正能量榜$t_dy_right' => '抖音正能量榜',
-            '抖音搜索榜$t_dy_s' => '抖音搜索榜',
-            '汽车之家热门榜$t_auto_art' => '汽车之家热门榜',
-            '汽车之家3日最热榜$t_auto_video' => '汽车之家3日最热榜',
-            '今日头条周热榜$t_tt_week' => '今日头条周热榜',
-            '看看新闻热点榜$kankan' => '看看新闻热点榜',
-            '新京报今日热门榜$xingjing' => '新京报今日热门榜',
-            '新京报本周热门榜$xingjing_week' => '新京报本周热门榜',
-            '新京报本月热门榜$xingjing_month' => '新京报本月热门榜',
-            'Zaker新闻榜$zaker' => 'Zaker新闻榜',
-            '雪球话题榜$xueqiu' => '雪球话题榜',
-            '天涯论坛热帖榜$tianya_retie' => '天涯论坛热帖榜',
-            '钛媒体热文榜$tmtpost' => '钛媒体热文榜',
-            'techweb排行榜$techweb' => 'techweb排行榜',
-            '爱卡汽车热点榜$xcar_ssrd' => '爱卡汽车热点榜',
-            '爱卡汽车人气榜$xcar_rq' => '爱卡汽车人气榜',
-            '爱卡汽车关注榜$xcar_gz' => '爱卡汽车关注榜',
-            '太平洋汽车热文榜$pcauto_art' => '太平洋汽车热文榜',
-            '太平洋汽车热贴榜$pcauto_tie' => '太平洋汽车热贴榜',
-            '新浪点击榜$sina_dj' => '新浪点击榜',
-            '新浪评论榜$sina_pl' => '新浪评论榜',
-            '新浪视频榜$sina_vd' => '新浪视频榜',
-            '新浪图片榜$sina_pic' => '新浪图片榜'
-        ),
-        'off',
-        '是否开启排行榜栏 - PC',
-        '介绍：用于控制是否开启排行榜栏'
-    );
-    $JAside_Ranking->setAttribute('class', 'joe_content joe_aside');
-    $form->addInput($JAside_Ranking->multiMode());
-    /* --------------------------------------- */
     $JAside_Weather_Key = new Typecho_Widget_Helper_Form_Element_Text(
         'JAside_Weather_Key',
         NULL,
@@ -650,6 +556,20 @@ function themeConfig($form)
     );
     $JAside_Flatterer->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Flatterer->multiMode());
+    /* --------------------------------------- */
+    $JAside_History_Today = new Typecho_Widget_Helper_Form_Element_Select(
+        'JAside_History_Today',
+        array(
+            'off' => '关闭（默认）',
+            'on' => '开启'
+        ),
+        'off',
+        '是否开启那年今日 - PC',
+        '介绍：用于设置侧边栏是否显示往年今日的文章 <br />
+         其他：如果往年今日有文章则显示，没有则不显示！'
+    );
+    $JAside_History_Today->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_History_Today->multiMode());
 
 
     $JThumbnail = new Typecho_Widget_Helper_Form_Element_Textarea(
