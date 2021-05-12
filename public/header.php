@@ -187,8 +187,8 @@
                 <?php endwhile; ?>
             </nav>
             <div class="joe_header__below-sign">
-                <div class="joe_dropdown" trigger="click">
-                    <?php if ($this->user->hasLogin()) : ?>
+                <?php if ($this->user->hasLogin()) : ?>
+                    <div class="joe_dropdown" trigger="click">
                         <div class="joe_dropdown__link">
                             <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
                                 <path d="M231.594 610.125C135.087 687.619 71.378 804.28 64.59 935.994c-.373 7.25 3.89 23.307 30.113 23.307s33.512-16.06 33.948-23.301c6.861-114.025 63.513-214.622 148.5-280.346 3.626-2.804 16.543-17.618 3.24-39.449-13.702-22.483-40.863-12.453-48.798-6.08zm280.112-98.44v63.96c204.109 0 370.994 159.345 383.06 360.421.432 7.219 8.649 23.347 32.44 23.347s31.991-16.117 31.62-23.342c-12.14-236.422-207.676-424.386-447.12-424.386z" />
@@ -197,7 +197,7 @@
                             </svg>
                             <span><?php $this->user->screenName(); ?></span>
                         </div>
-                        <nav class="joe_dropdown__menu list">
+                        <nav class="joe_dropdown__menu">
                             <?php if ($this->user->group == 'administrator' || $this->user->group == 'editor' || $this->user->group == 'contributor') : ?>
                                 <a rel="noopener noreferrer nofollow" target="_balnk" href="<?php $this->options->adminUrl("manage-posts.php"); ?>">管理文章</a>
                             <?php endif; ?>
@@ -210,28 +210,21 @@
                             <a rel="noopener noreferrer nofollow" target="_balnk" href="<?php $this->options->adminUrl(); ?>">进入后台</a>
                             <a rel="noopener noreferrer nofollow" href="<?php $this->options->logoutUrl(); ?>">退出登录</a>
                         </nav>
-                    <?php else : ?>
-                        <div class="joe_dropdown__link">
-                            <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="16" height="16">
-                                <path d="M929.792 340.48c-22.016-52.224-53.76-99.328-94.208-139.776s-88.064-72.192-140.288-94.72c-54.272-23.04-112.128-34.816-171.52-34.816-77.312 0-153.6 20.48-220.16 58.88-15.36 8.704-20.48 28.16-11.776 43.52 8.704 15.36 28.16 20.48 43.52 11.776 56.832-32.768 121.856-50.176 188.416-50.176 100.352 0 195.072 38.912 266.24 110.08s110.08 165.888 110.08 266.24-38.912 195.072-110.08 266.24-165.888 110.08-266.24 110.08c-66.048 0-131.072-17.408-188.416-50.176-15.36-8.704-34.816-3.584-43.52 11.776s-3.584 34.816 11.776 43.52c66.56 38.4 142.848 58.88 220.16 58.88 59.392 0 117.248-11.776 171.52-34.816 52.224-22.016 99.328-53.76 140.288-94.208 40.448-40.448 72.192-87.552 94.208-140.288 23.04-54.272 34.816-112.128 34.816-171.52s-11.776-116.224-34.816-170.496z" />
-                                <path d="M426.496 691.712c-12.288 12.288-12.288 32.768 0 45.056 6.144 6.144 14.336 9.216 22.528 9.216s16.384-3.072 22.528-9.216l202.24-202.24c2.56-2.56 4.608-5.632 6.144-8.704l.512-1.536c0-.512.512-1.024.512-1.536s.512-.512.512-1.024v-.512c0-.512 0-.512.512-1.024V502.272c0-.512 0-.512-.512-1.024v-.512c0-.512 0-.512-.512-1.024v-.512c0-.512 0-.512-.512-1.024v-.512c0-.512-.512-.512-.512-1.024v-.512c0-.512-.512-.512-.512-1.024v-.512l-.512-.512s0-.512-.512-.512c0-.512-.512-.512-.512-1.024 0 0 0-.512-.512-.512l-.512-.512-.512-.512-.512-.512-1.024-1.024L472.064 286.72c-12.288-12.288-32.768-12.288-45.056 0-12.288 12.288-12.288 32.768 0 45.056l147.968 147.968H147.968c-17.92 0-31.744 14.336-31.744 31.744s14.336 31.744 31.744 31.744h426.496l-147.968 148.48z" />
-                            </svg>
-                            <span>登录</span>
-                        </div>
-                        <form class="joe_dropdown__menu form" method="post" name="login" action="<?php $this->options->loginAction() ?>">
-                            <input type="hidden" name="referer" value="<?php $this->options->siteUrl(); ?>">
-                            <div class="item">
-                                <div class="label">用户名</div>
-                                <input class="username" placeholder="请输入用户名" type="text" maxlength="16" name="name" autocomplete="off" />
-                            </div>
-                            <div class="item">
-                                <div class="label">密码</div>
-                                <input class="password" placeholder="请输入密码" type="password" maxlength="16" name="password" autocomplete="off" />
-                            </div>
-                            <button type="button">登 录</button>
-                        </form>
-                    <?php endif; ?>
-                </div>
+                    </div>
+                <?php else : ?>
+                    <div class="item">
+                        <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
+                            <path d="M710.698 299a213.572 213.572 0 1 0-213.572 213.954A213.572 213.572 0 0 0 710.698 299zm85.429 0a299.382 299.382 0 1 1-299-299 299 299 0 0 1 299 299z" />
+                            <path d="M114.223 1024a46.91 46.91 0 0 1-46.91-46.91 465.281 465.281 0 0 1 468.332-460.704 475.197 475.197 0 0 1 228.827 58.35 46.91 46.91 0 1 1-45.384 82.378 381.378 381.378 0 0 0-183.443-46.909 371.08 371.08 0 0 0-374.131 366.886A47.29 47.29 0 0 1 114.223 1024zM944.483 755.129a38.138 38.138 0 0 0-58.733 0l-146.449 152.55-92.675-91.53a38.138 38.138 0 0 0-58.732 0 43.858 43.858 0 0 0 0 61.402l117.083 122.422a14.492 14.492 0 0 0 8.39 4.577c4.196 0 4.196 4.195 8.39 4.195h32.037c4.195 0 4.195-4.195 8.39-4.195s4.195-4.577 8.39-4.577L946.39 816.15a48.054 48.054 0 0 0-1.906-61.02z" />
+                            <path d="M763.328 776.104L730.53 744.45a79.708 79.708 0 0 0 32.798 31.654" />
+                        </svg>
+                        <a href="<?php $this->options->adminUrl('login.php'); ?>" target="_blank" rel="noopener noreferrer nofollow">登录</a>
+                        <?php if ($this->options->allowRegister) : ?>
+                            <span class="split">/</span>
+                            <a href="<?php $this->options->adminUrl('register.php'); ?>" target="_blank" rel="noopener noreferrer nofollow">注册</a>
+                        <?php endif; ?>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
         <div class="joe_header__below-progress"></div>
