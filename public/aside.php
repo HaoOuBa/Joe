@@ -44,7 +44,7 @@
         $todayDate = date('m/d', $time);
         $db = Typecho_Db::get();
         $prefix = $db->getPrefix();
-        $sql = "SELECT * FROM `{$prefix}contents` WHERE DATE_FORMAT(FROM_UNIXTIME(created), '%m/%d') = '{$todayDate}' and created < {$time} and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 10";
+        $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} and FROM_UNIXTIME(created, '%m/%d') = '{$todayDate}' and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 10";
         $result = $db->query($sql);
         $historyTodaylist = [];
         if ($result instanceof Traversable) {
