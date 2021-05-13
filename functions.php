@@ -847,6 +847,16 @@ function themeConfig($form)
     $JCommentMailHost->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JCommentMailHost->multiMode());
 
+    $JCommentSMTPSecure = new Typecho_Widget_Helper_Form_Element_Select(
+        'JCommentSMTPSecure',
+        array('ssl' => 'ssl（默认）', 'tsl' => 'tsl'),
+        'ssl',
+        '加密方式',
+        '介绍：用于选择登录鉴权加密方式'
+    );
+    $JCommentSMTPSecure->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JCommentSMTPSecure->multiMode());
+
     $JCommentMailPort = new Typecho_Widget_Helper_Form_Element_Text(
         'JCommentMailPort',
         NULL,

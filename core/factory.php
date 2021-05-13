@@ -53,7 +53,8 @@ if (
     Helper::options()->JCommentMailPort &&
     Helper::options()->JCommentMailFromName &&
     Helper::options()->JCommentMailAccount &&
-    Helper::options()->JCommentMailPassword
+    Helper::options()->JCommentMailPassword &&
+    Helper::options()->JCommentSMTPSecure
 ) {
     Typecho_Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
 }
@@ -65,8 +66,8 @@ class Email
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'ssl';
         $mail->CharSet = 'UTF-8';
+        $mail->SMTPSecure = Helper::options()->JCommentSMTPSecure;
         $mail->Host = Helper::options()->JCommentMailHost;
         $mail->Port = Helper::options()->JCommentMailPort;
         $mail->FromName = Helper::options()->JCommentMailFromName;
