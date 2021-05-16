@@ -13,7 +13,7 @@ class Intercept
         $sum = (int)Typecho_Request::getInstance()->sum;
         if (!$sum) throw new Typecho_Widget_Exception('请输入计算结果！', 403);
         session_start();
-        if ($sum !== $_SESSION['commentCode']) throw new Typecho_Widget_Exception('计算结果有误，请检查！', 403);
+        if ($sum != $_SESSION['commentCode']) throw new Typecho_Widget_Exception('计算结果有误，请检查！', 403);
 
         /* 用户输入内容画图模式 */
         if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
