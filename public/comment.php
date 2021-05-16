@@ -27,11 +27,11 @@
                         </div>
                         <div class="list">
                             <?php
+                            session_start();
                             $num1 = rand(1, 10);
                             $num2 = rand(1, 10);
+                            $_SESSION['commentCode'] =  $num1 + $num2;
                             ?>
-                            <input type="hidden" name="num1" value="<?php echo $num1 ?>">
-                            <input type="hidden" name="num2" value="<?php echo $num2 ?>">
                             <input type="text" autocomplete="off" name="sum" placeholder="计算：<?php echo $num1 ?> + <?php echo $num2 ?> = ?" />
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                         <div class="owo joe_owo__contain"></div>
                         <div class="submit">
                             <span class="cancle joe_comment__cancle">取消</span>
-                            <button type="submit">发表评论</button>
+                            <button type="submit">发送评论</button>
                         </div>
                     </div>
                 </form>

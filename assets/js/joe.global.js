@@ -328,17 +328,12 @@ document.addEventListener('DOMContentLoaded', () => {
 				const parent = $('.joe_comment__respond-form').attr('data-coid');
 				const author = $(".joe_comment__respond-form .head input[name='author']").val();
 				const mail = $(".joe_comment__respond-form .head input[name='mail']").val();
-				/*  -- 验证码 -- */
-				const num1 = $(".joe_comment__respond-form .head input[name='num1']").val();
-				const num2 = $(".joe_comment__respond-form .head input[name='num2']").val();
-				const sum = $(".joe_comment__respond-form .head input[name='sum']").val();
-				/* -- 验证码 -- */
 				let text = $(".joe_comment__respond-form .body textarea[name='text']").val();
 				if (author.trim() === '') return Qmsg.info('请输入昵称！');
 				if (!/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(mail)) return Qmsg.info('请输入正确的邮箱！');
 				/* -- 验证码前端校验 -- */
+				const sum = $(".joe_comment__respond-form .head input[name='sum']").val();
 				if (sum.trim() === '') return Qmsg.info('请输入计算结果！');
-				if (Number(num1) + Number(num2) !== Number(sum)) return Qmsg.info('计算结果有误，请检查！');
 				/* -- 验证码前端校验 -- */
 				if (type === 'text' && text.trim() === '') return Qmsg.info('请输入评论内容！');
 				if (type === 'draw') {
@@ -351,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$.ajax({
 					url,
 					type: 'POST',
-					data: { author, mail, text, parent, num1, num2, sum },
+					data: { author, mail, text, parent, sum },
 					dataType: 'text',
 					success(res) {
 						let arr = [],
@@ -367,6 +362,11 @@ document.addEventListener('DOMContentLoaded', () => {
 						} else {
 							window.location.reload();
 						}
+					},
+					error() {
+						isSubmit = false
+						$('.joe_comment__respond-form .foot .submit button').html('发表评论');
+						Qmsg.warning('发送失败！请刷新重试！')
 					}
 				});
 			});
