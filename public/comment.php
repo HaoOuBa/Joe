@@ -27,7 +27,7 @@
                         </div>
                         <div class="list captcha">
                             <input maxlength="4" type="text" autocomplete="off" name="captcha" placeholder="请输入验证码..." />
-                            <img style="cursor: pointer;" src="<?php $this->options->themeUrl('core/captcha.php'); ?>" onclick="this.src = this.src">
+                            <img style="cursor: pointer; margin-right: 5px;" src="<?php $this->options->themeUrl('core/captcha.php'); ?>" onclick="this.src = this.src">
                         </div>
                     </div>
                     <div class="body">
