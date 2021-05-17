@@ -25,14 +25,9 @@
                         <div class="list">
                             <input type="text" value="<?php $this->user->hasLogin() ? $this->user->mail() : $this->remember('mail') ?>" autocomplete="off" name="mail" placeholder="请输入邮箱..." />
                         </div>
-                        <div class="list">
-                            <?php
-                            session_start();
-                            $num1 = rand(1, 10);
-                            $num2 = rand(1, 10);
-                            $_SESSION['commentCode'] =  $num1 + $num2;
-                            ?>
-                            <input type="text" autocomplete="off" name="sum" placeholder="计算：<?php echo $num1 ?> + <?php echo $num2 ?> = ?" />
+                        <div class="list captcha">
+                            <input maxlength="4" type="text" autocomplete="off" name="captcha" placeholder="请输入验证码..." />
+                            <img style="cursor: pointer;" src="<?php $this->options->themeUrl('core/captcha.php'); ?>" onclick="this.src = this.src">
                         </div>
                     </div>
                     <div class="body">

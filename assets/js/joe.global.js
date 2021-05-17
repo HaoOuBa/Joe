@@ -332,8 +332,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				if (author.trim() === '') return Qmsg.info('请输入昵称！');
 				if (!/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(mail)) return Qmsg.info('请输入正确的邮箱！');
 				/* -- 验证码前端校验 -- */
-				const sum = $(".joe_comment__respond-form .head input[name='sum']").val();
-				if (sum.trim() === '') return Qmsg.info('请输入计算结果！');
+				const captcha = $(".joe_comment__respond-form .head input[name='captcha']").val();
+				if (captcha.trim() === '') return Qmsg.info('请输入验证码！');
 				/* -- 验证码前端校验 -- */
 				if (type === 'text' && text.trim() === '') return Qmsg.info('请输入评论内容！');
 				if (type === 'draw') {
@@ -346,7 +346,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$.ajax({
 					url,
 					type: 'POST',
-					data: { author, mail, text, parent, sum },
+					data: { author, mail, text, parent, captcha },
 					dataType: 'text',
 					success(res) {
 						let arr = [],

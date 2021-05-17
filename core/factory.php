@@ -10,10 +10,10 @@ class Intercept
     public static function message($comment)
     {
         /* 校验验证码是否正确 */
-        $sum = (int)Typecho_Request::getInstance()->sum;
-        if (!$sum) throw new Typecho_Widget_Exception('请输入计算结果！', 403);
         session_start();
-        if ($sum != $_SESSION['commentCode']) throw new Typecho_Widget_Exception('计算结果有误，请检查！', 403);
+        $captcha = (int)Typecho_Request::getInstance()->captcha;
+        if (!$captcha) throw new Typecho_Widget_Exception('请输入验证码！', 403);
+        if ($captcha != $_SESSION['captcha']) throw new Typecho_Widget_Exception('验证码错误，请检查！', 403);
 
         /* 用户输入内容画图模式 */
         if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
