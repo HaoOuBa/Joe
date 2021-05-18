@@ -345,6 +345,19 @@ function themeConfig($form)
     $JCustomFont->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JCustomFont);
 
+    $JCustomAvatarSource = new Typecho_Widget_Helper_Form_Element_Text(
+        'JCustomAvatarSource',
+        NULL,
+        NULL,
+        '自定义头像源（非必填）',
+        '介绍：用于修改全站头像源地址 <br>
+         例如：https://gravatar.ihuan.me/avatar/ <br>
+         其他：非必填，默认头像源为禾令奇 <br>
+         注意：填写时，务必保证最后有一个/字符，否则不起作用！'
+    );
+    $JCustomAvatarSource->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JCustomAvatarSource);
+
     $JAside_Author_Nick = new Typecho_Widget_Helper_Form_Element_Text(
         'JAside_Author_Nick',
         NULL,
