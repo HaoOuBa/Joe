@@ -2,7 +2,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-	return "7.0.2";
+	return "7.0.3";
 };
 
 /* 判断是否是手机 */
@@ -278,12 +278,14 @@ function _curl($url)
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, 3000);
+	curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
 	if (strpos($url, 'https') !== false) {
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 	}
 	curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.190 Safari/537.36');
-	curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 	$result = curl_exec($ch);
 	curl_close($ch);
 	return $result;

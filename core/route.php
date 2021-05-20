@@ -313,7 +313,9 @@ function _getServerStatus($self)
     $request_token = md5($request_time . '' . md5($api_sk));
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $api_panel . '/system?action=GetNetWork');
-    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
+	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, 3000);
+	curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS,  array("request_time" => $request_time, "request_token" => $request_token));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
