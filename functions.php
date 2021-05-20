@@ -502,7 +502,8 @@ function themeConfig($form)
         ),
         'off',
         '是否开启最新回复栏 - PC',
-        '介绍：用于控制是否开启最新回复栏'
+        '介绍：用于控制是否开启最新回复栏 <br>
+         注意：如果您关闭了全站评论，将不会显示最新回复！'
     );
     $JAside_Newreply_Status->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JAside_Newreply_Status->multiMode());
