@@ -64,6 +64,9 @@ function themeInit($self)
             case 'server_status':
                 _getServerStatus($self);
                 break;
+            case 'comment_lately':
+                _getCommentLately($self);
+                break;
         };
     }
 

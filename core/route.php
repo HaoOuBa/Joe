@@ -314,8 +314,8 @@ function _getServerStatus($self)
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $api_panel . '/system?action=GetNetWork');
     curl_setopt($ch, CURLOPT_NOSIGNAL, 1);
-	curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, 3000);
-	curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, 3000);
+    curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
     curl_setopt($ch, CURLOPT_POST, 1);
     curl_setopt($ch, CURLOPT_POSTFIELDS,  array("request_time" => $request_time, "request_token" => $request_token));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
@@ -326,18 +326,43 @@ function _getServerStatus($self)
     curl_close($ch);
     $self->response->throwJson(array(
         /* 上行流量KB */
-        "up" => $response["up"],
+        "up" => $response["up"] ? $response["up"] : 0,
         /* 下行流量KB */
-        "down" => $response["down"],
+        "down" => $response["down"] ? $response["down"] : 0,
         /* 总发送（字节数） */
-        "upTotal" => $response["upTotal"],
+        "upTotal" => $response["upTotal"] ? $response["upTotal"] : 0,
         /* 总接收（字节数） */
-        "downTotal" => $response["downTotal"],
+        "downTotal" => $response["downTotal"] ? $response["downTotal"] : 0,
         /* 内存占用 */
-        "memory" => $response["mem"],
+        "memory" => $response["mem"] ? $response["mem"] : ["memBuffers" => 0, "memCached" => 0, "memFree" => 0, "memRealUsed" => 0, "memTotal" => 0],
         /* CPU */
-        "cpu" => $response["cpu"],
+        "cpu" => $response["cpu"] ? $response["cpu"] : [0, 0, [0], 0, 0, 0],
         /* 系统负载 */
-        "load" => $response["load"],
+        "load" => $response["load"] ? $response["load"] : ["fifteen" => 0, "five" => 0, "limit" => 0, "max" => 0, "one" => 0, "safe" => 0],
     ));
+}
+
+function _getCommentLately($self)
+{
+    header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+    $time = time();
+    $num = 7;
+    $categories = [];
+    $series = [];
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+    for ($i = 0; $i < $num; $i++) {
+        $date = date('Y/m/d', strtotime('+' . $i - ($num - 1) . ' days', $time));
+        $sql = "SELECT coid FROM `{$prefix}comments` WHERE FROM_UNIXTIME(created, '%Y/%m/%d') = '{$date}' limit 100";
+        $count = count($db->fetchAll($sql));
+        $categories[] = $date;
+        $series[] = $count;
+    }
+    /* 抛出JSON */
+    $self->response->throwJson([
+        "categories" => $categories,
+        "series" => $series
+    ]);
 }
