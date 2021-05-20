@@ -62,6 +62,21 @@ function themeConfig($form)
     $JLogo->setAttribute('class', 'joe_content joe_image');
     $form->addInput($JLogo);
 
+    $JCommentStatus = new Typecho_Widget_Helper_Form_Element_Select(
+        'JCommentStatus',
+        array(
+            'on' => '开启（默认）',
+            'off' => '关闭'
+        ),
+        '3',
+        '开启或关闭全站评论',
+        '介绍：用于一键开启关闭所有页面的评论 <br>
+         注意：此处的权重优先级最高 <br>
+         若关闭此项而文章内开启评论，评论依旧为关闭状态'
+    );
+    $JCommentStatus->setAttribute('class', 'joe_content joe_global');
+    $form->addInput($JCommentStatus->multiMode());
+
     $JNavMaxNum = new Typecho_Widget_Helper_Form_Element_Select(
         'JNavMaxNum',
         array(
