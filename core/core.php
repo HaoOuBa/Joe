@@ -21,8 +21,6 @@ _startCountTime();
 /* 主题初始化 */
 function themeInit($self)
 {
-    /* 强制用户关闭反垃圾保护 */
-    Helper::options()->commentsAntiSpam = false;
     /* 强制用户要求填写邮箱 */
     Helper::options()->commentsRequireMail = true;
     /* 强制用户要求无需填写url */
@@ -62,6 +60,9 @@ function themeInit($self)
                 break;
             case 'huya_list':
                 _getHuyaList($self);
+                break;
+            case 'server_status':
+                _getServerStatus($self);
                 break;
         };
     }

@@ -12,7 +12,7 @@
         </div>
     <?php else : ?>
         <?php if ($this->allow('comment')) : ?>
-            <div class="joe_comment__respond">
+            <div id="<?php $this->respondId(); ?>" class="joe_comment__respond">
                 <div class="joe_comment__respond-type">
                     <button class="item" data-type="draw">画图模式</button>
                     <button class="item active" data-type="text">文本模式</button>

@@ -327,6 +327,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				const type = $('.joe_comment__respond-form').attr('data-type');
 				const parent = $('.joe_comment__respond-form').attr('data-coid');
 				const author = $(".joe_comment__respond-form .head input[name='author']").val();
+				const _ = $(".joe_comment__respond-form input[name='_']").val();
 				const mail = $(".joe_comment__respond-form .head input[name='mail']").val();
 				let text = $(".joe_comment__respond-form .body textarea[name='text']").val();
 				if (author.trim() === '') return Qmsg.info('请输入昵称！');
@@ -346,7 +347,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				$.ajax({
 					url,
 					type: 'POST',
-					data: { author, mail, text, parent, captcha },
+					data: { author, mail, text, parent, captcha, _ },
 					dataType: 'text',
 					success(res) {
 						let arr = [],
@@ -364,9 +365,9 @@ document.addEventListener('DOMContentLoaded', () => {
 						}
 					},
 					error() {
-						isSubmit = false
+						isSubmit = false;
 						$('.joe_comment__respond-form .foot .submit button').html('发表评论');
-						Qmsg.warning('发送失败！请刷新重试！')
+						Qmsg.warning('发送失败！请刷新重试！');
 					}
 				});
 			});

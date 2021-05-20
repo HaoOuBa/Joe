@@ -351,8 +351,8 @@ function themeConfig($form)
         NULL,
         '自定义头像源（非必填）',
         '介绍：用于修改全站头像源地址 <br>
-         例如：https://gravatar.ihuan.me/avatar/ <br>
-         其他：非必填，默认头像源为禾令奇 <br>
+         例如：https://gravatar.helingqi.com/wavatar/ <br>
+         其他：非必填，默认头像源为gravatar.ihuan.me <br>
          注意：填写时，务必保证最后有一个/字符，否则不起作用！'
     );
     $JCustomAvatarSource->setAttribute('class', 'joe_content joe_global');
@@ -836,6 +836,30 @@ function themeConfig($form)
     $JSiteMap->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JSiteMap->multiMode());
 
+    $JBTPanel = new Typecho_Widget_Helper_Form_Element_Text(
+        'JBTPanel',
+        NULL,
+        NULL,
+        '宝塔面板地址',
+        '介绍：用于统计页面获取服务器状态使用 <br>
+         例如：http://192.168.1.245:8888/ <br>
+         注意：结尾需要带有一个 / 字符！<br>
+         该功能需要去宝塔面板开启开放API，并添加白名单才可使用'
+    );
+    $JBTPanel->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JBTPanel->multiMode());
+
+    $JBTKey = new Typecho_Widget_Helper_Form_Element_Text(
+        'JBTKey',
+        NULL,
+        NULL,
+        '宝塔开放接口密钥',
+        '介绍：用于统计页面获取服务器状态使用 <br>
+         例如：thVLXFtUCCNzBShBweKTPBmw8296q8R8 <br>
+         该功能需要去宝塔面板开启开放API，并添加白名单才可使用'
+    );
+    $JBTKey->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JBTKey->multiMode());
 
     /* 评论发信 */
     $JCommentMail = new Typecho_Widget_Helper_Form_Element_Select(
@@ -849,7 +873,7 @@ function themeConfig($form)
     );
     $JCommentMail->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JCommentMail->multiMode());
-    
+
     $JCommentMailHost = new Typecho_Widget_Helper_Form_Element_Text(
         'JCommentMailHost',
         NULL,

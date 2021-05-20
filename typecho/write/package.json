@@ -5,7 +5,7 @@
   "dependencies": {
     "@codemirror/closebrackets": "^0.18.0",
     "@codemirror/commands": "^0.18.2",
-    "@codemirror/highlight": "^0.18.3",
+    "@codemirror/highlight": "^0.18.4",
     "@codemirror/history": "^0.18.1",
     "@codemirror/lang-markdown": "^0.18.2",
     "@codemirror/matchbrackets": "^0.18.0",

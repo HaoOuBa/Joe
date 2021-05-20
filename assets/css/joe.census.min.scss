@@ -3,6 +3,7 @@
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		gap: 15px;
+		margin-bottom: 15px;
 		&-item {
 			display: flex;
 			align-items: center;
@@ -40,6 +41,40 @@
 			&:nth-child(4) {
 				border-left: 5px solid #9c27b0;
 				color: #9c27b0;
+			}
+		}
+	}
+	&__server {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 15px;
+		&-item {
+			background: var(--background);
+			box-shadow: var(--box-shadow);
+			border-radius: var(--radius-wrap);
+			.title {
+				display: flex;
+				align-items: center;
+				height: 45px;
+				padding: 0 12px;
+				border-bottom: 1px solid var(--classD);
+				color: var(--main);
+				justify-content: space-between;
+				user-select: none;
+				.count {
+					color: var(--minor);
+					font-size: 12px;
+					.split {
+						margin: 0 5px;
+					}
+				}
+			}
+			.content {
+				padding: 15px;
+				#work,
+				#flow {
+					height: 348px;
+				}
 			}
 		}
 	}

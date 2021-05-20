@@ -25,6 +25,7 @@
         <div class="joe_container">
             <div class="joe_main">
                 <?php Typecho_Widget::widget('Widget_Stat')->to($item); ?>
+                <!-- 基础统计 -->
                 <div class="joe_census__basic">
                     <div class="joe_census__basic-item">
                         <div class="count">
@@ -65,6 +66,29 @@
                         </svg>
                     </div>
                 </div>
+                <?php if ($this->options->JBTPanel && $this->options->JBTKey) : ?>
+                    <div class="joe_census__server">
+                        <div class="joe_census__server-item">
+                            <div class="title">实时负载</div>
+                            <div class="content">
+                                <div id="work"></div>
+                            </div>
+                        </div>
+                        <div class="joe_census__server-item">
+                            <div class="title">
+                                <span>实时流量</span>
+                                <div class="count">
+                                    <span class="up">总发送：0 B</span>
+                                    <span class="split">/</span>
+                                    <span class="down">总接收：0 B</span>
+                                </div>
+                            </div>
+                            <div class="content">
+                                <div id="flow"></div>
+                            </div>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
         </div>
         <?php $this->need('public/footer.php'); ?>

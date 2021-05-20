@@ -3,7 +3,7 @@
 /* 获取文章列表 已测试 √  */
 function _getPost($self)
 {
-    header("HTTP/1.1 200 OK");  
+    header("HTTP/1.1 200 OK");
     header('Access-Control-Allow-Origin:*');
     header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
 
@@ -292,4 +292,50 @@ function _getHuyaList($self)
             "data" => "抓取失败！请联系作者！"
         ]);
     }
+}
+
+function _getServerStatus($self)
+{
+    header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+    $api_panel = Helper::options()->JBTPanel;
+    $api_sk = Helper::options()->JBTKey;
+    if (!$api_panel) return $self->response->throwJson([
+        "code" => 0,
+        "data" => "宝塔面板地址未填写！"
+    ]);
+    if (!$api_sk) return $self->response->throwJson([
+        "code" => 0,
+        "data" => "宝塔接口密钥未填写！"
+    ]);
+    $request_time = time();
+    $request_token = md5($request_time . '' . md5($api_sk));
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $api_panel . '/system?action=GetNetWork');
+    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS,  array("request_time" => $request_time, "request_token" => $request_token));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $response  = json_decode(curl_exec($ch), true);
+    curl_close($ch);
+    $self->response->throwJson(array(
+        /* 上行流量KB */
+        "up" => $response["up"],
+        /* 下行流量KB */
+        "down" => $response["down"],
+        /* 总发送（字节数） */
+        "upTotal" => $response["upTotal"],
+        /* 总接收（字节数） */
+        "downTotal" => $response["downTotal"],
+        /* 内存占用 */
+        "memory" => $response["mem"],
+        /* CPU */
+        "cpu" => $response["cpu"],
+        /* 系统负载 */
+        "load" => $response["load"],
+    ));
 }
