@@ -294,6 +294,7 @@ function _getHuyaList($self)
     }
 }
 
+/* 获取服务器状态 */
 function _getServerStatus($self)
 {
     header("HTTP/1.1 200 OK");
@@ -325,6 +326,8 @@ function _getServerStatus($self)
     $response  = json_decode(curl_exec($ch), true);
     curl_close($ch);
     $self->response->throwJson(array(
+        /* 状态 */
+        "status" => $response ? true : false,
         /* 上行流量KB */
         "up" => $response["up"] ? $response["up"] : 0,
         /* 下行流量KB */
@@ -342,6 +345,7 @@ function _getServerStatus($self)
     ));
 }
 
+/* 获取最近评论 */
 function _getCommentLately($self)
 {
     header("HTTP/1.1 200 OK");
@@ -368,5 +372,37 @@ function _getCommentLately($self)
 
 function _getArticleFiling($self)
 {
-    
+    header("HTTP/1.1 200 OK");
+    header('Access-Control-Allow-Origin:*');
+    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+    $page = $self->request->page;
+    $pageSize = 8;
+    if (!preg_match('/^\d+$/', $page)) return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
+    if ($page == 0) $page = 1;
+    $offset = $pageSize * ($page - 1);
+    $time = time();
+    $db = Typecho_Db::get();
+    $prefix = $db->getPrefix();
+    $result = [];
+    $sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') DESC LIMIT {$pageSize} OFFSET {$offset}";
+    $temp = $db->fetchAll($sql);
+    $options = Typecho_Widget::widget('Widget_Options');
+    foreach ($temp as $item) {
+        $date = $item['date'];
+        $list = [];
+        $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' AND FROM_UNIXTIME(created, '%Y 年 %m 月') = '{$date}' ORDER BY created DESC";
+        $_list = $db->fetchAll($sql);
+        foreach ($_list as $_item) {
+            $type = $_item['type'];
+            $routeExists = (NULL != Typecho_Router::get($type));
+            $_item['pathinfo'] = $routeExists ? Typecho_Router::url($type, $_item) : '#';
+            $_item['permalink'] = Typecho_Common::url($_item['pathinfo'], $options->index);
+            $list[] = array(
+                "title" => date('m/d', $_item['created']) . '：' . $_item['title'],
+                "permalink" => $_item['permalink'],
+            );
+        }
+        $result[] = array("date" => $date, "list" => $list);
+    }
+    $self->response->throwJson($result);
 }

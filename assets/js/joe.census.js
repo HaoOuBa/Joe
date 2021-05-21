@@ -2,22 +2,20 @@ document.addEventListener('DOMContentLoaded', () => {
 	{
 		/* 转换字节 */
 		const bytesToSize = bytes => {
+			if (!bytes) return '0 B';
 			const k = 1024,
 				sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
 				i = Math.floor(Math.log(bytes) / Math.log(k));
 			return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
 		};
-
 		const categories = [];
 		const upSeries = [];
 		const downSeries = [];
-
 		const flowDom = document.querySelector('#flow');
 		const workDom = document.querySelector('#work');
 		const flowChart = flowDom && echarts.init(flowDom);
 		const workChart = workDom && echarts.init(workDom);
 		if (flowDom && workDom) initChart();
-
 		function initChart() {
 			$.ajax({
 				url: Joe.BASE_API,
@@ -27,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					routeType: 'server_status'
 				},
 				success(res) {
+					if (!res.status) Qmsg.warning('服务器接口异常！');
 					{
 						$('.joe_census__server-item .count .up').html(`总发送：${bytesToSize(res.upTotal)}`);
 						$('.joe_census__server-item .count .down').html(`总接收：${bytesToSize(res.downTotal)}`);
@@ -48,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
 							grid: {
 								left: '3%',
 								right: '4%',
-								bottom: '0',
+								bottom: '3%',
 								containLabel: true
 							},
 							tooltip: {
@@ -250,6 +249,9 @@ document.addEventListener('DOMContentLoaded', () => {
 			},
 			success(res) {
 				latelyChart.setOption({
+					title: {
+						subtext: '单位 数量'
+					},
 					tooltip: {
 						trigger: 'axis',
 						axisPointer: {
@@ -292,6 +294,57 @@ document.addEventListener('DOMContentLoaded', () => {
 					}
 				});
 			}
+		});
+	}
+
+	/* 初始化归档 */
+	{
+		let page = 0;
+		initFiling();
+		function initFiling() {
+			if ($('.joe_census__filing .button').html() === 'loading...') return;
+			$.ajax({
+				url: Joe.BASE_API,
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					routeType: 'article_filing',
+					page: ++page
+				},
+				success(res) {
+					if (!res.length) {
+						$('.joe_census__filing .item.load').remove();
+						return Qmsg.warning('没有更多内容了');
+					}
+					let htmlStr = '';
+					res.forEach(item => {
+						htmlStr += `
+							<div class="item">
+								<div class="tail"></div>
+								<div class="head"></div>
+								<div class="wrapper">
+									<div class="panel">${item.date}<svg viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg"><path d="M21.6 772.8c28.8 28.8 74.4 28.8 103.2 0L512 385.6l387.2 387.2c28.8 28.8 74.4 28.8 103.2 0 28.8-28.8 28.8-74.4 0-103.2L615.2 282.4l-77.6-77.6c-14.4-14.4-37.6-14.4-51.2 0l-77.6 77.6L21.6 669.6c-28.8 28.8-28.8 75.2 0 103.2z" /></svg></div>
+									<ol class="panel-body">
+										${item.list.map(_ => `<li><a rel="noopener noreferrer" target="_blank" href="${_.permalink}">${_.title}</a></li>`).join('')}
+									</ol>
+								</div>
+							</div>
+						`;
+					});
+					$('#filing').append(htmlStr);
+					$('.joe_census__filing .button').html('加载更多');
+				}
+			});
+		}
+		$('.joe_census__filing .content').on('click', '.panel', function () {
+			const panelBox = $(this).parents('.content');
+			panelBox.find('.panel').not($(this)).removeClass('in');
+			panelBox.find('.panel-body').not($(this).siblings('.panel-body')).stop().hide('fast');
+			$(this).toggleClass('in').siblings('.panel-body').stop().toggle('fast');
+		});
+		$('.joe_census__filing .button').on('click', function () {
+			initFiling();
+			$(this).html('loading...');
 		});
 	}
 });

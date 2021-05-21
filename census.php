@@ -14,9 +14,9 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.census.min.css?v=20210521'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.census.min.css?v=202105211730'); ?>">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.min.js"></script>
-    <script src="<?php $this->options->themeUrl('assets/js/joe.census.min.js?v=20210521'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('assets/js/joe.census.min.js?v=202105211730'); ?>"></script>
 </head>
 
 <body>
@@ -106,6 +106,17 @@
                         </div>
                     </div>
                 <?php endif; ?>
+                <div class="joe_census__filing">
+                    <div class="title">文章归档</div>
+                    <div class="content">
+                        <div id="filing"></div>
+                        <div class="item load">
+                            <div class="tail"></div>
+                            <div class="head"></div>
+                            <button class="button">加载更多</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <?php $this->need('public/footer.php'); ?>
