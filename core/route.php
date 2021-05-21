@@ -365,3 +365,8 @@ function _getCommentLately($self)
         "series" => $series,
     ]);
 }
+
+function _getArticleFiling($self)
+{
+    
+}

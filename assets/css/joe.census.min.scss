@@ -78,8 +78,11 @@
 			justify-content: space-between;
 			user-select: none;
 		}
-		#lately {
-			height: 310px;
+		.content {
+			padding: 15px;
+			#lately {
+				height: 300px;
+			}
 		}
 	}
 	&__server {
@@ -111,7 +114,7 @@
 				padding: 15px;
 				#work,
 				#flow {
-					height: 338px;
+					height: 315px;
 				}
 			}
 		}

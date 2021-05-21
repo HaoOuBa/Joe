@@ -79,7 +79,9 @@
                 </div>
                 <div class="joe_census__lately">
                     <div class="title">最近评论</div>
-                    <div id="lately"></div>
+                    <div class="content">
+                        <div id="lately"></div>
+                    </div>
                 </div>
                 <?php if ($this->options->JBTPanel && $this->options->JBTKey) : ?>
                     <div class="joe_census__server">

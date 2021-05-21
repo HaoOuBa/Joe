@@ -9,7 +9,7 @@ html {
 
 	@media (max-width: 1400px) {
 		.joe {
-			&_vplayer{
+			&_vplayer {
 				height: 450px;
 			}
 			&_wallpaper {
@@ -92,12 +92,24 @@ html {
 					}
 				}
 			}
+			&_census {
+				&__server {
+					&-item {
+						.content {
+							#work,
+							#flow {
+								height: 300px;
+							}
+						}
+					}
+				}
+			}
 		}
 	}
 
 	@media (max-width: 1200px) {
 		.joe {
-			&_vplayer{
+			&_vplayer {
 				height: 430px;
 			}
 			&_detail {
@@ -232,6 +244,35 @@ html {
 					}
 				}
 			}
+			&_census {
+				&__basic {
+					&-item {
+						&.category {
+							#category {
+								height: 220px;
+							}
+						}
+					}
+				}
+				&__server {
+					grid-template-columns: 45% 1fr;
+					&-item {
+						.content {
+							#work,
+							#flow {
+								height: 280px;
+							}
+						}
+					}
+				}
+				&__lately {
+					.content {
+						#lately {
+							height: 280px;
+						}
+					}
+				}
+			}
 		}
 		.swiper-container {
 			height: 280px;
@@ -243,7 +284,7 @@ html {
 
 	@media (max-width: 992px) {
 		.joe {
-			&_vplayer{
+			&_vplayer {
 				height: 400px;
 			}
 			&_aside {
@@ -322,7 +363,31 @@ html {
 					}
 				}
 			}
+			&_census {
+				&__basic {
+					grid-template-columns: unset;
+				}
+				&__lately {
+					.content {
+						#lately {
+							height: 265px;
+						}
+					}
+				}
+				&__server {
+					grid-template-columns: unset;
+					&-item {
+						.content {
+							#work,
+							#flow {
+								height: 250px;
+							}
+						}
+					}
+				}
+			}
 		}
+
 		.swiper-container {
 			height: 250px;
 			.item {
@@ -333,7 +398,7 @@ html {
 
 	@media (max-width: 768px) {
 		.joe {
-			&_vplayer{
+			&_vplayer {
 				height: 225px;
 			}
 			&_header {
@@ -778,6 +843,40 @@ html {
 							}
 							&:last-child {
 								border-bottom-right-radius: 0;
+							}
+						}
+					}
+				}
+			}
+			&_census {
+				&__basic {
+					&-item {
+						&.list {
+							.list {
+								padding: 10px 15px;
+								.count {
+									p {
+										font-size: 24px;
+									}
+								}
+							}
+						}
+					}
+				}
+				&__lately {
+					.content {
+						#lately {
+							height: 240px;
+						}
+					}
+				}
+				&__server {
+					grid-template-columns: unset;
+					&-item {
+						.content {
+							#work,
+							#flow {
+								height: 240px;
 							}
 						}
 					}

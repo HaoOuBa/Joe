@@ -67,6 +67,9 @@ function themeInit($self)
             case 'comment_lately':
                 _getCommentLately($self);
                 break;
+            case 'article_filing':
+                _getArticleFiling($self);
+                break;
         };
     }
 
