@@ -856,7 +856,7 @@ html {
 								padding: 10px 15px;
 								.count {
 									p {
-										font-size: 24px;
+										font-size: 22px;
 									}
 								}
 							}
@@ -865,6 +865,7 @@ html {
 				}
 				&__lately {
 					.content {
+						padding: 5px;
 						#lately {
 							height: 240px;
 						}
@@ -874,6 +875,7 @@ html {
 					grid-template-columns: unset;
 					&-item {
 						.content {
+							padding: 5px;
 							#work,
 							#flow {
 								height: 240px;
