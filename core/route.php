@@ -353,16 +353,15 @@ function _getCommentLately($self)
     $series = [];
     $db = Typecho_Db::get();
     $prefix = $db->getPrefix();
-    for ($i = 0; $i < $num; $i++) {
-        $date = date('Y/m/d', strtotime('+' . $i - ($num - 1) . ' days', $time));
+    for ($i = ($num - 1); $i >= 0; $i--) {
+        $date = date("Y/m/d", $time - ($i * 24 * 60 * 60));
         $sql = "SELECT coid FROM `{$prefix}comments` WHERE FROM_UNIXTIME(created, '%Y/%m/%d') = '{$date}' limit 100";
         $count = count($db->fetchAll($sql));
         $categories[] = $date;
         $series[] = $count;
     }
-    /* 抛出JSON */
     $self->response->throwJson([
         "categories" => $categories,
-        "series" => $series
+        "series" => $series,
     ]);
 }
