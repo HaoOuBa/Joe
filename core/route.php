@@ -328,6 +328,8 @@ function _getServerStatus($self)
     $self->response->throwJson(array(
         /* 状态 */
         "status" => $response ? true : false,
+        /* 信息提示 */
+        "message" => $response['msg'] ? $response['msg'] : '无',
         /* 上行流量KB */
         "up" => $response["up"] ? $response["up"] : 0,
         /* 下行流量KB */
@@ -370,6 +372,7 @@ function _getCommentLately($self)
     ]);
 }
 
+/* 获取文章归档 */
 function _getArticleFiling($self)
 {
     header("HTTP/1.1 200 OK");
@@ -390,7 +393,7 @@ function _getArticleFiling($self)
     foreach ($temp as $item) {
         $date = $item['date'];
         $list = [];
-        $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' AND FROM_UNIXTIME(created, '%Y 年 %m 月') = '{$date}' ORDER BY created DESC";
+        $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' AND FROM_UNIXTIME(created, '%Y 年 %m 月') = '{$date}' ORDER BY created DESC LIMIT 100";
         $_list = $db->fetchAll($sql);
         foreach ($_list as $_item) {
             $type = $_item['type'];

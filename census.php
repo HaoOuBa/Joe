@@ -14,9 +14,9 @@
 
 <head>
     <?php $this->need('public/include.php'); ?>
-    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.census.min.css?v=202105211730'); ?>">
+    <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.census.min.css?v=20210522'); ?>">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.min.js"></script>
-    <script src="<?php $this->options->themeUrl('assets/js/joe.census.min.js?v=202105211730'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('assets/js/joe.census.min.js?v=20210522'); ?>"></script>
 </head>
 
 <body>
