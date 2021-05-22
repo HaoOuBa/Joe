@@ -323,19 +323,16 @@ document.addEventListener('DOMContentLoaded', () => {
 			let isSubmit = false;
 			$('.joe_comment__respond-form').on('submit', function (e) {
 				e.preventDefault();
-				const url = $('.joe_comment__respond-form').attr('action') + '?time=' + +new Date();
+				const action = $('.joe_comment__respond-form').attr('action') + '?time=' + +new Date();
 				const type = $('.joe_comment__respond-form').attr('data-type');
 				const parent = $('.joe_comment__respond-form').attr('data-coid');
 				const author = $(".joe_comment__respond-form .head input[name='author']").val();
 				const _ = $(".joe_comment__respond-form input[name='_']").val();
 				const mail = $(".joe_comment__respond-form .head input[name='mail']").val();
+				const url = $(".joe_comment__respond-form .head input[name='url']").val();
 				let text = $(".joe_comment__respond-form .body textarea[name='text']").val();
 				if (author.trim() === '') return Qmsg.info('请输入昵称！');
 				if (!/\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/.test(mail)) return Qmsg.info('请输入正确的邮箱！');
-				/* -- 验证码前端校验 -- */
-				const captcha = $(".joe_comment__respond-form .head input[name='captcha']").val();
-				if (captcha.trim() === '') return Qmsg.info('请输入验证码！');
-				/* -- 验证码前端校验 -- */
 				if (type === 'text' && text.trim() === '') return Qmsg.info('请输入评论内容！');
 				if (type === 'draw') {
 					const txt = $('#joe_comment_draw')[0].toDataURL('image/webp', 0.1);
@@ -345,9 +342,9 @@ document.addEventListener('DOMContentLoaded', () => {
 				isSubmit = true;
 				$('.joe_comment__respond-form .foot .submit button').html('发送中...');
 				$.ajax({
-					url,
+					url: action,
 					type: 'POST',
-					data: { author, mail, text, parent, captcha, _ },
+					data: { author, mail, text, parent, url, _ },
 					dataType: 'text',
 					success(res) {
 						let arr = [],

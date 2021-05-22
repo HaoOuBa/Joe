@@ -70,9 +70,6 @@ function themeInit($self)
             case 'article_filing':
                 _getArticleFiling($self);
                 break;
-            case 'article_filing_list':
-                _getArticleFilingList($self);
-                break;
         };
     }
 

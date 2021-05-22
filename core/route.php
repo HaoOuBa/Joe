@@ -329,7 +329,7 @@ function _getServerStatus($self)
         /* 状态 */
         "status" => $response ? true : false,
         /* 信息提示 */
-        "message" => $response['msg'] ? $response['msg'] : '无',
+        "message" => $response['msg'],
         /* 上行流量KB */
         "up" => $response["up"] ? $response["up"] : 0,
         /* 下行流量KB */

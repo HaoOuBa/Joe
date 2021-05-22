@@ -9,12 +9,6 @@ class Intercept
 {
     public static function message($comment)
     {
-        /* 校验验证码是否正确 */
-        session_start();
-        $captcha = (int)Typecho_Request::getInstance()->captcha;
-        if (!$captcha) throw new Typecho_Widget_Exception('请输入验证码！', 403);
-        if ($captcha != $_SESSION['captcha']) throw new Typecho_Widget_Exception('验证码错误，请检查！', 403);
-
         /* 用户输入内容画图模式 */
         if (preg_match('/\{!\{(.*)\}!\}/', $comment['text'], $matches)) {
             /* 如果判断是否有双引号，如果有双引号，则禁止评论 */
