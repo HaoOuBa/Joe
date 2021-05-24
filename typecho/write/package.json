@@ -10,7 +10,7 @@
     "@codemirror/lang-markdown": "^0.18.3",
     "@codemirror/matchbrackets": "^0.18.0",
     "@codemirror/state": "^0.18.7",
-    "@codemirror/view": "^0.18.12",
+    "@codemirror/view": "^0.18.13",
     "@rollup/plugin-node-resolve": "^13.0.0",
     "rollup-plugin-uglify": "^6.0.4"
   }
