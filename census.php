@@ -16,7 +16,7 @@
     <?php $this->need('public/include.php'); ?>
     <link rel="stylesheet" href="<?php $this->options->themeUrl('assets/css/joe.census.min.css?v=20210524'); ?>">
     <script src="https://cdn.jsdelivr.net/npm/echarts@5.1.1/dist/echarts.min.js"></script>
-    <script src="<?php $this->options->themeUrl('assets/js/joe.census.min.js?v=20210524'); ?>"></script>
+    <script src="<?php $this->options->themeUrl('assets/js/joe.census.min.js?v=202105242137'); ?>"></script>
 </head>
 
 <body>
@@ -86,7 +86,14 @@
                 <?php if ($this->options->JBTPanel && $this->options->JBTKey) : ?>
                     <div class="joe_census__server">
                         <div class="joe_census__server-item">
-                            <div class="title">实时负载</div>
+                            <div class="title">
+                                <span>实时负载</span>
+                                <div class="count">
+                                    <span class="core">0 核</span>
+                                    <span class="split">/</span>
+                                    <span class="ram">0 MB</span>
+                                </div>
+                            </div>
                             <div class="content">
                                 <div id="work"></div>
                             </div>

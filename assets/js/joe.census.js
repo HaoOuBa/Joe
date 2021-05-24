@@ -8,6 +8,11 @@ document.addEventListener('DOMContentLoaded', () => {
 				i = Math.floor(Math.log(bytes) / Math.log(k));
 			return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
 		};
+		/* 转换内存 */
+		const megaknotsToSize = (limit) => {
+			if (limit < 1024) return parseInt(limit) + ' MB'
+			return parseInt(limit / 1024) + ' GB'
+		}
 		const categories = [];
 		const upSeries = [];
 		const downSeries = [];
@@ -27,6 +32,8 @@ document.addEventListener('DOMContentLoaded', () => {
 				success(res) {
 					if (!res.status) Qmsg.warning('服务器接口异常！');
 					{
+						$('.joe_census__server-item .count .core').html(`${res.cpu[1]} 核`);
+						$('.joe_census__server-item .count .ram').html(`${megaknotsToSize(res.memory.memTotal)}`);
 						$('.joe_census__server-item .count .up').html(`总发送：${bytesToSize(res.upTotal)}`);
 						$('.joe_census__server-item .count .down').html(`总接收：${bytesToSize(res.downTotal)}`);
 						const stamp = new Date();
