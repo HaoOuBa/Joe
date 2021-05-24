@@ -202,7 +202,13 @@
 						display: none;
 						padding: 15px 15px 0 15px;
 						li {
-							line-height: 2.5;
+							white-space: nowrap;
+							overflow: hidden;
+							text-overflow: ellipsis;
+							margin-bottom: 15px;
+							&:last-child {
+								margin-bottom: 0;
+							}
 							a {
 								color: var(--routine);
 								&:hover {

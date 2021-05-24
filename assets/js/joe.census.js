@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
 		/* 转换字节 */
 		const bytesToSize = bytes => {
 			if (!bytes) return '0 B';
-			const k = 1024,
+			const k = 1000,
 				sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
 				i = Math.floor(Math.log(bytes) / Math.log(k));
 			return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
