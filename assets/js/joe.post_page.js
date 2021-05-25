@@ -138,16 +138,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		});
 	}
 
-	/* 格式化分页的hash值 */
-	{
-		$('.joe_comment .joe_pagination a').each((index, item) => {
-			const href = $(item).attr('href');
-			if (href && href.includes('#')) {
-				$(item).attr('href', href.replace('#comments', '?scroll=joe_comment'));
-			}
-		});
-	}
-
 	/* 密码保护文章，输入密码访问 */
 	{
 		let isSubmit = false;

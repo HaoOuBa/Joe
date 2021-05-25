@@ -105,16 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
 			});
 		});
 	}
-
-	/* 格式化分页的hash值 */
-	{
-		$('.joe_comment .joe_pagination a').each((index, item) => {
-			const href = $(item).attr('href');
-			if (href && href.includes('#')) {
-				$(item).attr('href', href.replace('#comments', '?scroll=joe_comment'));
-			}
-		});
-	}
 });
 
 /* 写在load事件里，为了解决图片未加载完成，滚动距离获取会不准确的问题 */

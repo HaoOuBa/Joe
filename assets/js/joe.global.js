@@ -371,6 +371,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
+	/* 设置评论回复网址为新窗口打开 */
+	{
+		$('.comment-list__item .term .content .user .author a').each((index, item) => $(item).attr('target', '_blank'));
+	}
+
+	/* 格式化评论分页的hash值 */
+	{
+		$('.joe_comment .joe_pagination a').each((index, item) => {
+			const href = $(item).attr('href');
+			if (href && href.includes('#')) {
+				$(item).attr('href', href.replace('#comments', '?scroll=joe_comment'));
+			}
+		});
+	}
+
 	/* 切换标签显示不同的标题 */
 	{
 		if (Joe.DOCUMENT_TITLE) {
