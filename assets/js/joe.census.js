@@ -156,7 +156,8 @@ document.addEventListener('DOMContentLoaded', () => {
 								data: ['CPU占用', '内存占用', '系统缓冲', '内存缓冲', '系统负载']
 							},
 							yAxis: {
-								type: 'value'
+								type: 'value',
+								max: 100
 							},
 							series: {
 								data: [
@@ -201,7 +202,7 @@ document.addEventListener('DOMContentLoaded', () => {
 								label: {
 									show: true,
 									color: '#ffffff',
-									formatter: params => `${params.data.value} %`
+									formatter: params => `${params.data.value}%`
 								},
 								backgroundStyle: {
 									color: 'rgba(180, 180, 180, 0.2)'
