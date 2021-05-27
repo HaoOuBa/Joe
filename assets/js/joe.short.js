@@ -537,10 +537,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			constructor() {
 				super();
 				this.bvid = this.getAttribute('bvid');
+				this.bvp = this.getAttribute('bvp') ? this.getAttribute('bvp') : 1;
 				this.render();
 			}
 			render() {
-				if (this.bvid) this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="//player.bilibili.com/player.html?bvid=${this.bvid}"></iframe>`;
+				if (this.bvid && this.bvp) this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="//player.bilibili.com/player.html?bvid=${this.bvid}&page=${this.bvp}"></iframe>`;
 				else this.innerHTML = 'Bvid未填写！';
 			}
 		}

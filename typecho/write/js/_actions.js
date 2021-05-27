@@ -27,8 +27,8 @@ export default class JoeAction {
 			title: '提示',
 			innerHtml: '内容',
 			hasFooter: true,
-			confirm: () => {},
-			handler: () => {}
+			confirm: () => { },
+			handler: () => { }
 		};
 		this.options = Object.assign(_options, options);
 		$('.cm-modal__wrapper-header--text').html(this.options.title);
@@ -410,10 +410,15 @@ export default class JoeAction {
 					<label>视频Bvid</label>
 					<input autocomplete="off" name="bvid" placeholder="请输入视频Bvid"/>
 				</div>
+				<div class="fitem">
+					<label>视频选集</label>
+					<input autocomplete="off" name="bvp" placeholder="请输入视频第n集" value="1"/>
+				</div>
             `,
 			confirm: () => {
 				const bvid = $(".cm-modal input[name='bvid']").val();
-				const str = `\n{bilibili bvid="${bvid}"/}\n\n`;
+				const bvp = $(".cm-modal input[name='bvp']").val();
+				const str = `\n{bilibili bvid="${bvid}" bvp="${bvp}"/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
