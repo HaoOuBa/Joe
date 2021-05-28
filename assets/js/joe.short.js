@@ -398,7 +398,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				this.options = {
 					type: /^success$|^info$|^warning$|^error$/.test(this.getAttribute('type')) ? this.getAttribute('type') : 'info',
 					content: _temp.innerHTML.trim().replace(/^(<br>)|(<br>)$/g, '') || '警告提示'
-				}
+				};
 				const htmlStr = `
 					<div class="joe_alert ${this.options.type}">
 						${this.options.content}
@@ -537,10 +537,11 @@ document.addEventListener('DOMContentLoaded', () => {
 			constructor() {
 				super();
 				this.bvid = this.getAttribute('bvid');
+				this.page = this.getAttribute('page') && !Number.isNaN(this.getAttribute('page')) ? this.getAttribute('page') : 1;
 				this.render();
 			}
 			render() {
-				if (this.bvid) this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="//player.bilibili.com/player.html?bvid=${this.bvid}"></iframe>`;
+				if (this.bvid) this.innerHTML = `<iframe allowfullscreen="true" class="joe_vplayer" src="//player.bilibili.com/player.html?bvid=${this.bvid}&page=${this.page}"></iframe>`;
 				else this.innerHTML = 'Bvid未填写！';
 			}
 		}

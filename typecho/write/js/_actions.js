@@ -410,10 +410,15 @@ export default class JoeAction {
 					<label>视频Bvid</label>
 					<input autocomplete="off" name="bvid" placeholder="请输入视频Bvid"/>
 				</div>
+				<div class="fitem">
+					<label>视频选集</label>
+					<input autocomplete="off" name="page" placeholder="请输入视频选集"/>
+				</div>
             `,
 			confirm: () => {
 				const bvid = $(".cm-modal input[name='bvid']").val();
-				const str = `\n{bilibili bvid="${bvid}"/}\n\n`;
+				const page = $(".cm-modal input[name='page']").val();
+				const str = `\n{bilibili bvid="${bvid}" page="${page}"/}\n\n`;
 				if (this._getLineCh(cm)) this._replaceSelection(cm, '\n' + str);
 				else this._replaceSelection(cm, str);
 				cm.focus();
