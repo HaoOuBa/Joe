@@ -537,7 +537,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			constructor() {
 				super();
 				this.bvid = this.getAttribute('bvid');
-				this.page = this.getAttribute('page') && !Number.isNaN(this.getAttribute('page')) ? this.getAttribute('page') : 1;
+				this.page = Object.is(Number(this.getAttribute('page')), NaN) ? 1 : this.getAttribute('page');
 				this.render();
 			}
 			render() {
