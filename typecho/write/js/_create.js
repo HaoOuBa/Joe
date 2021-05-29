@@ -1,19 +1,6 @@
 const parser = new HyperDown();
 const player = window.JoeConfig.playerAPI;
 
-function throttle(fn, wait) {
-	var pre = Date.now();
-	return function () {
-		var context = this;
-		var args = arguments;
-		var now = Date.now();
-		if (now - pre >= wait) {
-			fn.apply(context, args);
-			pre = Date.now();
-		}
-	};
-}
-
 export default function createPreviewHtml(str) {
 	if (!window.JoeConfig.canPreview) return $('.cm-preview-content').html('1. 预览已默认关闭<br>2. 点击上方预览按钮启用预览<br>3. 若编辑器卡顿可尝试关闭预览');
 

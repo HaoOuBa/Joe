@@ -1,4 +1,4 @@
-import { EditorView, keymap } from '@codemirror/view';
+import { EditorView, keymap, highlightActiveLine } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import { bracketMatching } from '@codemirror/matchbrackets';
 import { closeBrackets, closeBracketsKeymap } from '@codemirror/closebrackets';
@@ -13,7 +13,7 @@ import createPreviewHtml from './_create';
 class Joe extends JoeAction {
 	constructor() {
 		super();
-		this.plugins = [history(), classHighlightStyle, bracketMatching(), closeBrackets()];
+		this.plugins = [classHighlightStyle, history(), bracketMatching(), closeBrackets(), highlightActiveLine()];
 		this._isPasting = false;
 		this.init_ViewPort();
 		this.init_Editor();
@@ -372,25 +372,34 @@ class Joe extends JoeAction {
 	init_AutoSave() {
 		if (window.JoeConfig.autoSave !== 1) return;
 		const formEl = $('#text')[0].form;
-		let cid = $('input[name="cid"]').val();
-		let temp = null;
+		let cid = $(formEl).find('input[name="cid"]').val();
+		/* 临时记录 */
+		let _TempTimer = null;
+		let _TempTitle = $(formEl).find('input[name="title"]').val();
+		let _TempText = $(formEl).find('textarea[name="text"]').val();
 		const saveFn = () => {
-			$('input[name="cid"]').val(cid);
-			$('#text').val(this.cm.state.doc.toString());
-			let data = $(formEl).serialize();
-			if (data !== temp) {
+			$(formEl).find('input[name="cid"]').val(cid);
+			$(formEl).find('textarea[name="text"]').val(this.cm.state.doc.toString());
+			/* 创建新记录 */
+			let _NewTempTitle = $(formEl).find('input[name="title"]').val();
+			let _NewTempText = $(formEl).find('textarea[name="text"]').val();
+			/* 若标题为空，则直接忽略 */
+			if (_NewTempTitle.trim() === '') return;
+			/* 若标题或内容发生改变，触发保存草稿 */
+			if (_TempTitle !== _NewTempTitle || _TempText !== _NewTempText) {
+				_TempTitle = _NewTempTitle;
+				_TempText = _NewTempText;
 				$('.cm-autosave').addClass('active');
 				$.ajax({
 					url: formEl.action,
 					type: 'POST',
-					data: data + '&do=save',
+					data: $(formEl).serialize() + '&do=save',
 					dataType: 'json',
 					success: res => {
 						cid = res.cid;
-						temp = data;
-						let timer = setTimeout(() => {
+						_TempTimer = setTimeout(() => {
 							$('.cm-autosave').removeClass('active');
-							clearTimeout(timer);
+							clearTimeout(_TempTimer);
 						}, 1000);
 					}
 				});

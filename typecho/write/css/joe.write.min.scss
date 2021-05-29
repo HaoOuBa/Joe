@@ -161,6 +161,10 @@ body.fullscreen {
 					border: 1px solid rgba(255, 255, 255, 0.25);
 					margin: -1px;
 				}
+				.cm-activeLine {
+					background-color: #292929;
+					border-radius: 2px;
+				}
 				.cmt-strong {
 					color: #61afef;
 					font-weight: 500;
