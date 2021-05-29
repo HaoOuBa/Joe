@@ -122,6 +122,13 @@ class Joe extends JoeAction {
 									this._isPasting = false;
 								}
 							});
+						},
+						scroll: e => {
+							if (!window.JoeConfig.canPreview) return;
+							if (e && e.target && e.target.className === 'cm-scroller') {
+								if (window.requestAnimationFrame) window.requestAnimationFrame(() => super._updateScroller(e.target, document.querySelector('.cm-preview')));
+								else super._updateScroller(e.target, document.querySelector('.cm-preview'));
+							}
 						}
 					})
 				],
@@ -351,6 +358,7 @@ class Joe extends JoeAction {
 							if (el.hasClass('active')) window.JoeConfig.canPreview = true;
 							else window.JoeConfig.canPreview = false;
 							createPreviewHtml(this.cm.state.doc.toString());
+							window.JoeConfig.canPreview && super._updateScroller(document.querySelector('.cm-scroller'), document.querySelector('.cm-preview'));
 							break;
 					}
 				});

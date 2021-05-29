@@ -98,6 +98,10 @@ export default class JoeAction {
 			}
 		});
 	}
+	_updateScroller(el, target) {
+		const percentage = el.scrollTop / (el.scrollHeight - el.offsetHeight);
+		target.scrollTop = percentage * (target.scrollHeight - target.offsetHeight);
+	}
 	handleFullScreen(el) {
 		el.toggleClass('active');
 		$('body').toggleClass('fullscreen');
