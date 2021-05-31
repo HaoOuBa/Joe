@@ -43,8 +43,9 @@ class Joe extends JoeAction {
                 <div class="cm-progress-right"></div>
             </div>
         `);
-		createPreviewHtml($('#text').val());
+		createPreviewHtml(null);
 		let _temp = null;
+		let _debounce = null;
 		const cm = new EditorView({
 			state: EditorState.create({
 				doc: $('#text').val(),
@@ -58,8 +59,8 @@ class Joe extends JoeAction {
 						if (!update.docChanged) return;
 						if (_temp !== update.state.doc.toString()) {
 							_temp = update.state.doc.toString();
-							if (window.requestAnimationFrame) window.requestAnimationFrame(() => createPreviewHtml(update.state.doc.toString()));
-							else createPreviewHtml(update.state.doc.toString());
+							clearTimeout(_debounce);
+							_debounce = setTimeout(createPreviewHtml.bind(null, update.state.doc.toString()), 150);
 						}
 					}),
 					EditorView.domEventHandlers({
