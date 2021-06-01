@@ -60,7 +60,7 @@ class Joe extends JoeAction {
 						if (_temp !== update.state.doc.toString()) {
 							_temp = update.state.doc.toString();
 							clearTimeout(_debounce);
-							_debounce = setTimeout(createPreviewHtml.bind(null, update.state.doc.toString()), 150);
+							_debounce = setTimeout(createPreviewHtml.bind(null, update.state.doc.toString()), 180);
 						}
 					}),
 					EditorView.domEventHandlers({
