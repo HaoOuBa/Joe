@@ -1,10 +1,11 @@
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import { uglify } from 'rollup-plugin-uglify';
 export default {
-	input: './js/joe.write.js',
+	input: './js/index.js',
 	output: {
-		file: './js/joe.write.chunk.js',
-		format: 'iife'
+		dir: './dist',
+		format: 'es'
 	},
+	preserveEntrySignatures: false,
 	plugins: [nodeResolve(), uglify()]
 };

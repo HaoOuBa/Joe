@@ -8,6 +8,7 @@
     "@codemirror/highlight": "^0.18.4",
     "@codemirror/history": "^0.18.1",
     "@codemirror/lang-markdown": "^0.18.3",
+    "@codemirror/language-data": "^0.18.0",
     "@codemirror/matchbrackets": "^0.18.0",
     "@codemirror/state": "^0.18.7",
     "@codemirror/view": "^0.18.14",

@@ -128,7 +128,7 @@ body.fullscreen {
 			font-size: 14px;
 			.cm-scroller {
 				line-height: 1.8;
-				font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
+				font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
 				overscroll-behavior: none;
 				height: 100%;
 				padding: 10px;
@@ -175,7 +175,7 @@ body.fullscreen {
 				.cmt-emphasis {
 					color: #b294bb;
 					font-style: italic;
-					font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+					font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 微软雅黑, Arial, sans-serif;
 				}
 				.cmt-deleted {
 					color: #ed6a43;
@@ -191,6 +191,28 @@ body.fullscreen {
 				}
 				.cmt-url {
 					color: #5fa76f;
+				}
+				/* 代码高亮 */
+				.cmt-typeName {
+					color: #e2777a;
+				}
+				.cmt-string {
+					color: #7ec699;
+				}
+				.cmt-keyword {
+					color: #cc99cd;
+				}
+				.cmt-comment {
+					color: #5c6370;
+				}
+				.cmt-propertyName {
+					color: #d19a66;
+				}
+				.cmt-punctuation {
+					color: #808080;
+				}
+				.cmt-number {
+					color: #f08d49;
 				}
 			}
 		}

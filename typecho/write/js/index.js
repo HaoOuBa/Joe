@@ -6,6 +6,7 @@ import { defaultKeymap, defaultTabBinding } from '@codemirror/commands';
 import { history, historyKeymap } from '@codemirror/history';
 import { classHighlightStyle } from '@codemirror/highlight';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
+import { languages } from '@codemirror/language-data';
 import tools from './_tools';
 import JoeAction from './_actions';
 import createPreviewHtml from './_create';
@@ -52,7 +53,8 @@ class Joe extends JoeAction {
 				extensions: [
 					...this.plugins,
 					markdown({
-						base: markdownLanguage
+						base: markdownLanguage,
+						codeLanguages: languages
 					}),
 					keymap.of([defaultTabBinding, ...closeBracketsKeymap, ...defaultKeymap, ...historyKeymap]),
 					EditorView.updateListener.of(update => {
@@ -60,7 +62,7 @@ class Joe extends JoeAction {
 						if (_temp !== update.state.doc.toString()) {
 							_temp = update.state.doc.toString();
 							clearTimeout(_debounce);
-							_debounce = setTimeout(createPreviewHtml.bind(null, update.state.doc.toString()), 180);
+							_debounce = setTimeout(createPreviewHtml.bind(null, update.state.doc.toString()), 200);
 						}
 					}),
 					EditorView.domEventHandlers({
