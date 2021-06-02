@@ -161,58 +161,12 @@ body.fullscreen {
 					border: 1px solid rgba(255, 255, 255, 0.25);
 					margin: -1px;
 				}
-				.cm-activeLine {
-					background-color: #292929;
-					border-radius: 2px;
-				}
-				.cmt-strong {
-					color: #61afef;
-					font-weight: 500;
-				}
 				.cm-nonmatchingBracket {
 					color: #ff5627;
 				}
-				.cmt-emphasis {
-					color: #b294bb;
-					font-style: italic;
-					font-family: 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 微软雅黑, Arial, sans-serif;
-				}
-				.cmt-deleted {
-					color: #ed6a43;
-					text-decoration: line-through;
-				}
-				.cmt-heading {
-					font-size: 18px;
-					color: #61afef;
-					font-weight: 700;
-				}
-				.cmt-link {
-					color: #e26666;
-				}
-				.cmt-url {
-					color: #5fa76f;
-				}
-				/* 代码高亮 */
-				.cmt-typeName {
-					color: #e2777a;
-				}
-				.cmt-string {
-					color: #7ec699;
-				}
-				.cmt-keyword {
-					color: #cc99cd;
-				}
-				.cmt-comment {
-					color: #5c6370;
-				}
-				.cmt-propertyName {
-					color: #d19a66;
-				}
-				.cmt-punctuation {
-					color: #808080;
-				}
-				.cmt-number {
-					color: #f08d49;
+				.cm-activeLine {
+					background-color: #292929;
+					border-radius: 2px;
 				}
 			}
 		}
