@@ -40,6 +40,6 @@
 <?php if ($this->options->JCursorEffects && $this->options->JCursorEffects !== 'off') : ?>
 	<script src="<?php $this->options->themeUrl('assets/cursor/' . $this->options->JCursorEffects); ?>" async></script>
 <?php endif; ?>
-<script src="<?php $this->options->themeUrl('assets/js/joe.global.min.js?v=20210525'); ?>"></script>
-<script src="<?php $this->options->themeUrl('assets/js/joe.short.min.js'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/js/joe.global.min.js'); ?>"></script>
+<script src="<?php $this->options->themeUrl('assets/js/joe.short.min.js?v=20210602'); ?>"></script>
 <?php $this->options->JCustomHeadEnd() ?>
