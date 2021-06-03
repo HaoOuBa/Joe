@@ -188,7 +188,7 @@ class Editor
         <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/typecho-joe-next@6.2.4/plugin/prism/prism.min.js"></script>
         <script src="<?php Helper::options()->themeUrl('typecho/write/parse/parse.min.js') ?>"></script>
-        <script src="<?php Helper::options()->themeUrl('typecho/write/dist/index.js') ?>" type="module"></script>
+        <script src="<?php Helper::options()->themeUrl('typecho/write/dist/index.js?v=20210603') ?>" type="module"></script>
         <script src="<?php Helper::options()->themeUrl('assets/js/joe.short.min.js') ?>"></script>
 <?php
     }
