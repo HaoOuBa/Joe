@@ -153,7 +153,7 @@ function themeFields($layout)
         NULL,
         'M3U8或MP4地址（非必填）',
         '填写后，文章会插入一个视频模板 <br>
-         格式：视频名称&视频地址。如果有多个，换行写即可 <br>
+         格式：视频名称$视频地址。如果有多个，换行写即可 <br>
          例如：<br>
             第01集$https://iqiyi.cdn9-okzy.com/20201104/17638_8f3022ce/index.m3u8 <br>
             第02集$https://iqiyi.cdn9-okzy.com/20201104/17639_5dcb8a3b/index.m3u8 

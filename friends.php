@@ -1,7 +1,7 @@
 <?php
 
 /**
- * 友联
+ * 友链
  * 
  * @package custom 
  * 
