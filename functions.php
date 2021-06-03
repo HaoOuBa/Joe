@@ -759,9 +759,9 @@ function themeConfig($form)
         'Joe的博客 || https://78.al || https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/link.png || Eternity is not a distance but a decision',
         '友情链接（非必填）',
         '介绍：用于填写友情链接 <br />
-         注意：您需要先增加友联链接页面（新增独立页面-右侧模板选择友联），该项才会生效 <br />
+         注意：您需要先增加友链链接页面（新增独立页面-右侧模板选择友链），该项才会生效 <br />
          格式：博客名称 || 博客地址 || 博客头像 || 博客简介 <br />
-         其他：一行一个，一行代表一个友联'
+         其他：一行一个，一行代表一个友链'
     );
     $JFriends->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JFriends);
