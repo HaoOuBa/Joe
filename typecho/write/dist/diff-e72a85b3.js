@@ -1,1 +1,0 @@
-var TOKEN_NAMES={"+":"inserted","-":"deleted","@":"meta"};const diff={token:function(r){var e=r.string.search(/[\t ]+?$/);if(!r.sol()||0===e)return r.skipToEnd(),("error "+(TOKEN_NAMES[r.string.charAt(0)]||"")).replace(/ $/,"");var t=TOKEN_NAMES[r.peek()]||r.skipToEnd();return-1===e?r.skipToEnd():r.pos=e,t}};export{diff};

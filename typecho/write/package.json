@@ -11,8 +11,11 @@
     "@codemirror/language-data": "^0.18.0",
     "@codemirror/matchbrackets": "^0.18.0",
     "@codemirror/state": "^0.18.7",
-    "@codemirror/view": "^0.18.15",
+    "@codemirror/view": "^0.18.15"
+  },
+  "devDependencies": {
+    "@lopatnov/rollup-plugin-uglify": "^2.1.0",
     "@rollup/plugin-node-resolve": "^13.0.0",
-    "rollup-plugin-uglify": "^6.0.4"
+    "rollup": "^2.50.5"
   }
 }

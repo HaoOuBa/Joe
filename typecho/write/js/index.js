@@ -20,7 +20,7 @@ class Joe extends JoeAction {
 				key: 'Tab',
 				run: ({ state, dispatch }) => {
 					if (state.selection.ranges.some(r => !r.empty)) return indentMore({ state, dispatch });
-					dispatch(state.update(state.replaceSelection('  '), { scrollIntoView: true }));
+					dispatch(state.update(state.replaceSelection('  ')));
 					return true;
 				},
 				shift: indentLess
