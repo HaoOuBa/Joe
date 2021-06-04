@@ -46,7 +46,7 @@ export default () => {
 		/* 注释的样式 */
 		{
 			tag: tags.comment,
-			color: '#6a9955'
+			color: '#5C6370'
 		},
 		/* 未知 */
 		{

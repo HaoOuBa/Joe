@@ -26,7 +26,6 @@ body.fullscreen {
 	width: 100%;
 	height: 650px;
 	box-sizing: border-box;
-	z-index: 6666;
 	content-visibility: auto;
 	background: #222;
 	&.fullscreen {
@@ -35,6 +34,7 @@ body.fullscreen {
 		left: 0;
 		width: 100%;
 		height: 100%;
+		z-index: 6666;
 	}
 	* {
 		outline: none !important;
@@ -128,7 +128,7 @@ body.fullscreen {
 			font-size: 14px;
 			.cm-scroller {
 				line-height: 1.8;
-				font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'source-code-pro', monospace;
+				font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 				overscroll-behavior: none;
 				height: 100%;
 				padding: 10px;
@@ -144,12 +144,12 @@ body.fullscreen {
 					background: rgba(255, 255, 255, 0.25);
 				}
 				::selection {
-					background-color: rgba(221, 240, 255, 0.2);
+					background-color: rgba(221, 240, 255, 0.25);
 				}
 				.cm-content {
 					width: 100%;
-					color: #ccc;
-					caret-color: #ccc;
+					color: #abb2bf;
+					caret-color: #abb2bf;
 					padding: 0;
 					-webkit-user-modify: read-write-plaintext-only;
 					word-wrap: break-word;

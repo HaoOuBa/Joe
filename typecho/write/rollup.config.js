@@ -3,9 +3,9 @@ import uglify from '@lopatnov/rollup-plugin-uglify';
 export default {
 	input: './js/index.js',
 	output: {
-		dir: './dist',
-		format: 'es'
+		file: './dist/index.bundle.js',
+		format: 'iife',
+		inlineDynamicImports: true
 	},
-	preserveEntrySignatures: 'strict',
 	plugins: [nodeResolve(), uglify()]
 };
