@@ -208,7 +208,7 @@
                                 <a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl("options-theme.php"); ?>">修改外观</a>
                             <?php endif; ?>
                             <a rel="noopener noreferrer nofollow" target="_blank" href="<?php $this->options->adminUrl(); ?>">进入后台</a>
-                            <a rel="noopener noreferrer nofollow" href="<?php $this->options->logoutUrl(); ?>">退出登录</a>
+                            <a href="<?php $this->options->logoutUrl(); ?>">退出登录</a>
                         </nav>
                     </div>
                 <?php else : ?>
