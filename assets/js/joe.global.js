@@ -354,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
 							if (_.parentNode.className === 'container') str = _;
 						});
 						if (!/Joe/.test(res)) {
-							Qmsg.warning(str.textContent.trim() || '');
+							Qmsg.warning(str ? str.textContent.trim() : '');
 							isSubmit = false;
 							$('.joe_comment__respond-form .foot .submit button').html('发表评论');
 						} else {
