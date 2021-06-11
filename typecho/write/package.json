@@ -14,8 +14,8 @@
     "@codemirror/view": "^0.18.16"
   },
   "devDependencies": {
-    "@lopatnov/rollup-plugin-uglify": "^2.1.1",
     "@rollup/plugin-node-resolve": "^13.0.0",
-    "rollup": "^2.51.0"
+    "rollup": "^2.51.1",
+    "rollup-plugin-terser": "^7.0.2"
   }
 }
