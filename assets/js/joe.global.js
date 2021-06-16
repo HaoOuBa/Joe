@@ -40,13 +40,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		$(document).on('click', function () {
 			$('.joe_header__above-search .result').removeClass('active');
 		});
-		const handle = () => {
-			if ($('.joe_header__above-search .result').hasClass('active')) $('.joe_header__above-search .result').removeClass('active');
-		};
-		$(document).on('scroll', () => {
-			if (window.requestAnimationFrame) window.requestAnimationFrame(handle);
-			else handle();
-		});
 	}
 
 	/* 激活全局下拉框功能 */
@@ -74,11 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	/* 激活全局返回顶部功能 */
 	{
+		let _debounce = null;
 		const handleScroll = () => ((document.documentElement.scrollTop || document.body.scrollTop) > 300 ? $('.joe_action_item.scroll').addClass('active') : $('.joe_action_item.scroll').removeClass('active'));
 		handleScroll();
 		$(document).on('scroll', () => {
-			if (window.requestAnimationFrame) window.requestAnimationFrame(handleScroll);
-			else handleScroll();
+			clearTimeout(_debounce);
+			_debounce = setTimeout(handleScroll, 80);
 		});
 		$('.joe_action_item.scroll').on('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 	}
@@ -187,11 +181,6 @@ document.addEventListener('DOMContentLoaded', () => {
 		}
 	}
 
-	/* 设置侧边栏最后一个元素的高度 */
-	{
-		$('.joe_aside__item:last-child').css('top', $('.joe_header').height() + 15);
-	}
-
 	/* 侧边栏舔狗日记 */
 	{
 		if ($('.joe_aside__item.flatterer').length) {
@@ -221,24 +210,6 @@ document.addEventListener('DOMContentLoaded', () => {
 				});
 			});
 		}
-	}
-
-	/* 计算页面滚动多少 */
-	{
-		const calcProgress = () => {
-			let scrollTop = $(window).scrollTop();
-			let documentHeight = $(document).height();
-			let windowHeight = $(window).height();
-			let progress = parseInt((scrollTop / (documentHeight - windowHeight)) * 100);
-			if (progress <= 0) progress = 0;
-			if (progress >= 100) progress = 100;
-			$('.joe_header__below-progress').css('width', progress + '%');
-		};
-		calcProgress();
-		$(document).on('scroll', () => {
-			if (window.requestAnimationFrame) window.requestAnimationFrame(calcProgress);
-			else calcProgress();
-		});
 	}
 
 	/* 评论框点击切换画图模式和文本模式 */
@@ -549,5 +520,27 @@ document.addEventListener('DOMContentLoaded', () => {
 		} else {
 			$('.joe_motto').html(motto);
 		}
+	}
+
+	{
+		const handleHeader = diffY => {
+			if (window.pageYOffset >= $('.joe_header').height() && diffY <= 0) {
+				$('.joe_header__below').addClass('active');
+				$('.joe_header').css('transform', `translate3d(0, -${$('.joe_header__above').height()}px, 0)`);
+				$('.joe_aside .joe_aside__item:last-child').css('top', $('.joe_header__below').height() + 15);
+			} else {
+				$('.joe_header__below').removeClass('active');
+				$('.joe_header').css('transform', '');
+				$('.joe_aside .joe_aside__item:last-child').css('top', $('.joe_header').height() + 15);
+			}
+		};
+		let Y = window.pageYOffset;
+		handleHeader(Y);
+		$(document).on('scroll', function () {
+			const diffY = Y - window.pageYOffset;
+			if (window.requestAnimationFrame) requestAnimationFrame(handleHeader.bind(null, diffY));
+			else handleHeader(diffY);
+			Y = window.pageYOffset;
+		});
 	}
 });

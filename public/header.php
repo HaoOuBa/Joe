@@ -227,7 +227,6 @@
                 <?php endif; ?>
             </div>
         </div>
-        <div class="joe_header__below-progress"></div>
     </div>
 
     <div class="joe_header__searchout">

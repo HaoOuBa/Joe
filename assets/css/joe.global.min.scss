@@ -52,6 +52,7 @@
 	z-index: 1000;
 	background: var(--background);
 	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+	transition: transform 0.35s;
 	&__above {
 		position: relative;
 		z-index: 999;
@@ -288,6 +289,9 @@
 		position: relative;
 		border-top: 1px solid var(--classC);
 		height: 45px;
+		&.active {
+			border-top-color: transparent;
+		}
 		&-class {
 			display: flex;
 			.item {
@@ -393,16 +397,6 @@
 					margin: 0 5px;
 				}
 			}
-		}
-		&-progress {
-			position: absolute;
-			z-index: 1;
-			left: 0;
-			bottom: -3px;
-			height: 3px;
-			border-radius: 1.5px;
-			background: linear-gradient(to right, #4cd964, #5ac8fa, #007aff);
-			transition: width 0.35s;
 		}
 	}
 	&__searchout {
@@ -655,6 +649,7 @@
 		&:last-child {
 			position: sticky;
 			margin-bottom: 0;
+			transition: top 0.35s;
 		}
 		&-title {
 			display: flex;
