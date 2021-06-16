@@ -536,11 +536,14 @@ document.addEventListener('DOMContentLoaded', () => {
 		};
 		let Y = window.pageYOffset;
 		handleHeader(Y);
+		let _debounce = null;
 		$(document).on('scroll', function () {
-			const diffY = Y - window.pageYOffset;
-			if (window.requestAnimationFrame) requestAnimationFrame(handleHeader.bind(null, diffY));
-			else handleHeader(diffY);
-			Y = window.pageYOffset;
+			clearTimeout(_debounce);
+			_debounce = setTimeout(() => {
+				const diffY = Y - window.pageYOffset;
+				handleHeader(diffY);
+				Y = window.pageYOffset;
+			}, 15);
 		});
 	}
 });
