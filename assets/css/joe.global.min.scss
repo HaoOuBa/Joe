@@ -53,6 +53,12 @@
 	background: var(--background);
 	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
 	transition: top 0.35s;
+	&.active {
+		top: -60px;
+		.joe_header__below {
+			border-top: none;
+		}
+	}
 	&__above {
 		position: relative;
 		z-index: 999;
@@ -289,9 +295,6 @@
 		position: relative;
 		border-top: 1px solid var(--classC);
 		height: 45px;
-		&.active {
-			border-top-color: transparent;
-		}
 		&-class {
 			display: flex;
 			.item {
