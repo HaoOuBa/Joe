@@ -526,24 +526,21 @@ document.addEventListener('DOMContentLoaded', () => {
 		const handleHeader = diffY => {
 			if (window.pageYOffset >= $('.joe_header').height() && diffY <= 0) {
 				$('.joe_header__below').addClass('active');
-				$('.joe_header').css('transform', `translate3d(0, -${$('.joe_header__above').height()}px, 0)`);
-				$('.joe_aside .joe_aside__item:last-child').css('top', $('.joe_header__below').height() + 15);
+				$('.joe_header').css('top', `-${$('.joe_header__above').height()}px`);
+				$('.joe_aside .joe_aside__item:last-child').css('top', $('.joe_header').height() - $('.joe_header__above').height() + 15);
 			} else {
 				$('.joe_header__below').removeClass('active');
-				$('.joe_header').css('transform', '');
+				$('.joe_header').css('top', 0);
 				$('.joe_aside .joe_aside__item:last-child').css('top', $('.joe_header').height() + 15);
 			}
 		};
 		let Y = window.pageYOffset;
 		handleHeader(Y);
-		let _debounce = null;
 		$(document).on('scroll', function () {
-			clearTimeout(_debounce);
-			_debounce = setTimeout(() => {
-				const diffY = Y - window.pageYOffset;
-				handleHeader(diffY);
-				Y = window.pageYOffset;
-			}, 15);
+			const diffY = Y - window.pageYOffset;
+			if (window.requestAnimationFrame) requestAnimationFrame(handleHeader.bind(null, diffY));
+			else handleHeader(diffY);
+			Y = window.pageYOffset;
 		});
 	}
 });
