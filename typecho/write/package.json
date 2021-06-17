@@ -7,7 +7,7 @@
     "@codemirror/commands": "^0.18.3",
     "@codemirror/highlight": "^0.18.4",
     "@codemirror/history": "^0.18.1",
-    "@codemirror/lang-markdown": "^0.18.3",
+    "@codemirror/lang-markdown": "^0.18.4",
     "@codemirror/language-data": "^0.18.0",
     "@codemirror/matchbrackets": "^0.18.0",
     "@codemirror/state": "^0.18.7",
@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^13.0.0",
-    "rollup": "^2.51.2",
+    "rollup": "^2.52.0",
     "rollup-plugin-terser": "^7.0.2"
   }
 }

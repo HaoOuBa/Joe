@@ -58,6 +58,15 @@
 		.joe_header__below {
 			border-top: none;
 		}
+		&.current {
+			.joe_header__below-title {
+				display: block;
+				
+			}
+			.joe_header__below-class {
+				display: none;
+			}
+		}
 	}
 	&__above {
 		position: relative;
@@ -295,6 +304,18 @@
 		position: relative;
 		border-top: 1px solid var(--classC);
 		height: 45px;
+		&-title {
+			max-width: 450px;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			display: none;
+			line-height: 45px;
+			font-size: 17px;
+			font-weight: 700;
+			color: var(--main);
+			animation: showHeaderTitle 0.35s;
+		}
 		&-class {
 			display: flex;
 			.item {
@@ -3965,5 +3986,16 @@
 	to {
 		transform: scaleX(0.5);
 		background-color: #409eff;
+	}
+}
+
+@keyframes showHeaderTitle {
+	0% {
+		opacity: 0.25;
+		transform: scale(0.25);
+	}
+	100% {
+		opacity: 1;
+		transform: scale(1);
 	}
 }
