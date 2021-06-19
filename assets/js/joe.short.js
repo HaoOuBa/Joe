@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			render() {
 				if (!this.options.id) return (this.innerHTML = '网易云歌曲ID未填写！');
 				this.innerHTML = '<span style="display: block" class="_content"></span>';
-				fetch('https://vvhan.com/usr/themes/Joe/NeteaseCloudMusicApi.php?id=' + this.options.id).then(async response => {
+				fetch('https://www.vvhan.com/usr/themes/Joe/NeteaseCloudMusicApi.php?id=' + this.options.id).then(async response => {
 					const audio = await response.json();
 					new APlayer({
 						container: getChildren(this, '_content'),
