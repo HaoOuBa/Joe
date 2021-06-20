@@ -153,6 +153,7 @@ document.addEventListener('DOMContentLoaded', () => {
 				type: 'POST',
 				data: {
 					cid,
+					protectCID: cid,
 					protectPassword
 				},
 				dataType: 'text',

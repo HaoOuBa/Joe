@@ -1041,7 +1041,7 @@ function themeConfig($form)
             '//cdn.jsdelivr.net/npm/prism-theme-one-light-dark@1.0.4/prism-onedark.min.css' => 'prism-onedark',
             '//cdn.jsdelivr.net/npm/prism-theme-one-dark@1.0.0/prism-onedark.min.css' => 'prism-onedark2',
         ),
-        'on',
+        '//cdn.jsdelivr.net/npm/prismjs@1.23.0/themes/prism.min.css',
         '选择一款您喜欢的代码高亮样式',
         '介绍：用于修改代码块的高亮风格 <br>
          其他：如果您有其他样式，可通过源代码修改此项，引入您的自定义样式链接'
