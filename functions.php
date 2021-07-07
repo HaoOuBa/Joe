@@ -560,18 +560,19 @@ function themeConfig($form)
     $JCustomAside->setAttribute('class', 'joe_content joe_aside');
     $form->addInput($JCustomAside);
     /* --------------------------------------- */
-    $JAside_3DTag = new Typecho_Widget_Helper_Form_Element_Select(
-        'JAside_3DTag',
+    $JAside_Tag = new Typecho_Widget_Helper_Form_Element_Select(
+        'JAside_Tag',
         array(
             'off' => '关闭（默认）',
-            'on' => '开启'
+            '1' => '3D云标签',
+            '2' => '普通标签',
         ),
         'off',
-        '是否开启3D云标签 - PC',
-        '介绍：用于设置侧边栏是否显示3D云标签'
+        '是否开启标签 - PC',
+        '介绍：用于设置侧边栏是否显示标签'
     );
-    $JAside_3DTag->setAttribute('class', 'joe_content joe_aside');
-    $form->addInput($JAside_3DTag->multiMode());
+    $JAside_Tag->setAttribute('class', 'joe_content joe_aside');
+    $form->addInput($JAside_Tag->multiMode());
     /* --------------------------------------- */
     $JAside_Flatterer = new Typecho_Widget_Helper_Form_Element_Select(
         'JAside_Flatterer',
