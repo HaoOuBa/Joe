@@ -2,20 +2,20 @@ import { undo, redo } from '@codemirror/history';
 export default class JoeAction {
 	constructor() {
 		$('body').append(`
-            <div class="cm-modal">
-                <div class="cm-modal__wrapper">
-                    <div class="cm-modal__wrapper-header">
-                        <div class="cm-modal__wrapper-header--text"></div>
-                        <div class="cm-modal__wrapper-header--close">×</div>
-                    </div>
-                    <div class="cm-modal__wrapper-bodyer"></div>
-                    <div class="cm-modal__wrapper-footer">
-                        <button class="cm-modal__wrapper-footer--cancle">取消</button>
-                        <button class="cm-modal__wrapper-footer--confirm">确定</button>
-                    </div>
-                </div>
-            </div>
-        `);
+				<div class="cm-modal">
+						<div class="cm-modal__wrapper">
+								<div class="cm-modal__wrapper-header">
+										<div class="cm-modal__wrapper-header--text"></div>
+										<div class="cm-modal__wrapper-header--close">×</div>
+								</div>
+								<div class="cm-modal__wrapper-bodyer"></div>
+								<div class="cm-modal__wrapper-footer">
+										<button class="cm-modal__wrapper-footer--cancle">取消</button>
+										<button class="cm-modal__wrapper-footer--confirm">确定</button>
+								</div>
+						</div>
+				</div>
+		`);
 		$('.cm-modal__wrapper-footer--cancle, .cm-modal__wrapper-header--close').on('click', () => $('.cm-modal').removeClass('active'));
 		$('.cm-modal__wrapper-footer--confirm').on('click', () => {
 			this.options.confirm();
@@ -27,8 +27,8 @@ export default class JoeAction {
 			title: '提示',
 			innerHtml: '内容',
 			hasFooter: true,
-			confirm: () => {},
-			handler: () => {}
+			confirm: () => { },
+			handler: () => { }
 		};
 		this.options = Object.assign(_options, options);
 		$('.cm-modal__wrapper-header--text').html(this.options.title);
