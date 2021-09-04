@@ -12,6 +12,7 @@
 <html lang="zh-CN">
 
 <head>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">	
 	<?php $this->need('public/include.php'); ?>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@5.4.5/css/swiper.min.css" />
 	<script src="https://cdn.jsdelivr.net/npm/swiper@5.4.5/js/swiper.min.js"></script>
