@@ -1,4 +1,4 @@
-import { EditorView, keymap, highlightActiveLine } from '@codemirror/view';
+import { EditorView, keymap, drawSelection, highlightActiveLine } from '@codemirror/view';
 import { EditorState } from '@codemirror/state';
 import { bracketMatching } from '@codemirror/matchbrackets';
 import { closeBrackets, closeBracketsKeymap } from '@codemirror/closebrackets';
@@ -6,7 +6,10 @@ import { defaultKeymap, indentLess, indentMore } from '@codemirror/commands';
 import { history, historyKeymap } from '@codemirror/history';
 import { markdown, markdownLanguage } from '@codemirror/lang-markdown';
 import { languages } from '@codemirror/language-data';
-import theme from './_theme';
+import { lineNumbers, highlightActiveLineGutter } from "@codemirror/gutter";
+import { highlightSelectionMatches } from "@codemirror/search";
+import { commentKeymap } from "@codemirror/comment";
+import { classHighlightStyle } from '@codemirror/highlight';
 import tools from './_tools';
 import JoeAction from './_actions';
 import createPreviewHtml from './_create';
@@ -14,7 +17,7 @@ import createPreviewHtml from './_create';
 class Joe extends JoeAction {
 	constructor() {
 		super();
-		this.plugins = [theme(), history(), bracketMatching(), closeBrackets(), highlightActiveLine()];
+		this.plugins = [classHighlightStyle, history(), bracketMatching(), closeBrackets(), drawSelection(), highlightActiveLine(), lineNumbers(), highlightActiveLineGutter(), highlightSelectionMatches()];
 		this.keymaps = [
 			{
 				key: 'Tab',
@@ -44,17 +47,17 @@ class Joe extends JoeAction {
 	/* 已测 √ */
 	init_Editor() {
 		$('#text').before(`
-            <div class="cm-container">
-                <div class="cm-tools"></div>
-                <div class="cm-mainer">
-                    <div class="cm-resize"></div>
-                    <div class="cm-preview"><div class="cm-preview-content"></div></div>
-					<div class="cm-autosave"></div>
-                </div>
-                <div class="cm-progress-left"></div>
-                <div class="cm-progress-right"></div>
-            </div>
-        `);
+				<div class="cm-container">
+						<div class="cm-tools"></div>
+						<div class="cm-mainer">
+								<div class="cm-resize"></div>
+								<div class="cm-preview"><div class="cm-preview-content"></div></div>
+			<div class="cm-autosave"></div>
+						</div>
+						<div class="cm-progress-left"></div>
+						<div class="cm-progress-right"></div>
+				</div>
+		`);
 		createPreviewHtml(null);
 		let _temp = null;
 		let _debounce = null;
@@ -67,7 +70,7 @@ class Joe extends JoeAction {
 						base: markdownLanguage,
 						codeLanguages: languages
 					}),
-					keymap.of([...this.keymaps, ...closeBracketsKeymap, ...defaultKeymap, ...historyKeymap]),
+					keymap.of([...this.keymaps, ...defaultKeymap, ...commentKeymap, ...historyKeymap, ...closeBracketsKeymap,]),
 					EditorView.updateListener.of(update => {
 						if (!update.docChanged) return;
 						if (_temp !== update.state.doc.toString()) {
