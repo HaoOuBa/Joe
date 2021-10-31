@@ -119,7 +119,7 @@
             </ol>
         </section>
     <?php endif; ?>
-    <?php if ($this->options->JAside_Newreply_Status === 'on' && $this->options->JCommentStatus !== 'off') : ?>
+    <?php if ($this->options->JAside_Newreply_Status && $this->options->JCommentStatus !== 'off') : ?>
         <section class="joe_aside__item newreply">
             <div class="joe_aside__item-title">
                 <svg class="icon" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" width="18" height="18">
@@ -129,7 +129,7 @@
                 <span class="text">最新回复</span>
                 <span class="line"></span>
             </div>
-            <?php $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true&pageSize=5')->to($item); ?>
+            <?php $this->widget('Widget_Comments_Recent', 'ignoreAuthor=true&pageSize='. $this->options->JAside_Newreply_Status)->to($item); ?>
             <ul class="joe_aside__item-contain">
                 <?php if ($item->have()) : ?>
                     <?php while ($item->next()) : ?>
