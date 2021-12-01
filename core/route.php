@@ -3,24 +3,23 @@
 /* 获取文章列表 已测试 √  */
 function _getPost($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+    $self->response->setStatus(200);
 
-    $page = Typecho_Request::getInstance()->page;
-    $pageSize = Typecho_Request::getInstance()->pageSize;
-    $type = Typecho_Request::getInstance()->type;
+    $page = $self->request->page;
+    $pageSize = $self->request->pageSize;
+    $type = $self->request->type;
 
     /* sql注入校验 */
     if (!preg_match('/^\d+$/', $page)) {
-        return Typecho_Response::getInstance()->throwJson(array("data" => "非法请求！已屏蔽！"));
+        return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
     }
     if (!preg_match('/^\d+$/', $pageSize)) {
-        return Typecho_Response::getInstance()->throwJson(array("data" => "非法请求！已屏蔽！"));
+        return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
     }
     if (!preg_match('/^[created|views|commentsNum|agree]+$/', $type)) {
-        return Typecho_Response::getInstance()->throwJson(array("data" => "非法请求！已屏蔽！"));
+        return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
     }
+
     /* 如果传入0，强制赋值1 */
     if ($page == 0) $page = 1;
     $result = [];
@@ -67,48 +66,49 @@ function _getPost($self)
             "type" => "normal"
         );
     };
-    Typecho_Response::getInstance()->throwJson(array("data" => $result));
+
+    $self->response->throwJson(array("data" => $result));
 }
 
 /* 增加浏览量 已测试 √ */
 function _handleViews($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
-    $cid = Typecho_Request::getInstance()->cid;
+    $self->response->setStatus(200);
+
+    $cid = $self->request->cid;
+
     /* sql注入校验 */
     if (!preg_match('/^\d+$/',  $cid)) {
-        return Typecho_Response::getInstance()->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
+        return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
     }
     $db = Typecho_Db::get();
     $row = $db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid));
     if (sizeof($row) > 0) {
         $db->query($db->update('table.contents')->rows(array('views' => (int)$row['views'] + 1))->where('cid = ?', $cid));
-        Typecho_Response::getInstance()->throwJson(array(
+        $self->response->throwJson(array(
             "code" => 1,
             "data" => array('views' => number_format($db->fetchRow($db->select('views')->from('table.contents')->where('cid = ?', $cid))['views']))
         ));
     } else {
-        Typecho_Response::getInstance()->throwJson(array("code" => 0, "data" => null));
+        $self->response->throwJson(array("code" => 0, "data" => null));
     }
 }
 
 /* 点赞和取消点赞 已测试 √ */
 function _handleAgree($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
-    $cid = Typecho_Request::getInstance()->cid;
-    $type = Typecho_Request::getInstance()->type;
+    $self->response->setStatus(200);
+
+    $cid = $self->request->cid;
+    $type = $self->request->type;
+
     /* sql注入校验 */
     if (!preg_match('/^\d+$/',  $cid)) {
-        return Typecho_Response::getInstance()->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
+        return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
     }
     /* sql注入校验 */
     if (!preg_match('/^[agree|disagree]+$/', $type)) {
-        return Typecho_Response::getInstance()->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
+        return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
     }
     $db = Typecho_Db::get();
     $row = $db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid));
@@ -118,22 +118,21 @@ function _handleAgree($self)
         } else {
             $db->query($db->update('table.contents')->rows(array('agree' => (int)$row['agree'] - 1))->where('cid = ?', $cid));
         }
-        Typecho_Response::getInstance()->throwJson(array(
+        $self->response->throwJson(array(
             "code" => 1,
             "data" => array('agree' => number_format($db->fetchRow($db->select('agree')->from('table.contents')->where('cid = ?', $cid))['agree']))
         ));
     } else {
-        Typecho_Response::getInstance()->throwJson(array("code" => 0, "data" => null));
+        $self->response->throwJson(array("code" => 0, "data" => null));
     }
 }
 
 /* 查询是否收录 已测试 √ */
 function _getRecord($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
-    $site = Typecho_Request::getInstance()->site;
+    $self->response->setStatus(200);
+
+    $site = $self->request->site;
     $encryption = md5(mt_rand(1655, 100860065) . time());
     $baiduSite = "https://www.baidu.com/s?ie=utf-8&newi=1&mod=1&isid={$encryption}&wd={$site}&rsv_spt=1&rsv_iqid={$encryption}&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&tn=baiduhome_pg&rsv_enter=0&rsv_dl=ib&rsv_sug3=2&rsv_sug1=1&rsv_sug7=001&rsv_n=2&rsv_btype=i&inputT=3083&rsv_sug4=3220&rsv_sug=9&rsv_sid=32818_1460_33042_33060_31660_33099_33101_32961_26350_22159&_ss=1&clist=&hsug=&f4s=1&csor=38&_cr1=32951";
     $ip = mt_rand(0, 255) . '.' . mt_rand(0, 255) . '.' . mt_rand(0, 255) . '.' . mt_rand(0, 255);
@@ -155,21 +154,20 @@ function _getRecord($self)
     curl_close($ch);
     $res = str_replace([' ', "\n", "\r"], '', $output);
     if (strpos($res, "抱歉，没有找到与") || strpos($res, "找到相关结果约0个") || strpos($res, "没有找到该URL") || strpos($res, "抱歉没有找到")) {
-        Typecho_Response::getInstance()->throwJson(array("data" => "未收录"));
+        $self->response->throwJson(array("data" => "未收录"));
     } else {
-        Typecho_Response::getInstance()->throwJson(array("data" => "已收录"));
+        $self->response->throwJson(array("data" => "已收录"));
     }
 }
 
 /* 主动推送到百度收录 已测试 √ */
 function _pushRecord($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+    $self->response->setStatus(200);
+
     $token = Helper::options()->JBaiduToken;
-    $domain = Typecho_Request::getInstance()->domain;
-    $url = Typecho_Request::getInstance()->url;
+    $domain = $self->request->domain;
+    $url = $self->request->url;
     $urls = explode(",", $url);
     $api = "http://data.zz.baidu.com/urls?site={$domain}&token={$token}";
     $ch = curl_init();
@@ -183,7 +181,7 @@ function _pushRecord($self)
     curl_setopt_array($ch, $options);
     $result = curl_exec($ch);
     curl_close($ch);
-    Typecho_Response::getInstance()->throwJson(array(
+    $self->response->throwJson(array(
         'domain' => $domain,
         'url' => $url,
         'data' => json_decode($result, TRUE)
@@ -193,18 +191,17 @@ function _pushRecord($self)
 /* 获取壁纸分类 已测试 √ */
 function _getWallpaperType($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+    $self->response->setStatus(200);
+
     $json = _curl("http://cdn.apc.360.cn/index.php?c=WallPaper&a=getAllCategoriesV2&from=360chrome");
     $res = json_decode($json, TRUE);
     if ($res['errno'] == 0) {
-        Typecho_Response::getInstance()->throwJson([
+        $self->response->throwJson([
             "code" => 1,
             "data" => $res['data']
         ]);
     } else {
-        Typecho_Response::getInstance()->throwJson([
+        $self->response->throwJson([
             "code" => 0,
             "data" => null
         ]);
@@ -214,22 +211,21 @@ function _getWallpaperType($self)
 /* 获取壁纸列表 已测试 √ */
 function _getWallpaperList($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
-    $cid = Typecho_Request::getInstance()->cid;
-    $start = Typecho_Request::getInstance()->start;
-    $count = Typecho_Request::getInstance()->count;
+    $self->response->setStatus(200);
+
+    $cid = $self->request->cid;
+    $start = $self->request->start;
+    $count = $self->request->count;
     $json = _curl("http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome");
     $res = json_decode($json, TRUE);
     if ($res['errno'] == 0) {
-        Typecho_Response::getInstance()->throwJson([
+        $self->response->throwJson([
             "code" => 1,
             "data" => $res['data'],
             "total" => $res['total']
         ]);
     } else {
-        Typecho_Response::getInstance()->throwJson([
+        $self->response->throwJson([
             "code" => 0,
             "data" => null
         ]);
@@ -239,32 +235,30 @@ function _getWallpaperList($self)
 /* 抓取苹果CMS视频分类 已测试 √ */
 function _getMaccmsList($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
-    header("HTTP/1.1 200 OK");
+    $self->response->setStatus(200);
+
     $cms_api = Helper::options()->JMaccmsAPI;
-    $ac = Typecho_Request::getInstance()->ac ? Typecho_Request::getInstance()->ac : '';
-    $ids = Typecho_Request::getInstance()->ids ? Typecho_Request::getInstance()->ids : '';
-    $t = Typecho_Request::getInstance()->t ? Typecho_Request::getInstance()->t : '';
-    $pg = Typecho_Request::getInstance()->pg ? Typecho_Request::getInstance()->pg : '';
-    $wd = Typecho_Request::getInstance()->wd ? Typecho_Request::getInstance()->wd : '';
+    $ac = $self->request->ac ? $self->request->ac : '';
+    $ids = $self->request->ids ? $self->request->ids : '';
+    $t = $self->request->t ? $self->request->t : '';
+    $pg = $self->request->pg ? $self->request->pg : '';
+    $wd = $self->request->wd ? $self->request->wd : '';
     if ($cms_api) {
         $json = _curl("{$cms_api}?ac={$ac}&ids={$ids}&t={$t}&pg={$pg}&wd={$wd}");
         $res = json_decode($json, TRUE);
         if ($res['code'] === 1) {
-            Typecho_Response::getInstance()->throwJson([
+            $self->response->throwJson([
                 "code" => 1,
                 "data" => $res,
             ]);
         } else {
-            Typecho_Response::getInstance()->throwJson([
+            $self->response->throwJson([
                 "code" => 0,
                 "data" => "抓取失败！请联系作者！"
             ]);
         }
     } else {
-        Typecho_Response::getInstance()->throwJson([
+        $self->response->throwJson([
             "code" => 0,
             "data" => "后台苹果CMS API未填写！"
         ]);
@@ -274,20 +268,19 @@ function _getMaccmsList($self)
 /* 获取虎牙视频列表 已测试 √ */
 function _getHuyaList($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
-    $gameId = Typecho_Request::getInstance()->gameId;
-    $page = Typecho_Request::getInstance()->page;
+    $self->response->setStatus(200);
+
+    $gameId = $self->request->gameId;
+    $page = $self->request->page;
     $json = _curl("https://www.huya.com/cache.php?m=LiveList&do=getLiveListByPage&gameId={$gameId}&tagAll=0&page={$page}");
     $res = json_decode($json, TRUE);
     if ($res['status'] === 200) {
-        Typecho_Response::getInstance()->throwJson([
+        $self->response->throwJson([
             "code" => 1,
             "data" => $res['data'],
         ]);
     } else {
-        Typecho_Response::getInstance()->throwJson([
+        $self->response->throwJson([
             "code" => 0,
             "data" => "抓取失败！请联系作者！"
         ]);
@@ -297,16 +290,15 @@ function _getHuyaList($self)
 /* 获取服务器状态 */
 function _getServerStatus($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+    $self->response->setStatus(200);
+
     $api_panel = Helper::options()->JBTPanel;
     $api_sk = Helper::options()->JBTKey;
-    if (!$api_panel) return Typecho_Response::getInstance()->throwJson([
+    if (!$api_panel) return $self->response->throwJson([
         "code" => 0,
         "data" => "宝塔面板地址未填写！"
     ]);
-    if (!$api_sk) return Typecho_Response::getInstance()->throwJson([
+    if (!$api_sk) return $self->response->throwJson([
         "code" => 0,
         "data" => "宝塔接口密钥未填写！"
     ]);
@@ -325,7 +317,7 @@ function _getServerStatus($self)
     curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
     $response  = json_decode(curl_exec($ch), true);
     curl_close($ch);
-    Typecho_Response::getInstance()->throwJson(array(
+    $self->response->throwJson(array(
         /* 状态 */
         "status" => $response ? true : false,
         /* 信息提示 */
@@ -350,9 +342,8 @@ function _getServerStatus($self)
 /* 获取最近评论 */
 function _getCommentLately($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
+    $self->response->setStatus(200);
+
     $time = time();
     $num = 7;
     $categories = [];
@@ -366,7 +357,7 @@ function _getCommentLately($self)
         $categories[] = $date;
         $series[] = $count;
     }
-    Typecho_Response::getInstance()->throwJson([
+    $self->response->throwJson([
         "categories" => $categories,
         "series" => $series,
     ]);
@@ -375,12 +366,11 @@ function _getCommentLately($self)
 /* 获取文章归档 */
 function _getArticleFiling($self)
 {
-    header("HTTP/1.1 200 OK");
-    header('Access-Control-Allow-Origin:*');
-    header("Access-Control-Allow-Headers:Origin, X-Requested-With, Content-Type, Accept");
-    $page = Typecho_Request::getInstance()->page;
+    $self->response->setStatus(200);
+
+    $page = $self->request->page;
     $pageSize = 8;
-    if (!preg_match('/^\d+$/', $page)) return Typecho_Response::getInstance()->throwJson(array("data" => "非法请求！已屏蔽！"));
+    if (!preg_match('/^\d+$/', $page)) return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
     if ($page == 0) $page = 1;
     $offset = $pageSize * ($page - 1);
     $time = time();
@@ -418,5 +408,5 @@ function _getArticleFiling($self)
         }
         $result[] = array("date" => $date, "list" => $list);
     }
-    Typecho_Response::getInstance()->throwJson($result);
+    $self->response->throwJson($result);
 }

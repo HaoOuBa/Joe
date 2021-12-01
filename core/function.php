@@ -2,7 +2,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-	return "7.3.3";
+	return "7.3.5";
 };
 
 /* 判断是否是手机 */
@@ -157,7 +157,7 @@ function _endCountTime($precision = 3)
 /* 通过邮箱生成头像地址 */
 function _getAvatarByMail($mail)
 {
-	$gravatarsUrl = Helper::options()->JCustomAvatarSource ? Helper::options()->JCustomAvatarSource : 'https://gravatar.ihuan.me/avatar/';
+	$gravatarsUrl = Helper::options()->JCustomAvatarSource ? Helper::options()->JCustomAvatarSource : 'https://gravatar.helingqi.com/wavatar/';
 	$mailLower = strtolower($mail);
 	$md5MailLower = md5($mailLower);
 	$qqMail = str_replace('@qq.com', '', $mailLower);

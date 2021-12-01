@@ -366,8 +366,8 @@ function themeConfig($form)
         NULL,
         '自定义头像源（非必填）',
         '介绍：用于修改全站头像源地址 <br>
-         例如：https://gravatar.helingqi.com/wavatar/ <br>
-         其他：非必填，默认头像源为gravatar.ihuan.me <br>
+         例如：https://gravatar.ihuan.me/avatar/ <br>
+         其他：非必填，默认头像源为https://gravatar.helingqi.com/wavatar/ <br>
          注意：填写时，务必保证最后有一个/字符，否则不起作用！'
     );
     $JCustomAvatarSource->setAttribute('class', 'joe_content joe_global');

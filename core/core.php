@@ -29,9 +29,10 @@ function themeInit($self)
     Helper::options()->commentsThreaded = true;
     /* 强制回复楼层最高999层 */
     Helper::options()->commentsMaxNestingLevels = 999;
+
     /* 主题开放API 路由规则 */
-    if (Typecho_Request::getInstance()->getPathinfo() == "/joe/api") {
-        switch (Typecho_Request::getInstance()->routeType) {
+    if ($self->request->getPathInfo() == "/joe/api") {
+        switch ($self->request->routeType) {
             case 'publish_list':
                 _getPost($self);
                 break;
@@ -71,10 +72,11 @@ function themeInit($self)
         };
     }
 
+
     /* 增加自定义SiteMap功能 */
     if (Helper::options()->JSiteMap && Helper::options()->JSiteMap !== 'off') {
-        if (strpos(Typecho_Request::getInstance()->getRequestUri(), 'sitemap.xml') !== false) {
-            Typecho_Response::getInstance()->setStatus(200);
+        if (strpos($self->request->getRequestUri(), 'sitemap.xml') !== false) {
+            $self->response->setStatus(200);
             $self->setThemeFile("library/sitemap.php");
         }
     }
