@@ -301,9 +301,9 @@
     <div class="joe_header__slideout">
         <img width="100%" height="150" class="joe_header__slideout-image" src="<?php $this->options->JAside_Wap_Image() ?>" alt="侧边栏壁纸" />
         <div class="joe_header__slideout-author">
-            <img width="50" height="50" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : _getAvatarByMail($this->author->mail) ?>" alt="博主昵称" />
+            <img width="50" height="50" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php $this->options->JAside_Author_Avatar ? $this->options->JAside_Author_Avatar() : _getAvatarByMail($this->authorId ? $this->author->mail : $this->user->mail) ?>" alt="博主昵称" />
             <div class="info">
-                <a class="link" href="<?php $this->options->JAside_Author_Link() ?>" target="_blank" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : $this->author->screenName(); ?></a>
+                <a class="link" href="<?php $this->options->JAside_Author_Link() ?>" target="_blank" rel="noopener noreferrer nofollow"><?php $this->options->JAside_Author_Nick ? $this->options->JAside_Author_Nick() : ($this->authorId ? $this->author->screenName() : $this->user->screenName()); ?></a>
                 <p class="motto joe_motto"></p>
             </div>
         </div>
