@@ -753,15 +753,25 @@ function themeConfig($form)
     $JIndex_Notice->setAttribute('class', 'joe_content joe_index');
     $form->addInput($JIndex_Notice);
 
+    $JFriendsSwitch = new Typecho_Widget_Helper_Form_Element_Select(
+        'JFriendsSwitch',
+        array('off' => '关闭（默认）', 'on' => '开启'),
+        'off',
+        '是否开启友链检测功能',
+        '介绍：开启后可以自动检测对方站点是否添加本站友链并在友链界面显示结果'
+    );
+    $JFriendsSwitch->setAttribute('class', 'joe_content joe_other');
+    $form->addInput($JFriendsSwitch->multiMode());
+
     $JFriends = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFriends',
         NULL,
-        'Joe的博客 || https://78.al || https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/link.png || Eternity is not a distance but a decision',
+        'Joe的博客 || https://78.al || https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/img/link.png || Eternity is not a distance but a decision || 友链页面地址（开启友链检测功能后必填）',
         '友情链接（非必填）',
         '介绍：用于填写友情链接 <br />
-         注意：您需要先增加友链链接页面（新增独立页面-右侧模板选择友链），该项才会生效 <br />
-         格式：博客名称 || 博客地址 || 博客头像 || 博客简介 <br />
-         其他：一行一个，一行代表一个友链'
+         注意：您需要先增加友联链接页面（新增独立页面-右侧模板选择友链），该项才会生效 <br />
+         格式：博客名称 || 博客地址 || 博客头像 || 博客简介 || 友链页面地址 <br />
+         其他：一行一个，每行代表一个友链'
     );
     $JFriends->setAttribute('class', 'joe_content joe_other');
     $form->addInput($JFriends);
