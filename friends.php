@@ -27,6 +27,45 @@
 <body>
     <div id="Joe">
         <?php $this->need('public/header.php'); ?>
+        <?php
+        $max_allow_links = 100; // 最大许可检查的链接数目
+        function my_file_get_contents($url, $timeout = 30) {
+            if (function_exists('curl_init')) {
+                $ch = curl_init();
+                curl_setopt($ch, CURLOPT_URL, $url);
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+                curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $timeout);
+                $file_contents = curl_exec($ch);
+                curl_close($ch);
+            } else if (ini_get('allow_url_fopen') == 1 || strtolower(ini_get('allow_url_fopen')) == 'on') {
+                $file_contents = @file_get_contents($url);
+            } else {
+                $file_contents = '';
+            }
+            return $file_contents;
+        }
+        function isExistsContentUrl($url, &$retMsg, $mydomain = "") {
+            if (!isset($url) || empty($url)) {
+                $retMsg = "配置URL为空";
+                return false;
+            }
+            if (!isset($mydomain) || empty($mydomain)) {
+                $mydomain = $_SERVER['SERVER_NAME'];
+            }
+            $resultContent = my_file_get_contents($url);
+            if (trim($resultContent) == '') {
+                $retMsg = "网站无法访问";
+                return false;
+            }
+            if (strripos($resultContent, $mydomain)) {
+                $retMsg = "友链正常";
+                return true;
+            } else {
+                $retMsg = "未添加本站";
+                return false;
+            }
+        }
+        ?>
         <div class="joe_container">
             <div class="joe_main">
                 <div class="joe_detail" data-cid="<?php echo $this->cid ?>">
@@ -84,7 +123,13 @@
                                 $url = explode("||", $friends_arr[$i])[1];
                                 $avatar = explode("||", $friends_arr[$i])[2];
                                 $desc = explode("||", $friends_arr[$i])[3];
-                                $friends[] = array("name" => trim($name), "url" => trim($url), "avatar" => trim($avatar), "desc" => trim($desc));
+                                $friendsUrl = explode("||", $friends_arr[$i])[4];
+                                if($friendsUrl) {
+                                    $friends[] = array("name" => trim($name), "url" => trim($url), "avatar" => trim($avatar), "desc" => trim($desc), "friendsUrl" => trim($friendsUrl));
+                                }
+                                else {
+                                    $friends[] = array("name" => trim($name), "url" => trim($url), "avatar" => trim($avatar), "desc" => trim($desc), "friendsUrl" => trim($url));
+                                }
                             };
                         }
                     }
@@ -95,6 +140,15 @@
                                 <li class="joe_detail__friends-item">
                                     <a class="contain" href="<?php echo $item['url']; ?>" target="_blank" rel="noopener noreferrer" style="background: <?php echo $friends_color[mt_rand(0, count($friends_color) - 1)] ?>">
                                         <span class="title"><?php echo $item['name']; ?></span>
+                                        <span class="title" style="float: right;<?php if(Helper::options()->JFriendsSwitch !== 'on') echo 'display:none;' ?>">
+                                            <?php
+                                            if(Helper::options()->JFriendsSwitch !== 'off') {
+                                                $result = "";
+                                                $ret = isExistsContentUrl($item['friendsUrl'], $result, null);
+                                                echo $result;
+                                            }
+                                            ?>
+                                        </span>
                                         <div class="content">
                                             <div class="desc"><?php echo $item['desc']; ?></div>
                                             <img width="40" height="40" class="avatar lazyload" src="<?php _getAvatarLazyload(); ?>" data-src="<?php echo $item['avatar']; ?>" alt="<?php echo $item['name']; ?>" />
