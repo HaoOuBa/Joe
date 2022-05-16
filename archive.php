@@ -21,9 +21,16 @@
                         <div class="joe_archive__title-title">
                             <span>搜索到</span>
                             <span class="muted"><?php echo $this->getTotal(); ?></span>
-                            <span>篇与</span>
-                            <span class="muted ellipsis"><?php echo $this->_keywords; ?></span>
-                            <span>的结果</span>
+                            <span>篇&nbsp;</span>
+                            <?php
+                                $sp='<span class="muted ellipsis"> %s </span>';
+                                $this->archiveTitle(array(
+                                    'category' => '分类为'.$sp.'的文章',
+                                    'search' => '包含关键字'.$sp.'的文章',
+                                    'tag' => '标签为'.$sp.'的文章',
+                                    'author' => $sp.'发布的文章')
+                                    , '', '');
+                            ?>
                         </div>
                     </div>
 
