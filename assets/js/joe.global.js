@@ -332,10 +332,28 @@ document.addEventListener('DOMContentLoaded', () => {
 							window.location.reload();
 						}
 					},
-					error() {
+					error(res) {
 						isSubmit = false;
 						$('.joe_comment__respond-form .foot .submit button').html('发表评论');
-						Qmsg.warning('发送失败！请刷新重试！');
+						/* 
+						  *解析其他错误提示。
+						  *如未登录状态下，使用注册用户的昵称回复，可正常显示错误提示：您所使用的用户名已经被注册,请登录后再次提交
+						 */
+						if(res.responseText){
+							let arr = [],
+							str = '';
+							arr = $(res.responseText).contents();
+							Array.from(arr).forEach(_ => {
+								if (_.parentNode.className === 'container') str = _;
+							});
+							if (!/Joe/.test(res.responseText)) {
+								Qmsg.warning(str.textContent.trim() || '');
+							}else{
+								Qmsg.warning('发送失败！请刷新重试！');
+							}
+						}else{
+							Qmsg.warning('发送失败！请刷新重试！');
+						}
 					}
 				});
 			});
