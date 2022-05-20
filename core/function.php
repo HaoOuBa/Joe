@@ -2,7 +2,7 @@
 /* 获取主题当前版本号 */
 function _getVersion()
 {
-	return "7.3.6";
+	return "7.3.7";
 };
 
 /* 判断是否是手机 */
@@ -229,7 +229,7 @@ function _getThumbnails($item)
 			}
 		} else {
 			for ($i = 0; $i < 3; $i++) {
-				$result[] = 'https://cdn.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/thumb/' . rand(1, 42) . '.jpg';
+				$result[] = 'https://fastly.jsdelivr.net/npm/typecho-joe-next@6.0.0/assets/thumb/' . rand(1, 42) . '.jpg';
 			}
 		}
 	}

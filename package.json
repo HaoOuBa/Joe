@@ -1,15 +1,15 @@
 {
-	"name": "typecho-joe-next",
-	"version": "7.3.6",
-	"description": "A Theme Of Typecho",
-	"main": "index.php",
-	"keywords": [
-		"joe",
-		"typecho",
-		"joe theme",
-		"typecho joe",
-		"typecho joe theme"
-	],
-	"author": "Joe",
-	"license": "ISC"
+  "name": "typecho-joe-next",
+  "version": "7.3.7",
+  "description": "A Theme Of Typecho",
+  "main": "index.php",
+  "keywords": [
+    "joe",
+    "typecho",
+    "joe theme",
+    "typecho joe",
+    "typecho joe theme"
+  ],
+  "author": "Joe",
+  "license": "ISC"
 }

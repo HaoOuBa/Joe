@@ -190,7 +190,7 @@ class config
     if (isset($_GET['config'])) self::dump_config($local_config, $storage_path, self::$storage_config, $user_config, $user_valid);
 
     // CDN assets
-    self::$assets = self::$prod ? 'https://cdn.jsdelivr.net/npm/files.photo.gallery@' . self::$version . '/' : '';
+    self::$assets = self::$prod ? 'https://fastly.jsdelivr.net/npm/files.photo.gallery@' . self::$version . '/' : '';
 
     // root
     self::$root = real_path(self::$config['root']);
@@ -1247,7 +1247,7 @@ if (post('action')) {
   } else if ($action === 'do_update') {
     header('Content-Type: application/json');
     $version = post('version');
-    $file = 'https://cdn.jsdelivr.net/npm/files.photo.gallery' . ($version ? '@' . $version : '') . '/index.php';
+    $file = 'https://fastly.jsdelivr.net/npm/files.photo.gallery' . ($version ? '@' . $version : '') . '/index.php';
     $update_is_newer = !$version || version_compare($version, config::$version) > 0;
     $writeable = $update_is_newer && is_writable(__DIR__) && is_writable(__FILE__);
     $get = $writeable ? @file_get_contents($file) : false;
@@ -1420,7 +1420,7 @@ if (post('action')) {
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="robots" content="noindex,nofollow">
         <title><?php echo $init_path ? basename($init_path) : '/'; ?></title>
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+        <link rel="stylesheet" href="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
         <link href="<?php echo config::$assets ?>css/files.css" rel="stylesheet">
         <?php custom_script('css'); ?>
       </head>
@@ -1472,21 +1472,21 @@ if (post('action')) {
         <div id="pswp" class="pswp" tabindex="-1" role="dialog" aria-hidden="true"></div>
 
         <!-- Javascript -->
-        <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/yall-js@3.2.0/dist/yall.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/filesize@6.1.0/lib/filesize.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/screenfull@5.0.2/dist/screenfull.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.8.34/dayjs.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.8.34/plugin/localizedFormat.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.8.34/plugin/relativeTime.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/list.js@1.5.0/dist/list.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/yall-js@3.2.0/dist/yall.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/filesize@6.1.0/lib/filesize.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/screenfull@5.0.2/dist/screenfull.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/dayjs@1.8.34/dayjs.min.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/dayjs@1.8.34/plugin/localizedFormat.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/dayjs@1.8.34/plugin/relativeTime.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/js/bootstrap.min.js"></script>
         <script>
           var _c = <?php echo json_encode($json_config, JSON_PRETTY_PRINT); ?>;
           var CodeMirror = {};
         </script>
-        <script src="https://cdn.jsdelivr.net/npm/codemirror@5.57.0/mode/meta.js"></script>
+        <script src="https://fastly.jsdelivr.net/npm/codemirror@5.57.0/mode/meta.js"></script>
         <!-- custom -->
         <?php custom_script('js'); ?>
         <!-- files -->
