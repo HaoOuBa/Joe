@@ -377,7 +377,7 @@ function _getArticleFiling($self)
     $db = Typecho_Db::get();
     $prefix = $db->getPrefix();
     $result = [];
-    $sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') ORDER BY created DESC LIMIT {$pageSize} OFFSET {$offset}";
+    $sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' ORDER BY FROM_UNIXTIME(created, '%Y 年 %m 月') DESC LIMIT {$pageSize} OFFSET {$offset}";
     $temp = $db->fetchAll($sql);
     $options = Typecho_Widget::widget('Widget_Options');
     foreach ($temp as $item) {
