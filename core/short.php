@@ -1,7 +1,6 @@
 <?php
 
-function _parseContent($post, $login)
-{
+function _parseContent($post, $login) {
     $content = $post->content;
     $content = _parseReply($content);
 

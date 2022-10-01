@@ -31,11 +31,12 @@
 </script>
 <?php
 $fontUrl = $this->options->JCustomFont;
-if (strpos($fontUrl, 'woff2') !== false) $fontFormat = 'woff2';
-elseif (strpos($fontUrl, 'woff') !== false) $fontFormat = 'woff';
-elseif (strpos($fontUrl, 'ttf') !== false) $fontFormat = 'truetype';
-elseif (strpos($fontUrl, 'eot') !== false) $fontFormat = 'embedded-opentype';
-elseif (strpos($fontUrl, 'svg') !== false) $fontFormat = 'svg';
+$fontUrlStr = strval($fontUrl);
+if (strpos($fontUrlStr, 'woff2') !== false) $fontFormat = 'woff2';
+elseif (strpos($fontUrlStr, 'woff') !== false) $fontFormat = 'woff';
+elseif (strpos($fontUrlStr, 'ttf') !== false) $fontFormat = 'truetype';
+elseif (strpos($fontUrlStr, 'eot') !== false) $fontFormat = 'embedded-opentype';
+elseif (strpos($fontUrlStr, 'svg') !== false) $fontFormat = 'svg';
 ?>
 <style>
     @font-face {

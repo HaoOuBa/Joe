@@ -5,8 +5,7 @@ require_once("smtp.php");
 
 /* 加强评论拦截功能 */
 Typecho_Plugin::factory('Widget_Feedback')->comment = array('Intercept', 'message');
-class Intercept
-{
+class Intercept {
     public static function message($comment)
     {
         /* 用户输入内容画图模式 */
@@ -53,10 +52,8 @@ if (
     Typecho_Plugin::factory('Widget_Feedback')->finishComment = array('Email', 'send');
 }
 
-class Email
-{
-    public static function send($comment)
-    {
+class Email {
+    public static function send($comment) {
         $mail = new PHPMailer();
         $mail->isSMTP();
         $mail->SMTPAuth = true;
