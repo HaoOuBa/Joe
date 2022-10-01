@@ -1,8 +1,6 @@
 <?php
-class Widget_Contents_Hot extends Widget_Abstract_Contents
-{
-    public function execute()
-    {
+class Widget_Contents_Hot extends Widget_Abstract_Contents {
+    public function execute() {
         $this->parameter->setDefault(array('pageSize' => 10));
         $select = $this->select();
         $select->cleanAttribute('fields');
@@ -19,10 +17,8 @@ class Widget_Contents_Hot extends Widget_Abstract_Contents
     }
 }
 
-class Widget_Contents_Sort extends Widget_Abstract_Contents
-{
-    public function execute()
-    {
+class Widget_Contents_Sort extends Widget_Abstract_Contents {
+    public function execute() {
         $this->parameter->setDefault(array('page' => 1, 'pageSize' => 10, 'type' => 'created'));
         $offset = $this->parameter->pageSize * ($this->parameter->page - 1);
         $select = $this->select();
@@ -41,10 +37,8 @@ class Widget_Contents_Sort extends Widget_Abstract_Contents
     }
 }
 
-class Widget_Contents_Post extends Widget_Abstract_Contents
-{
-    public function execute()
-    {
+class Widget_Contents_Post extends Widget_Abstract_Contents {
+    public function execute() {
         $select = $this->select();
         $select->cleanAttribute('fields');
         $this->db->fetchAll(

@@ -606,7 +606,7 @@ document.addEventListener("DOMContentLoaded", () => {
   /* 座右铭 */
   {
     let motto = Joe.MOTTO;
-    if (!motto) motto = "有钱终成眷属，没钱亲眼目睹";
+    if (!motto) motto = "";
     if (motto.includes("http")) {
       $.ajax({
         url: motto,

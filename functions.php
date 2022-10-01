@@ -4,8 +4,7 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 /* Joe核心文件 */
 require_once("core/core.php");
 
-function themeConfig($form)
-{
+function themeConfig($form) {
     $_db = Typecho_Db::get();
     $_prefix = $_db->getPrefix();
     try {
@@ -199,10 +198,10 @@ function themeConfig($form)
     $JFooter_Left = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JFooter_Left',
         NULL,
-        '2019 - 2020 © Reach - <a href="https://78.al" target="_blank" rel="noopener noreferrer">Joe</a>',
+        '2019 - 2022 © Reach - <a href="https://78.al" target="_blank" rel="noopener noreferrer">Joe</a>',
         '自定义底部栏左侧内容（非必填）',
         '介绍：用于修改全站底部左侧内容（wap端上方） <br>
-         例如：2019 - 2020 © Reach - Joe             '
+         例如：2019 - 2022 © Reach - Joe             '
     );
     $JFooter_Left->setAttribute('class', 'joe_content joe_global');
     $form->addInput($JFooter_Left);
@@ -430,7 +429,7 @@ function themeConfig($form)
     $JAside_Author_Motto = new Typecho_Widget_Helper_Form_Element_Textarea(
         'JAside_Author_Motto',
         NULL,
-        "有钱终成眷属，没钱亲眼目睹",
+        "",
         '博主栏座右铭（一言）- PC/WAP',
         '介绍：用于修改博主栏的座右铭（一言） <br />
          格式：可以填写多行也可以填写一行，填写多行时，每次随机显示其中的某一条，也可以填写API地址 <br />

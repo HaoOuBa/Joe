@@ -19,8 +19,7 @@ require_once('factory.php');
 _startCountTime();
 
 /* 主题初始化 */
-function themeInit($self)
-{
+function themeInit($self) {
     /* 强制用户要求填写邮箱 */
     Helper::options()->commentsRequireMail = true;
     /* 强制用户要求无需填写url */
@@ -83,8 +82,7 @@ function themeInit($self)
 }
 
 /* 增加自定义字段 */
-function themeFields($layout)
-{
+function themeFields($layout) {
     $mode = new Typecho_Widget_Helper_Form_Element_Select(
         'mode',
         array(

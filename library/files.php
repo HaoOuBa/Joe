@@ -6,8 +6,7 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 // config
-class config
-{
+class config {
 
   // DEFAULT CONFIG
   // Only edit directly if it is a temporary installation. Settings added here will be lost when updating!
@@ -123,7 +122,7 @@ class config
     $user_duplicate = array_intersect_assoc($user_valid, self::$default);
 
     // items
-    $items = array(
+    $items = [
       ['arr' => $local_config, 'comment' => "// LOCAL CONFIG\n// " . self::$local_config_file],
       ['arr' => $storage_config, 'comment' => "// STORAGE CONFIG\n// " . rtrim($storage_path ?: '', '\/') . '/config/config.php'],
       ['arr' => $user_invalid, 'comment' => "// INVALID PARAMS\n// The following custom parameters will be ignored as they are not valid:", 'var' => '$invalid', 'hide' => empty($user_invalid)],
@@ -132,7 +131,7 @@ class config
       ['arr' => self::$config, 'comment' => "// CONFIG\n// User parameters merged with default parameters.", 'var' => '$config'],
       ['arr' => self::$default, 'comment' => "// DEFAULT CONFIG\n// Default config parameters.", 'var' => '$default'],
       ['arr' => array_diff_key(get_class_vars('config'), array_flip(['default', 'config'])), 'comment' => "// STATIC VARS\n// Static app vars.", 'var' => '$static']
-    );
+    ];
 
     // loop
     $output = '<?php' . PHP_EOL;
@@ -149,24 +148,16 @@ class config
     exit;
   }
 
-
-
-
   //public static function helloWorld() {
-  public static function save_config($config = array())
-  {
+  public static function save_config($config = []) {
     $save_config = array_intersect_key(array_replace(self::$storage_config, $config), self::$default);
     $export = preg_replace("/  '/", "  //'", var_export(array_replace(self::$default, $save_config), true));
     foreach ($save_config as $key => $value) if ($value !== self::$default[$key]) $export = str_replace("//'" . $key, "'" . $key, $export);
     return @file_put_contents(config::$storage_config_realpath, '<?php ' . PHP_EOL . PHP_EOL . '// CONFIG / https://forum.photo.gallery/viewtopic.php?f=66&t=9964' . PHP_EOL . '// Uncomment the parameters you want to edit.' . PHP_EOL . 'return ' . $export . ';');
   }
 
-
-
   // construct
-  function __construct($is_doc = false)
-  {
-
+  function __construct($is_doc = false) {
     // normalize OS paths
     self::$__dir__ = real_path(__DIR__);
     self::$__file__ = real_path(__FILE__);
@@ -252,8 +243,7 @@ class config
 };
 
 // login page
-function login_page($is_login_attempt, $sidx, $is_logout, $client_hash)
-{
+function login_page($is_login_attempt, $sidx, $is_logout, $client_hash) {
 ?>
   <!doctype html>
   <html>

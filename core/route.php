@@ -1,8 +1,7 @@
 <?php
 
 /* 获取文章列表 已测试 √  */
-function _getPost($self)
-{
+function _getPost($self) {
     $self->response->setStatus(200);
 
     $page = $self->request->page;
@@ -21,7 +20,9 @@ function _getPost($self)
     }
 
     /* 如果传入0，强制赋值1 */
-    if ($page == 0) $page = 1;
+    if ($page == 0) {
+        $page = 1;
+    }
     $result = [];
     /* 增加置顶文章功能，通过JS判断（如果你想添加其他标签的话，请先看置顶如何实现的） */
     $sticky_text = Helper::options()->JIndexSticky;
@@ -71,14 +72,13 @@ function _getPost($self)
 }
 
 /* 增加浏览量 已测试 √ */
-function _handleViews($self)
-{
+function _handleViews($self) {
     $self->response->setStatus(200);
 
     $cid = $self->request->cid;
 
     /* sql注入校验 */
-    if (!preg_match('/^\d+$/',  $cid)) {
+    if (!preg_match('/^\d+$/', $cid)) {
         return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
     }
     $db = Typecho_Db::get();
@@ -95,15 +95,14 @@ function _handleViews($self)
 }
 
 /* 点赞和取消点赞 已测试 √ */
-function _handleAgree($self)
-{
+function _handleAgree($self) {
     $self->response->setStatus(200);
 
     $cid = $self->request->cid;
     $type = $self->request->type;
 
     /* sql注入校验 */
-    if (!preg_match('/^\d+$/',  $cid)) {
+    if (!preg_match('/^\d+$/', $cid)) {
         return $self->response->throwJson(array("code" => 0, "data" => "非法请求！已屏蔽！"));
     }
     /* sql注入校验 */
@@ -128,8 +127,7 @@ function _handleAgree($self)
 }
 
 /* 查询是否收录 已测试 √ */
-function _getRecord($self)
-{
+function _getRecord($self) {
     $self->response->setStatus(200);
 
     $site = $self->request->site;
@@ -147,8 +145,8 @@ function _getRecord($self)
     curl_setopt($ch, CURLOPT_USERAGENT, "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.79 Safari/537.36");
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_ENCODING, 'gzip,deflate');
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, FALSE);
-    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, FALSE);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
     curl_setopt($ch, CURLOPT_TIMEOUT, 5);
     $output = curl_exec($ch);
     curl_close($ch);
@@ -161,8 +159,7 @@ function _getRecord($self)
 }
 
 /* 主动推送到百度收录 已测试 √ */
-function _pushRecord($self)
-{
+function _pushRecord($self) {
     $self->response->setStatus(200);
 
     $token = Helper::options()->JBaiduToken;
@@ -184,7 +181,7 @@ function _pushRecord($self)
     $self->response->throwJson(array(
         'domain' => $domain,
         'url' => $url,
-        'data' => json_decode($result, TRUE)
+        'data' => json_decode($result, true)
     ));
 }
 
@@ -194,7 +191,7 @@ function _getWallpaperType($self)
     $self->response->setStatus(200);
 
     $json = _curl("http://cdn.apc.360.cn/index.php?c=WallPaper&a=getAllCategoriesV2&from=360chrome");
-    $res = json_decode($json, TRUE);
+    $res = json_decode($json, true);
     if ($res['errno'] == 0) {
         $self->response->throwJson([
             "code" => 1,
@@ -217,7 +214,7 @@ function _getWallpaperList($self)
     $start = $self->request->start;
     $count = $self->request->count;
     $json = _curl("http://wallpaper.apc.360.cn/index.php?c=WallPaper&a=getAppsByCategory&cid={$cid}&start={$start}&count={$count}&from=360chrome");
-    $res = json_decode($json, TRUE);
+    $res = json_decode($json, true);
     if ($res['errno'] == 0) {
         $self->response->throwJson([
             "code" => 1,
@@ -245,7 +242,7 @@ function _getMaccmsList($self)
     $wd = $self->request->wd ? $self->request->wd : '';
     if ($cms_api) {
         $json = _curl("{$cms_api}?ac={$ac}&ids={$ids}&t={$t}&pg={$pg}&wd={$wd}");
-        $res = json_decode($json, TRUE);
+        $res = json_decode($json, true);
         if ($res['code'] === 1) {
             $self->response->throwJson([
                 "code" => 1,
@@ -273,7 +270,7 @@ function _getHuyaList($self)
     $gameId = $self->request->gameId;
     $page = $self->request->page;
     $json = _curl("https://www.huya.com/cache.php?m=LiveList&do=getLiveListByPage&gameId={$gameId}&tagAll=0&page={$page}");
-    $res = json_decode($json, TRUE);
+    $res = json_decode($json, true);
     if ($res['status'] === 200) {
         $self->response->throwJson([
             "code" => 1,
@@ -288,20 +285,23 @@ function _getHuyaList($self)
 }
 
 /* 获取服务器状态 */
-function _getServerStatus($self)
-{
+function _getServerStatus($self) {
     $self->response->setStatus(200);
 
     $api_panel = Helper::options()->JBTPanel;
     $api_sk = Helper::options()->JBTKey;
-    if (!$api_panel) return $self->response->throwJson([
-        "code" => 0,
-        "data" => "宝塔面板地址未填写！"
-    ]);
-    if (!$api_sk) return $self->response->throwJson([
-        "code" => 0,
-        "data" => "宝塔接口密钥未填写！"
-    ]);
+    if (!$api_panel) {
+        return $self->response->throwJson([
+            "code" => 0,
+            "data" => "宝塔面板地址未填写！"
+        ]);
+    }
+    if (!$api_sk) {
+        return $self->response->throwJson([
+            "code" => 0,
+            "data" => "宝塔接口密钥未填写！"
+        ]);
+    }
     $request_time = time();
     $request_token = md5($request_time . '' . md5($api_sk));
     $ch = curl_init();
@@ -310,7 +310,7 @@ function _getServerStatus($self)
     curl_setopt($ch, CURLOPT_CONNECTTIMEOUT_MS, 3000);
     curl_setopt($ch, CURLOPT_TIMEOUT_MS, 3000);
     curl_setopt($ch, CURLOPT_POST, 1);
-    curl_setopt($ch, CURLOPT_POSTFIELDS,  array("request_time" => $request_time, "request_token" => $request_token));
+    curl_setopt($ch, CURLOPT_POSTFIELDS, array("request_time" => $request_time, "request_token" => $request_token));
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
@@ -340,8 +340,7 @@ function _getServerStatus($self)
 }
 
 /* 获取最近评论 */
-function _getCommentLately($self)
-{
+function _getCommentLately($self) {
     $self->response->setStatus(200);
 
     $time = time();
@@ -364,14 +363,17 @@ function _getCommentLately($self)
 }
 
 /* 获取文章归档 */
-function _getArticleFiling($self)
-{
+function _getArticleFiling($self) {
     $self->response->setStatus(200);
 
     $page = $self->request->page;
     $pageSize = 8;
-    if (!preg_match('/^\d+$/', $page)) return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
-    if ($page == 0) $page = 1;
+    if (!preg_match('/^\d+$/', $page)) {
+        return $self->response->throwJson(array("data" => "非法请求！已屏蔽！"));
+    }
+    if ($page == 0) {
+        $page = 1;
+    }
     $offset = $pageSize * ($page - 1);
     $time = time();
     $db = Typecho_Db::get();
@@ -398,7 +400,7 @@ function _getArticleFiling($self)
             $_item['year'] = $_item['date']->year;
             $_item['month'] = $_item['date']->month;
             $_item['day'] = $_item['date']->day;
-            $routeExists = (NULL != Typecho_Router::get($type));
+            $routeExists = (null != Typecho_Router::get($type));
             $_item['pathinfo'] = $routeExists ? Typecho_Router::url($type, $_item) : '#';
             $_item['permalink'] = Typecho_Common::url($_item['pathinfo'], $options->index);
             $list[] = array(
