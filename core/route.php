@@ -352,7 +352,14 @@ function _getCommentLately($self)
     $prefix = $db->getPrefix();
     for ($i = ($num - 1); $i >= 0; $i--) {
         $date = date("Y/m/d", $time - ($i * 24 * 60 * 60));
-        $sql = "SELECT coid FROM `{$prefix}comments` WHERE FROM_UNIXTIME(created, '%Y/%m/%d') = '{$date}' limit 100";
+        $adapterName= $db->getAdapterName();
+    	if(strripos($adapterName,"sqlite") > 0)
+    	{
+		    $sql = "SELECT coid FROM `{$prefix}comments` WHERE strftime('%Y 年 %m 月',datetime(created, 'unixepoch')) = '{$date}' limit 100";       	
+	    }else
+    	{
+		    $sql = "SELECT coid FROM `{$prefix}comments` WHERE FROM_UNIXTIME(created, '%Y/%m/%d') = '{$date}' limit 100";    	
+	    }
         $count = count($db->fetchAll($sql));
         $categories[] = $date;
         $series[] = $count;
@@ -377,13 +384,26 @@ function _getArticleFiling($self)
     $db = Typecho_Db::get();
     $prefix = $db->getPrefix();
     $result = [];
-    $sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') DESC LIMIT {$pageSize} OFFSET {$offset}";
+    $adapterName= $db->getAdapterName();
+    if(strripos($adapterName,"sqlite") > 0)
+    {
+	    $sql = "SELECT strftime('%Y 年 %m 月',datetime(created, 'unixepoch')) as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY strftime('%Y 年 %m 月',datetime(created, 'unixepoch')) ORDER BY created DESC LIMIT {$pageSize} OFFSET {$offset}";
+    }else
+    {
+	    $sql = "SELECT FROM_UNIXTIME(created, '%Y 年 %m 月') as date FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' GROUP BY FROM_UNIXTIME(created, '%Y 年 %m 月') ORDER BY created DESC LIMIT {$pageSize} OFFSET {$offset}";
+    }
     $temp = $db->fetchAll($sql);
     $options = Typecho_Widget::widget('Widget_Options');
     foreach ($temp as $item) {
         $date = $item['date'];
         $list = [];
-        $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' AND FROM_UNIXTIME(created, '%Y 年 %m 月') = '{$date}' ORDER BY created DESC LIMIT 100";
+        if(strripos($adapterName,"sqlite") > 0)
+        {
+	        $sql ="SELECT * FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' AND strftime('%Y 年 %m 月',datetime(created, 'unixepoch')) = '{$date}' ORDER BY created DESC LIMIT 100";
+        }else
+        {
+	        $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' AND FROM_UNIXTIME(created, '%Y 年 %m 月') = '{$date}' ORDER BY created DESC LIMIT 100";
+        }
         $_list = $db->fetchAll($sql);
         foreach ($_list as $_item) {
             $type = $_item['type'];

@@ -255,7 +255,14 @@ function _getAsideAuthorNav()
 		$limit = Helper::options()->JAside_Author_Nav;
 		$db = Typecho_Db::get();
 		$prefix = $db->getPrefix();
-		$sql = "SELECT * FROM `{$prefix}contents` WHERE cid >= (SELECT floor( RAND() * ((SELECT MAX(cid) FROM `{$prefix}contents`)-(SELECT MIN(cid) FROM `{$prefix}contents`)) + (SELECT MIN(cid) FROM `{$prefix}contents`))) and type='post' and status='publish' and (password is NULL or password='') ORDER BY cid LIMIT $limit";
+		$adapterName= $db->getAdapterName();
+    	if(strripos($adapterName,"sqlite") > 0)
+    	{
+			$sql = "SELECT * FROM `{$prefix}contents` WHERE cid >= (SELECT (ABS(RANDOM()) % ((SELECT MAX(cid) FROM `{$prefix}contents`)-(SELECT MIN(cid) FROM `{$prefix}contents`)) + (SELECT MIN(cid) FROM `{$prefix}contents`))) and type='post' and status='publish' and (password is NULL or password='') ORDER BY cid LIMIT $limit";       	
+		}else
+    	{
+			$sql = "SELECT * FROM `{$prefix}contents` WHERE cid >= (SELECT floor( RAND() * ((SELECT MAX(cid) FROM `{$prefix}contents`)-(SELECT MIN(cid) FROM `{$prefix}contents`)) + (SELECT MIN(cid) FROM `{$prefix}contents`))) and type='post' and status='publish' and (password is NULL or password='') ORDER BY cid LIMIT $limit";    	
+		}
 		$result = $db->query($sql);
 		if ($result instanceof Traversable) {
 			foreach ($result as $item) {
