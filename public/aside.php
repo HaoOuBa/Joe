@@ -44,7 +44,14 @@
         $todayDate = date('m/d', $time);
         $db = Typecho_Db::get();
         $prefix = $db->getPrefix();
-        $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} and FROM_UNIXTIME(created, '%m/%d') = '{$todayDate}' and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 10";
+        $adapterName= $db->getAdapterName();
+    	if(strripos($adapterName,"sqlite") > 0)
+    	{
+		    $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} and strftime('%Y 年 %m 月',datetime(created, 'unixepoch')) = '{$todayDate}' and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 10";	
+	    }else
+    	{
+		    $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} and FROM_UNIXTIME(created, '%m/%d') = '{$todayDate}' and type = 'post' and status = 'publish' and (password is NULL or password = '') LIMIT 10";	
+	    }
         $result = $db->query($sql);
         $historyTodaylist = [];
         if ($result instanceof Traversable) {
