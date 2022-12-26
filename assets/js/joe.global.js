@@ -1,23 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
   /* 初始化昼夜模式 */
   {
+    var dayIcon = document.getElementById("dayIcon");
+    var nightIcon = document.getElementById("nightIcon");
     if (localStorage.getItem("data-night")) {
-      $(".joe_action_item.mode .icon-1").addClass("active");
-      $(".joe_action_item.mode .icon-2").removeClass("active");
+      nightIcon.setAttribute("class","icon-1 active");
+      dayIcon.setAttribute("class","icon-2");
     } else {
       $("html").removeAttr("data-night");
-      $(".joe_action_item.mode .icon-1").removeClass("active");
-      $(".joe_action_item.mode .icon-2").addClass("active");
+      nightIcon.setAttribute("class","icon-1");
+      dayIcon.setAttribute("class","icon-2 active");
     }
     $(".joe_action_item.mode").on("click", () => {
       if (localStorage.getItem("data-night")) {
-        $(".joe_action_item.mode .icon-1").removeClass("active");
-        $(".joe_action_item.mode .icon-2").addClass("active");
+        nightIcon.setAttribute("class","icon-1");
+        dayIcon.setAttribute("class","icon-2 active");
         $("html").removeAttr("data-night");
         localStorage.removeItem("data-night");
       } else {
-        $(".joe_action_item.mode .icon-1").addClass("active");
-        $(".joe_action_item.mode .icon-2").removeClass("active");
+        nightIcon.setAttribute("class","icon-1 active");
+        dayIcon.setAttribute("class","icon-2");
         $("html").attr("data-night", "night");
         localStorage.setItem("data-night", "night");
       }

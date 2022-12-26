@@ -97,46 +97,53 @@ document.addEventListener('DOMContentLoaded', () => {
 	}
 
 	/* 激活文章点赞功能 */
-	{
-		let agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage.getItem(encryption('agree')))) : [];
-		if (agreeArr.includes(cid)) $('.joe_detail__agree .icon-1').addClass('active');
-		else $('.joe_detail__agree .icon-2').addClass('active');
-		let _loading = false;
-		$('.joe_detail__agree .icon').on('click', function () {
-			if (_loading) return;
-			_loading = true;
-			agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage.getItem(encryption('agree')))) : [];
-			let flag = agreeArr.includes(cid);
-			$.ajax({
-				url: Joe.BASE_API,
-				type: 'POST',
-				dataType: 'json',
-				data: { routeType: 'handle_agree', cid, type: flag ? 'disagree' : 'agree' },
-				success(res) {
-					if (res.code !== 1) return;
-					$('.joe_detail__agree .text').html(res.data.agree);
-					if (flag) {
-						const index = agreeArr.findIndex(_ => _ === cid);
-						agreeArr.splice(index, 1);
-						$('.joe_detail__agree .icon-1').removeClass('active');
-						$('.joe_detail__agree .icon-2').addClass('active');
-						$('.joe_detail__agree .icon').removeClass('active');
-					} else {
-						agreeArr.push(cid);
-						$('.joe_detail__agree .icon-2').removeClass('active');
-						$('.joe_detail__agree .icon-1').addClass('active');
-						$('.joe_detail__agree .icon').addClass('active');
-					}
-					const name = encryption('agree');
-					const val = encryption(JSON.stringify(agreeArr));
-					localStorage.setItem(name, val);
-				},
-				complete() {
-					_loading = false;
-				}
-			});
-		});
-	}
+    {
+        var agreeIcon1 = document.getElementById("noAgree");
+        var agreeIcon2 = document.getElementById("isAgree");
+        var agreeIcon = document.getElementById("agreeIcon");
+        let agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage.getItem(encryption('agree')))) : [];
+        if (agreeArr.includes(cid)) {
+            agreeIcon1.setAttribute("class","icon-1 active");
+        }
+        else{
+            agreeIcon2.setAttribute("class","icon-2 active");
+        }
+        let _loading = false;
+        $('.joe_detail__agree .icon').on('click', function () {
+            if (_loading) return;
+            _loading = true;
+            agreeArr = localStorage.getItem(encryption('agree')) ? JSON.parse(decrypt(localStorage.getItem(encryption('agree')))) : [];
+            let flag = agreeArr.includes(cid);
+            $.ajax({
+                url: Joe.BASE_API,
+                type: 'POST',
+                dataType: 'json',
+                data: { routeType: 'handle_agree', cid, type: flag ? 'disagree' : 'agree' },
+                success(res) {
+                    if (res.code !== 1) return;
+                    $('.joe_detail__agree .text').html(res.data.agree);
+                    if (flag) {
+                        const index = agreeArr.findIndex(_ => _ === cid);
+                        agreeArr.splice(index, 1);
+                        agreeIcon1.setAttribute("class","icon-1");
+                        agreeIcon2.setAttribute("class","icon-2 active");
+                        agreeIcon.classList.remove('active');
+                    } else {
+                        agreeArr.push(cid);
+                        agreeIcon2.setAttribute("class","icon-2");
+                        agreeIcon1.setAttribute("class","icon-1 active");
+                        agreeIcon.className += " active";
+                    }
+                    const name = encryption('agree');
+                    const val = encryption(JSON.stringify(agreeArr));
+                    localStorage.setItem(name, val);
+                },
+                complete() {
+                    _loading = false;
+                }
+            });
+        });
+    }
 
 	/* 密码保护文章，输入密码访问 */
 	{
