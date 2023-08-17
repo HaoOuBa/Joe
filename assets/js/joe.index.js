@@ -161,17 +161,19 @@ document.addEventListener('DOMContentLoaded', () => {
 					dataType: 'json',
 					data: { routeType: 'publish_list', page: queryData.page, pageSize: queryData.pageSize, type: queryData.type },
 					success(res) {
-						if (res.data.length === 0) {
-							$('.joe_load').removeAttr('loading');
-							$('.joe_load').html('查看更多');
+						$('.joe_load').removeAttr('loading');
+						$('.joe_index__list .joe_list__loading').hide();
+						if(queryData.pageSize > res.data.length){
+							//没有更多了														
+							$('.joe_load').html('没有更多了');
 							$('.joe_load').hide();
-							$('.joe_index__list .joe_list__loading').hide();
-							return Qmsg.warning('没有更多内容了');
+							if(res.data.length > 0){
+								res.data.forEach(_ => $('.joe_index__list .joe_list').append(getListMode(_)));
+							}
+							return;
 						}
 						res.data.forEach(_ => $('.joe_index__list .joe_list').append(getListMode(_)));
-						$('.joe_load').removeAttr('loading');
 						$('.joe_load').html('查看更多');
-						$('.joe_index__list .joe_list__loading').hide();
 						reslove(res.data.length > 0 ? res.data.length - 1 : 0);
 					}
 				});
@@ -185,15 +187,24 @@ document.addEventListener('DOMContentLoaded', () => {
 			initDom();
 			pushDom();
 		});
-		$('.joe_load').on('click', async function () {
-			if ($(this).attr('loading')) return;
-			queryData.page++;
-			let length = await pushDom();
-			length = $('.joe_index__list .joe_list .joe_list__item').length - length;
-			const queryElement = `.joe_index__list .joe_list .joe_list__item:nth-child(${length})`;
-			const offset = $(queryElement).offset().top - $('.joe_header').height();
-			window.scrollTo({ top: offset - 15, behavior: 'smooth' });
+		const observer = new IntersectionObserver(async function(entries, observer) {
+			entries.forEach(async function(entry){
+				if (entry.isIntersecting) {
+					if ($(this).attr('loading')) return;
+					if ($('.joe_list .joe_list__item').length === 0) return;
+					queryData.page++;
+					let length = await pushDom();
+					length = $('.joe_index__list .joe_list .joe_list__item').length - length;
+					const queryElement = `.joe_index__list .joe_list .joe_list__item:nth-child(${length})`;
+					const offset = $(queryElement).offset().top - $('.joe_header').height();
+					window.scrollTo({ top: offset - 15, behavior: 'smooth' });
+					observer.unobserve(entry.target);
+				}
+			});
 		});
+
+		const loader = document.querySelector('.joe_load');
+		observer.observe(loader);
 	}
 
 	/* 激活列表特效 */
