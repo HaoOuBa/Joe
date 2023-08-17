@@ -224,8 +224,8 @@ function themeConfig($form)
   $JFooter_Right = new Typecho_Widget_Helper_Form_Element_Textarea(
     'JFooter_Right',
     NULL,
-    '<a href="https://78.al/feed/" target="_blank" rel="noopener noreferrer">RSS</a>
-         <a href="https://78.al/sitemap.xml" target="_blank" rel="noopener noreferrer" style="margin-left: 15px">MAP</a>',
+    '<a href="/feed/" target="_blank" rel="noopener noreferrer">RSS</a>
+         <a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" style="margin-left: 15px">MAP</a>',
     '自定义底部栏右侧内容（非必填）',
     '介绍：用于修改全站底部右侧内容（wap端下方） <br>
          例如：&lt;a href="/"&gt;首页&lt;/a&gt; &lt;a href="/"&gt;关于&lt;/a&gt;'
