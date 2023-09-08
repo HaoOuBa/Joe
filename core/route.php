@@ -358,7 +358,7 @@ function _getCommentLately($self)
 		    $sql = "SELECT coid FROM `{$prefix}comments` WHERE strftime('%Y 年 %m 月',datetime(created, 'unixepoch')) = '{$date}' limit 100";       	
 	    }else
     	{
-		    $sql = "SELECT coid FROM `{$prefix}comments` WHERE FROM_UNIXTIME(created, '%Y/%m/%d') = '{$date}' limit 100";    	
+        $sql = "SELECT coid FROM `{$prefix}comments` WHERE FROM_UNIXTIME(created, '%Y/%m/%d') = '{$date}' limit 100";
 	    }
         $count = count($db->fetchAll($sql));
         $categories[] = $date;
@@ -402,7 +402,7 @@ function _getArticleFiling($self)
 	        $sql ="SELECT * FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' AND strftime('%Y 年 %m 月',datetime(created, 'unixepoch')) = '{$date}' ORDER BY created DESC LIMIT 100";
         }else
         {
-	        $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' AND FROM_UNIXTIME(created, '%Y 年 %m 月') = '{$date}' ORDER BY created DESC LIMIT 100";
+        $sql = "SELECT * FROM `{$prefix}contents` WHERE created < {$time} AND (password is NULL or password = '') AND status = 'publish' AND type = 'post' AND FROM_UNIXTIME(created, '%Y 年 %m 月') = '{$date}' ORDER BY created DESC LIMIT 100";
         }
         $_list = $db->fetchAll($sql);
         foreach ($_list as $_item) {

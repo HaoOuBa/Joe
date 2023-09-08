@@ -295,19 +295,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  /* 激活Live2d人物 */
-  {
-    if (Joe.LIVE2D !== "off" && Joe.LIVE2D) {
-      $.getScript("https://fastly.jsdelivr.net/npm/live2d-widget@3.1.4/lib/L2Dwidget.min.js", () => {
-        L2Dwidget.init({
-          model: { jsonPath: Joe.LIVE2D, scale: 1 },
-          mobile: { show: false },
-          display: { position: "right", width: 160, height: 200, hOffset: 70, vOffset: 0 },
-        });
-      });
-    }
-  }
-
   /* 评论框点击切换画图模式和文本模式 */
   {
     if ($(".joe_comment").length) {
