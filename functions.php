@@ -8,14 +8,105 @@ function themeConfig($form)
 {
   $_db = Typecho_Db::get();
   $_prefix = $_db->getPrefix();
+  // Joe主题数据库自动适配系统
   try {
-    if (!array_key_exists('views', $_db->fetchRow($_db->select()->from('table.contents')->page(1, 1)))) {
-      $_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `views` INT DEFAULT 0;');
+    // 获取数据库适配器类型
+    $adapter = strtolower($_db->getAdapterName());
+    
+    // 安全地检查字段是否存在
+    $fieldsToCheck = ['views', 'agree'];
+    
+    foreach ($fieldsToCheck as $field) {
+      $fieldExists = false;
+      
+      try {
+        // 尝试查询该字段来检查是否存在
+        $testRow = $_db->fetchRow($_db->select($field)->from('table.contents')->limit(1));
+        $fieldExists = ($testRow !== null);
+      } catch (Exception $e) {
+        // 字段不存在时会抛出异常
+        $fieldExists = false;
+      }
+      
+      // 如果字段不存在，根据数据库类型添加字段
+      if (!$fieldExists) {
+        $sql = '';
+        
+        switch ($adapter) {
+          case 'pgsql':
+            // PostgreSQL 语法
+            $sql = 'ALTER TABLE "' . $_prefix . 'contents" ADD COLUMN "' . $field . '" INTEGER DEFAULT 0;';
+            break;
+            
+          case 'sqlite':
+            // SQLite 语法
+            $sql = 'ALTER TABLE `' . $_prefix . 'contents` ADD COLUMN `' . $field . '` INTEGER DEFAULT 0;';
+            break;
+            
+          case 'mysql':
+          case 'mysqli':
+          default:
+            // MySQL/MariaDB 语法（默认）
+            $sql = 'ALTER TABLE `' . $_prefix . 'contents` ADD `' . $field . '` INT DEFAULT 0;';
+            break;
+        }
+        
+        if (!empty($sql)) {
+          $_db->query($sql);
+          
+          // 为新字段的现有记录设置默认值
+          $updateSql = '';
+          switch ($adapter) {
+            case 'pgsql':
+              $updateSql = 'UPDATE "' . $_prefix . 'contents" SET "' . $field . '" = 0 WHERE "' . $field . '" IS NULL;';
+              break;
+            case 'sqlite':
+            case 'mysql':
+            case 'mysqli':
+            default:
+              $updateSql = 'UPDATE `' . $_prefix . 'contents` SET `' . $field . '` = 0 WHERE `' . $field . '` IS NULL;';
+              break;
+          }
+          
+          if (!empty($updateSql)) {
+            $_db->query($updateSql);
+          }
+        }
+      }
     }
-    if (!array_key_exists('agree', $_db->fetchRow($_db->select()->from('table.contents')->page(1, 1)))) {
-      $_db->query('ALTER TABLE `' . $_prefix . 'contents` ADD `agree` INT DEFAULT 0;');
+    
+    // 检查并创建索引以提高查询性能
+    try {
+      switch ($adapter) {
+        case 'pgsql':
+          $_db->query('CREATE INDEX IF NOT EXISTS "idx_contents_views" ON "' . $_prefix . 'contents" ("views");');
+          $_db->query('CREATE INDEX IF NOT EXISTS "idx_contents_agree" ON "' . $_prefix . 'contents" ("agree");');
+          break;
+        case 'mysql':
+        case 'mysqli':
+          // MySQL 需要先检查索引是否存在
+          $indexes = $_db->fetchAll($_db->query('SHOW INDEX FROM `' . $_prefix . 'contents` WHERE Key_name IN ("idx_contents_views", "idx_contents_agree");'));
+          $existingIndexes = array_column($indexes, 'Key_name');
+          
+          if (!in_array('idx_contents_views', $existingIndexes)) {
+            $_db->query('CREATE INDEX `idx_contents_views` ON `' . $_prefix . 'contents` (`views`);');
+          }
+          if (!in_array('idx_contents_agree', $existingIndexes)) {
+            $_db->query('CREATE INDEX `idx_contents_agree` ON `' . $_prefix . 'contents` (`agree`);');
+          }
+          break;
+        case 'sqlite':
+          $_db->query('CREATE INDEX IF NOT EXISTS `idx_contents_views` ON `' . $_prefix . 'contents` (`views`);');
+          $_db->query('CREATE INDEX IF NOT EXISTS `idx_contents_agree` ON `' . $_prefix . 'contents` (`agree`);');
+          break;
+      }
+    } catch (Exception $e) {
+      // 索引创建失败不影响主要功能
     }
+    
   } catch (Exception $e) {
+    // 静默处理异常，避免影响主题配置页面
+    // 可以选择记录到错误日志：error_log('Joe主题数据库适配错误: ' . $e->getMessage());
   }
 ?>
   <link rel="stylesheet" href="<?php _getAssets('assets/typecho/config/css/joe.config.min.css') ?>">
