@@ -20,8 +20,30 @@
   <script src="<?php _getAssets('assets/js/joe.index.min.js'); ?>"></script>
 </head>
 
-<body>
+<body class="<?php echo trim((string)$this->options->JIndex_Hero) ? 'joe-has-hero' : ''; ?>">
   <div id="Joe">
+    <?php
+    $hero_img = trim((string)$this->options->JIndex_Hero);
+    if ($hero_img) :
+      $hero_title = trim((string)$this->options->JIndex_Hero_Title);
+      $hero_desc = trim((string)$this->options->JIndex_Hero_Desc);
+      $hero_height = $this->options->JIndex_Hero_Height ? $this->options->JIndex_Hero_Height : '100';
+      if ($hero_title === '') $hero_title = $this->options->title;
+    ?>
+      <section class="joe_hero" style="--joe-hero-height: <?php echo htmlspecialchars($hero_height); ?>vh;">
+        <img class="joe_hero__image lazyload" src="<?php echo htmlspecialchars($hero_img); ?>" data-src="<?php echo htmlspecialchars($hero_img); ?>" alt="<?php echo htmlspecialchars($hero_title); ?>" />
+        <div class="joe_hero__mask"></div>
+        <div class="joe_hero__content">
+          <h1 class="joe_hero__title"><?php echo htmlspecialchars($hero_title); ?></h1>
+          <?php if ($hero_desc) : ?>
+            <p class="joe_hero__desc"><?php echo htmlspecialchars($hero_desc); ?></p>
+          <?php endif; ?>
+        </div>
+        <button class="joe_hero__scroll" type="button" aria-label="向下滚动" onclick="(function(){var t=document.querySelector('.joe_header'); if(t){t.scrollIntoView({behavior:'smooth'});}else{window.scrollTo({top:window.innerHeight,behavior:'smooth'});}})()">
+          <span></span>
+        </button>
+      </section>
+    <?php endif; ?>
     <?php $this->need('public/header.php'); ?>
     <div class="joe_container">
       <div class="joe_main">
@@ -47,7 +69,7 @@
             if (count($recommend_arr) === 2) $recommend = $recommend_arr;
           }
           ?>
-          <?php if (sizeof($carousel) > 0 || sizeof($recommend) === 2) : ?>
+          <?php if (!$hero_img && (sizeof($carousel) > 0 || sizeof($recommend) === 2)) : ?>
             <div class="joe_index__banner">
               <?php if (sizeof($carousel) > 0) : ?>
                 <div class="swiper-container">

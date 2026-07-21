@@ -642,6 +642,53 @@ function themeConfig($form)
   $JWallpaper_Background_WAP->setAttribute('class', 'joe_content joe_image');
   $form->addInput($JWallpaper_Background_WAP);
 
+  $JIndex_Hero = new Typecho_Widget_Helper_Form_Element_Textarea(
+    'JIndex_Hero',
+    NULL,
+    NULL,
+    '首页通栏大屏图片（推荐）',
+    '介绍：首页顶部通栏大图，一张图即可，比轮播图更干净 <br />
+         格式：直接填写图片 URL 地址 <br />
+         例如：https://example.com/hero.jpg <br />
+         注意：填写后会显示在导航下方、文章列表上方；不填则不显示大屏'
+  );
+  $JIndex_Hero->setAttribute('class', 'joe_content joe_index');
+  $form->addInput($JIndex_Hero);
+
+  $JIndex_Hero_Title = new Typecho_Widget_Helper_Form_Element_Text(
+    'JIndex_Hero_Title',
+    NULL,
+    NULL,
+    '首页大屏主标题（非必填）',
+    '介绍：显示在大屏图片中央的主标题，不填则默认使用站点名称'
+  );
+  $JIndex_Hero_Title->setAttribute('class', 'joe_content joe_index');
+  $form->addInput($JIndex_Hero_Title);
+
+  $JIndex_Hero_Desc = new Typecho_Widget_Helper_Form_Element_Text(
+    'JIndex_Hero_Desc',
+    NULL,
+    NULL,
+    '首页大屏副标题（非必填）',
+    '介绍：显示在主标题下方的一行短句，不填则不显示'
+  );
+  $JIndex_Hero_Desc->setAttribute('class', 'joe_content joe_index');
+  $form->addInput($JIndex_Hero_Desc);
+
+  $JIndex_Hero_Height = new Typecho_Widget_Helper_Form_Element_Select(
+    'JIndex_Hero_Height',
+    array(
+      '100' => '整屏高度（推荐）',
+      '85' => '约 85% 屏高',
+      '70' => '约 70% 屏高'
+    ),
+    '100',
+    '首页大屏高度',
+    '介绍：控制通栏大图的高度占比；导航栏会显示在大图下方'
+  );
+  $JIndex_Hero_Height->setAttribute('class', 'joe_content joe_index');
+  $form->addInput($JIndex_Hero_Height->multiMode());
+
   $JIndex_Carousel = new Typecho_Widget_Helper_Form_Element_Textarea(
     'JIndex_Carousel',
     NULL,

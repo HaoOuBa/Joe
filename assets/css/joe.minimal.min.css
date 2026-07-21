@@ -1,0 +1,574 @@
+/* ============================================================
+   Joe 主题 · 极简美化补丁（joe.minimal.min.css）
+   在所有主题样式之后加载，通过 #Joe 提升优先级进行覆盖。
+   删除本文件的引用即可完全恢复原样。
+   ============================================================ */
+
+/* ---------- 1. 全局变量：配色 / 圆角 / 阴影 ---------- */
+html {
+	--theme: #4c6ef5;
+	--background: #ffffff;
+	--main: #1b1c1f;
+	--routine: #43454b;
+	--minor: #8b8e98;
+	--seat: #c6c9d2;
+	--classA: #dfe1e8;
+	--classB: #e7e9ee;
+	--classC: #eef0f4;
+	--classD: #f6f7f9;
+	--radius-wrap: 14px;
+	--radius-inner: 10px;
+	--text-shadow: none;
+	--box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+}
+
+html[data-night='night'] body {
+	--theme: #8aa2ff;
+	--background: #1c1d21;
+	--main: #e8e8ec;
+	--routine: #c2c4cc;
+	--minor: #8f929c;
+	--seat: #5f636e;
+	--classA: #3d4048;
+	--classB: #34373e;
+	--classC: #2b2e34;
+	--classD: #232529;
+	--box-shadow: none;
+}
+
+/* 纯色页面背景（覆盖默认的 #f5f5f5 / 壁纸） */
+body::before {
+	background: #fbfbfd;
+	background-image: none;
+}
+html[data-night='night'] body::before {
+	background: #141519;
+	background-image: none;
+}
+
+/* ---------- 2. 版式基础 ---------- */
+body {
+	font-family: 'Joe Font', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+		'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+	font-size: 15px;
+	color: var(--routine);
+	letter-spacing: 0.01em;
+}
+
+/* 收窄整体版心，阅读更聚焦 */
+@media (min-width: 1400px) {
+	.joe_container {
+		max-width: 1200px;
+	}
+}
+
+#Joe .joe_main {
+	padding: 32px 0 44px;
+}
+
+/* ---------- 3. 顶部导航 ---------- */
+#Joe .joe_header {
+	box-shadow: none;
+	border-bottom: 1px solid var(--classC);
+}
+#Joe .joe_header__below {
+	border-top: 1px solid var(--classD);
+}
+#Joe .joe_header__below-class .item {
+	font-size: 13.5px;
+}
+
+/* ---------- 4. 首页容器：去卡片化，改留白分区 ---------- */
+#Joe .joe_index {
+	background: transparent;
+	box-shadow: none;
+	border-radius: 0;
+	padding: 0;
+}
+
+/* 轮播 / 推荐位圆角统一 */
+#Joe .joe_index__banner .swiper-container,
+#Joe .joe_index__banner .swiper-container .item,
+#Joe .joe_index__banner-recommend .item {
+	border-radius: var(--radius-inner);
+}
+#Joe .joe_index__banner {
+	padding-top: 0;
+}
+#Joe .joe_index__banner-recommend .item .information .type {
+	background-image: none;
+	background: rgba(17, 17, 17, 0.55);
+	backdrop-filter: blur(4px);
+	border-radius: 999px;
+}
+
+/* 热门推荐四宫格：卡片感弱化 */
+#Joe .joe_index__hot {
+	padding-top: 28px;
+}
+#Joe .joe_index__hot-list {
+	column-gap: 20px;
+}
+#Joe .joe_index__hot-list .item .link .inner .image {
+	border-radius: var(--radius-inner);
+}
+#Joe .joe_index__hot-list .item .link .inner .title {
+	background: transparent;
+	text-align: left;
+	padding: 8px 2px 0;
+	color: var(--routine);
+	font-size: 13.5px;
+	line-height: 20px;
+	border-radius: 0;
+	transition: color 0.25s;
+}
+#Joe .joe_index__hot-list .item .link .inner:hover .title {
+	background: transparent;
+	color: var(--theme);
+}
+#Joe .joe_index__hot-list .item .link .inner .views {
+	background-image: none;
+	background: rgba(17, 17, 17, 0.55);
+	backdrop-filter: blur(4px);
+	border-radius: 999px;
+	top: 8px;
+	right: 8px;
+}
+
+/* ---------- 5. 列表区标签页 ---------- */
+#Joe .joe_index__title {
+	margin-top: 20px;
+	border-bottom: 1px solid var(--classB);
+}
+#Joe .joe_index__title-title {
+	height: 46px;
+	line-height: 46px;
+	font-size: 15px;
+	color: var(--minor);
+	font-weight: 400;
+}
+#Joe .joe_index__title-title .item.active {
+	color: var(--main);
+	font-weight: 600;
+}
+#Joe .joe_index__title-title .line {
+	background: var(--main);
+	height: 2px;
+}
+#Joe .joe_index__title-notice svg {
+	display: none;
+}
+#Joe .joe_index__title-notice a {
+	font-size: 13px;
+}
+
+/* ---------- 6. 文章列表：大留白 + 细分隔线 ---------- */
+#Joe .joe_list__item {
+	padding: 26px 0;
+	border-bottom: 1px solid var(--classC);
+}
+#Joe .joe_list__item .line {
+	display: none;
+}
+#Joe .joe_list__item .information .title {
+	font-size: 19px;
+	font-weight: 600;
+	line-height: 1.5;
+	max-height: 3em;
+	margin-bottom: 8px;
+	letter-spacing: 0.01em;
+}
+#Joe .joe_list__item .information .title .badge {
+	background-image: none;
+	background: var(--theme);
+	border-radius: 4px;
+	font-weight: 500;
+	vertical-align: 3px;
+}
+#Joe .joe_list__item .information .abstract {
+	font-size: 14px;
+	line-height: 1.8;
+	max-height: 3.6em;
+	opacity: 1;
+	color: var(--minor);
+}
+#Joe .joe_list__item .meta {
+	font-size: 12.5px;
+	color: var(--seat);
+}
+#Joe .joe_list__item .meta .items li::after {
+	content: '·';
+	padding: 0 7px;
+}
+#Joe .joe_list__item .meta .last .icon {
+	display: none;
+}
+#Joe .joe_list__item .meta .last .link {
+	color: var(--minor);
+	background: var(--classD);
+	padding: 2px 10px;
+	border-radius: 999px;
+	font-size: 12px;
+	transition: color 0.25s, background 0.25s;
+}
+#Joe .joe_list__item .meta .last .link:hover {
+	color: var(--theme);
+	background: var(--classC);
+}
+
+/* 缩略图：小图右置、圆角、去掉时间角标和相机图标 */
+#Joe .joe_list__item.default .thumbnail {
+	width: 190px;
+	height: 127px;
+	margin-right: 24px;
+	border-radius: var(--radius-inner);
+}
+#Joe .joe_list__item.default .thumbnail img {
+	border-radius: var(--radius-inner);
+}
+#Joe .joe_list__item .thumbnail time,
+#Joe .joe_list__item .thumbnail svg {
+	display: none;
+}
+#Joe .joe_list__item:hover .thumbnail img {
+	opacity: 0.9;
+}
+
+/* 加载更多：极简线框按钮 */
+#Joe .joe_load {
+	background: transparent;
+	box-shadow: none;
+	border: 1px solid var(--classA);
+	color: var(--minor);
+	width: 140px;
+	height: 36px;
+	line-height: 34px;
+	border-radius: 999px;
+	transition: color 0.25s, border-color 0.25s, transform 0.25s;
+}
+#Joe .joe_load:hover {
+	color: var(--theme);
+	border-color: var(--theme);
+}
+
+/* ---------- 7. 侧边栏：细线卡片 + 文字化列表 ---------- */
+#Joe .joe_aside {
+	margin-left: 28px;
+}
+#Joe .joe_aside__item {
+	box-shadow: none;
+	border: 1px solid var(--classC);
+	margin-bottom: 20px;
+}
+#Joe .joe_aside__item-title {
+	border-bottom: none;
+	height: 40px;
+	line-height: 40px;
+	padding: 4px 16px 0;
+	font-size: 13px;
+	font-weight: 600;
+	letter-spacing: 0.08em;
+	color: var(--minor);
+}
+#Joe .joe_aside__item-title .icon {
+	width: 15px;
+	height: 15px;
+	fill: var(--seat);
+}
+#Joe .joe_aside__item-title .line {
+	display: none;
+}
+#Joe .joe_aside__item-contain {
+	padding: 8px 16px 16px;
+}
+
+/* 博主卡片：去壁纸背景与悬浮动图，纯净排版 */
+#Joe .joe_aside__item.author {
+	padding: 28px 16px 16px;
+}
+#Joe .joe_aside__item.author::before,
+#Joe .joe_aside__item.author::after {
+	display: none !important;
+}
+#Joe .joe_aside__item.author .image {
+	display: none;
+}
+#Joe .joe_aside__item.author .user .avatar {
+	padding: 0;
+	border: 1px solid var(--classB);
+}
+#Joe .joe_aside__item.author .user .link {
+	color: var(--main);
+	font-size: 16px;
+}
+#Joe .joe_aside__item.author .user .motto {
+	color: var(--minor);
+	font-size: 13px;
+}
+
+/* 侧栏热门文章：隐藏大图与缓存角标，改为编号文字列表 */
+#Joe .joe_aside__item.hot .item {
+	margin-bottom: 14px;
+}
+#Joe .joe_aside__item.hot .item .link {
+	display: flex;
+	align-items: flex-start;
+	border-radius: 0;
+	overflow: visible;
+}
+#Joe .joe_aside__item.hot .item .link .image {
+	display: none;
+}
+#Joe .joe_aside__item.hot .item .link .sort {
+	position: static;
+	transform: none;
+	width: 20px;
+	min-width: 20px;
+	text-align: left;
+	background: transparent;
+	color: var(--seat);
+	font-size: 14px;
+	font-weight: 700;
+	font-style: italic;
+	line-height: 20px;
+}
+#Joe .joe_aside__item.hot .item:nth-child(1) .link .sort,
+#Joe .joe_aside__item.hot .item:nth-child(2) .link .sort,
+#Joe .joe_aside__item.hot .item:nth-child(3) .link .sort {
+	background: transparent;
+	color: var(--theme);
+}
+#Joe .joe_aside__item.hot .item .link .describe {
+	position: static;
+	background: none;
+	padding: 0 0 0 6px;
+	min-width: 0;
+	color: var(--seat);
+}
+#Joe .joe_aside__item.hot .item .link .describe h6 {
+	color: var(--routine);
+	font-size: 13.5px;
+	line-height: 20px;
+	font-weight: 400;
+	transition: color 0.25s;
+}
+#Joe .joe_aside__item.hot .item .link:hover .describe h6 {
+	color: var(--theme);
+}
+#Joe .joe_aside__item.hot .item .link .describe span {
+	font-size: 12px;
+	color: var(--seat);
+}
+
+/* 最新回复：轻量化 */
+#Joe .joe_aside__item.newreply .item .reply .link {
+	font-size: 13px;
+}
+
+/* ---------- 8. 页脚与分页 ---------- */
+#Joe .joe_footer {
+	background: transparent;
+	border-top: 1px solid var(--classC);
+	font-size: 13px;
+}
+#Joe .joe_pagination li a {
+	background: transparent;
+	border: 1px solid var(--classB);
+	border-radius: 8px;
+}
+#Joe .joe_pagination li.active a {
+	background: var(--main);
+	border-color: var(--main);
+}
+#Joe .joe_pagination li a:hover {
+	background: var(--main);
+	border-color: var(--main);
+}
+
+/* ---------- 9. 首页通栏大屏 Hero（导航在大图下方） ---------- */
+#Joe .joe_hero {
+	position: relative;
+	width: 100vw;
+	margin-left: calc(50% - 50vw);
+	height: var(--joe-hero-height, 100vh);
+	min-height: 100vh;
+	max-height: none;
+	overflow: hidden;
+	isolation: isolate;
+}
+#Joe .joe_hero__image {
+	position: absolute;
+	inset: 0;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	object-position: center;
+	z-index: 0;
+}
+#Joe .joe_hero__mask {
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+	background:
+		linear-gradient(to bottom, rgba(8, 10, 16, 0.18) 0%, rgba(8, 10, 16, 0.08) 45%, rgba(8, 10, 16, 0.42) 100%);
+	pointer-events: none;
+}
+#Joe .joe_hero__content {
+	position: absolute;
+	z-index: 2;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	width: min(860px, calc(100% - 48px));
+	text-align: center;
+	color: #fff;
+	text-shadow: 0 2px 24px rgba(0, 0, 0, 0.28);
+}
+#Joe .joe_hero__title {
+	margin: 0;
+	font-size: clamp(2.2rem, 5vw, 3.6rem);
+	font-weight: 700;
+	letter-spacing: 0.04em;
+	line-height: 1.2;
+}
+#Joe .joe_hero__desc {
+	margin: 18px auto 0;
+	max-width: 36em;
+	font-size: clamp(0.95rem, 1.5vw, 1.15rem);
+	line-height: 1.7;
+	color: rgba(255, 255, 255, 0.9);
+	font-weight: 400;
+}
+#Joe .joe_hero__scroll {
+	position: absolute;
+	z-index: 2;
+	left: 50%;
+	bottom: 36px;
+	transform: translateX(-50%);
+	width: 28px;
+	height: 44px;
+	border: 1.5px solid rgba(255, 255, 255, 0.55);
+	border-radius: 999px;
+	background: transparent;
+	padding: 0;
+	cursor: pointer;
+}
+#Joe .joe_hero__scroll span {
+	display: block;
+	width: 4px;
+	height: 8px;
+	margin: 10px auto 0;
+	border-radius: 999px;
+	background: #fff;
+	animation: joeHeroScroll 1.6s ease-in-out infinite;
+}
+@keyframes joeHeroScroll {
+	0% { opacity: 0; transform: translateY(0); }
+	35% { opacity: 1; }
+	100% { opacity: 0; transform: translateY(14px); }
+}
+
+/* 有大屏时：导航在图下方；主栏与侧栏顶对齐 */
+body.joe-has-hero #Joe > .joe_header {
+	position: sticky;
+	top: 0;
+	z-index: 1000;
+}
+body.joe-has-hero #Joe > .joe_container {
+	position: relative;
+	z-index: 2;
+	margin-top: 0;
+	align-items: flex-start;
+	padding-top: 20px;
+	padding-bottom: 40px;
+	gap: 20px;
+}
+/* 强制清掉主题默认的不等 padding，避免主栏/侧栏错位 */
+body.joe-has-hero #Joe .joe_main,
+body.joe-has-hero #Joe .joe_aside {
+	padding: 0 !important;
+	margin-top: 0 !important;
+}
+/* 用 flex 消除 PHP 缩进空白文本节点造成的神秘空隙 */
+body.joe-has-hero #Joe .joe_main {
+	display: flex;
+	flex-direction: column;
+}
+body.joe-has-hero #Joe .joe_aside {
+	display: flex;
+	flex-direction: column;
+	margin-left: 0 !important;
+}
+body.joe-has-hero #Joe .joe_index {
+	background: var(--background);
+	border-radius: var(--radius-wrap);
+	padding: 0 18px;
+	box-shadow: 0 8px 30px rgba(16, 24, 40, 0.06);
+	margin: 0;
+}
+body.joe-has-hero #Joe .joe_aside__item {
+	background: var(--background);
+	margin-bottom: 20px;
+}
+body.joe-has-hero #Joe .joe_aside__item:first-child {
+	margin-top: 0 !important;
+}
+body.joe-has-hero #Joe .joe_aside__item.author {
+	padding: 20px 16px 16px;
+}
+body.joe-has-hero #Joe .joe_load {
+	margin-top: 16px;
+}
+
+/* ---------- 10. 响应式修正（因 #Joe 优先级高于主题自带的媒体查询） ---------- */
+@media (max-width: 1200px) {
+	#Joe .joe_list__item.default .thumbnail {
+		width: 170px;
+		height: 114px;
+	}
+}
+@media (max-width: 768px) {
+	#Joe .joe_main {
+		padding: 20px 0 32px;
+	}
+	#Joe .joe_list__item {
+		padding: 18px 0;
+	}
+	#Joe .joe_list__item.default .thumbnail {
+		width: 120px;
+		height: 80px;
+		margin-right: 12px;
+	}
+	#Joe .joe_list__item .information .title {
+		font-size: 16px;
+	}
+	#Joe .joe_index__hot-list {
+		gap: 12px;
+	}
+	#Joe .joe_hero {
+		min-height: 100svh;
+		height: 100svh;
+	}
+	#Joe .joe_hero__content {
+		width: calc(100% - 32px);
+	}
+	body.joe-has-hero #Joe .joe_main,
+	body.joe-has-hero #Joe .joe_aside {
+		padding: 0 !important;
+	}
+	body.joe-has-hero #Joe > .joe_container {
+		padding-top: 14px;
+		gap: 14px;
+	}
+	body.joe-has-hero #Joe .joe_index {
+		padding: 0 12px;
+	}
+}
+
+/* 移动端强制隐藏侧栏（覆盖 hero 布局里的 display:flex） */
+@media (max-width: 992px) {
+	#Joe .joe_aside,
+	body.joe-has-hero #Joe .joe_aside {
+		display: none !important;
+	}
+}

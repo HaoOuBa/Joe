@@ -1,4 +1,12 @@
 <?php $this->need('public/config.php'); ?>
+<?php
+// 首页 HTML 禁止被 CDN 长时间缓存，避免主题改动后看不到效果
+if (method_exists($this, 'is') && $this->is('index')) {
+  header('Cache-Control: private, no-cache, no-store, must-revalidate');
+  header('Pragma: no-cache');
+  header('Expires: 0');
+}
+?>
 <meta charset="utf-8" />
 <meta name="renderer" content="webkit" />
 <meta name="format-detection" content="email=no" />
@@ -19,6 +27,7 @@
 <link href="<?php _getAssets('assets/css/joe.normalize.min.css'); ?>" rel="stylesheet" />
 <link href="<?php _getAssets('assets/css/joe.global.min.css'); ?>" rel="stylesheet" />
 <link href="<?php _getAssets('assets/css/joe.responsive.min.css'); ?>" rel="stylesheet" />
+<link href="<?php _getAssets('assets/css/joe.minimal.min.css'); ?>?v=20260721a" rel="stylesheet" />
 <link href="<?php _getAssets('assets/lib/qmsg/qmsg.min.css'); ?>" rel="stylesheet" />
 <link href="<?php _getAssets('assets/lib/fancybox@3.5.7/fancybox.min.css'); ?>" rel="stylesheet" />
 <link href="<?php _getAssets('assets/lib/animate.css@4.1.1/animate.min.css'); ?>" rel="stylesheet" />
